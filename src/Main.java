@@ -30,8 +30,12 @@ public class Main {
         // Pruebo la nueva función inner_join
         List<List<String>> resultado = Joiner.innerJoin(ventas.getArchivoHecho(), fechas.getArchivoDimension(), "id_fecha");
 
+        List<String> fila1 = resultado.get(0);
 
+        // Imprimo todos los campos de fila1 para probar
+        for (String campo : fila1) {
+            System.out.println(campo);
+        }
 
-        
     }
 }
