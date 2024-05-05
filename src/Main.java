@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import Cubo.lectura_archivos.LectorCSV;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
@@ -22,10 +22,10 @@ public class Main {
 
 
         //Instancio las clases correspondientes
-        Hecho ventas = Hecho.CrearDesdeCSV(rutaVentas, "Ventas", hechosVentas);
-        Dimension fechas = Dimension.CrearDesdeCSV(rutaFechas, "Fechas", niveles_fechas);
-        Dimension productos = Dimension.CrearDesdeCSV(rutaProductos, "Productos", niveles_Productos);
-        Dimension puntos_venta = Dimension.CrearDesdeCSV(rutaPuntosVenta, "Puntos de Venta", niveles_PuntosVenta);
+        Hecho ventas = new Hecho("Ventas",hechosVentas ,new LectorCSV(),rutaVentas);
+        Dimension fechas = new Dimension("Fechas", niveles_fechas, new LectorCSV(), rutaFechas);
+        Dimension productos = new Dimension("Productos", niveles_Productos, new LectorCSV(), rutaProductos);
+        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, new LectorCSV(), rutaPuntosVenta);
 
         // Pruebo el método ver()
         ventas.ver(5, ventas.getHeaders());

@@ -1,22 +1,37 @@
 package Cubo.tablas;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
 import Cubo.utils.Visualizable;
 
-public abstract class Tabla implements Visualizable {
+public abstract class Tabla implements Visualizable{
 
     protected List<String> headers;
     protected List<List<String>> data;
     protected String nombre;
 
-    public Tabla(String nombre ,List<List<String>> data, List<String> headers){
-        this.data = data;
-        this.headers = headers;
+
+    public Tabla(String nombre ,EstrategiaLecturaArchivo estrategia_lectura, String ruta_archivo) throws IOException{
+
+        // Guardo el archivo leido
+        List<List<String>> archivo = estrategia_lectura.leerArchivo(ruta_archivo);
+
+        // Guardo los headers
+        List<String> headers = archivo.get(0);
+        archivo.remove(0);
+
+        // Guardo la data 
+        List<List<String>> data = archivo;
+
+        // Ahora asigno cada variable al lugar que corresponde
         this.nombre = nombre;
+        this.headers = headers;
+        this.data = data;
     }
     
     public List<String> getHeaders() {
