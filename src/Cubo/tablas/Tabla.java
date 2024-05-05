@@ -5,7 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class Tabla {
+import Cubo.utils.Visualizable;
+
+public abstract class Tabla implements Visualizable {
 
     protected List<String> headers;
     protected List<List<String>> data;
@@ -73,6 +75,32 @@ public abstract class Tabla {
 
     public String getNombre(){
         return this.nombre;
+    }
+
+    @Override
+    public void ver(int n_filas, List<String> columnas){
+        // Prevengo el caos de que "n_filas" sea mayor a las filas disponibles
+        if (n_filas > this.data.size()) {throw new IllegalArgumentException("n_filas es mayor a la cantidad de filas disponible.");}
+
+        // Armo una lista y guardo las columnas seleccionadas
+        List<List<String>> columnas_seleccionadas = new ArrayList<>();
+        for (String columna : columnas) {
+            columnas_seleccionadas.add(this.getColumna(columna));
+        }
+
+        //Imprimo las columnas seleccionadas con cierto formato
+        for (String columna : columnas) {
+            System.out.print(String.format("%-20s", columna));
+        }
+        System.out.println();
+
+        // Imprimo los datos con cierto formato
+        for (int i = 0; i < n_filas; i++) {
+            for (List<String> columna : columnas_seleccionadas) {
+                System.out.print(String.format("%-20s", columna.get(i)));
+            }
+            System.out.println();
+        }          
     }
 
 }

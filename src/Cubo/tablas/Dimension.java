@@ -1,16 +1,14 @@
 package Cubo.tablas;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
 import Cubo.lectura_archivos.LectorCSV;
-import Cubo.utils.Visualizable;
 
-public class Dimension extends Tabla implements Visualizable{
+public class Dimension extends Tabla {
 
     private Map<String, List<String>> niveles;
 
@@ -66,32 +64,6 @@ public class Dimension extends Tabla implements Visualizable{
         } else {
             System.out.println("El nivel '" + nivel + "' no existe en la dimensión.");
         }
-    }
-
-    @Override
-    public void ver(int n_filas, List<String> columnas){
-        // Prevengo el caos de que "n_filas" sea mayor a las filas disponibles
-        if (n_filas > this.data.size()) {throw new IllegalArgumentException("n_filas es mayor a la cantidad de filas disponible.");}
-
-        // Armo una lista y guardo las columnas seleccionadas
-        List<List<String>> columnas_seleccionadas = new ArrayList<>();
-        for (String columna : columnas) {
-            columnas_seleccionadas.add(this.getColumna(columna));
-        }
-
-        //Imprimo las columnas seleccionadas con cierto formato
-        for (String columna : columnas) {
-            System.out.print(String.format("%-20s", columna));
-        }
-        System.out.println();
-
-        // Imprimo los datos con cierto formato
-        for (int i = 0; i < n_filas; i++) {
-            for (List<String> columna : columnas_seleccionadas) {
-                System.out.print(String.format("%-20s", columna.get(i)));
-            }
-            System.out.println();
-        }    
     }
 
 }
