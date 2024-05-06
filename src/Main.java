@@ -26,22 +26,21 @@ public class Main {
 
         //Instancio las clases correspondientes
         Hecho ventas = new Hecho("Ventas",hechosVentas ,new LectorCSV(),rutaVentas);
-        Dimension fechas = new Dimension("Fechas", niveles_fechas, new LectorCSV(), rutaFechas);
-        Dimension productos = new Dimension("Productos", niveles_Productos, new LectorCSV(), rutaProductos);
-        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, new LectorCSV(), rutaPuntosVenta);
+        Dimension fechas = new Dimension("Fechas", niveles_fechas,"id_fecha", new LectorCSV(), rutaFechas);
+        Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto",new LectorCSV(), rutaProductos);
+        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta",new LectorCSV(), rutaPuntosVenta);
 
         Hecho ventas_merge = ventas.mergeDimension(fechas, "id_fecha");
 
 
         // Llamada al método groupBy() para obtener el resultado
-        Map<List<String>, Integer> grupito = ventas_merge.groupBy(new ArrayList<>(Arrays.asList("id_producto", "id_punto_venta", "anio")));
+        Map<List<String>, List<Double>> resultado = ventas_merge.groupBy(new ArrayList<>(Arrays.asList("id_producto", "id_punto_venta", "anio")));
 
         // Filtrar las entradas del mapa para obtener solo aquellas con el primer valor de la clave igual a "212"
-        for (Map.Entry<List<String>, Integer> entry : grupito.entrySet()) {
+        for (Map.Entry<List<String>, List<Double>> entry : resultado.entrySet()) {
             List<String> clave = entry.getKey();
             if (clave.get(0).equals("212")) {
-                Integer suma = entry.getValue();
-                System.out.println("Grupo: " + clave + ", Suma: " + suma);
+                System.out.println("Grupo: " + clave + ", Hechos: " + entry.getValue().toString());
             }
         }
     

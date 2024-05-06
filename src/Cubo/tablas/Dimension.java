@@ -9,11 +9,15 @@ import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
 public class Dimension extends Tabla {
 
     private Map<String, List<String>> niveles;
+    private String primaryKey;
 
-    public Dimension(String nombre, List<String> niveles, EstrategiaLecturaArchivo estrategia_lectura, String ruta_archivo) throws IOException{
+    public Dimension(String nombre, List<String> niveles, String primaryKey,EstrategiaLecturaArchivo estrategia_lectura, String ruta_archivo) throws IOException{
         
         // Uso el constructor base para la información general
         super(nombre, estrategia_lectura, ruta_archivo);
+
+        // Guardo el nombre de la clave primaria
+        this.primaryKey = primaryKey;
 
         // Guardo la información sobre los niveles
         Map<String, List<String>> map_niveles = new HashMap<>();
@@ -22,7 +26,7 @@ public class Dimension extends Tabla {
         }
 
         // Añado la información a niveles
-        this.niveles = map_niveles;     
+        this.niveles = map_niveles;   
     }
     
     public void mostrarNivel(String nivel) {

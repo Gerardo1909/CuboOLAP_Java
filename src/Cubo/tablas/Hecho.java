@@ -94,16 +94,28 @@ public class Hecho extends Tabla {
         return List.copyOf(this.hechos);
     }
 
-    public Map<List<String>, Integer> groupBy(List<String> columnas_agrupacion){
+/**
+ * Este método agrupa los datos del objeto Hecho por las columnas especificadas y realiza la operación de agregación especificada en cada grupo.
+ * 
+ * @param columnas_agrupacion una lista de los nombres de columnas a utilizar para agrupar
+ * @return un mapa donde las claves son las claves de grupo y los valores son los valores agregados para cada grupo
+ */
+    public Map<List<String>, List<Double>> groupBy(List<String> columnas_agrupacion) {
 
-        // Guardo primero los indices de las columnas por la cuales se agrupa
+        // Guardo primero los índices de las columnas por las cuales se agrupa
         List<Integer> indices_agrupacion = new ArrayList<>();
         for (String columna : columnas_agrupacion) {
             indices_agrupacion.add(this.getHeaders().indexOf(columna));
         }
 
-        // Armo un mapa vacio que guardará los resultados
-        Map<List<String>, List<Integer>> mapa_agrupacion = new HashMap<>();
+        // Ahora guardo los índices de los hechos
+        List<Integer> indices_hechos = new ArrayList<>();
+        for (String hecho : this.getHechos()) {
+            indices_hechos.add(this.getHeaders().indexOf(hecho));
+        }
+
+        // Armo un mapa vacío que guardará los resultados
+        Map<List<String>, List<List<Double>>> mapa_agrupacion = new HashMap<>();
 
         // Recorro las filas de la tabla
         for (List<String> fila : this.getData()) {
@@ -113,25 +125,54 @@ public class Hecho extends Tabla {
             for (int indice_columna : indices_agrupacion) {
                 clave.add(fila.get(indice_columna));
             }
-            
-            // Verifico si la clave no está en el mapa de grupos y agregarla si es necesario
+
+            // Verifico si la clave no está en 'mapa_agrupacion'
             if (!mapa_agrupacion.containsKey(clave)) {
-                mapa_agrupacion.put(clave, new ArrayList<>());
+
+                // Armo la lista para los hechos
+                List<List<Double>> listasHechos = new ArrayList<>();
+                mapa_agrupacion.put(clave, listasHechos);
+
+                // Ahora añado una lista por cada hecho dentro del valor
+                for (String hecho : this.getHechos()) {
+                    listasHechos.add(new ArrayList<>());
+                }
             }
 
-            // Obtengo el índice del hecho de interés
-            int indice_hecho = this.getHeaders().indexOf("cantidad");
+            // Ahora recorro los hechos y los agrego a la lista correspondiente
+            for (int i = 0; i < indices_hechos.size(); i++) {
 
-            // Lo añado a la entrada correspondiente en el mapa
-            mapa_agrupacion.get(clave).add(Integer.valueOf(fila.get(indice_hecho)));
+                // Obtengo el índice del hecho
+                int indice_hecho = indices_hechos.get(i);
+
+                // Lo convierto a número para poder operarlo
+                Double hecho_num = Double.valueOf(fila.get(indice_hecho));
+
+                // Lo añado a la lista que corresponde
+                mapa_agrupacion.get(clave).get(i).add(hecho_num);
+
+            }
+
         }
 
-        // Ahora armo el mapa que tendrá el resultado con la operación de agregación suma aplicada
-        Map<List<String>, Integer> mapa_resultante = new HashMap<>();
-        for (Map.Entry<List<String>, List<Integer>> entrada : mapa_agrupacion.entrySet()) {
-            mapa_resultante.put(entrada.getKey(), entrada.getValue().stream().mapToInt(Integer::intValue).sum());
-        }
+        // Armo el mapa que tendrá el resultado con la operación de agregación suma aplicada
+        Map<List<String>, List<Double>> mapa_resultante = new HashMap<>();
 
+        // Recorro cada entrada de 'mapa_agrupacion'
+        for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_agrupacion.entrySet()) {
+            List<String> clave = entrada.getKey();
+            List<List<Double>> listasHechos = entrada.getValue();
+
+            // Sumo cada lista
+            List<Double> sumas = new ArrayList<>();
+            for (List<Double> lista : listasHechos) {
+                double suma = lista.stream().mapToDouble(Double::doubleValue).sum();
+                sumas.add(suma);
+            }
+
+            // Guardo la entrada resultante
+            mapa_resultante.put(clave, sumas);
+        }
 
         return mapa_resultante;
 
