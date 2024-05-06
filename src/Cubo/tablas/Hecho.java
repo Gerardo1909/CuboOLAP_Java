@@ -20,6 +20,7 @@ public class Hecho extends Tabla {
         this.hechos = hechos;
     }
 
+    // Constructor privado, para uso dentro de los métodos de la clase
     private Hecho(String nombre, List<List<String>> data, List<String> headers, List<String> hechos){
         super(nombre, data, headers);
         this.hechos = hechos;
@@ -89,6 +90,13 @@ public class Hecho extends Tabla {
         // Retorno un nuevo Hecho con el constructor privado que definí anteriormente
         return new Hecho(this.getNombre(), resultado, headersResultado, this.getHechos());
 }
+
+    // Este método modifica a la instancia actual, es privado ya que solo debe ser usado dentro de la clase
+    private void mergeDimension_onThis(Dimension dimension, String on){
+        Hecho hecho_merged = this.mergeDimension(dimension, on);
+        this.data = hecho_merged.getData();
+        this.headers = hecho_merged.getHeaders();
+    }
 
     public List<String> getHechos(){
         return List.copyOf(this.hechos);

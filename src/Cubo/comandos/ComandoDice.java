@@ -6,6 +6,7 @@ import java.util.Map;
 public class ComandoDice implements ComandoCubo{
 
     private Map<String, List<String>> filters;
+    private Map<List<String>, List<Double>> resultado;
 
     public ComandoDice(Map<String, List<String>> filters) {
         this.filters = filters;

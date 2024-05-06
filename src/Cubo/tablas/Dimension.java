@@ -48,4 +48,8 @@ public class Dimension extends Tabla {
         }
     }
 
+    public String getPrimaryKey(){
+        return this.primaryKey;
+    }
+
 }

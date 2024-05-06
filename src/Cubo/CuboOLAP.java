@@ -14,17 +14,44 @@ public class CuboOLAP {
     private final List<Dimension> dimensiones;
     private final Hecho hecho;
     private final String nombre;
+    private Hecho data;
 
     public CuboOLAP(String nombre, Hecho hecho, List<Dimension> dimensiones){
 
+        // Verifico que en la tabla de hechos estén todas las claves primarias de las dimensiones
+        for (Dimension dimension : dimensiones){
+
+            if (!hecho.getHeaders().contains(dimension.getPrimaryKey())){
+                throw new IllegalArgumentException("La clave primaria "+ dimension.getPrimaryKey() + " no está en la tabla de hechos");
+            }
+
+        }
+
+        // Una vez verificado asigno los valores
         this.dimensiones = List.copyOf(dimensiones);
         this.hecho = hecho;
         this.nombre = nombre;
 
+        // Y ahora en data guardo una gran tabla resultado de hacer merge a la tabla de hechos por cada dimensión,
+        // esto servirá para realizar las operaciones
+        Hecho hechos_merged = hecho.mergeDimension(dimensiones.get(0), dimensiones.get(0).getPrimaryKey());
+        for (int i = 1; i < dimensiones.size(); i++){
+            hechos_merged = hechos_merged.mergeDimension(dimensiones.get(i), dimensiones.get(i).getPrimaryKey());
+        }
+        this.data = hechos_merged;
     }
 
-    public void rollUp(String dimension) {
-        new ComandoRollUp(dimension).ejecutar();
+    public Map<List<String>, List<Double>> rollUp(List<String> criterio_reduccion) {
+
+        // Genero una instancia de RollUp
+        ComandoRollUp comando = new ComandoRollUp(this.data, criterio_reduccion);
+
+        // Ejecuto la operación
+        comando.ejecutar();
+
+        // Obtengo el resultado de la operación
+        return comando.getResultado();
+
     }
 
     public void drillDown(String dimension) {

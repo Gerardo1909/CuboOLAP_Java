@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import Cubo.CuboOLAP;
 import Cubo.lectura_archivos.LectorCSV;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
@@ -30,16 +30,22 @@ public class Main {
         Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto",new LectorCSV(), rutaProductos);
         Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta",new LectorCSV(), rutaPuntosVenta);
 
-        Hecho ventas_merge = ventas.mergeDimension(fechas, "id_fecha");
+        // Armo una lista con las dimensiones 
+        List<Dimension> dimensiones = new ArrayList<>();
+        dimensiones.add(fechas);
+        dimensiones.add(productos);
+        dimensiones.add(puntos_venta);
 
+        // Armo un nuevo Cubo
+        CuboOLAP cubito = new CuboOLAP("Cubito", ventas, dimensiones);
 
-        // Llamada al método groupBy() para obtener el resultado
-        Map<List<String>, List<Double>> resultado = ventas_merge.groupBy(new ArrayList<>(Arrays.asList("id_producto", "id_punto_venta", "anio")));
+        // Pruebo la operación rollUp
+        Map<List<String>, List<Double>> resultadoRollUp = cubito.rollUp(new ArrayList<>(Arrays.asList("anio", "categoria", "region", "pais")));
 
-        // Filtrar las entradas del mapa para obtener solo aquellas con el primer valor de la clave igual a "212"
-        for (Map.Entry<List<String>, List<Double>> entry : resultado.entrySet()) {
+        // Veo el resultado por consola
+        for (Map.Entry<List<String>, List<Double>> entry : resultadoRollUp.entrySet()) {
             List<String> clave = entry.getKey();
-            if (clave.get(0).equals("212")) {
+            if (clave.get(0).equals("2017")) {
                 System.out.println("Grupo: " + clave + ", Hechos: " + entry.getValue().toString());
             }
         }
