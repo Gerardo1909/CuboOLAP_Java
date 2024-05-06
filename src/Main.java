@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import Cubo.lectura_archivos.LectorCSV;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
@@ -27,8 +30,21 @@ public class Main {
         Dimension productos = new Dimension("Productos", niveles_Productos, new LectorCSV(), rutaProductos);
         Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, new LectorCSV(), rutaPuntosVenta);
 
-        // Pruebo el método ver()
-        ventas.ver(5, ventas.getHeaders());
+        Hecho ventas_merge = ventas.mergeDimension(fechas, "id_fecha");
 
+
+        // Llamada al método groupBy() para obtener el resultado
+        Map<List<String>, Integer> grupito = ventas_merge.groupBy(new ArrayList<>(Arrays.asList("id_producto", "id_punto_venta", "anio")));
+
+        // Filtrar las entradas del mapa para obtener solo aquellas con el primer valor de la clave igual a "212"
+        for (Map.Entry<List<String>, Integer> entry : grupito.entrySet()) {
+            List<String> clave = entry.getKey();
+            if (clave.get(0).equals("212")) {
+                Integer suma = entry.getValue();
+                System.out.println("Grupo: " + clave + ", Suma: " + suma);
+            }
+        }
+    
+    
     }
 }

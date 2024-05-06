@@ -33,7 +33,14 @@ public abstract class Tabla implements Visualizable{
         this.headers = headers;
         this.data = data;
     }
-    
+   
+    // Defino un constructor protegido para el uso interno de las clases hijas
+    protected Tabla(String nombre, List<List<String>> data, List<String> headers){
+        this.nombre = nombre;
+        this.headers = headers;
+        this.data = data;
+    }
+
     public List<String> getHeaders() {
         return new ArrayList<>(headers);
         }

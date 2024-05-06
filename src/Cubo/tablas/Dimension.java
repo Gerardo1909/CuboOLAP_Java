@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
 
-
 public class Dimension extends Tabla {
 
     private Map<String, List<String>> niveles;
