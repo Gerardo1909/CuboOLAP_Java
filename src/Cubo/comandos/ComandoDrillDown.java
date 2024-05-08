@@ -18,5 +18,10 @@ public class ComandoDrillDown implements ComandoCubo {
         // Aquí va la implementación de Drill-down
         System.out.println("Realizando Drill-down en la dimensión: " + dimension);
     }
-    
+
+    public Map<List<String>, List<Double>> getResultado() {
+        return this.resultado;
+    }
 }
+    
+

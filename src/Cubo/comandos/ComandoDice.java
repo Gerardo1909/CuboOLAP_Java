@@ -17,4 +17,8 @@ public class ComandoDice implements ComandoCubo{
         // Aquí va la implementación de Dice
         System.out.println("Realizando Dice con filtros: " + filters);
     }
+
+    public Map<List<String>, List<Double>> getResultado() {
+        return this.resultado;
+    }
 }

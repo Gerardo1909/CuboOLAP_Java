@@ -23,6 +23,6 @@ public class ComandoRollUp implements ComandoCubo{
 
 
     public Map<List<String>, List<Double>> getResultado() {
-        return resultado;
+        return this.resultado;
     }
 }

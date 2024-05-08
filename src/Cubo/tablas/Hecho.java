@@ -50,9 +50,7 @@ public class Hecho extends Tabla {
 
         // Me armo una lista para guardar los headers de la tabla resultante
         List<String> headersResultado = new ArrayList<>(columnas_hecho); // Ver que inicialmente tiene las columnas de la tabla de hechos
-        for (String columna : columnas_dimension) {
-            headersResultado.add(columna);
-        }
+        headersResultado.addAll(columnas_dimension);
 
         // Ahora armo un mapa que por clave tiene valores únicos de la columna por la cual se junta
         // y como valor tiene todas las filas que coinciden en dicha columna
@@ -60,8 +58,20 @@ public class Hecho extends Tabla {
 
         // le voy agregando entradas al mapa
         for (List<String> fila : this.getData()) {
+
+            // En cada iteración obtengo el valor de la columna por la cual se junta para esa fila
             String valor_on = fila.get(columnas_hecho.indexOf(on));
-            mapa_hechos.computeIfAbsent(valor_on, k -> new ArrayList<>()).add(fila);
+
+            // Esta lista de listas de String representa todas las filas con ese mismo valor
+            // trás cada iteración se debe hacer más grande hasta terminar
+            List<List<String>> filas = mapa_hechos.get(valor_on);
+
+            // Y esta es una verificación para añadir esa listas de filas de no existir aún
+            if (filas == null) {
+                filas = new ArrayList<>();
+                mapa_hechos.put(valor_on, filas);
+            }
+            filas.add(fila);
         }
 
         // Itero sobre las filas de la tabla de dimensión 

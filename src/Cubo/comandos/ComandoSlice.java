@@ -21,4 +21,8 @@ public class ComandoSlice implements ComandoCubo {
         System.out.println("Realizando Slice en la dimensión: " + dimension + " con valor: " + value);
     }
 
+    public Map<List<String>, List<Double>> getResultado() {
+        return this.resultado;
+    }
+
 }
