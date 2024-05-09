@@ -102,7 +102,7 @@ public class Hecho extends Tabla {
 }
 
     public List<String> getHechos(){
-        return List.copyOf(this.hechos);
+        return new ArrayList<>(this.hechos);
     }
 
 /**
@@ -189,5 +189,9 @@ public class Hecho extends Tabla {
 
     }
 
+    public Hecho getHechoCopy() {
+        // Método para hacer una copia profunda del objeto actual
+        return new Hecho(this.getNombre(), this.getData(), this.getHeaders(), this.getHechos());
+    }
 
 }

@@ -1,5 +1,6 @@
 package Cubo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import Cubo.comandos.ComandoDice;
@@ -28,15 +29,15 @@ public class CuboOLAP {
         }
 
         // Una vez verificado asigno los valores
-        this.dimensiones = List.copyOf(dimensiones);
+        this.dimensiones = new ArrayList<>(dimensiones);
         this.hecho = hecho;
         this.nombre = nombre;
 
         // Y ahora en data guardo una gran tabla resultado de hacer merge a la tabla de hechos por cada dimensión,
         // esto servirá para realizar las operaciones
-        Hecho hechos_merged = hecho.mergeDimension(dimensiones.get(0), dimensiones.get(0).getPrimaryKey());
-        for (int i = 1; i < dimensiones.size(); i++){
-            hechos_merged = hechos_merged.mergeDimension(dimensiones.get(i), dimensiones.get(i).getPrimaryKey());
+        Hecho hechos_merged = hecho.getHechoCopy();
+        for (Dimension dimension : dimensiones) {
+            hechos_merged = hechos_merged.mergeDimension(dimension, dimension.getPrimaryKey());
         }
         this.data = hechos_merged;
     }
