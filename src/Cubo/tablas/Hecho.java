@@ -101,13 +101,6 @@ public class Hecho extends Tabla {
         return new Hecho(this.getNombre(), resultado, headersResultado, this.getHechos());
 }
 
-    // Este método modifica a la instancia actual, es privado ya que solo debe ser usado dentro de la clase
-    private void mergeDimension_onThis(Dimension dimension, String on){
-        Hecho hecho_merged = this.mergeDimension(dimension, on);
-        this.data = hecho_merged.getData();
-        this.headers = hecho_merged.getHeaders();
-    }
-
     public List<String> getHechos(){
         return List.copyOf(this.hechos);
     }
