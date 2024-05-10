@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         //Obtengo las rutas de los archivos
-        String rutaFechas = "C:\\Users\\gerar\\OneDrive\\Documentos\\Mis Archivos\\Algoritmos 1\\TP_final\\datasets\\fechas.csv";
-        String rutaProductos = "C:\\Users\\gerar\\OneDrive\\Documentos\\Mis Archivos\\Algoritmos 1\\TP_final\\datasets\\productos.csv";
-        String rutaPuntosVenta = "C:\\Users\\gerar\\OneDrive\\Documentos\\Mis Archivos\\Algoritmos 1\\TP_final\\datasets\\puntos_venta.csv";
-        String rutaVentas = "C:\\Users\\gerar\\OneDrive\\Documentos\\Mis Archivos\\Algoritmos 1\\TP_final\\datasets\\ventas.csv";
+        String rutaFechas = "/home/tareas/Downloads/fechas.csv";
+        String rutaProductos = "/home/tareas/Downloads/productos.csv";
+        String rutaPuntosVenta = "/home/tareas/Downloads/puntos_venta.csv";
+        String rutaVentas = "/home/tareas/Downloads/ventas.csv";
 
         // Obtengo los niveles de cada dimensión
         List<String> niveles_fechas = new ArrayList<>(Arrays.asList("fecha", "dia", "mes", "anio", "quarter"));
@@ -40,7 +40,7 @@ public class Main {
         CuboOLAP cubito = new CuboOLAP("Cubito", ventas, dimensiones);
 
         // Pruebo la operación rollUp
-        Map<List<String>, List<Double>> resultadoRollUp = cubito.rollUp(new ArrayList<>(Arrays.asList("anio", "categoria", "region", "pais")));
+        Map<List<String>, List<Double>> resultadoRollUp = cubito.rollUp(new ArrayList<>(Arrays.asList("anio", "categoria", "region", "pais")), "Suma");
 
         // Veo el resultado por consola
         for (Map.Entry<List<String>, List<Double>> entry : resultadoRollUp.entrySet()) {

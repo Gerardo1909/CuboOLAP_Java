@@ -42,10 +42,10 @@ public class CuboOLAP {
         this.data = hechos_merged;
     }
 
-    public Map<List<String>, List<Double>> rollUp(List<String> criterio_reduccion) {
+    public Map<List<String>, List<Double>> rollUp(List<String> criterio_reduccion, String agregacion) {
 
         // Genero una instancia de RollUp
-        ComandoRollUp comando = new ComandoRollUp(this.data, criterio_reduccion);
+        ComandoRollUp comando = new ComandoRollUp(this.data, criterio_reduccion, agregacion);
 
         // Ejecuto la operación
         comando.ejecutar();

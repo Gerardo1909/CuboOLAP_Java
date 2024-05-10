@@ -1,6 +1,7 @@
 # Librería de Cubo OLAP en Java
 
-Hola, este es el repositorio de la librería que ofrece funcionalidades de cubo OLAP en java.
+Este repositorio contiene la implementación en el lenguaje Java de un **Cubo OLAP** para el análisis de datos 
+en varias dimensiones.
 
 ## Descripción
 
@@ -11,8 +12,8 @@ Nuestro grupo se ha propuesto el desafío de construir una librería en Java que
 - Desarrollar una librería en Java que facilite la manipulación y análisis de datos multidimensionales.
 - Construir un cubo OLAP que permita la realización de operaciones analíticas sobre conjuntos de datos complejos.
 - Ofrecer estructuras de datos y operaciones que soporten la funcionalidad solicitada y contemplen posibles extensiones futuras.
-- Minimizar el impacto ante posibles modificaciones en el código.
-- Proporcionar mecanismos para cuantificar, al menos en tiempo, el costo de la ejecución de las operaciones.
+- Ofrecer una librería de uso intuitivo para los usuarios que permita desde la lectura de archivos hasta la posterior
+manipulación de los datos.
 
 ## Uso
 

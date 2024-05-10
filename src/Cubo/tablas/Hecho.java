@@ -111,7 +111,7 @@ public class Hecho extends Tabla {
  * @param columnas_agrupacion una lista de los nombres de columnas a utilizar para agrupar
  * @return un mapa donde las claves son las claves de grupo y los valores son los valores agregados para cada grupo
  */
-    public Map<List<String>, List<Double>> groupBy(List<String> columnas_agrupacion) {
+    public Map<List<String>, List<List<Double>>> groupBy(List<String> columnas_agrupacion) {
 
         // Guardo primero los índices de las columnas por las cuales se agrupa
         List<Integer> indices_agrupacion = new ArrayList<>();
@@ -166,26 +166,7 @@ public class Hecho extends Tabla {
 
         }
 
-        // Armo el mapa que tendrá el resultado con la operación de agregación suma aplicada
-        Map<List<String>, List<Double>> mapa_resultante = new HashMap<>();
-
-        // Recorro cada entrada de 'mapa_agrupacion'
-        for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_agrupacion.entrySet()) {
-            List<String> clave = entrada.getKey();
-            List<List<Double>> listasHechos = entrada.getValue();
-
-            // Sumo cada lista
-            List<Double> sumas = new ArrayList<>();
-            for (List<Double> lista : listasHechos) {
-                double suma = lista.stream().mapToDouble(Double::doubleValue).sum();
-                sumas.add(suma);
-            }
-
-            // Guardo la entrada resultante
-            mapa_resultante.put(clave, sumas);
-        }
-
-        return mapa_resultante;
+        return mapa_agrupacion;
 
     }
 
