@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         //Obtengo las rutas de los archivos
-        String rutaFechas = "/home/tareas/Downloads/fechas.csv";
-        String rutaProductos = "/home/tareas/Downloads/productos.csv";
-        String rutaPuntosVenta = "/home/tareas/Downloads/puntos_venta.csv";
-        String rutaVentas = "/home/tareas/Downloads/ventas.csv";
+        String rutaFechas = "../../datasets/fechas.csv";
+        String rutaProductos = "../../datasets/productos.csv";
+        String rutaPuntosVenta = "../../datasets/puntos_venta.csv";
+        String rutaVentas = "../../datasets/ventas.csv";
 
         // Obtengo los niveles de cada dimensión
         List<String> niveles_fechas = new ArrayList<>(Arrays.asList("fecha", "dia", "mes", "anio", "quarter"));
