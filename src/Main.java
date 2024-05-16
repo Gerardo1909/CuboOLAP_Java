@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         //Obtengo las rutas de los archivos
-        String rutaFechas = "../../datasets/fechas.csv";
-        String rutaProductos = "../../datasets/productos.csv";
-        String rutaPuntosVenta = "../../datasets/puntos_venta.csv";
-        String rutaVentas = "../../datasets/ventas.csv";
+        String rutaFechas = "datasets/fechas.csv";
+        String rutaProductos = "datasets/productos.csv";
+        String rutaPuntosVenta = "datasets/puntos_venta.csv";
+        String rutaVentas = "datasets/ventas.csv";
 
         // Obtengo los niveles de cada dimensión
         List<String> niveles_fechas = new ArrayList<>(Arrays.asList("fecha", "dia", "mes", "anio", "quarter"));
@@ -23,12 +23,14 @@ public class Main {
         List<String> niveles_PuntosVenta = new ArrayList<>(Arrays.asList("punto_venta", "ciudad", "provincia", "pais", "region"));
         List<String> hechosVentas = new ArrayList<>(Arrays.asList("cantidad", "valor_unitario", "valor_total", "costo"));
 
+        //Para la instanciación de clases primero inicializo un LectorCSV
+        LectorCSV lectorCSV = new LectorCSV(';');
 
         //Instancio las clases correspondientes
-        Hecho ventas = new Hecho("Ventas",hechosVentas ,new LectorCSV(),rutaVentas);
-        Dimension fechas = new Dimension("Fechas", niveles_fechas,"id_fecha", new LectorCSV(), rutaFechas);
-        Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto",new LectorCSV(), rutaProductos);
-        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta",new LectorCSV(), rutaPuntosVenta);
+        Hecho ventas = new Hecho("Ventas",hechosVentas ,lectorCSV,rutaVentas);
+        Dimension fechas = new Dimension("Fechas", niveles_fechas,"id_fecha", lectorCSV, rutaFechas);
+        Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto",lectorCSV, rutaProductos);
+        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta",lectorCSV, rutaPuntosVenta);
 
         // Armo una lista con las dimensiones 
         List<Dimension> dimensiones = new ArrayList<>();
