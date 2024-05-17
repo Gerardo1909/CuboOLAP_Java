@@ -101,7 +101,7 @@ public abstract class Tabla implements Visualizable{
 
     @Override
     public void ver(int n_filas, List<String> columnas){
-        // Prevengo el caos de que "n_filas" sea mayor a las filas disponibles
+        // Prevengo el caso de que "n_filas" sea mayor a las filas disponibles
         if (n_filas > this.data.size()) {throw new IllegalArgumentException("n_filas es mayor a la cantidad de filas disponible.");}
 
         // Armo una lista y guardo las columnas seleccionadas

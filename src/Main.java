@@ -42,16 +42,10 @@ public class Main {
         CuboOLAP cubito = new CuboOLAP("Cubito", ventas, dimensiones);
 
         // Pruebo la operación rollUp
-        Map<List<String>, List<Double>> resultadoRollUp = cubito.rollUp(new ArrayList<>(Arrays.asList("anio", "categoria", "region", "pais")), "Suma");
-
-        // Veo el resultado por consola
-        for (Map.Entry<List<String>, List<Double>> entry : resultadoRollUp.entrySet()) {
-            List<String> clave = entry.getKey();
-            if (clave.get(0).equals("2017")) {
-                System.out.println("Grupo: " + clave + ", Hechos: " + entry.getValue().toString());
-            }
-        }
-    
-        //Esto es un cambio
+        cubito.rollUp(new ArrayList<>(Arrays.asList("anio")), "max");
+        
+        List<String> cols_operacion = new ArrayList<>(Arrays.asList("anio", "cantidad", "valor_unitario", "valor_total", "costo"));
+        
+        cubito.ver(5, cols_operacion);
     }
 }
