@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import Cubo.CuboOLAP;
+import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
@@ -41,7 +44,7 @@ public class ComandoSlice implements ComandoCubo {
      * y almacena el resultado en el atributo 'resultado'.
      */
     @Override
-    public void ejecutar() {
+    public void ejecutar() throws TablaException {
 
         // Primero obtengo el índice del nivel por el cual se va a filtrar
         Integer indice_nivel = this.tabla_operacion.getHeaders().indexOf(this.nivel);

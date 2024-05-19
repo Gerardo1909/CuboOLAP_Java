@@ -3,6 +3,9 @@ package Cubo.comandos;
 import java.util.List;
 import java.util.Map;
 
+import Cubo.CuboOLAP;
+import Cubo.excepciones.excepciones_tabla.TablaException;
+
 /**
  * Esta clase implementa el comando Dice para la clase {@link CuboOLAP}.
  * Implementa la interfaz {@link ComandoCubo}.
@@ -17,7 +20,7 @@ public class ComandoDice implements ComandoCubo{
     }
 
     @Override
-    public void ejecutar() {
+    public void ejecutar() throws TablaException {
         // Aquí va la implementación de Dice
         System.out.println("Realizando Dice con filtros: " + filters);
     }

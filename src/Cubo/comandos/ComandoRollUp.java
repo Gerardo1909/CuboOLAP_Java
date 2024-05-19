@@ -3,6 +3,7 @@ package Cubo.comandos;
 import java.util.List;
 import java.util.Map;
 import Cubo.CuboOLAP;
+import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class ComandoRollUp implements ComandoCubo{
      *
      * @param tabla_operacion La tabla de hechos que se utilizará para llevar a cabo la operación.
      * @param criterio_reduccion Los criterios de reducción.
+     * @param hechos_seleccionados Los hechos que se verán involucrados en la operación.
      * @param agregacion La operación de agregación a aplicar.
      */
     public ComandoRollUp(Hecho tabla_operacion, List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) {
@@ -42,7 +44,7 @@ public class ComandoRollUp implements ComandoCubo{
      * y almacena el resultado en el atributo 'resultado'.
      */
     @Override
-    public void ejecutar() {
+    public void ejecutar() throws TablaException {
 
         // Primero agrupo según 'criterio_reduccion'
         Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.criterio_reduccion, this.hechos_seleccionados);

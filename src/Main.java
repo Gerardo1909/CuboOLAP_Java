@@ -48,7 +48,7 @@ public class Main {
 
         // Pruebo la operación Slice
         cubito.slice(
-            puntos_venta,
+            fechas,
             "anio",
             "2020"
         );
