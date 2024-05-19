@@ -9,6 +9,7 @@ import Cubo.comandos.ComandoRollUp;
 import Cubo.comandos.ComandoSlice;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
+import Cubo.tablas.Tabla;
 import Cubo.utils.Visualizable;
 
 public class CuboOLAP implements Visualizable {
@@ -16,18 +17,16 @@ public class CuboOLAP implements Visualizable {
     private final List<Dimension> dimensiones;
     private final Hecho hecho;
     private final String nombre;
-    private Hecho data;
+    private Hecho tabla_operacion;
     private Map<List<String>, List<List<String>>> estado_cubo;
 
     public CuboOLAP(String nombre, Hecho hecho, List<Dimension> dimensiones){
 
         // Verifico que en la tabla de hechos estén todas las claves primarias de las dimensiones
         for (Dimension dimension : dimensiones){
-
             if (!hecho.getHeaders().contains(dimension.getPrimaryKey())){
                 throw new IllegalArgumentException("La clave primaria "+ dimension.getPrimaryKey() + " no está en la tabla de hechos");
             }
-
         }
 
         // Una vez verificado asigno los valores
@@ -35,19 +34,21 @@ public class CuboOLAP implements Visualizable {
         this.hecho = hecho;
         this.nombre = nombre;
 
-        // Y ahora en data guardo una gran tabla resultado de hacer merge a la tabla de hechos por cada dimensión,
+        // Y ahora en tabla_operacion guardo una gran tabla resultado de hacer merge a la tabla de hechos por cada dimensión,
         // esto servirá para realizar las operaciones
         Hecho hechos_merged = hecho.getHechoCopy();
         for (Dimension dimension : dimensiones) {
-            hechos_merged = hechos_merged.mergeDimension(dimension, dimension.getPrimaryKey());
+            Tabla.merge(hechos_merged, dimension, dimension.getPrimaryKey());
         }
-        this.data = hechos_merged;
+        this.tabla_operacion = hechos_merged;
     }
 
     public void rollUp(List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) {
 
+        String agregacion_parsed = agregacion.toLowerCase().trim();
+
         // Genero una instancia de RollUp
-        ComandoRollUp comando = new ComandoRollUp(this.data, criterio_reduccion,hechos_seleccionados , agregacion);
+        ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterio_reduccion, hechos_seleccionados, agregacion_parsed);
 
         // Ejecuto la operación
         comando.ejecutar();
@@ -63,7 +64,7 @@ public class CuboOLAP implements Visualizable {
     public void slice(Dimension dimension,String nivel ,String valor_corte) {
 
         // Genero una instancia de Slice
-        ComandoSlice comando = new ComandoSlice(this.data,dimension, nivel, valor_corte);
+        ComandoSlice comando = new ComandoSlice(this.tabla_operacion,dimension, nivel, valor_corte);
 
         // Ejecuto la operación
         comando.ejecutar();

@@ -2,9 +2,9 @@ package Cubo.comandos;
 
 import java.util.List;
 import java.util.Map;
-
 import Cubo.CuboOLAP;
 import Cubo.tablas.Hecho;
+import Cubo.tablas.Tabla;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,14 +44,42 @@ public class ComandoRollUp implements ComandoCubo{
     @Override
     public void ejecutar() {
 
-        // Obtengo el resultado del groupBy
-        Map<List<String>, List<List<Double>>> mapa_agrupacion = this.tabla_operacion.groupBy(this.criterio_reduccion, this.hechos_seleccionados);
+        // Primero agrupo según 'criterio_reduccion'
+        Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.criterio_reduccion, this.hechos_seleccionados);
+
+        // Ahora armo un nuevo 'mapa_operable' que tendrá como valores las mismas listas pero de tipo double
+        Map<List<String>, List<List<Double>>> mapa_operable = new HashMap<>();
+        for (Map.Entry<List<String>, List<List<String>>> entrada : mapa_agrupacion.entrySet()) {
+
+            // Obtengo clave y valor del mapa_agrupacion
+            List<String> clave = entrada.getKey();
+            List<List<String>> listasHechos_string = entrada.getValue();
+            
+            // Recorro cada lista de hechos_string y la convierto en una lista de doubles
+            List<List<Double>> listasHechos_double = new ArrayList<>();
+            for (List<String> listaString : listasHechos_string) {
+                List<Double> listaDouble = new ArrayList<>();
+                for (String valorString : listaString) {
+                    // Verifico que el valor sea un número y lo convierto en double
+                    try {
+                        Double valorDouble = Double.parseDouble(valorString);
+                        listaDouble.add(valorDouble);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+                listasHechos_double.add(listaDouble);
+            }
+        
+            // Guardo la entrada resultante
+            mapa_operable.put(clave, listasHechos_double);
+        }
 
         // Armo el mapa que tendrá el resultado con la operación de agregación elegida aplicada
         Map<List<String>, List<Double>> mapa_operacion = new HashMap<>();
 
-        // Recorro cada entrada de 'mapa_agrupacion'
-        for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_agrupacion.entrySet()) {
+        // Recorro cada entrada de 'mapa_operable'
+        for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_operable.entrySet()) {
             List<String> clave = entrada.getKey();
             List<List<Double>> listasHechos = entrada.getValue();
 
@@ -59,7 +87,7 @@ public class ComandoRollUp implements ComandoCubo{
             List<Double> operaciones = new ArrayList<>();
             for (List<Double> lista : listasHechos) {
 
-                switch (this.getAgregacion()) {
+                switch (this.agregacion) {
                     case "sum":
                         double suma = sumarLista(lista);
                         operaciones.add(suma);
@@ -76,8 +104,6 @@ public class ComandoRollUp implements ComandoCubo{
                         double count = (double) lista.size();
                         operaciones.add(count);
                         break;
-                    default:
-                        throw new IllegalArgumentException("Operación de agregación no soportada: " + this.getAgregacion());
                 }
             }
 
@@ -117,15 +143,6 @@ public class ComandoRollUp implements ComandoCubo{
         mapa_resultante.put(headers_operacion, operacion_resultante);
 
         this.resultado = mapa_resultante;
-    }
-
-    /**
-     * Este método devuelve la operación de agregación en minúsculas y con espacios en blanco al principio y al final eliminados.
-     *
-     * @return La operación de agregación en minúsculas y con espacios en blanco al principio y al final eliminados.
-     */
-    private String getAgregacion(){
-        return this.agregacion.toLowerCase().trim();
     }
 
     /**
