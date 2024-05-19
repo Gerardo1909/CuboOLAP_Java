@@ -45,9 +45,15 @@ public class Main {
             new ArrayList<>(Arrays.asList("valor_total")),
             "max"
         );
-        
-        List<String> cols_operacion = new ArrayList<>(Arrays.asList("anio", "quarter", "valor_total"));
-        
-        cubito.ver(10, cols_operacion);
+
+        // Pruebo la operación Slice
+        cubito.slice(
+            puntos_venta,
+            "anio",
+            "2020"
+        );
+
+
+        cubito.ver(100, new ArrayList<>(Arrays.asList("anio", "mes", "ciudad", "costo")));
     }
 }

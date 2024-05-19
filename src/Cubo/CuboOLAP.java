@@ -60,8 +60,17 @@ public class CuboOLAP implements Visualizable {
         new ComandoDrillDown(dimension).ejecutar();
     }
 
-    public void slice(String dimension, String value) {
-        new ComandoSlice(dimension, value).ejecutar();
+    public void slice(Dimension dimension,String nivel ,String valor_corte) {
+
+        // Genero una instancia de Slice
+        ComandoSlice comando = new ComandoSlice(this.data,dimension, nivel, valor_corte);
+
+        // Ejecuto la operación
+        comando.ejecutar();
+
+        // Obtengo el resultado de la operación y lo guardo en el atributo 'estado_cubo'
+        this.estado_cubo = comando.getResultado();
+
     }
 
     public void dice(Map<String, List<String>> filters) {
@@ -71,13 +80,31 @@ public class CuboOLAP implements Visualizable {
     @Override
     public void ver(int n_filas, List<String> columnas){
     
-        // Verificar si el estado_cubo está vacío
+        // Verifico si el estado_cubo está vacío
         if (this.estado_cubo.isEmpty()) {
-            System.out.println("El estado del cubo está vacío.");
+            System.out.println("No se han aplicado operaciones sobre el cubo.");
             return;
         }
+
+        // Obtengo los índices de las columnas seleccionadas
+        List<Integer> indices_columnas = new ArrayList<>();
+        for (String columna : columnas) {
+            indices_columnas.add(this.estado_cubo.keySet().iterator().next().indexOf(columna));
+        }
+
+        // Filtro la matriz resultante para quedarme solo con las columnas seleccionadas
+        List<List<String>> matriz_filtrada = new ArrayList<>();
+        for (List<String> fila : this.estado_cubo.values().iterator().next()) {
+            List<String> fila_filtrada = new ArrayList<>();
+            for (int indice : indices_columnas) {
+                fila_filtrada.add(fila.get(indice));
+            }
+            matriz_filtrada.add(fila_filtrada);
+        }
+
+
     
-        // Iterar sobre las columnas seleccionadas y mostrarlas
+        // Muestro las columnas seleecionadas
         for (String columna : columnas) {
             System.out.print(String.format("%-20s", columna));
         }
@@ -85,7 +112,7 @@ public class CuboOLAP implements Visualizable {
     
         // Iterar sobre las primeras n_filas filas de la matriz resultado
         int contador_filas = 0;
-        for (List<String> fila : this.estado_cubo.values().iterator().next()) {
+        for (List<String> fila : matriz_filtrada) {
             // Verificar si se ha alcanzado el número máximo de filas
             if (contador_filas >= n_filas) {
                 break;

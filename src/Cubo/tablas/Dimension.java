@@ -52,4 +52,7 @@ public class Dimension extends Tabla {
         return this.primaryKey;
     }
 
+    public Map<String, List<String>> getNiveles() {
+        return this.niveles;
+    }
 }

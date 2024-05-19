@@ -2,18 +2,21 @@ package Cubo.comandos;
 
 import java.util.List;
 import java.util.Map;
+
+import Cubo.CuboOLAP;
 import Cubo.tablas.Hecho;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Esta clase implementa el comando RollUp para el cubo OLAP.
+ * Esta clase implementa el comando RollUp para la clase {@link CuboOLAP}.
  * Agrupa los hechos por los criterios de reducción y aplica una operación de agregación.
+ * Implementa la interfaz {@link ComandoCubo}.
  */
 public class ComandoRollUp implements ComandoCubo{
 
-    private Hecho tabla_hechos;
+    private Hecho tabla_operacion;
     private List<String> criterio_reduccion;
     private List<String> hechos_seleccionados;
     private String agregacion;
@@ -22,12 +25,12 @@ public class ComandoRollUp implements ComandoCubo{
     /**
      * Constructor para la clase ComandoRollUp.
      *
-     * @param hecho La tabla de hechos a procesar.
+     * @param tabla_operacion La tabla de hechos que se utilizará para llevar a cabo la operación.
      * @param criterio_reduccion Los criterios de reducción.
      * @param agregacion La operación de agregación a aplicar.
      */
-    public ComandoRollUp(Hecho hecho, List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) {
-        this.tabla_hechos = hecho;
+    public ComandoRollUp(Hecho tabla_operacion, List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) {
+        this.tabla_operacion = tabla_operacion;
         this.criterio_reduccion = criterio_reduccion;
         this.agregacion = agregacion;
         this.hechos_seleccionados = hechos_seleccionados;
@@ -42,7 +45,7 @@ public class ComandoRollUp implements ComandoCubo{
     public void ejecutar() {
 
         // Obtengo el resultado del groupBy
-        Map<List<String>, List<List<Double>>> mapa_agrupacion = this.tabla_hechos.groupBy(this.criterio_reduccion, this.hechos_seleccionados);
+        Map<List<String>, List<List<Double>>> mapa_agrupacion = this.tabla_operacion.groupBy(this.criterio_reduccion, this.hechos_seleccionados);
 
         // Armo el mapa que tendrá el resultado con la operación de agregación elegida aplicada
         Map<List<String>, List<Double>> mapa_operacion = new HashMap<>();
