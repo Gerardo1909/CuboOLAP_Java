@@ -44,10 +44,10 @@ public class CuboOLAP implements Visualizable {
         this.data = hechos_merged;
     }
 
-    public void rollUp(List<String> criterio_reduccion, String agregacion) {
+    public void rollUp(List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) {
 
         // Genero una instancia de RollUp
-        ComandoRollUp comando = new ComandoRollUp(this.data, criterio_reduccion, agregacion);
+        ComandoRollUp comando = new ComandoRollUp(this.data, criterio_reduccion,hechos_seleccionados , agregacion);
 
         // Ejecuto la operación
         comando.ejecutar();

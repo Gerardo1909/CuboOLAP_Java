@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import Cubo.CuboOLAP;
 import Cubo.lectura_archivos.LectorCSV;
 import Cubo.tablas.Dimension;
@@ -42,10 +40,14 @@ public class Main {
         CuboOLAP cubito = new CuboOLAP("Cubito", ventas, dimensiones);
 
         // Pruebo la operación rollUp
-        cubito.rollUp(new ArrayList<>(Arrays.asList("anio")), "max");
+        cubito.rollUp(
+            new ArrayList<>(Arrays.asList("anio", "quarter")),
+            new ArrayList<>(Arrays.asList("valor_total")),
+            "max"
+        );
         
-        List<String> cols_operacion = new ArrayList<>(Arrays.asList("anio", "cantidad", "valor_unitario", "valor_total", "costo"));
+        List<String> cols_operacion = new ArrayList<>(Arrays.asList("anio", "quarter", "valor_total"));
         
-        cubito.ver(5, cols_operacion);
+        cubito.ver(10, cols_operacion);
     }
 }

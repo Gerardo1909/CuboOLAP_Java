@@ -6,45 +6,61 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase implementa la interfaz EstrategiaLecturaArchivo para leer archivos CSV.
+ * Utiliza un BufferedReader para leer el archivo línea por línea y un método personalizado de análisis para dividir cada línea en campos.
+ * El método de análisis admite campos encerrados entre comillas dobles y maneja correctamente las comillas escapadas.
+ */
 public class LectorCSV implements EstrategiaLecturaArchivo{
 
+    /**
+     * El carácter utilizado para separar los campos en el archivo CSV.
+     */
     private char separador;
 
+    /**
+     * Constructor para la clase LectorCSV.
+     * @param separador El carácter utilizado para separar los campos en el archivo CSV.
+     */
     public LectorCSV(char separador) {
         this.separador = separador;
     }
 
+    /**
+     * Lee un archivo CSV y devuelve una lista de listas, donde cada lista interna representa una fila del archivo.
+     * @param ruta_archivo La ruta al archivo CSV.
+     * @return Una lista de listas, donde cada lista interna representa una fila del archivo.
+     * @throws IOException Si se produce algún error al leer el archivo.
+     */
     @Override
     public List<List<String>> leerArchivo(String ruta_archivo) throws IOException{
         try (BufferedReader reader = new BufferedReader(new FileReader(ruta_archivo))) {
-        String line;
+            String line;
 
-        // Crea una lista para almacenar las filas del archivo
-        List<List<String>> data = new ArrayList<>();
+            // Crea una lista para almacenar las filas del archivo
+            List<List<String>> data = new ArrayList<>();
 
-        while ((line = reader.readLine())!= null) {
+            while ((line = reader.readLine())!= null) {
 
-            // Analiza la línea utilizando el método parsearLinea
-            List<String> row = parsearLinea(line,this.separador);
+                // Analiza la línea utilizando el método parsearLinea
+                List<String> row = parsearLinea(line,this.separador);
 
-            // Agrega la fila a la lista de datos
-            data.add(row);
+                // Agrega la fila a la lista de datos
+                data.add(row);
+            }
+
+            return data;
+        } catch (IOException e) {
+            // Lanza excepción en caso de algún error
+            throw e;
         }
-
-        return data;
-    } catch (IOException e) {
-        // Lanza excepción en caso de algún error
-        throw e;
     }
-    }
-
 
     /**
-     * Este método analiza una línea de texto dada en una lista de campos, considerando un separador específico y manejando campos entre comillas.
-     *
-     * @param line La línea de texto a analizar.
-     * @param separador El carácter utilizado para separar los campos.
-     * @return Una lista de campos extraídos de la línea de entrada.
+     * Analiza una línea de un archivo CSV en una lista de campos.
+     * @param line La línea a analizar.
+     * @param separador El carácter utilizado para separar los campos en el archivo CSV.
+     * @return Una lista de campos de la línea.
      */
     private List<String> parsearLinea(String line, char separador) {
 

@@ -109,9 +109,10 @@ public class Hecho extends Tabla {
  * Este método agrupa los datos del objeto Hecho por las columnas especificadas y realiza la operación de agregación especificada en cada grupo.
  * 
  * @param columnas_agrupacion una lista de los nombres de columnas a utilizar para agrupar
+ * @param hechos_agrupacion una lista de los nombres de los hechos que se usarán en la agrupación
  * @return un mapa donde las claves son las claves de grupo y los valores son los valores agregados para cada grupo
  */
-    public Map<List<String>, List<List<Double>>> groupBy(List<String> columnas_agrupacion) {
+    public Map<List<String>, List<List<Double>>> groupBy(List<String> columnas_agrupacion, List<String> hechos_agrupacion) {
 
         // Guardo primero los índices de las columnas por las cuales se agrupa
         List<Integer> indices_agrupacion = new ArrayList<>();
@@ -121,7 +122,7 @@ public class Hecho extends Tabla {
 
         // Ahora guardo los índices de los hechos
         List<Integer> indices_hechos = new ArrayList<>();
-        for (String hecho : this.getHechos()) {
+        for (String hecho : hechos_agrupacion) {
             indices_hechos.add(this.getHeaders().indexOf(hecho));
         }
 
@@ -145,7 +146,7 @@ public class Hecho extends Tabla {
                 mapa_agrupacion.put(clave, listasHechos);
 
                 // Ahora añado una lista por cada hecho dentro del valor
-                for (String hecho : this.getHechos()) {
+                for (String hecho : hechos_agrupacion) {
                     listasHechos.add(new ArrayList<>());
                 }
             }
