@@ -42,6 +42,7 @@ public class ComandoRollUp implements ComandoCubo{
      * Ejecuta el comando RollUp.
      * Agrupa los hechos por los criterios de reducción, aplica la operación de agregación,
      * y almacena el resultado en el atributo 'resultado'.
+     * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
     public void ejecutar() throws TablaException {

@@ -157,8 +157,47 @@ public class CuboOLAP implements Visualizable {
 
     }
 
-    public void dice(Map<String, List<String>> filters) throws TablaException{
-        new ComandoDice(filters).ejecutar();
+    /**
+     * Realiza una operación de dice en el cubo.
+     *
+     * @param criterios Un mapa que contiene las dimensiones, niveles y valores a incluir en la operación de "dice".
+     * @throws TablaException Si se produce un error inesperado al ejecutar el comando.
+     * @throws DimensionNoPresenteException Si la dimensión especificada no está presente en el cubo.
+     * @throws NivelNoPresenteException Si el nivel especificado no está presente en la dimensión.
+     * @throws NivelNoPresenteException Si el valor de corte no está presente en el nivel seleccionado de la dimensión.
+     */
+    public void dice(Map<Dimension, Map<String, List<String>>> criterios) throws TablaException, DimensionNoPresenteException, NivelNoPresenteException{
+        
+        //Primero hago las verificaciones pertinentes de la existencia de dimension, niveles y valores especificados
+        for (Map.Entry<Dimension, Map<String, List<String>>> criterioDimension : criterios.entrySet()){
+            // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
+            if (!this.dimensiones.contains(criterioDimension.getKey())){
+                throw new DimensionNoPresenteException("La dimensión " + criterioDimension.getKey().getNombre() + " no está presente en el cubo.");
+            }
+            // Verifico que el nivel pasado como argumento esté presente en la dimensión
+            for (Map.Entry<String, List<String>> criterioNivel : criterioDimension.getValue().entrySet()){
+                if (!criterioDimension.getKey().getNiveles().containsKey(criterioNivel.getKey())){
+                    throw new NivelNoPresenteException("El nivel " + criterioNivel.getKey() + " no está presente en la dimensión " + criterioDimension.getKey().getNombre());
+                }
+                // Finalmente verifico que los valores del nivel elegidos estén en el mismo
+                // nivel
+                for (String valor : criterioNivel.getValue()){
+                    if (!criterioDimension.getKey().getNiveles().get(criterioNivel.getKey()).contains(valor)){
+                        throw new NivelNoPresenteException("El valor " + valor + " no está presente en el nivel " + criterioNivel.getKey() + " de la dimensión " + criterioDimension.getKey().getNombre());
+                    }
+                }
+             }
+        }   
+    
+        // Genero una instancia de Dice
+        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterios);
+
+        // Ejecuto la operación
+        comando.ejecutar();
+
+        // Obtengo el resultado de la operación y lo guardo en el atributo 'estado_cubo'
+        this.estado_cubo = comando.getResultado();
+
     }
     
     /**
@@ -220,6 +259,14 @@ public class CuboOLAP implements Visualizable {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public CuboOLAP getCuboOLAP() throws ClaveNoPresenteException, ColumnaNoPresenteException{ 
+        return new CuboOLAP(this.nombre, this.hecho.getHechoCopy(), new ArrayList<>(dimensiones));
+    }
+
+    public List<Dimension> getDimensiones() {
+        return new ArrayList<>(dimensiones);
     }
 }
 

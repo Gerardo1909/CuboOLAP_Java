@@ -26,10 +26,10 @@ public class ComandoSlice implements ComandoCubo {
     /**
      * Constructor para la clase ComandoSlice.
      *
-     * @param tabla_operacion La tabla de hechos que se va a cortar.
-     * @param dimension       La dimensión en la que se va a cortar.
-     * @param nivel           El nivel dentro de la dimensión en la que se va a cortar.
-     * @param valor_corte     El valor para filtrar.
+     * @param tabla_operacion La tabla de hechos que se utilizará para llevar a cabo la operación.
+     * @param dimension La dimensión en la que se va a cortar.
+     * @param nivel El nivel dentro de la dimensión en la que se va a cortar.
+     * @param valor_corte El valor para filtrar.
      */
     public ComandoSlice(Hecho tabla_operacion, Dimension dimension,String nivel ,String valor_corte) {
         this.dimension = dimension;
@@ -42,6 +42,7 @@ public class ComandoSlice implements ComandoCubo {
      * Ejecuta el comando Slice.
      * Ejecuta la operación de corte en la tabla de operación, 
      * y almacena el resultado en el atributo 'resultado'.
+     * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
     public void ejecutar() throws TablaException {

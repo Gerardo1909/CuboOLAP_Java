@@ -192,7 +192,7 @@ anio                quarter             valor_total
 2019                1                   13215.62
 ```
 
-## Método `Slice`
+## Método `slice`
 
 El método `slice` permite realizar una operación de corte (slice) en una instancia de `CuboOLAP`, filtrando los datos en una dimensión específica a un nivel determinado y por un valor de corte.
 
@@ -244,7 +244,7 @@ cubo.ver(n_filas, columnas);
 ```
 ### Estructura del Resultado
 
-El método `Slice` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+El método `slice` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
 visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
 una instancia de `CuboOLAP`:
 
@@ -260,4 +260,89 @@ anio                mes                 ciudad              costo
 2017                11                  Baldwin Park        11.41
 2017                11                  Baldwin Park        1912.15
 2017                12                  Barstow             413.15
+```
+
+## Método `dice`
+
+Este método realiza una operación de "dice" en el cubo, que filtra los datos del cubo según los criterios especificados. Notar que su 
+característica principal es que puede contener varios criterios de corte a diferencia del método `Slice`.
+
+### Parámetros del Método
+
+1. **criterios**: `Map<Dimension, Map<String, List<String>>>`
+   - **Descripción**: Un mapa que contiene las dimensiones, niveles y valores a incluir en el método `dice`.
+   - **Estructura**:
+     - La clave del mapa es una instancia de la clase `Dimension`.
+     - El valor asociado es otro mapa donde:
+       - La clave es un `String` que representa el nivel de la dimensión seleccionada.
+       - El valor es una lista de `String` que representa los valores de corte en ese nivel.
+
+### Excepciones Lanzadas
+
+- **TablaException**
+  - **Descripción**: Se lanza si se produce un error inesperado al ejecutar el comando.
+  - **Cómo Evitarla**: Asegúrate de que los datos del cubo están en un estado correcto antes de realizar la operación de "dice".
+
+- **DimensionNoPresenteException**
+  - **Descripción**: Se lanza si la dimensión especificada no está presente en el cubo.
+  - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas están incluidas en el cubo antes de llamar al método.
+
+- **NivelNoPresenteException**
+  - **Descripción**: Se lanza si el nivel especificado no está presente en la dimensión.
+  - **Cómo Evitarla**: Asegúrate de que todos los niveles especificados están presentes en las dimensiones correspondientes.
+
+- **NivelNoPresenteException**
+  - **Descripción**: Se lanza si el valor de corte no está presente en el nivel seleccionado de la dimensión.
+  - **Cómo Evitarla**: Comprueba que todos los valores de corte están presentes en los niveles correspondientes de las dimensiones antes de realizar la operación.
+
+### Ejemplo de Uso
+
+```java
+// Creamos primero instancias de la clase Dimension
+Dimension dimension1 = new Dimension("Dim1", Arrays.asList("Nivel1"), "primaryKey1", estrategiaLectura, "ruta/archivo1.csv");
+Dimension dimension2 = new Dimension("Dim2", Arrays.asList("Nivel2"), "primaryKey2", estrategiaLectura, "ruta/archivo2.csv");
+
+// Definimos los criterios que usaremos para filtrar
+Map<String, List<String>> criteriosNivel1 = new HashMap<>();
+criteriosNivel1.put("Nivel1", Arrays.asList("Valor1", "Valor2"));
+
+Map<String, List<String>> criteriosNivel2 = new HashMap<>();
+criteriosNivel2.put("Nivel2", Arrays.asList("Valor3", "Valor4"));
+
+Map<Dimension, Map<String, List<String>>> criterios = new HashMap<>();
+criterios.put(dimension1, criteriosNivel1);
+criterios.put(dimension2, criteriosNivel2);
+
+// Ejecutamos el método dice
+cubo.dice(criterios);
+```
+
+### Estructura del Resultado
+
+El método `dice` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
+una instancia de `CuboOLAP`:
+
+```java
+anio                provincia           costo
+2017                California          5694.28
+2017                California          9490.47
+2017                California          3796.19
+2017                California          3796.19
+2017                California          27.17
+2017                California          10.19
+2017                California          13.59
+2017                California          11.41
+2017                California          1912.15
+2017                California          413.15
+2017                California          826.29
+2017                California          31.72
+2017                California          2654.12
+2017                California          1769.42
+2017                California          4423.54
+2017                California          413.15
+2017                California          826.29
+2017                California          826.29
+2017                California          413.15
+2017                California          24.06
 ```

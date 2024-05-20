@@ -1,3 +1,5 @@
+package PruebasCubo;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -6,10 +8,10 @@ import Cubo.lectura_archivos.LectorCSV;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
-public class Main {
+public class CreacionPrueba {
     public static void main(String[] args) throws Exception {
         
-        //Obtengo las rutas de los archivos
+        // Obtengo las rutas de los archivos
         String rutaFechas = "datasets/fechas.csv";
         String rutaProductos = "datasets/productos.csv";
         String rutaPuntosVenta = "datasets/puntos_venta.csv";
@@ -21,14 +23,14 @@ public class Main {
         List<String> niveles_PuntosVenta = new ArrayList<>(Arrays.asList("punto_venta", "ciudad", "provincia", "pais", "region"));
         List<String> hechosVentas = new ArrayList<>(Arrays.asList("cantidad", "valor_unitario", "valor_total", "costo"));
 
-        //Para la instanciación de clases primero inicializo un LectorCSV
+        // Para la instanciación de clases primero inicializo un LectorCSV
         LectorCSV lectorCSV = new LectorCSV(';');
 
-        //Instancio las clases correspondientes
-        Hecho ventas = new Hecho("Ventas",hechosVentas ,lectorCSV,rutaVentas);
-        Dimension fechas = new Dimension("Fechas", niveles_fechas,"id_fecha", lectorCSV, rutaFechas);
-        Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto",lectorCSV, rutaProductos);
-        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta",lectorCSV, rutaPuntosVenta);
+        // Instancio las clases correspondientes
+        Hecho ventas = new Hecho("Ventas", hechosVentas, lectorCSV, rutaVentas);
+        Dimension fechas = new Dimension("Fechas", niveles_fechas, "id_fecha", lectorCSV, rutaFechas);
+        Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto", lectorCSV, rutaProductos);
+        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta", lectorCSV, rutaPuntosVenta);
 
         // Armo una lista con las dimensiones 
         List<Dimension> dimensiones = new ArrayList<>();
@@ -37,23 +39,12 @@ public class Main {
         dimensiones.add(puntos_venta);
 
         // Armo un nuevo Cubo
-        CuboOLAP cubito = new CuboOLAP("Cubito", ventas, dimensiones);
+        CuboOLAP cuboPrueba = new CuboOLAP("Cubo de Prueba", ventas, dimensiones);
 
-        // Pruebo la operación rollUp
-        cubito.rollUp(
-            new ArrayList<>(Arrays.asList("anio", "quarter")),
-            new ArrayList<>(Arrays.asList("valor_total")),
-            "max"
-        );
+        // Guardo el cubo y sus datos asociados para probarlos en otras clases
+        CuboPruebaManager.setCuboPrueba(cuboPrueba);
+        CuboPruebaManager.setDimensionesCuboPrueba(dimensiones);
 
-        // Pruebo la operación Slice
-        cubito.slice(
-            fechas,
-            "anio",
-            "2017"
-        );
-
-
-        cubito.ver(10, new ArrayList<>(Arrays.asList("anio", "mes", "ciudad", "costo")));
+        System.out.println("CreacionPrueba: Inicializacion completada.");
     }
 }
