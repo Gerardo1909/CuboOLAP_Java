@@ -1,22 +1,26 @@
-# Librería de Cubo OLAP en Java
+# Trabajo Práctico Final - Algoritmos 1 (Licenciatura en Ciencia de Datos)
 
-Este repositorio contiene la implementación en el lenguaje Java de un **Cubo OLAP** para el análisis de datos 
-en varias dimensiones.
+## Enunciado 
 
-## Descripción
+Se desea construir una librería que permita manipular y analizar datos multidimensionales
+construyendo un cubo OLAP (https://es.wikipedia.org/wiki/Cubo_OLAP) para el lenguaje
+Java. Deberá ofrecer estructuras de datos y operaciones que soporten la funcionalidad
+solicitada, como así también contemple posibles extensiones futuras, minimizando el
+impacto ante alguna modificación.
 
-Nuestro grupo se ha propuesto el desafío de construir una librería en Java que permita la manipulación y análisis de datos multidimensionales mediante la construcción de un cubo OLAP. Este cubo OLAP (Procesamiento Analítico en Línea) se centrará en ofrecer estructuras de datos y operaciones necesarias para facilitar el análisis de datos de manera eficiente y flexible.
+En principio no es necesario hacer foco en la eficiencia de las operaciones, pero sería
+deseable disponer también de algún mecanismo que nos permita cuantificar, al menos en
+tiempo, el costo de su ejecución.
 
-## Objetivos 
+Es posible apoyarse en estructuras existentes de forma nativa en el lenguaje Java para
+construir las estructuras de datos, **pero no se deben utilizar librerías externas**.
 
-- Desarrollar una librería en Java que facilite la manipulación y análisis de datos multidimensionales.
-- Construir un cubo OLAP que permita la realización de operaciones analíticas sobre conjuntos de datos complejos.
-- Ofrecer estructuras de datos y operaciones que soporten la funcionalidad solicitada y contemplen posibles extensiones futuras.
-- Ofrecer una librería de uso intuitivo para los usuarios que permita desde la lectura de archivos hasta la posterior
-manipulación de los datos.
 
-## Uso
+## ¿Cuál es el objetivo principal? 
 
-Para comenzar a utilizar la librería, consulta la documentación y ejemplos proporcionados en este repositorio.
+El objetivo principal, tal como se indica en el enunciado, es desarrollar una librería en Java que sirva como herramienta para **científicos de datos** en el análisis de datos multidimensionales. No obstante, el uso de esta librería no se limita exclusivamente a este entorno, ya que también puede ser utilizada para responder preguntas de negocio en ambientes empresariales o para abordar problemas de diversa índole.
 
-Si tienes alguna pregunta o sugerencia, no dudes en abrir un issue en el repositorio.
+Para lograr este objetivo, se implementará un proceso iterativo en el que se añadirán funcionalidades a medida que se identifiquen nuevos requerimientos y se prueben las características existentes. Además, se aplicarán diferentes patrones de diseño para fomentar las buenas prácticas de código y asegurar un diseño **modular y mantenible**.
+
+El principal atractivo de esta librería radica en que **no dependerá de librerías ni frameworks externos** para su implementación. Todas las funcionalidades se desarrollarán desde cero y se ajustarán conforme avance el desarrollo de la librería.
+

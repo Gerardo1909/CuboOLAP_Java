@@ -50,10 +50,10 @@ public class Main {
         cubito.slice(
             fechas,
             "anio",
-            "2020"
+            "2017"
         );
 
 
-        cubito.ver(100, new ArrayList<>(Arrays.asList("anio", "mes", "ciudad", "costo")));
+        cubito.ver(10, new ArrayList<>(Arrays.asList("anio", "mes", "ciudad", "costo")));
     }
 }

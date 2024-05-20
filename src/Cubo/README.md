@@ -1,0 +1,263 @@
+# Documentación de la clase `CuboOLAP`
+
+## Descripción
+
+La clase `CuboOLAP` es la pieza central de nuestra librería y proporciona las funcionalidades esenciales para trabajar con cubos OLAP. Esta clase permite realizar diversas operaciones de análisis sobre las tablas que componen el cubo, es decir, las **dimensiones** y los **hechos**.
+
+### Operaciones Disponibles
+
+La clase `CuboOLAP` ofrece una variedad de operaciones que facilitan el análisis multidimensional de los datos:
+
+- **Roll-up**: Agrega los datos a un nivel superior de la jerarquía.
+- **Slice**: Filtra los datos en una dimensión específica en un nivel determinado.
+- **Drill-down**: Desglosa los datos a un nivel más detallado de la jerarquía.
+- **Dice**: Filtra los datos en varias dimensiones a la vez.
+
+### Visualización del Estado del Cubo
+
+Además de las operaciones de análisis, la clase `CuboOLAP` permite visualizar el estado del cubo después de realizar una operación. Esta funcionalidad es muy útil para los científicos de datos y analistas, ya que proporciona una forma rápida y eficiente de inspeccionar los resultados de las operaciones realizadas.
+
+## Constructor de la clase 
+
+El constructor de esta clase te permite crear una instancia de tipo `CuboOLAP` proporcionando el nombre del cubo, una tabla de hechos y una lista de dimensiones.
+
+### Parámetros del Constructor
+
+1. **nombre**: `String`
+   - **Descripción**: El nombre del cubo OLAP.
+   - **Requisitos**: Debe ser un string válido que represente el nombre que deseas asignar al cubo.
+
+2. **hecho**: `Hecho`
+   - **Descripción**: La tabla de hechos que contiene los datos principales del cubo.
+   - **Requisitos**: Debe ser una instancia válida de la clase `Hecho`, que contiene los datos necesarios para llevar a cabo las operaciones del cubo.
+
+3. **dimensiones**: `List<Dimension>`
+   - **Descripción**: Una lista de dimensiones que definen las diferentes perspectivas para analizar los datos de la tabla de hechos.
+   - **Requisitos**: Debe ser una lista válida de instancias de la clase `Dimension`, donde cada dimensión tiene una clave primaria que debe estar presente en la tabla de hechos.
+
+### Excepciones Lanzadas
+
+1. **ClaveNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si alguna clave primaria de las dimensiones proporcionadas no está presente en los encabezados de la tabla de hechos.
+   - **Cómo Evitarla**: Asegúrate de que todas las claves primarias de las dimensiones están incluidas como encabezados en la tabla de hechos antes de llamar al constructor.
+
+2. **ColumnaNoPresenteException**
+   - **Descripción**: Aunque no se muestra en el fragmento del constructor, este tipo de excepción puede ser lanzada si hay problemas con las columnas en la tabla de hechos o las dimensiones durante la operación de merge.
+   - **Cómo Evitarla**: Verifica que todas las columnas necesarias estén presentes y que no haya conflictos durante el merge de la tabla de hechos con las dimensiones.
+
+### Ejemplo de Uso
+
+```java
+// Primero siempre generar las instancias de tipo Hecho y Dimension
+Hecho hecho = new Hecho("tabla_hechos", ...);
+Dimension dimension1 = new Dimension("dim1", "primaryKey1", ...);
+Dimension dimension2 = new Dimension("dim2", "primaryKey2", ...);
+List<Dimension> dimensiones = Arrays.asList(dimension1, dimension2);
+
+// Una vez hecho, ahora se puede instanciar un objeto CuboOLAP
+CuboOLAP cubo = new CuboOLAP("NombreCubo", hecho, dimensiones);
+```
+
+## Visualización del cubo luego de aplicar una operación
+
+El método `ver` permite visualizar los datos en una instancia de `CuboOLAP` después de haber aplicado una operación sobre la misma. Este método muestra un número específico de filas y columnas seleccionadas.
+
+### Parámetros del Método
+
+1. **n_filas**: `int`
+   - **Descripción**: El número de filas que se desea visualizar.
+   - **Requisitos**: Debe ser un número entero positivo que indique la cantidad de filas a mostrar.
+
+2. **columnas**: `List<String>`
+   - **Descripción**: La lista de nombres de las columnas que se desean visualizar.
+   - **Requisitos**: Debe ser una lista válida de nombres de columnas que existen entre las tablas disponibles del cubo para el momento de su invocación.
+
+### Excepciones Lanzadas
+
+1. **ColumnaNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si alguna de las columnas especificadas no está presente en los encabezados disponibles del cubo.
+   - **Cómo Evitarla**: Verifica que todas las columnas especificadas existen en las tablas que viven dentro del cubo antes de llamar al método.
+
+2. **FilaFueraDeRangoException**
+   - **Descripción**: Esta excepción se lanza si el número de filas solicitado excede el número de filas disponibles en el cubo.
+   - **Cómo Evitarla**: Asegúrate de que el número de filas solicitado esté dentro del rango de filas disponibles en el cubo.
+
+### Consideraciones Previas
+
+- **Operaciones Previas**: Es necesario haber aplicado alguna operación al cubo antes de utilizar este método. Si no se ha realizado ninguna operación, se notificará al usuario y el método no continuará.
+- **Filtrado de Columnas**: El método verificará que las columnas especificadas existen en los encabezados y filtrará los datos para mostrar solo las columnas seleccionadas.
+
+### Ejemplo de Uso
+
+```java
+// Aplicamos alguna operación sobre el cubo
+cubo.operar(param1, param2...);
+
+// Definimos el número de filas y las columnas a visualizar, idealmente las 
+// columnas deberían haberse visto implicadas en la operación anterior
+int n_filas = 10;
+List<String> columnas = Arrays.asList("columna1", "columna2", "columna3");
+
+// Visualizamos los datos del cubo
+cubo.ver(n_filas, columnas);
+```
+
+### Estructura del Resultado
+
+El método `ver` para el caso de una instancia de `CuboOLAP` imprimirá por consola las columnas seleccionadas hasta el número de filas indicado luego
+de haber realizado alguna operación sobre el cubo. A continuación un ejemplo de su salida luego de aplicar el método `Slice` a una instancia de `CuboOLAP`:
+
+```java
+anio                mes                 ciudad              costo
+2020                3                   Alhambra            6.72
+2020                3                   Alhambra            36.99
+2020                3                   Alhambra            3247.53
+2020                3                   Auburn              55.14
+2020                5                   Baldwin Park        157.06
+2020                2                   Baldwin Park        26.18
+2020                5                   Baldwin Park        157.06
+2020                5                   Baldwin Park        189.99
+2020                3                   Camarillo           409.25
+2020                3                   Camarillo           35.96
+```
+
+## Método `rollUp`
+
+El método `rollUp` permite realizar una operación de roll-up en una instancia de `CuboOLAP`, lo que implica una agregación de los datos a un nivel superior en la jerarquía de dimensiones.
+
+### Parámetros del Método
+
+1. **criterio_reduccion**: `List<String>`
+   - **Descripción**: La lista de niveles en los que se va a reducir el cubo.
+   - **Requisitos**: Debe ser una lista válida de nombres de niveles que existen en las dimensiones del cubo.
+
+2. **hechos_seleccionados**: `List<String>`
+   - **Descripción**: La lista de hechos a incluir en la operación de roll-up.
+   - **Requisitos**: Debe ser una lista válida de nombres de hechos que existen en la tabla de hechos del cubo.
+
+3. **agregacion**: `String`
+   - **Descripción**: La operación de agregación a realizar.
+   - **Requisitos**: Solo se soportan las siguientes operaciones: `"sum"`, `"max"`, `"min"`, `"count"`. Debe escribirse tal cual al pasar el argumento.
+
+### Excepciones Lanzadas
+
+1. **AgregacionNoSoportadaException**
+   - **Descripción**: Esta excepción se lanza si la operación de agregación seleccionada no está entre las disponibles.
+   - **Cómo Evitarla**: Asegúrate de pasar una de las operaciones soportadas: `"sum"`, `"max"`, `"min"`, `"count"`.
+
+2. **NivelNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si algún nivel especificado en `criterio_reduccion` no está presente en las dimensiones del cubo.
+   - **Cómo Evitarla**: Verifica que todos los niveles especificados existen en las dimensiones del cubo antes de llamar al método.
+
+3. **HechoNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si algún hecho especificado en `hechos_seleccionados` no está presente en la tabla de hechos.
+   - **Cómo Evitarla**: Verifica que todos los hechos especificados existen en la tabla de hechos antes de llamar al método.
+
+4. **TablaException**
+   - **Descripción**: Esta excepción se lanza si ocurre un error inesperado al invocar el comando.
+   - **Cómo Evitarla**: Maneja las excepciones correctamente y asegúrate de que la tabla de hechos y las dimensiones estén bien configuradas.
+
+### Ejemplo de Uso
+
+```java
+// Primero definimos los niveles de reducción y los hechos seleccionados
+List<String> criterio_reduccion = Arrays.asList("nivel1", "nivel2");
+List<String> hechos_seleccionados = Arrays.asList("hecho1", "hecho2");
+
+// Realizámos la operación de roll-up con agregación "sum"
+cubo.rollUp(criterio_reduccion, hechos_seleccionados, "sum");
+
+// Luego podemos visualizar el resultado de la operación
+cubo.ver(n_filas, columnas);
+```
+### Estructura del Resultado
+
+El método `rollUp` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
+una instancia de `CuboOLAP`:
+
+```java
+anio                quarter             valor_total
+2020                2                   20195.84
+2020                1                   21691.83
+2017                4                   23663.88
+2018                4                   15618.46
+2017                3                   27607.86
+2018                3                   20157.6
+2019                4                   30993.04
+2019                3                   27536.04
+2018                2                   23489.88
+2019                2                   14660.1
+2018                1                   20249.9
+2019                1                   13215.62
+```
+
+## Método `Slice`
+
+El método `slice` permite realizar una operación de corte (slice) en una instancia de `CuboOLAP`, filtrando los datos en una dimensión específica a un nivel determinado y por un valor de corte.
+
+### Parámetros del Método
+
+1. **dimension**: `Dimension`
+   - **Descripción**: La dimensión en la que se va a realizar la operación de slice.
+   - **Requisitos**: Debe ser una instancia válida de la clase `Dimension` que esté presente en el cubo.
+
+2. **nivel**: `String`
+   - **Descripción**: El nivel en la dimensión en el que se va a realizar la operación de slice.
+   - **Requisitos**: Debe ser un string válido que represente un nivel existente en la dimensión especificada.
+
+3. **valor_corte**: `String`
+   - **Descripción**: El valor de corte para la operación de slice.
+   - **Requisitos**: Debe ser un string válido que represente un valor presente en el nivel especificado de la dimensión.
+
+### Excepciones Lanzadas
+
+1. **DimensionNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si la dimensión especificada no está presente en el cubo.
+   - **Cómo Evitarla**: Asegúrate de que la dimensión pasada como argumento esté incluida en el cubo antes de llamar al método.
+
+2. **NivelNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si el nivel especificado no está presente en la dimensión.
+   - **Cómo Evitarla**: Verifica que el nivel especificado existe en la dimensión antes de llamar al método.
+
+3. **ValorNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si el valor de corte no está presente en el nivel seleccionado de la dimensión.
+   - **Cómo Evitarla**: Asegúrate de que el valor de corte existe en el nivel especificado antes de llamar al método.
+
+4. **TablaException**
+   - **Descripción**: Esta excepción se lanza si ocurre un error inesperado al invocar el comando.
+   - **Cómo Evitarla**: Maneja las excepciones correctamente y asegúrate de que los datos estén bien configurados.
+
+### Ejemplo de Uso
+
+```java
+// Defininimos la dimensión, nivel y valor de corte para la operación de slice
+Dimension dimension = new Dimension("dim1", ...);
+String nivel = "nivel1";
+String valor_corte = "valor1";
+
+// Realizamos la operación de slice
+cubo.slice(dimension, nivel, valor_corte);
+
+// Luego podemos visualizar el resultado de la operación
+cubo.ver(n_filas, columnas);
+```
+### Estructura del Resultado
+
+El método `Slice` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
+una instancia de `CuboOLAP`:
+
+```java
+anio                mes                 ciudad              costo
+2017                11                  Baldwin Park        5694.28
+2017                11                  Baldwin Park        9490.47
+2017                11                  Baldwin Park        3796.19
+2017                11                  Baldwin Park        3796.19
+2017                8                   Baldwin Park        27.17
+2017                11                  Baldwin Park        10.19
+2017                8                   Baldwin Park        13.59
+2017                11                  Baldwin Park        11.41
+2017                11                  Baldwin Park        1912.15
+2017                12                  Barstow             413.15
+```
