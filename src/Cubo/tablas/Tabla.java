@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
 import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
@@ -51,11 +49,18 @@ public abstract class Tabla implements Visualizable{
         this.data = data;
     }
    
-    // Constructor protegido para el uso interno de las clases hijas
-    protected Tabla(String nombre, List<List<String>> data, List<String> headers){
+    /**
+     * Constructor para crear una tabla a partir de datos y encabezados dados.
+     * Crea nuevas listas para 'encabezados' y 'datos' para asegurarse de su inmutabilidad.
+     *
+     * @param nombre El nombre de la tabla.
+     * @param data Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
+     * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
+     */
+    public Tabla(String nombre, List<List<String>> data, List<String> headers){
         this.nombre = nombre;
-        this.headers = headers;
-        this.data = data;
+        this.headers = new ArrayList<>(headers);
+        this.data = new ArrayList<>(data);
     }
 
     /**

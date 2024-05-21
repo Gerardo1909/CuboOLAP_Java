@@ -19,7 +19,7 @@ public class Hecho extends Tabla {
 
     /**
      * Constructor de la clase Hecho.
-     * Inicializa la tabla de hechos con la información general y su la lista de hechos.
+     * Inicializa la tabla de hechos con la información general y su lista de hechos.
      *
      * @param nombre El nombre de la tabla de hechos.
      * @param hechos La lista de hechos en la tabla.
@@ -44,9 +44,29 @@ public class Hecho extends Tabla {
         this.hechos = hechos;
     }
 
-    // Constructor privado, para uso dentro de los métodos de la clase
-    private Hecho(String nombre, List<List<String>> data, List<String> headers, List<String> hechos){
+    /**
+     * Constructor de la clase Hecho.
+     * Inicializa la tabla de hechos con datos, encabezados y su lista de hechos.
+     *
+     * @param nombre El nombre de la tabla de hechos.
+     * @param data Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
+     * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
+     * @param hechos La lista de hechos en la tabla.
+     * @throws HechoNoPresenteException Si alguno de los hechos indicados no está presente en la tabla de hechos.
+     */
+    public Hecho(String nombre, List<List<String>> data, List<String> headers, List<String> hechos) throws HechoNoPresenteException{
+
+        // Uso el constructor base para la información general
         super(nombre, data, headers);
+
+        // Verifico que los hechos pasados por argumento estén presentes en la tabla de hechos
+        for (String hecho : hechos) {
+            if (!this.getHeaders().contains(hecho)) {
+                throw new HechoNoPresenteException("El hecho " + hecho + " no está presente en la tabla de hechos");
+            }
+        }
+
+        //Guardo la información de los hechos
         this.hechos = hechos;
     }
 
@@ -61,10 +81,10 @@ public class Hecho extends Tabla {
 
     /**
      * Método para hacer una copia profunda del objeto actual.
-     *
+     * @throws HechoNoPresenteException
      * @return Una copia profunda del objeto actual.
      */
-    public Hecho getHechoCopy() {
+    public Hecho getHechoCopy() throws HechoNoPresenteException{
         return new Hecho(this.getNombre(), this.getData(), this.getHeaders(), this.getHechos());
     }
 

@@ -41,8 +41,9 @@ public class CuboOLAP implements Visualizable {
      * @param hecho La tabla de hechos para el cubo.
      * @param dimensiones La lista de dimensiones para el cubo.
      * @throws ClaveNoPresenteException Si alguna clave primaria de una dimensión no está presente en la tabla de hechos.
+     * @throws HechoNoPresenteException 
      */
-    public CuboOLAP(String nombre, Hecho hecho, List<Dimension> dimensiones) throws ClaveNoPresenteException, ColumnaNoPresenteException{
+    public CuboOLAP(String nombre, Hecho hecho, List<Dimension> dimensiones) throws ClaveNoPresenteException, ColumnaNoPresenteException, HechoNoPresenteException{
 
         // Verifico que en la tabla de hechos estén todas las claves primarias de las dimensiones
         for (Dimension dimension : dimensiones){
@@ -261,7 +262,7 @@ public class CuboOLAP implements Visualizable {
         return nombre;
     }
 
-    public CuboOLAP getCuboOLAP() throws ClaveNoPresenteException, ColumnaNoPresenteException{ 
+    public CuboOLAP getCuboOLAP() throws ClaveNoPresenteException, ColumnaNoPresenteException, HechoNoPresenteException{ 
         return new CuboOLAP(this.nombre, this.hecho.getHechoCopy(), new ArrayList<>(dimensiones));
     }
 

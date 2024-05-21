@@ -28,7 +28,7 @@ public class Dimension extends Tabla {
 
     /**
      * Constructor de la clase Dimension.
-     * Inicializa la tabla de dimensión con la información general,
+     * Inicializa la tabla de dimensión con información general,
      * la lista de niveles y la clave primaria.
      *
      * @param nombre El nombre de la dimensión.
@@ -69,7 +69,50 @@ public class Dimension extends Tabla {
         // Añado la información a niveles
         this.niveles = map_niveles;   
     }
-    
+ 
+    /**
+     * Constructor de la clase Dimension.
+     * Inicializa la tabla de dimensión con información general,
+     * lista de niveles y clave primaria.
+     *
+     * @param nombre El nombre de la dimensión.
+     * @param niveles La lista de niveles en la dimensión.
+     * @param primaryKey La clave primaria de la dimensión.
+     * @param data Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
+     * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
+     * @throws ColumnaNoPresenteException Si la clave primaria pasada como argumento no existe en la dimensión.
+     * @throws NivelNoPresenteException Si alguno de los niveles pasados en la lista de niveles no existe en la dimensión.
+     */
+    public Dimension (String nombre , List<String> niveles, String primaryKey, List<List<String>> data, List<String> headers)throws ColumnaNoPresenteException, NivelNoPresenteException {
+
+        // Uso el constructor base para la información general
+        super(nombre, data, headers);
+
+        // Verifico que la clave primaria exista en la dimensión
+        if (!this.getHeaders().contains(primaryKey)) {
+            throw new ColumnaNoPresenteException("La clave primaria '" + primaryKey + "' no existe en la tabla.");
+        }
+
+        // Verifico que los niveles estén presentes en la dimensión
+        for (String nivel : niveles) {
+            if (!this.getHeaders().contains(nivel)) {
+                throw new NivelNoPresenteException("El nivel '" + nivel + "' no existe en la tabla.");
+            }
+        }
+
+        // Guardo el nombre de la clave primaria
+        this.primaryKey = primaryKey;
+
+        // Guardo la información sobre los niveles
+        Map<String, List<String>> map_niveles = new HashMap<>();
+        for (String nivel : niveles) {
+            map_niveles.put(nivel, this.obtenerValoresUnicos(nivel));
+        }
+
+        // Añado la información a niveles
+        this.niveles = map_niveles;   
+    }
+
     /**
      * Método para mostrar los valores únicos de un nivel específico.
      *

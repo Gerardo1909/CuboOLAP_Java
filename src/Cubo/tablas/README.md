@@ -202,7 +202,7 @@ valor51              valor52              valor53
 La clase `Dimension` representa una tabla de dimensión, la cual es un componente de una instancia de `CuboOLAP`. Hereda directamente de la clase `Tabla`, por 
 lo cual cuenta con todos los métodos descritos anteriormente.
 
-### Constructor de la clase 
+### Constructor de la clase #1
 
 El constructor de esta clase te permite crear una instancia de tipo `Dimension` proporcionando el nombre de la misma, su clave primaria para conectarla a una tabla de hechos y una lista de los niveles que contiene.
 
@@ -258,12 +258,69 @@ Dimension dimension = new Dimension(
   );
 ```
 
+### Constructor de la clase #2
+
+Este constructor inicializa una instancia de la clase `Dimension`, configurando la tabla de dimensión con información general, una lista de niveles y una clave primaria.
+
+#### Parámetros del Constructor
+
+1. **nombre**: `String`
+   - **Descripción**: El nombre de la dimensión.
+   - **Requisitos**: Debe ser una cadena válida que representa el nombre de la dimensión.
+
+2. **niveles**: `List<String>`
+   - **Descripción**: La lista de niveles en la dimensión.
+   - **Requisitos**: Debe ser una lista válida de cadenas, donde cada cadena representa un nivel.
+
+3. **primaryKey**: `String`
+   - **Descripción**: La clave primaria de la dimensión.
+   - **Requisitos**: Debe ser una cadena válida que representa la clave primaria y debe estar presente en los encabezados de la tabla.
+
+4. **data**: `List<List<String>>`
+   - **Descripción**: Los datos de la tabla. Cada lista interna representa una fila de la tabla.
+   - **Requisitos**: Debe ser una lista válida de listas de cadenas, donde cada lista interna contiene los valores de una fila.
+
+5. **headers**: `List<String>`
+   - **Descripción**: Los encabezados de la tabla. Cada cadena representa un nombre de columna.
+   - **Requisitos**: Debe ser una lista válida de cadenas que representan los nombres de las columnas.
+
+#### Excepciones Lanzadas
+
+- **ColumnaNoPresenteException**
+  - **Descripción**: Se lanza si la clave primaria pasada como argumento no existe en la dimensión.
+  - **Cómo Evitarla**: Verifica que la clave primaria especificada esté incluida en los encabezados de la tabla antes de llamar al constructor.
+
+- **NivelNoPresenteException**
+  - **Descripción**: Se lanza si alguno de los niveles pasados en la lista de niveles no existe en la dimensión.
+  - **Cómo Evitarla**: Asegúrate de que todos los niveles especificados estén incluidos en los encabezados de la tabla antes de llamar al constructor.
+
+#### Ejemplo de Uso
+
+```java
+// Generamos los datos de la tabla
+List<List<String>> data = Arrays.asList(
+    Arrays.asList("1", "A", "X"),
+    Arrays.asList("2", "B", "Y"),
+    Arrays.asList("3", "C", "Z")
+);
+
+// Guardamos su headers y niveles en listas 
+List<String> headers = Arrays.asList("ID", "Name", "Category");
+List<String> niveles = Arrays.asList("Name", "Category");
+
+// Guardamos la clave primaria de la tabla dimensión
+String primaryKey = "ID";
+
+// Finalmente, generamos una instancia de la clase mediante el constructor
+Dimension dimension = new Dimension("Dim1", niveles, primaryKey, data, headers);
+```
+
 ## Clase `Hecho`
 
 La clase `Hecho` representa una tabla de hechos, la cual es un componente de una instancia de `CuboOLAP`. Hereda directamente de la clase `Tabla`, por 
 lo cual cuenta con todos los métodos descritos anteriormente.
 
-### Constructor de la clase 
+### Constructor de la clase #1
 
 El constructor de esta clase te permite crear una instancia de tipo `Hecho` proporcionando el nombre de la misma y una lista con los hechos contenidos en ella.
 
@@ -308,4 +365,50 @@ Hecho hecho = new Hecho(
         estrategia,
         "ruta/al/archivo.csv"
   );
+```
+
+### Constructor de la clase #2
+
+Este constructor inicializa una instancia de la clase `Hecho`, configurando la tabla de hechos con datos, encabezados y una lista de hechos.
+
+#### Parámetros del Constructor
+
+1. **nombre**: `String`
+   - **Descripción**: El nombre de la tabla de hechos.
+   - **Requisitos**: Debe ser una cadena válida que representa el nombre de la tabla de hechos.
+
+2. **data**: `List<List<String>>`
+   - **Descripción**: Los datos de la tabla. Cada lista interna representa una fila de la tabla.
+   - **Requisitos**: Debe ser una lista válida de listas de cadenas, donde cada lista interna contiene los valores de una fila.
+
+3. **headers**: `List<String>`
+   - **Descripción**: Los encabezados de la tabla. Cada cadena representa un nombre de columna.
+   - **Requisitos**: Debe ser una lista válida de cadenas que representan los nombres de las columnas.
+
+4. **hechos**: `List<String>`
+   - **Descripción**: La lista de hechos en la tabla.
+   - **Requisitos**: Debe ser una lista válida de cadenas, donde cada cadena representa un hecho que debe estar presente en los encabezados de la tabla.
+
+#### Excepciones Lanzadas
+
+- **HechoNoPresenteException**
+  - **Descripción**: Se lanza si alguno de los hechos indicados no está presente en la tabla de hechos.
+  - **Cómo Evitarla**: Verifica que todos los hechos especificados estén incluidos en los encabezados de la tabla antes de llamar al constructor.
+
+#### Ejemplo de Uso
+
+```java
+// Generamos los datos de la tabla
+List<List<String>> data = Arrays.asList(
+    Arrays.asList("1", "100", "200"),
+    Arrays.asList("2", "150", "250"),
+    Arrays.asList("3", "200", "300")
+);
+
+// Guardamos su headers y hechos en listas 
+List<String> headers = Arrays.asList("ID", "Sales", "Profit");
+List<String> hechos = Arrays.asList("Sales", "Profit");
+
+// Finalmente, generamos una instancia de la clase mediante el constructor
+Hecho hecho = new Hecho("TablaDeHechos", data, headers, hechos);
 ```
