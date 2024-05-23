@@ -1,7 +1,7 @@
 package Cubo.comandos;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import Cubo.tablas.Hecho;
@@ -89,7 +89,7 @@ public class ComandoDice implements ComandoCubo{
 
         // Armo el mapa que contiene como clave los headers de la operación
         // y como valor contiene la matriz que contiene la operación
-        Map<List<String>, List<List<String>>> mapa_resultante = new HashMap<>();
+        Map<List<String>, List<List<String>>> mapa_resultante = new LinkedHashMap<>();
         mapa_resultante.put(headers_operacion, operacion_resultante);
 
         this.resultado = mapa_resultante;

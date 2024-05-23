@@ -2,7 +2,7 @@ package Cubo.tablas;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -101,7 +101,7 @@ public abstract class Tabla implements Visualizable{
         }
 
         // Armo un mapa vacío que guardará los resultados
-        Map<List<String>, List<List<String>>> mapa_agrupacion = new HashMap<>();
+        Map<List<String>, List<List<String>>> mapa_agrupacion = new LinkedHashMap<>();
 
         // Recorro las filas de la tabla
         for (List<String> fila : tabla_operacion.getData()) {
@@ -170,7 +170,7 @@ public abstract class Tabla implements Visualizable{
 
         // Ahora armo un mapa que por clave tiene valores únicos de la columna por la cual se junta
         // y como valor tiene todas las filas que coinciden en dicha columna
-        Map<String, List<List<String>>> mapa_merge = new HashMap<>();
+        Map<String, List<List<String>>> mapa_merge = new LinkedHashMap<>();
 
         // Primero itero por la tabla izquierda para añadirle los primeros valores al mapa
         for (List<String> fila_tabla_izq : tabla_izq.getData()) {

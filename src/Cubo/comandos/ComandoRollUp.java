@@ -3,13 +3,12 @@ package Cubo.comandos;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import Cubo.CuboOLAP;
 import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -60,7 +59,7 @@ public class ComandoRollUp implements ComandoCubo{
         Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.hechos_seleccionados);
 
         // Ahora armo un nuevo 'mapa_operable' que tendrá como valores las mismas listas pero de tipo double
-        Map<List<String>, List<List<Double>>> mapa_operable = new HashMap<>();
+        Map<List<String>, List<List<Double>>> mapa_operable = new LinkedHashMap<>();
         for (Map.Entry<List<String>, List<List<String>>> entrada : mapa_agrupacion.entrySet()) {
 
             // Obtengo clave y valor del mapa_agrupacion
@@ -88,7 +87,7 @@ public class ComandoRollUp implements ComandoCubo{
         }
 
         // Armo el mapa que tendrá el resultado con la operación de agregación elegida aplicada
-        Map<List<String>, List<Double>> mapa_operacion = new HashMap<>();
+        Map<List<String>, List<Double>> mapa_operacion = new LinkedHashMap<>();
 
         // Recorro cada entrada de 'mapa_operable'
         for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_operable.entrySet()) {
@@ -151,7 +150,7 @@ public class ComandoRollUp implements ComandoCubo{
 
         // Y ahora armo el mapa que contiene como clave los headers de la operación
         // y como valor contiene la matriz que contiene la operación
-        Map<List<String>, List<List<String>>> mapa_resultante = new HashMap<>();
+        Map<List<String>, List<List<String>>> mapa_resultante = new LinkedHashMap<>();
         mapa_resultante.put(headers_operacion, operacion_resultante);
 
         this.resultado = mapa_resultante;

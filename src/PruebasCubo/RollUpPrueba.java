@@ -1,7 +1,7 @@
 package PruebasCubo;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import Cubo.CuboOLAP;
@@ -28,9 +28,10 @@ public class RollUpPrueba {
         }
 
         // Armo el mapa que le voy a pasar al método como argumento
-        Map<Dimension, String> criterios_reduccion = new HashMap<>();
-        criterios_reduccion.put(dimFechas, "mes");
-        criterios_reduccion.put(dimPuntoVenta, "provincia");
+        Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
+        criterios_reduccion.put(dimFechas, "quarter");
+        criterios_reduccion.put(dimPuntoVenta, "pais");
+        criterios_reduccion.put(dimProducto, "subcategoria");
 
         // Pruebo la operación RollUp
         cuboPrueba.rollUp(
@@ -40,6 +41,6 @@ public class RollUpPrueba {
         );
 
         // Visualizo el resultado
-        cuboPrueba.ver(100, null);
+        cuboPrueba.ver(20, null);
     }
 }

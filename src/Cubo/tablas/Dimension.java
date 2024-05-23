@@ -1,7 +1,7 @@
 package Cubo.tablas;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +52,7 @@ public class Dimension extends Tabla {
         }
 
         // Ahora obtengo los índices de los niveles 
-        Map<String, Integer> map_indices = new HashMap<>();
+        Map<String, Integer> map_indices = new LinkedHashMap<>();
         for (int i = 0; i < niveles.size(); i++) {
             map_indices.put(niveles.get(i), i);
         }
@@ -61,7 +61,7 @@ public class Dimension extends Tabla {
         this.primaryKey = primaryKey;
 
         // Guardo la información sobre los niveles
-        Map<String, List<String>> map_niveles = new HashMap<>();
+        Map<String, List<String>> map_niveles = new LinkedHashMap<>();
         for (String nivel : niveles) {
             map_niveles.put(nivel, this.obtenerValoresUnicos(nivel));
         }
@@ -103,7 +103,7 @@ public class Dimension extends Tabla {
         }
 
         // Ahora obtengo los índices de los niveles 
-        Map<String, Integer> map_indices = new HashMap<>();
+        Map<String, Integer> map_indices = new LinkedHashMap<>();
         for (int i = 0; i < niveles.size(); i++) {
             map_indices.put(niveles.get(i), i);
         }
@@ -112,7 +112,7 @@ public class Dimension extends Tabla {
         this.primaryKey = primaryKey;
 
         // Guardo la información sobre los niveles
-        Map<String, List<String>> map_niveles = new HashMap<>();
+        Map<String, List<String>> map_niveles = new LinkedHashMap<>();
         for (String nivel : niveles) {
             map_niveles.put(nivel, this.obtenerValoresUnicos(nivel));
         }

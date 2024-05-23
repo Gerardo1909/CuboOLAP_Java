@@ -2,7 +2,7 @@ package PruebasCubo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import Cubo.CuboOLAP;
@@ -29,13 +29,13 @@ public class DicePrueba {
         Dimension dimPuntoVenta = dimensiones.get(2);
 
         // Defino los criterios para la operación "Dice"
-        Map<String, List<String>> criteriosFechas = new HashMap<>();
+        Map<String, List<String>> criteriosFechas = new LinkedHashMap<>();
         criteriosFechas.put("anio", Arrays.asList("2017"));
 
-        Map<String, List<String>> criteriosPuntoVenta = new HashMap<>();
+        Map<String, List<String>> criteriosPuntoVenta = new LinkedHashMap<>();
         criteriosPuntoVenta.put("provincia", Arrays.asList("California"));
 
-        Map<Dimension, Map<String, List<String>>> criterios = new HashMap<>();
+        Map<Dimension, Map<String, List<String>>> criterios = new LinkedHashMap<>();
         criterios.put(dimFechas, criteriosFechas);
         criterios.put(dimPuntoVenta, criteriosPuntoVenta);
 

@@ -196,7 +196,7 @@ El método `rollUp` permite realizar una operación de roll-up en una instancia 
 
 ```java
 // Primero generamos un mapa con los criterios de reducción
-Map<Dimension, String> criterios_reduccion = new HashMap<>();
+Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
 criterios_reduccion.put(dim1, "nivelY");
 criterios_reduccion.put(dim2, "nivelX");
 
@@ -354,13 +354,13 @@ Dimension dimension1 = new Dimension("Dim1", Arrays.asList("Nivel1"), "primaryKe
 Dimension dimension2 = new Dimension("Dim2", Arrays.asList("Nivel2"), "primaryKey2", estrategiaLectura, "ruta/archivo2.csv");
 
 // Definimos los criterios que usaremos para filtrar
-Map<String, List<String>> criteriosNivel1 = new HashMap<>();
+Map<String, List<String>> criteriosNivel1 = new LinkedHashMap<>();
 criteriosNivel1.put("Nivel1", Arrays.asList("Valor1", "Valor2"));
 
-Map<String, List<String>> criteriosNivel2 = new HashMap<>();
+Map<String, List<String>> criteriosNivel2 = new LinkedHashMap<>();
 criteriosNivel2.put("Nivel2", Arrays.asList("Valor3", "Valor4"));
 
-Map<Dimension, Map<String, List<String>>> criterios = new HashMap<>();
+Map<Dimension, Map<String, List<String>>> criterios = new LinkedHashMap<>();
 criterios.put(dimension1, criteriosNivel1);
 criterios.put(dimension2, criteriosNivel2);
 
