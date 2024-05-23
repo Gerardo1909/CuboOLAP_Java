@@ -85,4 +85,16 @@ public class Hecho extends Tabla {
         return new Hecho(this.getNombre(), this.getData(), this.getHeaders(), this.getHechos());
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tabla de hechos: ").append(this.getNombre()).append("\n");
+        sb.append("Número de filas: ").append(this.getData().size()).append("\n");
+        sb.append("Columnas:\n");
+        for (String header : this.getHeaders()) {
+            sb.append(" - ").append(header).append("\n");
+        }
+        return sb.toString();
+    }
+
 }

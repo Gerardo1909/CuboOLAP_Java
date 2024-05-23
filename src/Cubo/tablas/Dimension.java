@@ -175,5 +175,23 @@ public class Dimension extends Tabla {
         return this.indices_niveles;
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getNombre()).append(" (Niveles : ");
+        
+        int size = niveles.size();
+        int count = 0;
+        
+        for (String nivel : niveles.keySet()) {
+            sb.append(nivel);
+            if (count < size - 1) {
+                sb.append(" > ");
+            }
+            count++;
+        }
+        
+        sb.append(")");
+        return sb.toString();
+    }
 }

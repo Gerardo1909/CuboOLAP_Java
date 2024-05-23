@@ -291,12 +291,24 @@ public class CuboOLAP implements Visualizable {
         return nombre;
     }
 
-    public CuboOLAP getCuboOLAP() throws ClaveNoPresenteException, ColumnaNoPresenteException, HechoNoPresenteException{ 
-        return new CuboOLAP(this.nombre, this.hecho.getHechoCopy(), new ArrayList<>(dimensiones));
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        
+        // Nombre del cubo
+        sb.append("CuboOLAP: ").append(nombre).append("\n");
+        
+        // Información de dimensiones
+        sb.append("Dimensiones: ").append(dimensiones.size()).append("\n");
+        for (Dimension dimension : dimensiones) {
+            sb.append(" - ").append(dimension.toString()).append("\n");
+        }
+        
+        // Información de la tabla de hechos usando su propio toString
+        sb.append(hecho.toString());
+        
+        return sb.toString();
     }
 
-    public List<Dimension> getDimensiones() {
-        return new ArrayList<>(dimensiones);
-    }
 }
 
