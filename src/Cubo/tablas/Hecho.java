@@ -11,10 +11,7 @@ import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
  * Hereda de la clase Tabla y añade atributos y métodos específicos para las tablas de hechos.
  */
 public class Hecho extends Tabla {
-
-    /**
-     * Lista de hechos en la tabla.
-     */
+    
     private List<String> hechos;
 
     /**

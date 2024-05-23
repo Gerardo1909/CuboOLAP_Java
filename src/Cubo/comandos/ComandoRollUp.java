@@ -2,8 +2,11 @@ package Cubo.comandos;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 import Cubo.CuboOLAP;
 import Cubo.excepciones.excepciones_tabla.TablaException;
+import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
 import java.util.HashMap;
@@ -18,7 +21,8 @@ import java.util.Collections;
 public class ComandoRollUp implements ComandoCubo{
 
     private Hecho tabla_operacion;
-    private List<String> criterio_reduccion;
+    private Map<Dimension, String> criterios_reduccion;
+    private List<String> niveles_operacion;
     private List<String> hechos_seleccionados;
     private String agregacion;
     private Map<List<String>, List<List<String>>>resultado;
@@ -27,15 +31,20 @@ public class ComandoRollUp implements ComandoCubo{
      * Constructor para la clase ComandoRollUp.
      *
      * @param tabla_operacion La tabla de hechos que se utilizará para llevar a cabo la operación.
-     * @param criterio_reduccion Los criterios de reducción.
+     * @param criterios_reduccion Un mapa que contiene la dimensión junto con su criterio de reducción.
      * @param hechos_seleccionados Los hechos que se verán involucrados en la operación.
      * @param agregacion La operación de agregación a aplicar.
      */
-    public ComandoRollUp(Hecho tabla_operacion, List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) {
+    public ComandoRollUp(Hecho tabla_operacion, Map<Dimension, String> criterios_reduccion, 
+                         List<String> hechos_seleccionados, String agregacion) {
+
         this.tabla_operacion = tabla_operacion;
-        this.criterio_reduccion = criterio_reduccion;
+        this.criterios_reduccion = criterios_reduccion;
         this.agregacion = agregacion;
         this.hechos_seleccionados = hechos_seleccionados;
+
+        // Obtengo los niveles de la operacion
+        this.niveles_operacion = this.obtenerNivelesOperacion(criterios_reduccion);
     }
 
     /**
@@ -47,8 +56,8 @@ public class ComandoRollUp implements ComandoCubo{
     @Override
     public void ejecutar() throws TablaException {
 
-        // Primero agrupo según 'criterio_reduccion'
-        Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.criterio_reduccion, this.hechos_seleccionados);
+        // Primero agrupo según 'niveles_operacion'
+        Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.hechos_seleccionados);
 
         // Ahora armo un nuevo 'mapa_operable' que tendrá como valores las mismas listas pero de tipo double
         Map<List<String>, List<List<Double>>> mapa_operable = new HashMap<>();
@@ -137,7 +146,7 @@ public class ComandoRollUp implements ComandoCubo{
         }
 
         // Genero una lista para guardar los headers de la operacion resultante
-        List<String> headers_operacion = new ArrayList<>(this.criterio_reduccion);
+        List<String> headers_operacion = new ArrayList<>(this.niveles_operacion);
         headers_operacion.addAll(this.hechos_seleccionados);
 
         // Y ahora armo el mapa que contiene como clave los headers de la operación
@@ -169,6 +178,72 @@ public class ComandoRollUp implements ComandoCubo{
             suma+= numero;
         }
         return suma;
+    }
+
+    /**
+     * Este método recupera los niveles de operación basándose en el mapa proporcionado de dimensiones y sus niveles correspondientes.
+     * Itera a través de cada entrada en el mapa y recupera la dimensión y el nivel.
+     * Luego, obtiene el índice del nivel y, si no es el más abstracto (cuando el índice es distinto de 0),
+     * incluye en la lista todos los niveles posteriores a él.
+     *
+     * @param mapa_dimension_nivel Un mapa que contiene las dimensiones y sus niveles correspondientes.
+     * @return Una lista de cadenas que representa los niveles de operación.
+     */
+    private List<String> obtenerNivelesOperacion(Map <Dimension, String> mapa_dimension_nivel){
+
+        // Genero una lista para guardar el resultado final
+        List<String> niveles_resultantes = new ArrayList<>();
+
+        // Itero sobre cada entrada del mapa 'criterios_reduccion'
+        for (Map.Entry<Dimension, String> entrada : mapa_dimension_nivel.entrySet()) {
+
+            // Guardo la dimension y el nivel sobre el cual estoy ahora
+            Dimension dimension = entrada.getKey();
+            String nivel = entrada.getValue();
+
+            // Obtengo el índice del nivel
+            int indice_nivel = dimension.getIndicesNiveles().get(nivel);
+
+            // Si es distinto de 0, es decir no es el más abstracto, debo incluir en la lista
+            // todo los niveles detrás de él
+            if (indice_nivel!= 0) {
+                for (int i = 0; i <= indice_nivel; i++) {
+                   
+                    // Obtengo el nivel por su indice
+                    String nivel_anterior = obtenerClavePorValor(dimension.getIndicesNiveles(), i);
+
+                    // Y lo agrego a la lista
+                    niveles_resultantes.add(nivel_anterior);
+
+                }
+            }
+            else { 
+                niveles_resultantes.add(nivel);
+            }
+
+        }
+
+        return niveles_resultantes;
+    }
+
+    /**
+     * Este método obtiene la clave de un mapa dado su valor.
+     * Itera a través de las entradas del mapa y verifica si el valor coincide con el valor dado.
+     * Si se encuentra una coincidencia, devuelve la clave correspondiente.
+     *
+     * @param <K> El tipo de la clave del mapa.
+     * @param <V> El tipo del valor del mapa.
+     * @param mapa El mapa del que se quiere obtener la clave.
+     * @param valor El valor por el que se quiere buscar en el mapa.
+     * @return La clave del mapa que coincide con el valor dado, o null si no se encuentra ninguna coincidencia.
+     */
+    private static <K, V> K obtenerClavePorValor(Map<K, V> mapa, V valor) {
+        for (Map.Entry<K, V> entrada : mapa.entrySet()) {
+            if (Objects.equals(entrada.getValue(), valor)) {
+                return entrada.getKey();
+            }
+        }
+        return null; 
     }
 
 }

@@ -18,9 +18,9 @@ public class CreacionPrueba {
         String rutaVentas = "datasets/ventas.csv";
 
         // Obtengo los niveles de cada dimensión
-        List<String> niveles_fechas = new ArrayList<>(Arrays.asList("fecha", "dia", "mes", "anio", "quarter"));
-        List<String> niveles_Productos = new ArrayList<>(Arrays.asList("producto", "subcategoria", "categoria"));
-        List<String> niveles_PuntosVenta = new ArrayList<>(Arrays.asList("punto_venta", "ciudad", "provincia", "pais", "region"));
+        List<String> niveles_fechas = new ArrayList<>(Arrays.asList("anio", "quarter", "mes", "dia", "fecha"));
+        List<String> niveles_Productos = new ArrayList<>(Arrays.asList("categoria", "subcategoria", "producto"));
+        List<String> niveles_PuntosVenta = new ArrayList<>(Arrays.asList("region", "pais", "provincia", "ciudad", "punto_venta"));
         List<String> hechosVentas = new ArrayList<>(Arrays.asList("cantidad", "valor_unitario", "valor_total", "costo"));
 
         // Para la instanciación de clases primero inicializo un LectorCSV

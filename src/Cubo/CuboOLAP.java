@@ -14,7 +14,6 @@ import Cubo.excepciones.excepciones_dimension.NivelNoPresenteException;
 import Cubo.excepciones.excepciones_hechos.HechoNoPresenteException;
 import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
-import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
 import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
@@ -32,7 +31,7 @@ public class CuboOLAP implements Visualizable {
     private final Hecho hecho;
     private final String nombre;
     private Hecho tabla_operacion;
-    private Map<List<String>, List<List<String>>> estado_cubo;
+    private Map<List<String>, List<List<String>>> proyeccion_cubo;
 
     /**
      * Constructor para la clase CuboOLAP.
@@ -69,15 +68,17 @@ public class CuboOLAP implements Visualizable {
     /**
      * Realiza una operación de roll-up en el cubo.
      *
-     * @param criterio_reduccion La lista de niveles en los que reducir el cubo.
+     * @param criterios_reduccion Un mapa de criterios que contiene como clave la dimensión sobre la cual se quiere aplicar reducción 
+     *                            y como valor el nivel que se toma como criterio para aplicar la misma.
      * @param hechos_seleccionados La lista de hechos a incluir en la operación de roll-up.
      * @param agregacion La operación de agregación a realizar. Solo son soportadas: "sum", "max", "min", "count" (Escribir tal cual al pasar el argumento!).
      * @throws AgregacionNoSoportadaException Si la operación de agregación seleccionada no está entre las disponibles.
+     * @throws DimensionNoPresenteException Si alguna dimensión especificada no está presente en el cubo.
      * @throws NivelNoPresenteException Si algún nivel especificado no está presente en alguna dimensión.
      * @throws HechoNoPresenteException Si algún hecho seleccionado no está presente en la tabla de hechos.
      * @throws TablaException Si ocurre un error inesperado al invocar el comando.
      */
-    public void rollUp(List<String> criterio_reduccion, List<String> hechos_seleccionados, String agregacion) throws TablaException, AgregacionNoSoportadaException, NivelNoPresenteException, HechoNoPresenteException{
+    public void rollUp(Map<Dimension, String> criterios_reduccion, List<String> hechos_seleccionados, String agregacion) throws TablaException, AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
 
         // Formateo el string de la operación de agregacion
         String agregacion_parsed = agregacion.toLowerCase().trim();
@@ -90,11 +91,13 @@ public class CuboOLAP implements Visualizable {
             throw new AgregacionNoSoportadaException("La operación de agregación " + agregacion_parsed + " no está soportada.");
         }
 
-
-        // Verifico que estén presentes todos los criterios de reducción pasados como argumento
-        for (String criterio: criterio_reduccion){
-            if (!tabla_operacion.getHeaders().contains(criterio)){
-                throw new NivelNoPresenteException("El nivel " + criterio + " no está en ninguna de las dimensiones.");
+        // Verifico que estén presentes todas las dimensiones y niveles pasadas en el mapa 'criterios_reduccion'
+        for (Dimension dimension : criterios_reduccion.keySet()){
+            if (!this.dimensiones.contains(dimension)){
+                throw new DimensionNoPresenteException("La dimensión " + dimension.getNombre() + " no está presente en el cubo " + this.nombre);
+            }
+            if (!dimension.getNiveles().containsKey(criterios_reduccion.get(dimension))){
+                throw new NivelNoPresenteException("El nivel " + criterios_reduccion.get(dimension) + " no está presente en la dimensión " + dimension.getNombre());
             }
         }
 
@@ -106,13 +109,13 @@ public class CuboOLAP implements Visualizable {
         }
 
         // Genero una instancia de RollUp
-        ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterio_reduccion, hechos_seleccionados, agregacion_parsed);
+        ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterios_reduccion, hechos_seleccionados, agregacion_parsed);
 
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'estado_cubo'
-        this.estado_cubo = comando.getResultado();
+        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
+        this.proyeccion_cubo = comando.getResultado();
     }
 
     public void drillDown(String dimension) throws TablaException{
@@ -153,8 +156,8 @@ public class CuboOLAP implements Visualizable {
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'estado_cubo'
-        this.estado_cubo = comando.getResultado();
+        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
+        this.proyeccion_cubo = comando.getResultado();
 
     }
 
@@ -196,39 +199,65 @@ public class CuboOLAP implements Visualizable {
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'estado_cubo'
-        this.estado_cubo = comando.getResultado();
+        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
+        this.proyeccion_cubo = comando.getResultado();
 
     }
     
     /**
-     * Ver documentación en {@link Visualizable}.
+     * Muestra una vista parcial del cubo con las columnas especificadas y un número limitado de filas.
+     *
+     * @param n_filas  el número de filas a visualizar. Si se pasa un número grande de filas 
+     *                 (entiendáse por grande un número mayor a la longitud de las filas implicadas en la operación)
+     *                 se mostrarán todas las filas que resultaron de la operación aplicada.
+     * @param columnas la lista de nombres de columnas a visualizar; si es null, se visualizan todas las columnas
+     *                 usadas en la operación aplicada anteriormente.
+     * @throws ColumnaNoPresenteException si alguna de las columnas especificadas no está presente en los encabezados.
      */
     @Override
-    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
+    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException{
     
         // Verifico que el cubo haya sido operado antes de visualizarse
-        if (this.estado_cubo.isEmpty()) {
+        if (this.proyeccion_cubo.isEmpty()) {
             System.out.println("Al cubo " + this.getNombre() + " no se le han aplicado operaciones visibles aún");
             return; 
         }
 
-        // Verifico si las columnas especificadas existen en los headers
-        for (String columna : columnas){
-            if (!this.tabla_operacion.getHeaders().contains(columna)){
-                throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
+        //Inicializo una lista que contiene los índices de las columnas a ver
+        List<Integer> indices_columnas = new ArrayList<>();
+
+        // Armo una nueva lista 'columnas_ver' que serán las que finalmente se visualizen, usando los índices obtenidos
+        List<String> columnas_ver = new ArrayList<>();
+
+        // Primero reviso el caso de que se pasaron columnas por argumento
+        if (columnas!= null){
+            // Verifico si las columnas especificadas existen en los headers
+            for (String columna : columnas){
+                if (!this.tabla_operacion.getHeaders().contains(columna)){
+                    throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
+                }
             }
+
+            // Obtengo los índices de las columnas seleccionadas
+            for (String columna : columnas) {
+                indices_columnas.add(this.proyeccion_cubo.keySet().iterator().next().indexOf(columna));
+            }
+
+            columnas_ver = columnas;
         }
 
-        // Obtengo los índices de las columnas seleccionadas
-        List<Integer> indices_columnas = new ArrayList<>();
-        for (String columna : columnas) {
-            indices_columnas.add(this.estado_cubo.keySet().iterator().next().indexOf(columna));
+        // Si no se seleccionan columnas por defecto obtengo los índices de todas las que están en la operación
+        if (columnas == null){
+            for (int i = 0; i < this.proyeccion_cubo.keySet().iterator().next().size(); i++) {
+                indices_columnas.add(i);
+            }
+
+            columnas_ver = this.proyeccion_cubo.keySet().iterator().next();
         }
 
         // Filtro la matriz resultante para quedarme solo con las columnas seleccionadas
         List<List<String>> matriz_filtrada = new ArrayList<>();
-        for (List<String> fila : this.estado_cubo.values().iterator().next()) {
+        for (List<String> fila : this.proyeccion_cubo.values().iterator().next()) {
             List<String> fila_filtrada = new ArrayList<>();
             for (int indice : indices_columnas) {
                 fila_filtrada.add(fila.get(indice));
@@ -236,8 +265,8 @@ public class CuboOLAP implements Visualizable {
             matriz_filtrada.add(fila_filtrada);
         }
 
-        // Muestro las columnas seleccionadas
-        for (String columna : columnas) {
+        // Muestro las columnas resultantes
+        for (String columna : columnas_ver) {
             System.out.print(String.format("%-20s", columna));
         }
         System.out.println();

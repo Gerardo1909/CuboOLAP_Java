@@ -214,7 +214,7 @@ El constructor de esta clase te permite crear una instancia de tipo `Dimension` 
 
 2. **niveles**: `List<String>`
    - **Descripción**: La lista de niveles de la dimensión.
-   - **Requisitos**: Debe ser una lista de nombres de niveles que existen en la tabla de la dimensión.
+   - **Requisitos**: Debe ser una lista de nombres de niveles que existen en la tabla de la dimensión. Esta lista deberá ser pasada en orden de jerarquía de los niveles de la dimensión, siendo el nivel más abstracto/alto el primero en la lista y el nivel más fino el último elemento en la misma.
 
 3. **primaryKey**: `String`
    - **Descripción**: La clave primaria de la dimensión.
@@ -248,14 +248,15 @@ El constructor de esta clase te permite crear una instancia de tipo `Dimension` 
 // Primero debemos crear una objeto que implemente la interfaz 'EstrategiaLecturaArchivo'
   EstrategiaLecturaArchivo estrategia = new EstrategiaLecturaArchivo(param);
 
+// Guardamos sus niveles, recordar que el primero en la lista es el nivel más abstracto/alto 
+// en la dimensión
+List<String> niveles = Arrays.asList("nivel_mas_abstracto", "nivel_fino", "nivel_mas_fino");
+
+// Guardamos la clave primaria de la tabla dimensión
+String primaryKey = "ID_nivel";
+
 // Llamamos al constructor
-Dimension dimension = new Dimension(
-        "NombreDimension",
-        Arrays.asList("Nivel1", "Nivel2"),
-        "PrimaryKey",
-        estrategia,
-        "ruta/al/archivo.csv"
-  );
+Dimension dimension = new Dimension("NombreDimension", niveles, primaryKey, estrategia, "ruta/al/archivo.csv");
 ```
 
 ### Constructor de la clase #2
@@ -270,7 +271,7 @@ Este constructor inicializa una instancia de la clase `Dimension`, configurando 
 
 2. **niveles**: `List<String>`
    - **Descripción**: La lista de niveles en la dimensión.
-   - **Requisitos**: Debe ser una lista válida de cadenas, donde cada cadena representa un nivel.
+   - **Requisitos**: Debe ser una lista de nombres de niveles que existen en la tabla de la dimensión. Esta lista deberá ser pasada en orden de jerarquía de los niveles de la dimensión, siendo el nivel más abstracto/alto el primero en la lista y el nivel más fino el último elemento en la misma.
 
 3. **primaryKey**: `String`
    - **Descripción**: La clave primaria de la dimensión.
@@ -304,15 +305,18 @@ List<List<String>> data = Arrays.asList(
     Arrays.asList("3", "C", "Z")
 );
 
-// Guardamos su headers y niveles en listas 
-List<String> headers = Arrays.asList("ID", "Name", "Category");
-List<String> niveles = Arrays.asList("Name", "Category");
+// Guardamos su headers 
+List<String> headers = Arrays.asList("ID_nivel", "nivel_mas_fino", "nivel_fino", "nivel_mas_abstracto");
+
+// Guardamos sus niveles, recordar que el primero en la lista es el nivel más abstracto/alto 
+// en la dimensión
+List<String> niveles = Arrays.asList("nivel_mas_abstracto", "nivel_fino", "nivel_mas_fino");
 
 // Guardamos la clave primaria de la tabla dimensión
-String primaryKey = "ID";
+String primaryKey = "ID_nivel";
 
 // Finalmente, generamos una instancia de la clase mediante el constructor
-Dimension dimension = new Dimension("Dim1", niveles, primaryKey, data, headers);
+Dimension dimension = new Dimension("NombreDimension", niveles, primaryKey, data, headers);
 ```
 
 ## Clase `Hecho`

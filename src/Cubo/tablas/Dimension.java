@@ -15,15 +15,8 @@ import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
  */
 public class Dimension extends Tabla {
 
-    /**
-     * Un mapa para almacenar los valores únicos de cada nivel en la dimensión.
-     * La clave es el nombre del nivel, y el valor es una lista de valores únicos.
-     */
     private Map<String, List<String>> niveles;
-
-    /**
-     * La clave primaria de la tabla de dimensión.
-     */
+    private Map<String, Integer> indices_niveles;
     private String primaryKey;
 
     /**
@@ -32,7 +25,8 @@ public class Dimension extends Tabla {
      * la lista de niveles y la clave primaria.
      *
      * @param nombre El nombre de la dimensión.
-     * @param niveles La lista de niveles de la dimensión.
+     * @param niveles La lista de niveles de la dimensión. Estas deben ser pasadas en orden de jerarquía
+     *                siendo el nivel más alto/abstracto el primero en la lista y el más fino el último en la lista
      * @param primaryKey La clave primaria de la dimensión.
      * @param estrategia_lectura Estrategia usada para leer el archivo.
      * @param ruta_archivo La ruta del archivo de datos.
@@ -57,6 +51,12 @@ public class Dimension extends Tabla {
             }
         }
 
+        // Ahora obtengo los índices de los niveles 
+        Map<String, Integer> map_indices = new HashMap<>();
+        for (int i = 0; i < niveles.size(); i++) {
+            map_indices.put(niveles.get(i), i);
+        }
+
         // Guardo el nombre de la clave primaria
         this.primaryKey = primaryKey;
 
@@ -67,7 +67,8 @@ public class Dimension extends Tabla {
         }
 
         // Añado la información a niveles
-        this.niveles = map_niveles;   
+        this.niveles = map_niveles;  
+        this.indices_niveles = map_indices; 
     }
  
     /**
@@ -76,7 +77,8 @@ public class Dimension extends Tabla {
      * lista de niveles y clave primaria.
      *
      * @param nombre El nombre de la dimensión.
-     * @param niveles La lista de niveles en la dimensión.
+     * @param niveles La lista de niveles de la dimensión. Estas deben ser pasadas en orden de jerarquía
+     *                siendo el nivel más alto/abstracto el primero en la lista y el más fino el último en la lista
      * @param primaryKey La clave primaria de la dimensión.
      * @param data Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
      * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
@@ -100,6 +102,12 @@ public class Dimension extends Tabla {
             }
         }
 
+        // Ahora obtengo los índices de los niveles 
+        Map<String, Integer> map_indices = new HashMap<>();
+        for (int i = 0; i < niveles.size(); i++) {
+            map_indices.put(niveles.get(i), i);
+        }
+
         // Guardo el nombre de la clave primaria
         this.primaryKey = primaryKey;
 
@@ -110,7 +118,8 @@ public class Dimension extends Tabla {
         }
 
         // Añado la información a niveles
-        this.niveles = map_niveles;   
+        this.niveles = map_niveles;  
+        this.indices_niveles = map_indices;  
     }
 
     /**
@@ -154,4 +163,17 @@ public class Dimension extends Tabla {
     public Map<String, List<String>> getNiveles() {
         return this.niveles;
     }
+
+    /**
+     * Método para obtener el mapa de indices de los niveles de la dimensión.
+     * El mapa contiene los nombres de los niveles como claves y sus índices correspondientes como valores.
+     * Los índices representan el orden jerárquico de los niveles, con 0 representando el nivel más alto/abstracto.
+     *
+     * @return Un mapa que contiene los nombres de los niveles como claves y sus índices correspondientes como valores.
+     */
+    public Map<String, Integer> getIndicesNiveles(){
+        return this.indices_niveles;
+    }
+
+
 }

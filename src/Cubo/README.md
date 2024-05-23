@@ -65,29 +65,28 @@ El método `ver` permite visualizar los datos en una instancia de `CuboOLAP` des
 ### Parámetros del Método
 
 1. **n_filas**: `int`
-   - **Descripción**: El número de filas que se desea visualizar.
+   - **Descripción**: El número de filas que se desea visualizar. Si se pasa un número grande de filas 
+                      (entiendáse por grande un número mayor a la longitud de las filas implicadas en la operación)
+                      se mostrarán todas las filas que resultaron de la operación aplicada.
    - **Requisitos**: Debe ser un número entero positivo que indique la cantidad de filas a mostrar.
 
 2. **columnas**: `List<String>`
-   - **Descripción**: La lista de nombres de las columnas que se desean visualizar.
-   - **Requisitos**: Debe ser una lista válida de nombres de columnas que existen entre las tablas disponibles del cubo para el momento de su invocación.
+   - **Descripción**: La lista de nombres de las columnas que se desean visualizar. Si se le especifica como argumento el valor 
+                      `null` entonces se seleccionarán todas las columnas implicadas en la operación.
+   - **Requisitos (Si el parámetro no es `null`)**: Debe ser una lista válida de nombres de columnas que existen entre 
+                                                las tablas disponibles del cubo para el momento de su invocación.
 
 ### Excepciones Lanzadas
 
-1. **ColumnaNoPresenteException**
+1. **ColumnaNoPresenteException (Si el parámetro "columnas" no es `null`)**
    - **Descripción**: Esta excepción se lanza si alguna de las columnas especificadas no está presente en los encabezados disponibles del cubo.
    - **Cómo Evitarla**: Verifica que todas las columnas especificadas existen en las tablas que viven dentro del cubo antes de llamar al método.
-
-2. **FilaFueraDeRangoException**
-   - **Descripción**: Esta excepción se lanza si el número de filas solicitado excede el número de filas disponibles en el cubo.
-   - **Cómo Evitarla**: Asegúrate de que el número de filas solicitado esté dentro del rango de filas disponibles en el cubo.
 
 ### Consideraciones Previas
 
 - **Operaciones Previas**: Es necesario haber aplicado alguna operación al cubo antes de utilizar este método. Si no se ha realizado ninguna operación, se notificará al usuario y el método no continuará.
-- **Filtrado de Columnas**: El método verificará que las columnas especificadas existen en los encabezados y filtrará los datos para mostrar solo las columnas seleccionadas.
 
-### Ejemplo de Uso
+### Ejemplo de Uso #1
 
 ```java
 // Aplicamos alguna operación sobre el cubo
@@ -97,6 +96,37 @@ cubo.operar(param1, param2...);
 // columnas deberían haberse visto implicadas en la operación anterior
 int n_filas = 10;
 List<String> columnas = Arrays.asList("columna1", "columna2", "columna3");
+
+// Visualizamos los datos del cubo
+cubo.ver(n_filas, columnas);
+```
+
+### Ejemplo de Uso #2
+
+```java
+// Aplicamos alguna operación sobre el cubo
+cubo.operar(param1, param2...);
+
+// Definimos el número de filas que queremos visualizar
+int n_filas = 10;
+
+// Visualizamos los datos del cubo
+cubo.ver(n_filas, null);
+```
+
+### Ejemplo de Uso #3
+
+```java
+// Aplicamos alguna operación sobre el cubo
+cubo.operar(param1, param2...);
+
+// Seleccionamos algunas columnas (podemos optar por dejarlo en null)
+List<String> columnas = Arrays.asList("columna1", "columna2", "columna3");
+
+// Definimos el número de filas que queremos visualizar,
+// de esta forma mostrará todas las filas implicadas en la operación
+// (incluso si el número es menor a 'n_filas')
+int n_filas = 1000000000000000;
 
 // Visualizamos los datos del cubo
 cubo.ver(n_filas, columnas);
@@ -127,9 +157,10 @@ El método `rollUp` permite realizar una operación de roll-up en una instancia 
 
 ### Parámetros del Método
 
-1. **criterio_reduccion**: `List<String>`
-   - **Descripción**: La lista de niveles en los que se va a reducir el cubo.
-   - **Requisitos**: Debe ser una lista válida de nombres de niveles que existen en las dimensiones del cubo.
+1. **criterios_reduccion**: `Map<Dimension, String>`
+   - **Descripción**: Un mapa de criterios que contiene como clave la dimensión sobre la cual se quiere aplicar reducción 
+                      y como valor el nivel que se toma como criterio para aplicar la misma.
+   - **Requisitos**: Debe ser un mapa válido que contenga dimensiones y niveles que estén presentes en el cubo.
 
 2. **hechos_seleccionados**: `List<String>`
    - **Descripción**: La lista de hechos a incluir en la operación de roll-up.
@@ -145,51 +176,70 @@ El método `rollUp` permite realizar una operación de roll-up en una instancia 
    - **Descripción**: Esta excepción se lanza si la operación de agregación seleccionada no está entre las disponibles.
    - **Cómo Evitarla**: Asegúrate de pasar una de las operaciones soportadas: `"sum"`, `"max"`, `"min"`, `"count"`.
 
-2. **NivelNoPresenteException**
-   - **Descripción**: Esta excepción se lanza si algún nivel especificado en `criterio_reduccion` no está presente en las dimensiones del cubo.
+2. **DimensionNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si alguna dimensión especifcada en `criterios_reduccion` no está presente en las dimensiones del cubo.
+   - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas existan en las dimensiones del cubo antes de llamar al método.
+
+3. **NivelNoPresenteException**
+   - **Descripción**: Esta excepción se lanza si algún nivel especificado en `criterios_reduccion` no está presente en las dimensiones del cubo.
    - **Cómo Evitarla**: Verifica que todos los niveles especificados existen en las dimensiones del cubo antes de llamar al método.
 
-3. **HechoNoPresenteException**
+4. **HechoNoPresenteException**
    - **Descripción**: Esta excepción se lanza si algún hecho especificado en `hechos_seleccionados` no está presente en la tabla de hechos.
    - **Cómo Evitarla**: Verifica que todos los hechos especificados existen en la tabla de hechos antes de llamar al método.
 
-4. **TablaException**
+5. **TablaException**
    - **Descripción**: Esta excepción se lanza si ocurre un error inesperado al invocar el comando.
    - **Cómo Evitarla**: Maneja las excepciones correctamente y asegúrate de que la tabla de hechos y las dimensiones estén bien configuradas.
 
 ### Ejemplo de Uso
 
 ```java
-// Primero definimos los niveles de reducción y los hechos seleccionados
-List<String> criterio_reduccion = Arrays.asList("nivel1", "nivel2");
+// Primero generamos un mapa con los criterios de reducción
+Map<Dimension, String> criterios_reduccion = new HashMap<>();
+criterios_reduccion.put(dim1, "nivelY");
+criterios_reduccion.put(dim2, "nivelX");
+
+// Seleccionamos los hechos que queremos agrupar
 List<String> hechos_seleccionados = Arrays.asList("hecho1", "hecho2");
 
-// Realizámos la operación de roll-up con agregación "sum"
-cubo.rollUp(criterio_reduccion, hechos_seleccionados, "sum");
+// Realizamos la operación de roll-up con agregación "sum"
+cubo.rollUp(criterios_reduccion, hechos_seleccionados, "sum");
 
 // Luego podemos visualizar el resultado de la operación
-cubo.ver(n_filas, columnas);
+int n_filas = 10;
+cubo.ver(n_filas, null);
 ```
 ### Estructura del Resultado
 
-El método `rollUp` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+El método `rollUp` luego de haberse ejecutado modifica el atributo `proyeccion_cubo`, lo cual indica que el cubo está disponible para su 
 visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
 una instancia de `CuboOLAP`:
 
 ```java
-anio                quarter             valor_total
-2020                2                   20195.84
-2020                1                   21691.83
-2017                4                   23663.88
-2018                4                   15618.46
-2017                3                   27607.86
-2018                3                   20157.6
-2019                4                   30993.04
-2019                3                   27536.04
-2018                2                   23489.88
-2019                2                   14660.1
-2018                1                   20249.9
-2019                1                   13215.62
+anio                quarter             mes                 region              pais                provincia           cantidad
+2019                4                   12                  Europe              France              Seine Saint Denis   17.0
+2019                2                   4                   North America       United States       Mississippi         9.0
+2019                3                   8                   North America       United States       Arizona             15.0
+2019                1                   1                   North America       United States       Michigan            128.0
+2018                1                   3                   North America       Canada              Ontario             212.0
+2018                3                   8                   North America       United States       Missouri            89.0
+2017                3                   7                   North America       Canada              British Columbia    93.0
+2017                3                   9                   North America       Canada              Quebec              48.0
+2020                2                   5                   Europe              Germany             Saarland            16.0
+2018                4                   10                  North America       United States       Alabama             3.0
+2018                1                   2                   North America       United States       Utah                36.0
+2018                4                   10                  North America       United States       Minnesota           6.0
+2020                1                   1                   North America       United States       Colorado            114.0
+2020                1                   2                   North America       United States       California          509.0
+2018                2                   6                   North America       United States       Illinois            111.0
+2018                4                   11                  North America       United States       Mississippi         191.0
+2019                3                   8                   North America       United States       Utah                356.0
+2019                4                   11                  North America       Canada              British Columbia    320.0
+2018                2                   5                   North America       Canada              Manitoba            15.0
+2020                1                   2                   Europe              Germany             Bayern              129.0
+2018                3                   9                   North America       United States       Oregon              88.0
+2019                3                   9                   North America       Canada              Ontario             1018.0
 ```
 
 ## Método `slice`
@@ -240,11 +290,12 @@ String valor_corte = "valor1";
 cubo.slice(dimension, nivel, valor_corte);
 
 // Luego podemos visualizar el resultado de la operación
-cubo.ver(n_filas, columnas);
+int n_filas = 10;
+cubo.ver(n_filas, null);
 ```
 ### Estructura del Resultado
 
-El método `slice` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+El método `slice` luego de haberse ejecutado modifica el atributo `proyeccion_cubo`, lo cual indica que el cubo está disponible para su 
 visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
 una instancia de `CuboOLAP`:
 
@@ -315,11 +366,15 @@ criterios.put(dimension2, criteriosNivel2);
 
 // Ejecutamos el método dice
 cubo.dice(criterios);
+
+// Luego podemos visualizar el resultado de la operación
+int n_filas = 10;
+cubo.ver(n_filas, null);
 ```
 
 ### Estructura del Resultado
 
-El método `dice` luego de haberse ejecutado modifica el atributo `estado_cubo`, lo cual indica que el cubo está disponible para su 
+El método `dice` luego de haberse ejecutado modifica el atributo `proyeccion_cubo`, lo cual indica que el cubo está disponible para su 
 visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
 una instancia de `CuboOLAP`:
 

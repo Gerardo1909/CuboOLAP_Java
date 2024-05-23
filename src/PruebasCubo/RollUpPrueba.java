@@ -1,9 +1,9 @@
 package PruebasCubo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import Cubo.CuboOLAP;
 import Cubo.tablas.Dimension;
 
@@ -27,14 +27,19 @@ public class RollUpPrueba {
             return;
         }
 
-        // Pruebo la operación rollUp
+        // Armo el mapa que le voy a pasar al método como argumento
+        Map<Dimension, String> criterios_reduccion = new HashMap<>();
+        criterios_reduccion.put(dimFechas, "mes");
+        criterios_reduccion.put(dimPuntoVenta, "provincia");
+
+        // Pruebo la operación RollUp
         cuboPrueba.rollUp(
-            new ArrayList<>(Arrays.asList("anio", "quarter")),
-            new ArrayList<>(Arrays.asList("valor_total")),
-            "max"
+            criterios_reduccion,
+            Arrays.asList("cantidad"),
+            "sum"
         );
 
-        cuboPrueba.ver(10, new ArrayList<>(Arrays.asList("anio", "quarter", "valor_total")));
-        
+        // Visualizo el resultado
+        cuboPrueba.ver(100, null);
     }
 }

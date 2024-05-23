@@ -3,7 +3,6 @@ package PruebasCubo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import Cubo.CuboOLAP;
 import Cubo.tablas.Dimension;
 

@@ -33,7 +33,7 @@ Cada vez que desde una clase `Main` se crea una instancia de `CuboOLAP` y se inv
 
 3. Se ejecuta el método `ejecutar()` y dentro de la clase que implementa `ComandoCubo` se lleva a cabo la operación.
 
-4. Finalmente mediante el getter `getResultado()` se obtiene el resultado de la operación y se almacena dentro del atributo `estado_cubo`
+4. Finalmente mediante el getter `getResultado()` se obtiene el resultado de la operación y se almacena dentro del atributo `proyeccion_cubo`
    para su posterior visualización.
 
 ## Beneficios
