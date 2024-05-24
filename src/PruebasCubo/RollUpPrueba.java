@@ -29,9 +29,7 @@ public class RollUpPrueba {
 
         // Armo el mapa que le voy a pasar al método como argumento
         Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
-        criterios_reduccion.put(dimFechas, "quarter");
-        criterios_reduccion.put(dimPuntoVenta, "pais");
-        criterios_reduccion.put(dimProducto, "subcategoria");
+        criterios_reduccion.put(dimFechas, "anio");
 
         // Pruebo la operación RollUp
         cuboPrueba.rollUp(
