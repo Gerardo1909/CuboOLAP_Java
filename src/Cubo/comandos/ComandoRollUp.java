@@ -25,7 +25,7 @@ public class ComandoRollUp implements ComandoCubo{
     private String nivel_reduccion;
     private List<String> niveles_operacion;
     private String agregacion;
-    protected static Map<Dimension, ComandoRollUp> historial_operaciones = new LinkedHashMap<>();
+    private Map<Dimension, ComandoRollUp> historial_rollup;
 
     /**
      * Constructor para la clase ComandoRollUp.
@@ -36,13 +36,15 @@ public class ComandoRollUp implements ComandoCubo{
      * @param agregacion La operación de agregación a aplicar.
      * @throws TablaException Si se produce un error al inicializar la operación.
      */
-    public ComandoRollUp(Hecho tabla_operacion, Dimension  dimension_reduccion, String nivel_reduccion, String agregacion) throws TablaException{
+    public ComandoRollUp(Hecho tabla_operacion, Dimension  dimension_reduccion, 
+                        String nivel_reduccion, String agregacion, Map<Dimension, ComandoRollUp> historial_rollup) throws TablaException{
 
         // Inicializo los atributos que se verán implicados en la operación
         this.tabla_operacion = tabla_operacion;
         this.dimension_reduccion = dimension_reduccion;
         this.nivel_reduccion = nivel_reduccion;
         this.agregacion = agregacion;
+        this.historial_rollup = historial_rollup;
 
         // Obtengo los niveles de la operacion
         this.niveles_operacion = this.obtenerNivelesOperacion(this.dimension_reduccion, this.nivel_reduccion);
@@ -62,8 +64,8 @@ public class ComandoRollUp implements ComandoCubo{
     @Override
     public void ejecutar() throws TablaException {
 
-        // Añado al historial el comando antes de ejecutarlo
-        historial_operaciones.put(this.dimension_reduccion, this);
+        // Actualizo el historial de operaciones rollup antes de operar
+        this.historial_rollup.put(this.dimension_reduccion, this);
 
         // Agrupo según 'niveles_operacion'
         Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.tabla_operacion.getHechos());
@@ -169,6 +171,10 @@ public class ComandoRollUp implements ComandoCubo{
      */
     public Hecho getResultado(){
         return this.tabla_operacion;
+    }
+
+    public Map<Dimension, ComandoRollUp> getHistorial(){
+        return this.historial_rollup;
     }
 
     /**

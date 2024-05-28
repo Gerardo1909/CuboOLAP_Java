@@ -1,7 +1,10 @@
 package Cubo;
 
+import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +19,7 @@ import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
 import Cubo.excepciones.excepciones_operacion.NivelDesagregadoException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.TablaException;
+import Cubo.exportar_archivos.EstrategiaExportarArchivo;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
@@ -31,7 +35,8 @@ public class CuboOLAP{
     private final String nombre;
     private Hecho tabla_base;
     private Hecho tabla_operacion;
-    private Map<List<String>, List<List<String>>> proyeccion_cubo;
+    private Map<Dimension, ComandoRollUp> historial_rollup;
+    private Deque<ComandoDice> historial_dice;
 
     /**
      * Constructor para la clase CuboOLAP.
@@ -66,6 +71,10 @@ public class CuboOLAP{
 
         // Guardo una tabla base que servirá para volver al estado original del cubo
         this.tabla_base = hechos_merged.getHechoCopy();
+
+        // Inicializo los historiales de operaciones de Dice y RollUp
+        this.historial_rollup = new LinkedHashMap<>();
+        this.historial_dice = new ArrayDeque<>();
     }
 
     /**
@@ -112,10 +121,13 @@ public class CuboOLAP{
             String nivel_reduccion = entry.getValue();
 
             // Genero una instancia de RollUp
-            ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, dimension_reduccion, nivel_reduccion, agregacion_parsed);
+            ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, dimension_reduccion, nivel_reduccion, agregacion_parsed, this.historial_rollup);
 
             // Ejecuto la operación
             comando.ejecutar();
+
+            // Guardo en el historial la operación realizada
+            this.historial_rollup = comando.getHistorial();
 
             // Modifico el estado del cubo
             this.tabla_operacion = comando.getResultado();
@@ -155,10 +167,15 @@ public class CuboOLAP{
             String nivel_expansion = entry.getValue();
 
             // Genero una instancia de RollUp
-            ComandoDrillDown comando = new ComandoDrillDown(this.tabla_operacion, dimension_expansion, nivel_expansion);
+            ComandoDrillDown comando = new ComandoDrillDown(this.tabla_operacion, dimension_expansion, nivel_expansion,
+                                                            this.historial_rollup, this.historial_dice);
 
             // Ejecuto la operación
             comando.ejecutar();
+
+            // Actualizo los historiales correspondientes
+            this.historial_rollup = comando.getHistRollUp();
+            this.historial_dice = comando.getHistDice();
 
             // Modifico el estado del cubo
             this.tabla_operacion = comando.getResultado();
@@ -201,13 +218,16 @@ public class CuboOLAP{
         Map<Dimension, Map<String, List<String>>> criterio_slice= new LinkedHashMap<>();
         criterio_slice.put(dimension, nivel_corte);
 
-        // Genero una instancia de Slice
-        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterio_slice);
+        // Genero una instancia de ComandoDice
+        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterio_slice, this.historial_dice);
 
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
+        // Guardo en el historial la operación realizada
+        this.historial_dice = comando.getHistorial();
+
+        // Modifico el estado del cubo
         this.tabla_operacion = comando.getResultado();
 
     }
@@ -245,12 +265,15 @@ public class CuboOLAP{
         }   
     
         // Genero una instancia de Dice
-        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterios);
+        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterios, this.historial_dice);
 
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
+        // Guardo en el historial la operación realizada
+        this.historial_dice = comando.getHistorial();
+
+        // Modifico el estado del cubo
         this.tabla_operacion = comando.getResultado();
 
     }
@@ -311,5 +334,25 @@ public class CuboOLAP{
             System.out.println();
         }  
     }
+
+    public void exportar(String ruta_guardado, EstrategiaExportarArchivo estrategia_exportar) throws IOException{
+        
+        // Para exportar primero debo juntar los encabezados con los datos
+        // para eso armo una lista vacía que los junte
+        List<List<String>> datos_a_exportar = new ArrayList<>();
+
+        //Añado los headers
+        datos_a_exportar.add(this.tabla_operacion.getHeaders());
+
+        // Añado ahora el resto de información debajo
+        for (List<String> fila : this.tabla_operacion.getData()){
+            datos_a_exportar.add(fila);
+        }
+
+        // Ahora si exporto el cubo
+        estrategia_exportar.exportarArchivo(ruta_guardado, datos_a_exportar);
+
+    }
+
 }
 

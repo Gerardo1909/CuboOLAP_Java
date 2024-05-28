@@ -18,7 +18,7 @@ public class ComandoDice implements ComandoCubo{
 
     private Hecho tabla_operacion;
     private Map<Dimension, Map<String, List<String>>> criterios;
-    protected static Deque<ComandoDice> historial_operaciones= new ArrayDeque<>();
+    private Deque<ComandoDice> historial_dice;
 
     /**
      * Constructor para la clase ComandoDice.
@@ -26,9 +26,11 @@ public class ComandoDice implements ComandoCubo{
      * @param tabla_operacion La tabla de hechos que se utilizará para llevar a cabo la operación.
      * @param criterios Un mapa que contiene dimensiones como clave y como valor mapas con criterios de corte.
      */
-    public ComandoDice(Hecho tabla_operacion, Map<Dimension, Map<String, List<String>>> criterios) {
+    public ComandoDice(Hecho tabla_operacion, Map<Dimension, Map<String, List<String>>> criterios, 
+                       Deque<ComandoDice> historial_dice) {
         this.criterios = criterios;
         this.tabla_operacion = tabla_operacion;
+        this.historial_dice = historial_dice;
     }
 
     /**
@@ -41,7 +43,7 @@ public class ComandoDice implements ComandoCubo{
     public void ejecutar() throws TablaException {
 
         // Añado al historial el comando antes de ejecutarlo
-        historial_operaciones.addLast(this);
+        this.historial_dice.addLast(this);
 
         // Genero una matriz que contendrá la operación resultante
         List<List<String>> operacion_resultante = new ArrayList<>();
@@ -97,6 +99,10 @@ public class ComandoDice implements ComandoCubo{
 
     public Hecho getResultado() {
         return this.tabla_operacion;
+    }
+
+    public Deque<ComandoDice> getHistorial(){
+        return this.historial_dice;
     }
 
     protected Map<Dimension, Map<String, List<String>>> getCriterios(){

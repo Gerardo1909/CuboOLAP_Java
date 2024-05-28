@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import Cubo.CuboOLAP;
+import Cubo.exportar_archivos.ExportarCSV;
 import Cubo.lectura_archivos.LectorCSV;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
@@ -44,6 +45,10 @@ public class CreacionPrueba {
         // Guardo el cubo y sus datos asociados para probarlos en otras clases
         CuboPruebaManager.setCuboPrueba(cuboPrueba);
         CuboPruebaManager.setDimensionesCuboPrueba(dimensiones);
+
+        // Pruebo la exportacion
+        ExportarCSV exportadorCSV = new ExportarCSV(';');
+        cuboPrueba.exportar("exportaciones/cubo1.csv", exportadorCSV);
 
         System.out.println("CreacionPrueba: Inicializacion completada.");
     }
