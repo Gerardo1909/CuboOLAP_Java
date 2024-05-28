@@ -42,6 +42,6 @@ public class DicePrueba {
         // Ejecuto el método
         cuboPrueba.dice(criterios);
 
-        cuboPrueba.ver(20, new ArrayList<>(Arrays.asList("anio", "provincia", "costo")));
+        cuboPrueba.proyectar(new ArrayList<>(Arrays.asList("anio", "provincia", "costo")), 20);
     }
 }

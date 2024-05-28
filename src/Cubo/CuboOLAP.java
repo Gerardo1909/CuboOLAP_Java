@@ -2,34 +2,34 @@ package Cubo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import Cubo.comandos.ComandoDice;
 import Cubo.comandos.ComandoDrillDown;
 import Cubo.comandos.ComandoRollUp;
-import Cubo.comandos.ComandoSlice;
 import Cubo.excepciones.excepciones_dimension.ClaveNoPresenteException;
 import Cubo.excepciones.excepciones_dimension.DimensionNoPresenteException;
 import Cubo.excepciones.excepciones_dimension.NivelNoPresenteException;
 import Cubo.excepciones.excepciones_hechos.HechoNoPresenteException;
 import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
+import Cubo.excepciones.excepciones_operacion.NivelDesagregadoException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
-import Cubo.utils.Visualizable;
 
 /**
  * Esta clase representa un cubo OLAP.
  * Proporciona métodos para realizar operaciones de roll-up, drill-down, slice, dice y visualización.
- * Implementa la interfaz {@link Visualizable}.
  */
-public class CuboOLAP implements Visualizable {
+public class CuboOLAP{
 
     private final List<Dimension> dimensiones;
     private final Hecho hecho;
     private final String nombre;
+    private Hecho tabla_base;
     private Hecho tabla_operacion;
     private Map<List<String>, List<List<String>>> proyeccion_cubo;
 
@@ -56,13 +56,16 @@ public class CuboOLAP implements Visualizable {
         this.hecho = hecho;
         this.nombre = nombre;
 
-        // Y ahora en tabla_operacion guardo una gran tabla resultado de hacer merge a la tabla de hechos por cada dimensión,
-        // esto servirá para realizar las operaciones
+        // En 'tabla_operacion' guardo una tabla que contiene a todas las dimensiones junto con la 
+        // tabla de hechos mergeadas, esta será a la cual se le apliquen operaciones
         Hecho hechos_merged = hecho.getHechoCopy();
         for (Dimension dimension : dimensiones) {
             Tabla.merge(hechos_merged, dimension, dimension.getPrimaryKey());
         }
         this.tabla_operacion = hechos_merged;
+
+        // Guardo una tabla base que servirá para volver al estado original del cubo
+        this.tabla_base = hechos_merged.getHechoCopy();
     }
 
     /**
@@ -78,7 +81,7 @@ public class CuboOLAP implements Visualizable {
      * @throws HechoNoPresenteException Si algún hecho seleccionado no está presente en la tabla de hechos.
      * @throws TablaException Si ocurre un error inesperado al invocar el comando.
      */
-    public void rollUp(Map<Dimension, String> criterios_reduccion, List<String> hechos_seleccionados, String agregacion) throws TablaException, AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
+    public void rollUp(Map<Dimension, String> criterios_reduccion, String agregacion) throws TablaException, AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
 
         // Formateo el string de la operación de agregacion
         String agregacion_parsed = agregacion.toLowerCase().trim();
@@ -101,25 +104,67 @@ public class CuboOLAP implements Visualizable {
             }
         }
 
-        // Verifico que estén presentes todos los hechos seleccionados para la operación
-        for (String hecho: hechos_seleccionados){
-            if (!tabla_operacion.getHeaders().contains(hecho)){
-                throw new HechoNoPresenteException("El hecho " + hecho + " no está presente en la tabla de hechos " + this.hecho.getNombre());
+        // Ahora por cada entrada del mapa, voy agrupando
+        for (Map.Entry<Dimension, String> entry : criterios_reduccion.entrySet()) {
+
+            // Tomo la clave y valor del mapo
+            Dimension dimension_reduccion = entry.getKey();
+            String nivel_reduccion = entry.getValue();
+
+            // Genero una instancia de RollUp
+            ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, dimension_reduccion, nivel_reduccion, agregacion_parsed);
+
+            // Ejecuto la operación
+            comando.ejecutar();
+
+            // Modifico el estado del cubo
+            this.tabla_operacion = comando.getResultado();
+
+        }
+
+    }
+
+    public void drillDown(Map<Dimension, String> criterios_expansion) throws TablaException, DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
+
+        // Verifico que los argumentos pasados estén bien
+        for (Map.Entry<Dimension, String> criterio : criterios_expansion.entrySet()){
+
+            // Obtengo clave y valor
+            Dimension dimension = criterio.getKey();
+            String nivel = criterio.getValue();
+
+            // Verifico que estén presentes todas las dimensiones y niveles pasadas en el mapa 'criterios_expansion'
+            if (!this.dimensiones.contains(dimension)){
+                throw new DimensionNoPresenteException("La dimensión " + dimension.getNombre() + " no está presente en el cubo " + this.nombre);
+            }
+            if (!dimension.getNiveles().containsKey(criterios_expansion.get(dimension))){
+                throw new NivelNoPresenteException("El nivel " + criterios_expansion.get(dimension) + " no está presente en la dimensión " + dimension.getNombre());
+            }
+
+            // Verifico también que no se quiera desagrupar a un nivel que ya está desagrupado
+            if (this.tabla_operacion.getHeaders().contains(nivel)){
+                throw new NivelDesagregadoException("La dimension " + dimension.getNombre() + " ya está desagrupada al nivel " + nivel);
             }
         }
 
-        // Genero una instancia de RollUp
-        ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterios_reduccion, hechos_seleccionados, agregacion_parsed);
+        // Ahora por cada entrada del mapa, voy desagrupando
+        for (Map.Entry<Dimension, String> entry : criterios_expansion.entrySet()) {
 
-        // Ejecuto la operación
-        comando.ejecutar();
+            // Tomo la clave y valor del mapo
+            Dimension dimension_expansion = entry.getKey();
+            String nivel_expansion = entry.getValue();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
-        this.proyeccion_cubo = comando.getResultado();
-    }
+            // Genero una instancia de RollUp
+            ComandoDrillDown comando = new ComandoDrillDown(this.tabla_operacion, dimension_expansion, nivel_expansion);
 
-    public void drillDown(String dimension) throws TablaException{
-        new ComandoDrillDown(dimension).ejecutar();
+            // Ejecuto la operación
+            comando.ejecutar();
+
+            // Modifico el estado del cubo
+            this.tabla_operacion = comando.getResultado();
+
+        }
+        
     }
 
     /**
@@ -150,14 +195,20 @@ public class CuboOLAP implements Visualizable {
             throw new DimensionNoPresenteException("El valor de corte " + valor_corte + " no está presente en el nivel " + nivel + " de la dimensión " + dimension.getNombre());
         }
 
+        // Convierto los argumentos en un mapa para usar ComandoDice
+        Map<String, List<String>> nivel_corte = new LinkedHashMap<>();
+        nivel_corte.put(nivel, Arrays.asList(valor_corte));
+        Map<Dimension, Map<String, List<String>>> criterio_slice= new LinkedHashMap<>();
+        criterio_slice.put(dimension, nivel_corte);
+
         // Genero una instancia de Slice
-        ComandoSlice comando = new ComandoSlice(this.tabla_operacion,dimension, nivel, valor_corte);
+        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterio_slice);
 
         // Ejecuto la operación
         comando.ejecutar();
 
         // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
-        this.proyeccion_cubo = comando.getResultado();
+        this.tabla_operacion = comando.getResultado();
 
     }
 
@@ -200,93 +251,10 @@ public class CuboOLAP implements Visualizable {
         comando.ejecutar();
 
         // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
-        this.proyeccion_cubo = comando.getResultado();
+        this.tabla_operacion = comando.getResultado();
 
     }
     
-    /**
-     * Muestra una vista parcial del cubo con las columnas especificadas y un número limitado de filas.
-     *
-     * @param n_filas  el número de filas a visualizar. Si se pasa un número grande de filas 
-     *                 (entiendáse por grande un número mayor a la longitud de las filas implicadas en la operación)
-     *                 se mostrarán todas las filas que resultaron de la operación aplicada.
-     * @param columnas la lista de nombres de columnas a visualizar; si es null, se visualizan todas las columnas
-     *                 usadas en la operación aplicada anteriormente.
-     * @throws ColumnaNoPresenteException si alguna de las columnas especificadas no está presente en los encabezados.
-     */
-    @Override
-    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException{
-    
-        // Verifico que el cubo haya sido operado antes de visualizarse
-        if (this.proyeccion_cubo.isEmpty()) {
-            System.out.println("Al cubo " + this.getNombre() + " no se le han aplicado operaciones visibles aún");
-            return; 
-        }
-
-        //Inicializo una lista que contiene los índices de las columnas a ver
-        List<Integer> indices_columnas = new ArrayList<>();
-
-        // Armo una nueva lista 'columnas_ver' que serán las que finalmente se visualizen, usando los índices obtenidos
-        List<String> columnas_ver = new ArrayList<>();
-
-        // Primero reviso el caso de que se pasaron columnas por argumento
-        if (columnas!= null){
-            // Verifico si las columnas especificadas existen en los headers
-            for (String columna : columnas){
-                if (!this.tabla_operacion.getHeaders().contains(columna)){
-                    throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
-                }
-            }
-
-            // Obtengo los índices de las columnas seleccionadas
-            for (String columna : columnas) {
-                indices_columnas.add(this.proyeccion_cubo.keySet().iterator().next().indexOf(columna));
-            }
-
-            columnas_ver = columnas;
-        }
-
-        // Si no se seleccionan columnas por defecto obtengo los índices de todas las que están en la operación
-        if (columnas == null){
-            for (int i = 0; i < this.proyeccion_cubo.keySet().iterator().next().size(); i++) {
-                indices_columnas.add(i);
-            }
-
-            columnas_ver = this.proyeccion_cubo.keySet().iterator().next();
-        }
-
-        // Filtro la matriz resultante para quedarme solo con las columnas seleccionadas
-        List<List<String>> matriz_filtrada = new ArrayList<>();
-        for (List<String> fila : this.proyeccion_cubo.values().iterator().next()) {
-            List<String> fila_filtrada = new ArrayList<>();
-            for (int indice : indices_columnas) {
-                fila_filtrada.add(fila.get(indice));
-            }
-            matriz_filtrada.add(fila_filtrada);
-        }
-
-        // Muestro las columnas resultantes
-        for (String columna : columnas_ver) {
-            System.out.print(String.format("%-20s", columna));
-        }
-        System.out.println();
-    
-        // Itero sobre las primeras 'n_filas' filas de la matriz resultado
-        int contador_filas = 0;
-        for (List<String> fila : matriz_filtrada) {
-            // Cuando se alcanze el máximo de filas salgo del ciclo
-            if (contador_filas >= n_filas) {
-                break;
-            }
-            // Printeo los elementos de la fila
-            for (String elemento : fila) {
-                System.out.print(String.format("%-20s", elemento));
-            }
-            System.out.println();
-            contador_filas++;
-        }
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -310,5 +278,38 @@ public class CuboOLAP implements Visualizable {
         return sb.toString();
     }
 
+    public void resetear() throws TablaException{
+        this.tabla_operacion = tabla_base.getHechoCopy();
+    }
+
+    public void proyectar(List<String> columnas, int n_filas) throws TablaException{
+
+        // Verifico si las columnas especificadas existen en los headers
+        for (String columna : columnas){
+            if (!this.tabla_operacion.getHeaders().contains(columna)){
+                throw new ColumnaNoPresenteException("La columna especificada " + columna + " no existe en los encabezados.");
+            }
+        }
+
+        // Armo una lista y guardo las columnas seleccionadas
+        List<List<String>> columnas_seleccionadas = new ArrayList<>();
+        for (String columna : columnas) {
+            columnas_seleccionadas.add(this.tabla_operacion.getColumna(columna));
+        }
+
+        //Imprimo las columnas seleccionadas con cierto formato
+        for (String columna : columnas) {
+            System.out.print(String.format("%-20s", columna));
+        }
+        System.out.println();
+
+        // Imprimo los datos con cierto formato
+        for (int i = 0; i < n_filas; i++) {
+            for (List<String> columna : columnas_seleccionadas) {
+                System.out.print(String.format("%-20s", columna.get(i)));
+            }
+            System.out.println();
+        }  
+    }
 }
 

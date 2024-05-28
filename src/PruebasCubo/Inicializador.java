@@ -10,6 +10,6 @@ public class Inicializador {
         CreacionPrueba.main(args);
         
         // Ejecuto los archivos que quiero probar
-        RollUpPrueba.main(args);
+        DrillDownPrueba.main(args);
     }
 }

@@ -1,13 +1,14 @@
 package Cubo.comandos;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import Cubo.tablas.Hecho;
 import Cubo.CuboOLAP;
 import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
+import java.util.ArrayDeque;
 
 /**
  * Esta clase implementa el comando Dice para la clase {@link CuboOLAP}.
@@ -17,7 +18,7 @@ public class ComandoDice implements ComandoCubo{
 
     private Hecho tabla_operacion;
     private Map<Dimension, Map<String, List<String>>> criterios;
-    private Map<List<String>, List<List<String>>> resultado;
+    protected static Deque<ComandoDice> historial_operaciones= new ArrayDeque<>();
 
     /**
      * Constructor para la clase ComandoDice.
@@ -33,11 +34,14 @@ public class ComandoDice implements ComandoCubo{
     /**
      * Ejecuta el comando Dice.
      * Ejecuta la operación de corte en varias dimensiones en la tabla de operación, 
-     * y almacena el resultado en el atributo 'resultado'.
+     * y almacena el estado interno del cubo mediante 'tabla_operacion'.
      * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
     public void ejecutar() throws TablaException {
+
+        // Añado al historial el comando antes de ejecutarlo
+        historial_operaciones.addLast(this);
 
         // Genero una matriz que contendrá la operación resultante
         List<List<String>> operacion_resultante = new ArrayList<>();
@@ -87,21 +91,16 @@ public class ComandoDice implements ComandoCubo{
         // Genero una lista para guardar los headers de la operación resultante
         List<String> headers_operacion = new ArrayList<>(tabla_operacion.getHeaders());
 
-        // Armo el mapa que contiene como clave los headers de la operación
-        // y como valor contiene la matriz que contiene la operación
-        Map<List<String>, List<List<String>>> mapa_resultante = new LinkedHashMap<>();
-        mapa_resultante.put(headers_operacion, operacion_resultante);
-
-        this.resultado = mapa_resultante;
+        // Finalmente modifico 'tabla_operacion'
+        this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, headers_operacion, this.tabla_operacion.getHechos());
     }
 
-
-    /**
-     * Devuelve el resultado del comando Dice.
-     *
-     * @return Un mapa donde las claves son los encabezados de la operación y los valores son la matriz de la operación.
-     */
-    public Map<List<String>, List<List<String>>> getResultado() {
-        return this.resultado;
+    public Hecho getResultado() {
+        return this.tabla_operacion;
     }
+
+    protected Map<Dimension, Map<String, List<String>>> getCriterios(){
+        return this.criterios;
+    }
+
 }

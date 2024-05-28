@@ -33,6 +33,6 @@ public class SlicePrueba {
             "2017"
         );
 
-        cuboPrueba.ver(10, new ArrayList<>(Arrays.asList("anio", "mes", "ciudad", "costo")));
+        cuboPrueba.proyectar(new ArrayList<>(Arrays.asList("anio", "ciudad", "costo")), 10);
     }
 }

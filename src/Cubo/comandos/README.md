@@ -19,9 +19,10 @@ Los parámetros definidos en la clase `CuboOLAP` para invocar los métodos, desd
 * `ComandoDice`
 * `ComandoDrillDown`
 * `ComandoRollUp`
-* `ComandoSlice`
 
-Cada una se encargar de implementar el comportamiento esperado de su método correspondiente y devolver el resultado del mismo mediante un **getter**, que dentro de cada clase tiene la forma de `getResultado()`.
+Cada una se encarga de implementar el comportamiento esperado de su método correspondiente y devolver el resultado del mismo mediante un **getter**, que dentro de cada clase tiene la forma de `getResultado()`.
+
+**Notar que no existe una clase `ComandoSlice` ya que internamente esta operación es un dice pero de un solo argumento.**
 
 ## ¿Cómo funciona?
 
@@ -33,8 +34,8 @@ Cada vez que desde una clase `Main` se crea una instancia de `CuboOLAP` y se inv
 
 3. Se ejecuta el método `ejecutar()` y dentro de la clase que implementa `ComandoCubo` se lleva a cabo la operación.
 
-4. Finalmente mediante el getter `getResultado()` se obtiene el resultado de la operación y se almacena dentro del atributo `proyeccion_cubo`
-   para su posterior visualización.
+4. Finalmente mediante el getter `getResultado()` se obtiene el resultado de la operación y usándolo se modifica el estado interno del cubo
+   para luego poder ser proyectado.
 
 ## Beneficios
 

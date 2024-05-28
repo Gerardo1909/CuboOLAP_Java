@@ -14,49 +14,59 @@ import java.util.Collections;
 
 /**
  * Esta clase implementa el comando RollUp para la clase {@link CuboOLAP}.
- * Agrupa los hechos por los criterios de reducción y aplica una operación de agregación.
+ * Agrupa el cubo por los criterios de reducción y aplica una operación de agregación.
  * Implementa la interfaz {@link ComandoCubo}.
  */
 public class ComandoRollUp implements ComandoCubo{
 
     private Hecho tabla_operacion;
-    private Map<Dimension, String> criterios_reduccion;
+    private Hecho tabla_antes_de_operar;
+    private Dimension dimension_reduccion;
+    private String nivel_reduccion;
     private List<String> niveles_operacion;
-    private List<String> hechos_seleccionados;
     private String agregacion;
-    private Map<List<String>, List<List<String>>>resultado;
+    protected static Map<Dimension, ComandoRollUp> historial_operaciones = new LinkedHashMap<>();
 
     /**
      * Constructor para la clase ComandoRollUp.
      *
      * @param tabla_operacion La tabla de hechos que se utilizará para llevar a cabo la operación.
-     * @param criterios_reduccion Un mapa que contiene la dimensión junto con su criterio de reducción.
-     * @param hechos_seleccionados Los hechos que se verán involucrados en la operación.
+     * @param dimension_reduccion La dimensión sobre la cual se realizará la reducción.
+     * @param nivel_reduccion El nivel de reducción dentro de la dimensión especificada.
      * @param agregacion La operación de agregación a aplicar.
+     * @throws TablaException Si se produce un error al inicializar la operación.
      */
-    public ComandoRollUp(Hecho tabla_operacion, Map<Dimension, String> criterios_reduccion, 
-                         List<String> hechos_seleccionados, String agregacion) {
+    public ComandoRollUp(Hecho tabla_operacion, Dimension  dimension_reduccion, String nivel_reduccion, String agregacion) throws TablaException{
 
+        // Inicializo los atributos que se verán implicados en la operación
         this.tabla_operacion = tabla_operacion;
-        this.criterios_reduccion = criterios_reduccion;
+        this.dimension_reduccion = dimension_reduccion;
+        this.nivel_reduccion = nivel_reduccion;
         this.agregacion = agregacion;
-        this.hechos_seleccionados = hechos_seleccionados;
 
         // Obtengo los niveles de la operacion
-        this.niveles_operacion = this.obtenerNivelesOperacion(criterios_reduccion);
+        this.niveles_operacion = this.obtenerNivelesOperacion(this.dimension_reduccion, this.nivel_reduccion);
+
+        // Me guardo una copia de 'tabla_operacion' en el momento de la creación
+        // Así puedo obtener la tabla antes de aplicar el cambio
+        this.tabla_antes_de_operar = tabla_operacion.getHechoCopy();
     }
 
     /**
      * Ejecuta el comando RollUp.
      * Agrupa los hechos por los criterios de reducción, aplica la operación de agregación,
-     * y almacena el resultado en el atributo 'resultado'.
+     * y modifica el estado interno  del cubo sobre el cual se aplica.
+     *
      * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
     public void ejecutar() throws TablaException {
 
-        // Primero agrupo según 'niveles_operacion'
-        Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.hechos_seleccionados);
+        // Añado al historial el comando antes de ejecutarlo
+        historial_operaciones.put(this.dimension_reduccion, this);
+
+        // Agrupo según 'niveles_operacion'
+        Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.tabla_operacion.getHechos());
 
         // Ahora armo un nuevo 'mapa_operable' que tendrá como valores las mismas listas pero de tipo double
         Map<List<String>, List<List<Double>>> mapa_operable = new LinkedHashMap<>();
@@ -146,23 +156,19 @@ public class ComandoRollUp implements ComandoCubo{
 
         // Genero una lista para guardar los headers de la operacion resultante
         List<String> headers_operacion = new ArrayList<>(this.niveles_operacion);
-        headers_operacion.addAll(this.hechos_seleccionados);
+        headers_operacion.addAll(this.tabla_operacion.getHechos());
 
-        // Y ahora armo el mapa que contiene como clave los headers de la operación
-        // y como valor contiene la matriz que contiene la operación
-        Map<List<String>, List<List<String>>> mapa_resultante = new LinkedHashMap<>();
-        mapa_resultante.put(headers_operacion, operacion_resultante);
-
-        this.resultado = mapa_resultante;
+        // Finalmente modifico 'tabla_operacion'
+        this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, headers_operacion, this.tabla_operacion.getHechos());
     }
 
     /**
-     * Devuelve el resultado del comando RollUp.
+     * Obtiene la tabla resultante de la operación de RollUp.
      *
-     * @return Un mapa donde las claves son los encabezados de la operación y los valores son la matriz de la operación.
+     * @return La tabla de hechos resultante.
      */
-    public Map<List<String>, List<List<String>>> getResultado() {
-        return this.resultado;
+    public Hecho getResultado(){
+        return this.tabla_operacion;
     }
 
     /**
@@ -180,48 +186,46 @@ public class ComandoRollUp implements ComandoCubo{
     }
 
     /**
-     * Este método recupera los niveles de operación basándose en el mapa proporcionado de dimensiones y sus niveles correspondientes.
-     * Itera a través de cada entrada en el mapa y recupera la dimensión y el nivel.
-     * Luego, obtiene el índice del nivel y, si no es el más abstracto (cuando el índice es distinto de 0),
-     * incluye en la lista todos los niveles posteriores a él.
+     * Obtiene los niveles de operación para la dimensión y el nivel de reducción especificados.
      *
-     * @param mapa_dimension_nivel Un mapa que contiene las dimensiones y sus niveles correspondientes.
-     * @return Una lista de cadenas que representa los niveles de operación.
+     * @param dimension La dimensión sobre la cual se realizará la reducción.
+     * @param nivel El nivel de reducción dentro de la dimensión especificada.
+     * @return Una lista de niveles de operación.
      */
-    private List<String> obtenerNivelesOperacion(Map <Dimension, String> mapa_dimension_nivel){
+    private List<String> obtenerNivelesOperacion(Dimension dimension, String nivel){
 
         // Genero una lista para guardar el resultado final
         List<String> niveles_resultantes = new ArrayList<>();
 
-        // Itero sobre cada entrada del mapa 'criterios_reduccion'
-        for (Map.Entry<Dimension, String> entrada : mapa_dimension_nivel.entrySet()) {
+        // Obtengo el índice del nivel
+        int indice_nivel = dimension.getIndicesNiveles().get(nivel);
 
-            // Guardo la dimension y el nivel sobre el cual estoy ahora
-            Dimension dimension = entrada.getKey();
-            String nivel = entrada.getValue();
-
-            // Obtengo el índice del nivel
-            int indice_nivel = dimension.getIndicesNiveles().get(nivel);
-
-            // Si es distinto de 0, es decir no es el más abstracto, debo incluir en la lista
-            // todo los niveles detrás de él
-            if (indice_nivel!= 0) {
-                for (int i = 0; i <= indice_nivel; i++) {
+        // Si es distinto de 0, es decir no es el más abstracto, debo incluir en la lista
+        // todo los niveles detrás de él
+        if (indice_nivel!= 0) {
+            for (int i = 0; i <= indice_nivel; i++) {
                    
-                    // Obtengo el nivel por su indice
-                    String nivel_anterior = obtenerClavePorValor(dimension.getIndicesNiveles(), i);
+                // Obtengo el nivel por su indice
+                String nivel_anterior = obtenerClavePorValor(dimension.getIndicesNiveles(), i);
 
-                    // Y lo agrego a la lista
-                    niveles_resultantes.add(nivel_anterior);
+                // Y lo agrego a la lista
+                niveles_resultantes.add(nivel_anterior);
 
-                }
             }
-            else { 
-                niveles_resultantes.add(nivel);
-            }
-
+        }
+        else { 
+            niveles_resultantes.add(nivel);
         }
 
+        // Ahora tomo los headers de la tabla de operación
+        List<String> headers_operacion = new ArrayList<>(this.tabla_operacion.getHeaders());
+    
+        // Le quito todas las columnas relacionadas a la dimensión que agrupo
+        headers_operacion.removeAll(dimension.getHeaders());
+
+        // Y ahora añado las dimensiones restantes a 'niveles_resultantes'
+        niveles_resultantes.addAll(headers_operacion);
+        
         return niveles_resultantes;
     }
 
@@ -245,4 +249,21 @@ public class ComandoRollUp implements ComandoCubo{
         return null; 
     }
 
+    /**
+     * Obtiene una copia de la tabla operada antes de aplicar el cambio.
+     *
+     * @return Una copia de la tabla que se generó antes de aplicar la operación.
+     * @throws TablaException Si se produce algún error al obtener la copia.
+     */
+    protected Hecho getTablaAOperacion() throws TablaException{
+        return this.tabla_antes_de_operar.getHechoCopy();
+    }
+
+    protected Dimension getDimensionReduccion(){
+        return this.dimension_reduccion;
+    }
+
+    protected String getNivelReduccion(){
+        return this.nivel_reduccion;
+    }
 }

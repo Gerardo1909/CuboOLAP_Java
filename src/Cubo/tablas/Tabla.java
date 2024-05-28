@@ -10,14 +10,12 @@ import java.util.Set;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
 import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
-import Cubo.utils.Visualizable;
 
 /**
  * Clase abstracta que representa una tabla, datos en formato tabular.
  * Proporciona métodos para agrupar, fusionar, obtener valores únicos y visualizar la tabla.
- * Implementa la interfaz {@link Visualizable}.
  */
-public abstract class Tabla implements Visualizable{
+public abstract class Tabla{
 
     protected List<String> headers;
     protected List<List<String>> data;
@@ -319,9 +317,13 @@ public abstract class Tabla implements Visualizable{
     }
 
     /**
-     * Ver documentación en {@link Visualizable}.
+     * Muestra una parte de los datos del objeto en un formato tabular.
+     *
+     * @param n_filas El número de filas a mostrar.
+     * @param columnas La lista de nombres de columnas a mostrar.
+     * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
+     * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
-    @Override
     public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
 
         // Prevengo el caso de que "n_filas" sea mayor a las filas disponibles
@@ -332,7 +334,7 @@ public abstract class Tabla implements Visualizable{
         // Verifico si las columnas especificadas existen en los headers
         for (String columna : columnas){
             if (!this.headers.contains(columna)){
-                throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
+                throw new ColumnaNoPresenteException("La columna especificada " + columna + " no existe en los encabezados.");
             }
         }
 
