@@ -3,8 +3,8 @@ package Cubo.comandos;
 import Cubo.excepciones.excepciones_tabla.TablaException;
 
 /**
- * Esta interfaz representa un comando que se puede ejecutar en un cubo.
- * Define un único método, {@link #ejecutar()}, que debe ser implementado por cualquier clase que implemente esta interfaz.
+ * Esta interfaz define la ejecución de métodos en cubos OLAP.
+ * Proporciona la firma de un método para ejecutar los métodos de la clase {@link CuboOLAP}.
  */
 public interface ComandoCubo {
     /**

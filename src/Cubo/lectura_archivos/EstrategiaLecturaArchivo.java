@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Este interfaz define una estrategia para leer archivos.
- * Proporciona un método para leer un archivo y devolver su contenido como una lista de listas de cadenas.
+ * Proporciona la firma de un método para leer un archivo y devolver su contenido como una lista de listas de cadenas.
  */
 public interface EstrategiaLecturaArchivo {
 

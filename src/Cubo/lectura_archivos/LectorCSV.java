@@ -8,14 +8,9 @@ import java.util.List;
 
 /**
  * Esta clase implementa la interfaz EstrategiaLecturaArchivo para leer archivos CSV.
- * Utiliza un BufferedReader para leer el archivo línea por línea y un método personalizado de análisis para dividir cada línea en campos.
- * El método de análisis admite campos encerrados entre comillas dobles y maneja correctamente las comillas escapadas.
  */
 public class LectorCSV implements EstrategiaLecturaArchivo{
 
-    /**
-     * El carácter utilizado para separar los campos en el archivo CSV.
-     */
     private char separador;
 
     /**
