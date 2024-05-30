@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import Cubo.CuboOLAP;
+import Cubo.exportacion_archivos.ExportadorCSV;
 import Cubo.tablas.Dimension;
 
 public class SlicePrueba {
@@ -33,6 +34,8 @@ public class SlicePrueba {
             "2017"
         );
 
-        cuboPrueba.ver(10, new ArrayList<>(Arrays.asList("anio", "mes", "ciudad", "costo")));
+        // Exporto el cubo para verificar el resultado
+        ExportadorCSV exportadorCSV = new ExportadorCSV(';');
+        cuboPrueba.exportar("exportaciones/prueba_slice.csv", exportadorCSV);
     }
 }

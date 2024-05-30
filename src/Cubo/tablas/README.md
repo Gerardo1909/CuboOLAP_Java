@@ -8,7 +8,7 @@ común de las clases ya mencionadas.
 
 ## Clase `Tabla`
 
-La clase abstracta `Tabla` representa una estructura de datos en formato tabular. Esta clase proporciona métodos para realizar operaciones comunes como agrupar, fusionar, obtener valores únicos y visualizar los datos. Además, implementa la interfaz `Visualizable` para facilitar la visualización de la tabla.
+La clase abstracta `Tabla` representa una estructura de datos en formato tabular. Esta clase proporciona métodos para realizar operaciones comunes como agrupar, fusionar, obtener valores únicos y visualizar los datos.
 
 ### Método estático `groupBy`
 
@@ -265,7 +265,7 @@ El constructor de esta clase te permite crear una instancia de tipo `Dimension` 
 
 ```java
 // Primero debemos crear una objeto que implemente la interfaz 'EstrategiaLecturaArchivo'
-  EstrategiaLecturaArchivo estrategia = new EstrategiaLecturaArchivo(param);
+EstrategiaLecturaArchivo estrategia = new EstrategiaLecturaArchivo(param);
 
 // Guardamos sus niveles, recordar que el primero en la lista es el nivel más abstracto/alto 
 // en la dimensión

@@ -30,10 +30,10 @@ public class DicePrueba {
 
         // Defino los criterios para la operación "Dice"
         Map<String, List<String>> criteriosFechas = new LinkedHashMap<>();
-        criteriosFechas.put("anio", Arrays.asList("2017"));
+        criteriosFechas.put("anio", Arrays.asList("2018"));
 
         Map<String, List<String>> criteriosPuntoVenta = new LinkedHashMap<>();
-        criteriosPuntoVenta.put("provincia", Arrays.asList("California"));
+        criteriosPuntoVenta.put("provincia", Arrays.asList("Florida"));
 
         Map<Dimension, Map<String, List<String>>> criterios = new LinkedHashMap<>();
         criterios.put(dimFechas, criteriosFechas);
@@ -42,6 +42,6 @@ public class DicePrueba {
         // Ejecuto el método
         cuboPrueba.dice(criterios);
 
-        cuboPrueba.ver(20, new ArrayList<>(Arrays.asList("anio", "provincia", "costo")));
+        cuboPrueba.proyectar(10, new ArrayList<>(Arrays.asList("anio", "provincia", "costo")));
     }
 }

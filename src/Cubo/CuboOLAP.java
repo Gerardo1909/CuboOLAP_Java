@@ -21,14 +21,13 @@ import Cubo.exportacion_archivos.EstrategiaExportarArchivo;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
-import Cubo.utils.Visualizable;
 
 /**
  * Esta clase representa un cubo OLAP.
- * Proporciona métodos para realizar operaciones de roll-up, drill-down, slice, dice y visualización.
- * Implementa la interfaz {@link Visualizable}.
+ * Proporciona métodos para realizar operaciones de roll-up, drill-down, slice y dice.
+ * Permite la proyección de los datos del cubo.
  */
-public class CuboOLAP implements Visualizable {
+public class CuboOLAP{
 
     // Defino atributos comunes del cubo
     private final List<Dimension> dimensiones;
@@ -68,6 +67,7 @@ public class CuboOLAP implements Visualizable {
         // Inicializo los historiales de operaciones de Dice y RollUp
         this.historial_rollUp = new ArrayList<>();
         this.historial_dice = new ArrayList<>();
+        this.historial_slice = new ArrayList<>();
 
         // Y ahora en 'tabla_operacion' guardo una gran tabla resultado 
         // de hacer merge a la tabla de hechos por cada dimensión,
@@ -239,15 +239,14 @@ public class CuboOLAP implements Visualizable {
     }
     
     /**
-     * Muestra una parte seleccionada de los datos del cubo en un formato tabular.
+     * Proyecta una parte seleccionada de los datos del cubo en un formato tabular.
      *
      * @param n_filas El número de filas a mostrar.
      * @param columnas La lista de nombres de columnas a mostrar.
      * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
      * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
-    @Override
-    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
+    public void proyectar(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
         this.tabla_operacion.ver(n_filas, columnas);
     }
 

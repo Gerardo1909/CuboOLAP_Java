@@ -2,24 +2,23 @@
 
 ## Descripción
 
-La clase `CuboOLAP` es la pieza central de nuestra librería y proporciona las funcionalidades esenciales para trabajar con cubos OLAP. Esta clase permite realizar diversas operaciones de análisis sobre las tablas que componen el cubo, es decir, las **dimensiones** y los **hechos**.
+La clase `CuboOLAP` es el componente central de nuestra librería y proporciona las funcionalidades esenciales para trabajar con cubos OLAP. Esta clase permite realizar diversas operaciones de análisis sobre las tablas que componen el cubo, es decir, las **dimensiones** y los **hechos**.
+
+Además, facilita la carga de tablas de dimensiones y hechos mediante instancias de las clases `Hecho` y `Dimension`, así como la exportación de la información del cubo al formato preferido. Esto convierte a nuestra librería en una herramienta ideal para aplicar operaciones y posteriormente analizar los resultados obtenidos utilizando otros medios.
 
 ### Operaciones Disponibles
 
 La clase `CuboOLAP` ofrece una variedad de operaciones que facilitan el análisis multidimensional de los datos:
 
 - **Roll-up**: Agrega los datos a un nivel superior de la jerarquía.
-- **Slice**: Filtra los datos en una dimensión específica en un nivel determinado.
+- **Slice**: Filtra los datos en una dimensión específica en un nivel determinado y elimina dicha dimensión.
 - **Drill-down**: Desglosa los datos a un nivel más detallado de la jerarquía.
 - **Dice**: Filtra los datos en varias dimensiones a la vez.
 
-### Visualización del Estado del Cubo
-
-Además de las operaciones de análisis, la clase `CuboOLAP` permite visualizar el estado del cubo después de realizar una operación. Esta funcionalidad es muy útil para los científicos de datos y analistas, ya que proporciona una forma rápida y eficiente de inspeccionar los resultados de las operaciones realizadas.
 
 ## Constructor de la clase 
 
-El constructor de esta clase te permite crear una instancia de tipo `CuboOLAP` proporcionando el nombre del cubo, una tabla de hechos y una lista de dimensiones.
+El constructor de esta clase permite crear una instancia de tipo `CuboOLAP` proporcionando el nombre del cubo, una tabla de hechos y una lista de tablas de dimensiones.
 
 ### Parámetros del Constructor
 
@@ -58,97 +57,142 @@ List<Dimension> dimensiones = Arrays.asList(dimension1, dimension2);
 CuboOLAP cubo = new CuboOLAP("NombreCubo", hecho, dimensiones);
 ```
 
-## Visualización del cubo luego de aplicar una operación
+## Proyecciones sobre el cubo
 
-El método `ver` permite visualizar los datos en una instancia de `CuboOLAP` después de haber aplicado una operación sobre la misma. Este método muestra un número específico de filas y columnas seleccionadas.
+El método `proyectar` permite visualizar la información de una instancia de `CuboOLAP` en un formato tabular en cualquier momento desde su inicialización. Recibe una lista con las columnas del cubo que se desean visualizar y un número que indica la cantidad de filas a proyectar.
 
 ### Parámetros del Método
 
 1. **n_filas**: `int`
-   - **Descripción**: El número de filas que se desea visualizar. Si se pasa un número grande de filas 
-                      (entiendáse por grande un número mayor a la longitud de las filas implicadas en la operación)
-                      se mostrarán todas las filas que resultaron de la operación aplicada.
+   - **Descripción**: El número de filas que se desean proyectar.
    - **Requisitos**: Debe ser un número entero positivo que indique la cantidad de filas a mostrar.
 
 2. **columnas**: `List<String>`
-   - **Descripción**: La lista de nombres de las columnas que se desean visualizar. Si se le especifica como argumento el valor 
-                      `null` entonces se seleccionarán todas las columnas implicadas en la operación.
-   - **Requisitos (Si el parámetro no es `null`)**: Debe ser una lista válida de nombres de columnas que existen entre 
-                                                las tablas disponibles del cubo para el momento de su invocación.
+   - **Descripción**: La lista de nombres de las columnas que se desean visualizar.
+   - **Requisitos**: Debe ser una lista válida de nombres de columnas que existen entre las tablas disponibles del cubo al momento de su invocación.
 
 ### Excepciones Lanzadas
 
-1. **ColumnaNoPresenteException (Si el parámetro "columnas" no es `null`)**
+1. **ColumnaNoPresenteException**
    - **Descripción**: Esta excepción se lanza si alguna de las columnas especificadas no está presente en los encabezados disponibles del cubo.
-   - **Cómo Evitarla**: Verifica que todas las columnas especificadas existen en las tablas que viven dentro del cubo antes de llamar al método.
+   - **Cómo Evitarla**: Verifica que todas las columnas especificadas existen en las tablas que viven dentro del cubo antes de llamar al método `proyectar`.
 
-### Consideraciones Previas
+2. **FilaFueraDeRangoException**
+   - **Descripción**: Se lanza si el número de filas especificado excede el número de filas disponibles en la tabla.
+   - **Cómo Evitarla**: Asegúrate de que el número de filas solicitado no sea mayor que el número de filas disponibles en la tabla.
 
-- **Operaciones Previas**: Es necesario haber aplicado alguna operación al cubo antes de utilizar este método. Si no se ha realizado ninguna operación, se notificará al usuario y el método no continuará.
 
-### Ejemplo de Uso #1
+### Ejemplo de Uso
 
 ```java
-// Aplicamos alguna operación sobre el cubo
-cubo.operar(param1, param2...);
-
-// Definimos el número de filas y las columnas a visualizar, idealmente las 
-// columnas deberían haberse visto implicadas en la operación anterior
+// Definimos el número de filas y las columnas a visualizar
 int n_filas = 10;
 List<String> columnas = Arrays.asList("columna1", "columna2", "columna3");
 
-// Visualizamos los datos del cubo
-cubo.ver(n_filas, columnas);
-```
-
-### Ejemplo de Uso #2
-
-```java
-// Aplicamos alguna operación sobre el cubo
-cubo.operar(param1, param2...);
-
-// Definimos el número de filas que queremos visualizar
-int n_filas = 10;
-
-// Visualizamos los datos del cubo
-cubo.ver(n_filas, null);
-```
-
-### Ejemplo de Uso #3
-
-```java
-// Aplicamos alguna operación sobre el cubo
-cubo.operar(param1, param2...);
-
-// Seleccionamos algunas columnas (podemos optar por dejarlo en null)
-List<String> columnas = Arrays.asList("columna1", "columna2", "columna3");
-
-// Definimos el número de filas que queremos visualizar,
-// de esta forma mostrará todas las filas implicadas en la operación
-// (incluso si el número es menor a 'n_filas')
-int n_filas = 1000000000000000;
-
-// Visualizamos los datos del cubo
-cubo.ver(n_filas, columnas);
+// Proyectamos los datos del cubo
+cubo.proyectar(n_filas, columnas);
 ```
 
 ### Estructura del Resultado
 
-El método `ver` para el caso de una instancia de `CuboOLAP` imprimirá por consola las columnas seleccionadas hasta el número de filas indicado luego
-de haber realizado alguna operación sobre el cubo. A continuación un ejemplo de su salida luego de aplicar el método `Slice` a una instancia de `CuboOLAP`:
+El método `proyectar` imprime las columnas seleccionadas y las filas correspondientes en un formato tabular. Los datos se muestran en bloques de columnas, con un máximo de 4 columnas por bloque, si hay más columnas que el límite de 4 por bloque, se muestra una indicación de puntos suspensivos para las columnas adicionales.
+
+A continuación 2 ejemplos de como se vería la impresión que genera el método `proyectar` por consola:
+
+##### Ejemplo #1 (despúes de aplicar la operación dice)
+
+```sh
+anio                          provincia                     costo
+2018                          Florida                       352.4
+2018                          Florida                       826.29
+2018                          Florida                       826.29
+2018                          Florida                       826.29
+2018                          Florida                       1239.44
+2018                          Florida                       826.29
+2018                          Florida                       413.15
+2018                          Florida                       1239.44
+2018                          Florida                       826.29
+2018                          Florida                       362.97
+```
+
+##### Ejemplo #2 (despúes de aplicar la operación rollUp)
+
+```sh
+anio                          quarter                       region                        pais                          ...
+2018                          3                             North America                 United States                 ...
+2019                          3                             North America                 United States                 ...
+2018                          3                             North America                 United States                 ...
+2018                          4                             North America                 United States                 ...
+2019                          1                             North America                 United States                 ...
+2019                          2                             North America                 United States                 ...
+2018                          3                             North America                 United States                 ...
+2019                          3                             North America                 United States                 ...
+2019                          4                             North America                 United States                 ...
+2020                          1                             North America                 United States                 ...
+
+categoria                     subcategoria                  cantidad
+Components                    Road Frames                   1933.0
+Components                    Road Frames                   1008.0
+Bikes                         Road Bikes                    3845.0
+Bikes                         Road Bikes                    3393.0
+Bikes                         Road Bikes                    2917.0
+Bikes                         Road Bikes                    3283.0
+Components                    Wheels                        1458.0
+Clothing                      Socks                         817.0
+Clothing                      Socks                         710.0
+Clothing                      Socks                         405.0
+```
+
+## Exportación de la información del cubo
+
+El método `exportar` permite exportar los datos del cubo a un archivo utilizando una estrategia específica de exportación.
+
+### Parámetros del Método
+
+1. **ruta_guardado**: `String`
+   - **Descripción**: La ruta de destino donde se guardará el archivo.
+   - **Requisitos**: Debe ser una ruta válida donde se pueda escribir el archivo.
+
+2. **estrategia_exportar**: `EstrategiaExportarArchivo`
+   - **Descripción**: La estrategia usada para exportar la informacion del cubo.
+   - **Requisitos**: Debe ser una instancia válida de una clase que implemente la interfaz `EstrategiaExportarArchivo`.
+
+### Excepciones Lanzadas
+
+1. **IOException**
+   - **Descripción**: Esta excepción se lanza si ocurre un error de entrada/salida durante el proceso de exportación de datos.
+   - **Cómo Evitarla**: Asegúrate de que la ruta de destino es accesible y de que tienes permisos de escritura.
+
+### Ejemplo de Uso
 
 ```java
-anio                mes                 ciudad              costo
-2020                3                   Alhambra            6.72
-2020                3                   Alhambra            36.99
-2020                3                   Alhambra            3247.53
-2020                3                   Auburn              55.14
-2020                5                   Baldwin Park        157.06
-2020                2                   Baldwin Park        26.18
-2020                5                   Baldwin Park        157.06
-2020                5                   Baldwin Park        189.99
-2020                3                   Camarillo           409.25
-2020                3                   Camarillo           35.96
+// Primero debemos crear una objeto que implemente la interfaz 'EstrategiaExportarArchivo'
+EstrategiaExportarArchivo estrategia_exportar = new EstrategiaCSV();
+
+// Generamos la ruta donde se guardará el archivo exportado
+String ruta_guardado = "/ruta/a/archivo.csv";
+
+// Ejecutamos el método 
+cubo.exportar(ruta_guardado, estrategia_exportar);
+```
+
+## Reinicio del estado del cubo a través del método `resetear`
+
+El método `resetear`  permite reiniciar el cubo a su estado original, restaurando tanto las tablas de dimensiones como las tablas de hechos a su estado inicial y limpiando los historiales de operaciones.
+
+Este método fue creado para facilitar la exploración de distintos aspectos de las tablas de dimensiones y de hechos después de trabajar con alguna dimensión o hecho específico, evitando la necesidad de generar una nueva instancia del cubo para ejecutar otras operaciones.
+
+### Ejemplo de Uso
+
+```java
+// Ejecutamos el método
+cubo.resetear();
+
+// Podemos imprimir por consola algún aviso sobre el reinicio
+System.out.println("El cubo ha sido reiniciado a su estado original.");
+
+// Podemos proyectar de nuevo información del cubo que anteriormente fue eliminada
+cubo.proyectar(...)
 ```
 
 ## Método `rollUp`
@@ -206,45 +250,34 @@ List<String> hechos_seleccionados = Arrays.asList("hecho1", "hecho2");
 // Realizamos la operación de roll-up con agregación "sum"
 cubo.rollUp(criterios_reduccion, hechos_seleccionados, "sum");
 
-// Luego podemos visualizar el resultado de la operación
+// Luego podemos proyectar el resultado de la operación
 int n_filas = 10;
-cubo.ver(n_filas, null);
+List<String> columnas_proy = Arrays.asList("nivelY", "nivelX","hecho1", "hecho2");
+cubo.proyectar(n_filas, columnas_proy);
 ```
 ### Estructura del Resultado
 
-El método `rollUp` luego de haberse ejecutado modifica el atributo `proyeccion_cubo`, lo cual indica que el cubo está disponible para su 
-visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
-una instancia de `CuboOLAP`:
+El método `rollUp` luego de haberse ejecutado modifica el estado interno del cubo, manteniendo solo aquellas dimensiones y hechos que fueron agrupadas. A continuación aquí hay una impresión por consola usando el método `proyectar` luego de ejecutar la operación:
 
-```java
-anio                quarter             mes                 region              pais                provincia           cantidad
-2019                4                   12                  Europe              France              Seine Saint Denis   17.0
-2019                2                   4                   North America       United States       Mississippi         9.0
-2019                3                   8                   North America       United States       Arizona             15.0
-2019                1                   1                   North America       United States       Michigan            128.0
-2018                1                   3                   North America       Canada              Ontario             212.0
-2018                3                   8                   North America       United States       Missouri            89.0
-2017                3                   7                   North America       Canada              British Columbia    93.0
-2017                3                   9                   North America       Canada              Quebec              48.0
-2020                2                   5                   Europe              Germany             Saarland            16.0
-2018                4                   10                  North America       United States       Alabama             3.0
-2018                1                   2                   North America       United States       Utah                36.0
-2018                4                   10                  North America       United States       Minnesota           6.0
-2020                1                   1                   North America       United States       Colorado            114.0
-2020                1                   2                   North America       United States       California          509.0
-2018                2                   6                   North America       United States       Illinois            111.0
-2018                4                   11                  North America       United States       Mississippi         191.0
-2019                3                   8                   North America       United States       Utah                356.0
-2019                4                   11                  North America       Canada              British Columbia    320.0
-2018                2                   5                   North America       Canada              Manitoba            15.0
-2020                1                   2                   Europe              Germany             Bayern              129.0
-2018                3                   9                   North America       United States       Oregon              88.0
-2019                3                   9                   North America       Canada              Ontario             1018.0
+```sh
+anio                          region                        categoria                     valor_total
+2018                          North America                 Components                    3273942.150000018
+2019                          North America                 Components                    4285236.790000052
+2018                          North America                 Bikes                         1.8827625290000148E7
+2019                          North America                 Bikes                         2.0723330779999968E7
+2019                          North America                 Clothing                      683028.1099999952
+2020                          North America                 Clothing                      219205.850000001
+2020                          North America                 Bikes                         7895007.350000155
+2020                          North America                 Components                    1074260.7400000016
+2018                          North America                 Accessories                   84699.5800000001
+2019                          North America                 Accessories                   212287.50000000105
 ```
 
 ## Método `slice`
 
-El método `slice` permite realizar una operación de corte (slice) en una instancia de `CuboOLAP`, filtrando los datos en una dimensión específica a un nivel determinado y por un valor de corte.
+El método `slice` permite realizar una operación de corte (slice) en una instancia de `CuboOLAP`, filtrando los datos en una dimensión específica a un nivel determinado y por un valor de corte. 
+
+Esta operación una vez se ejecuta y filtra los datos según los criterios especificados, elimina **completamente** la dimensión que se vió implicada en la operación, reduciendo así la dimensionalidad del cubo cada vez que se ejecuta.
 
 ### Parámetros del Método
 
@@ -289,34 +322,25 @@ String valor_corte = "valor1";
 // Realizamos la operación de slice
 cubo.slice(dimension, nivel, valor_corte);
 
-// Luego podemos visualizar el resultado de la operación
+// Luego podemos proyectar el resultado de la operación, verificando que efectivamente
+// se eliminó la dimensión que se vió implicada en la operación y viendo como esto afectó 
+// al resto de la información del cubo
 int n_filas = 10;
-cubo.ver(n_filas, null);
+List<String> columnas_proy = Arrays.asList("nivelX_dim2", "nivelX_dim3", ....);
+cubo.proyectar(n_filas, columnas_proy);
 ```
 ### Estructura del Resultado
 
-El método `slice` luego de haberse ejecutado modifica el atributo `proyeccion_cubo`, lo cual indica que el cubo está disponible para su 
-visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
-una instancia de `CuboOLAP`:
+El método `slice` luego de haberse ejecutado modifica el estado interno del cubo, filtrando la información según los criterios especificados 
+y eliminando completamente la dimensión que se vió implicada en la operación, reduciendo así la dimensionalidad del cubo.
 
-```java
-anio                mes                 ciudad              costo
-2017                11                  Baldwin Park        5694.28
-2017                11                  Baldwin Park        9490.47
-2017                11                  Baldwin Park        3796.19
-2017                11                  Baldwin Park        3796.19
-2017                8                   Baldwin Park        27.17
-2017                11                  Baldwin Park        10.19
-2017                8                   Baldwin Park        13.59
-2017                11                  Baldwin Park        11.41
-2017                11                  Baldwin Park        1912.15
-2017                12                  Barstow             413.15
-```
+El cubo resultante contará con el resto de dimensiones pero filtradas según los criterios especificos. Una forma ideal de visualizar estos resultados 
+podría ser usando el método `exportar` de la clase `CuboOLAP` para exportar la información del cubo y analizar la información restante.
 
 ## Método `dice`
 
 Este método realiza una operación de "dice" en el cubo, que filtra los datos del cubo según los criterios especificados. Notar que su 
-característica principal es que puede contener varios criterios de corte a diferencia del método `Slice`.
+característica principal es que puede contener varios criterios de corte a diferencia del método `Slice`, además que **no reduce la dimensionalidad del cubo**.
 
 ### Parámetros del Método
 
@@ -367,18 +391,17 @@ criterios.put(dimension2, criteriosNivel2);
 // Ejecutamos el método dice
 cubo.dice(criterios);
 
-// Luego podemos visualizar el resultado de la operación
+// Luego podemos proyectar el resultado de la operación
 int n_filas = 10;
-cubo.ver(n_filas, null);
+List<String> columnas_proy = Arrays.asList("Nivel1", "Nivel2", ....);
+cubo.proyectar(n_filas, columnas_proy);
 ```
 
 ### Estructura del Resultado
 
-El método `dice` luego de haberse ejecutado modifica el atributo `proyeccion_cubo`, lo cual indica que el cubo está disponible para su 
-visualización. A continuación un ejemplo un ejemplo de su salida por pantalla a través del método `ver` después de haberlo ejecutado en 
-una instancia de `CuboOLAP`:
+El método `dice` luego de haberse ejecutado modifica el estado interno del cubo, filtrando según los criterios especificados en el método. A continuación aquí hay una impresión por consola usando el método `proyectar` luego de ejecutar la operación:
 
-```java
+```sh
 anio                provincia           costo
 2017                California          5694.28
 2017                California          9490.47
@@ -391,13 +414,4 @@ anio                provincia           costo
 2017                California          1912.15
 2017                California          413.15
 2017                California          826.29
-2017                California          31.72
-2017                California          2654.12
-2017                California          1769.42
-2017                California          4423.54
-2017                California          413.15
-2017                California          826.29
-2017                California          826.29
-2017                California          413.15
-2017                California          24.06
 ```

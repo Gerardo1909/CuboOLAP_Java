@@ -11,14 +11,12 @@ import java.util.Set;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
 import Cubo.lectura_archivos.EstrategiaLecturaArchivo;
-import Cubo.utils.Visualizable;
 
 /**
  * Clase abstracta que representa una tabla, datos en formato tabular.
  * Proporciona métodos para agrupar, fusionar, obtener valores únicos y visualizar la tabla.
- * Implementa la interfaz {@link Visualizable}.
  */
-public abstract class Tabla implements Visualizable{
+public abstract class Tabla{
 
     protected List<String> headers;
     protected List<List<String>> data;
@@ -367,7 +365,6 @@ public abstract class Tabla implements Visualizable{
      * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
      * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
-    @Override
     public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException {
 
         // Aquí defino el máximo de columnas que se pueden ver

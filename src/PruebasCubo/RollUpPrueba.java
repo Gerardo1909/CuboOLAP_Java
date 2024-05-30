@@ -31,20 +31,20 @@ public class RollUpPrueba {
 
         // Armo el mapa que le voy a pasar al método como argumento
         Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
-        criterios_reduccion.put(dimFechas, "quarter");
-        criterios_reduccion.put(dimPuntoVenta, "pais");
-        criterios_reduccion.put(dimProducto, "subcategoria");
+        criterios_reduccion.put(dimFechas, "anio");
+        criterios_reduccion.put(dimPuntoVenta, "region");
+        criterios_reduccion.put(dimProducto, "categoria");
 
         // Pruebo la operación RollUp
         cuboPrueba.rollUp(
             criterios_reduccion,
-            Arrays.asList("cantidad"),
+            Arrays.asList("valor_total"),
             "sum"
         );
 
         // Visualizo el resultado
-        List<String> columnas_visualizacion = new ArrayList<>(Arrays.asList("anio", "quarter", "region", "pais", "categoria", "subcategoria", "cantidad"));
-        cuboPrueba.ver(20, columnas_visualizacion);
+        List<String> columnas_visualizacion = new ArrayList<>(Arrays.asList("anio", "region", "categoria", "valor_total"));
+        cuboPrueba.proyectar(10, columnas_visualizacion);
 
         // Pruebo la exportacion del cubo
         ExportadorCSV exportadorCSV = new ExportadorCSV(';');

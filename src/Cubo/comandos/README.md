@@ -13,6 +13,7 @@ Define el método `ejecutar()` que implementan las clases de los métodos, dicho
 ### **Clases que implementan `ComandoCubo`**:
 
 Dentro de este módulo viven 4 clases que representan las operaciones disponibles en las intancias de `CuboOLAP`, todas implementan la interfaz `ComandoCubo` y por lo tanto cada una tiene un método `ejecutar()`. 
+Además cada una tiene asociado un **historial** el cual está presente en una instancia de la clase `CuboOLAP` y que como su nombre sugiere, se encarga de llevar registro de las operaciones realizadas, esto con el motivo de realizar operaciones del estilo drill-down que requieren la desagrupación de la información.
 
 Los parámetros definidos en la clase `CuboOLAP` para invocar los métodos, desde la perspectiva de estas clases representan atributos que son trabajados dentro de cada una para lograr el resultado esperado. A continuación una lista de las clases que viven dentro de este módulo:
 
@@ -29,12 +30,15 @@ Cada vez que desde una clase `Main` se crea una instancia de `CuboOLAP` y se inv
 
 1. Se reciben los argumentos una vez invocado el método y se hacen los chequeos correspondientes para evitar resultados inesperados.
 
-2. Dentro del método invocado se crea un objeto que implementa `ComandoCubo` y a su constructor se le pasan los argumentos ya verificados.
+2. Dentro del método invocado se crea un objeto que implementa la interfaz `ComandoCubo` y a su constructor se le pasan los argumentos ya verificados.
 
 3. Se ejecuta el método `ejecutar()` y dentro de la clase que implementa `ComandoCubo` se lleva a cabo la operación.
 
-4. Finalmente mediante el getter `getResultado()` se obtiene el resultado de la operación y se almacena dentro del atributo `proyeccion_cubo`
-   para su posterior visualización.
+4. Mediante el getter `getHistorial()` se obtiene el historial de operaciones asociado al método que la instancia de `CuboOLAP` invocó, ahora conteniendo dentro de él
+   al objeto que se encargó de ejecutar la operación.
+
+5. Finalmente mediante el getter `getResultado()` se obtiene el resultado de la operación que no es más que una versión alterada de las tablas que viven dentro del cubo,
+   dicho resultado se almacena en la tabla que se usa para efectuar las operaciones, logrando así el efecto de cambio en la información del cubo.
 
 ## Beneficios
 
