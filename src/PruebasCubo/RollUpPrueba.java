@@ -1,10 +1,12 @@
 package PruebasCubo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import Cubo.CuboOLAP;
+import Cubo.exportacion_archivos.ExportadorCSV;
 import Cubo.tablas.Dimension;
 
 public class RollUpPrueba {
@@ -41,6 +43,11 @@ public class RollUpPrueba {
         );
 
         // Visualizo el resultado
-        cuboPrueba.ver(20, null);
+        List<String> columnas_visualizacion = new ArrayList<>(Arrays.asList("anio", "quarter", "region", "pais", "categoria", "subcategoria", "cantidad"));
+        cuboPrueba.ver(20, columnas_visualizacion);
+
+        // Pruebo la exportacion del cubo
+        ExportadorCSV exportadorCSV = new ExportadorCSV(';');
+        cuboPrueba.exportar("exportaciones/prueba_rollUp.csv", exportadorCSV);
     }
 }

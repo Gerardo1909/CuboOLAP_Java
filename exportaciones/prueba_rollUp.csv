@@ -1,0 +1,943 @@
+anio;quarter;region;pais;categoria;subcategoria;cantidad
+2018;3;North America;United States;Components;Road Frames;1933.0
+2019;3;North America;United States;Components;Road Frames;1008.0
+2018;3;North America;United States;Bikes;Road Bikes;3845.0
+2018;4;North America;United States;Bikes;Road Bikes;3393.0
+2019;1;North America;United States;Bikes;Road Bikes;2917.0
+2019;2;North America;United States;Bikes;Road Bikes;3283.0
+2018;3;North America;United States;Components;Wheels;1458.0
+2019;3;North America;United States;Clothing;Socks;817.0
+2019;4;North America;United States;Clothing;Socks;710.0
+2020;1;North America;United States;Clothing;Socks;405.0
+2019;3;North America;United States;Components;Pedals;881.0
+2019;4;North America;United States;Components;Pedals;658.0
+2019;3;North America;United States;Bikes;Road Bikes;2229.0
+2019;4;North America;United States;Bikes;Road Bikes;1905.0
+2020;1;North America;United States;Bikes;Road Bikes;1715.0
+2019;4;North America;United States;Components;Road Frames;406.0
+2019;3;North America;United States;Components;Handlebars;574.0
+2019;1;North America;United States;Components;Road Frames;335.0
+2020;1;North America;United States;Components;Pedals;264.0
+2018;3;North America;United States;Accessories;Helmets;1123.0
+2019;3;North America;United States;Accessories;Helmets;1126.0
+2017;4;North America;United States;Bikes;Mountain Bikes;1096.0
+2018;2;North America;United States;Bikes;Mountain Bikes;1050.0
+2018;1;North America;United States;Bikes;Mountain Bikes;902.0
+2018;3;North America;United States;Clothing;Tights;985.0
+2018;3;North America;United States;Clothing;Gloves;1807.0
+2019;2;North America;United States;Clothing;Gloves;1447.0
+2018;4;North America;United States;Clothing;Gloves;1238.0
+2019;1;North America;United States;Clothing;Gloves;848.0
+2019;3;North America;United States;Clothing;Shorts;1309.0
+2019;4;North America;United States;Clothing;Shorts;1020.0
+2020;2;North America;United States;Clothing;Shorts;706.0
+2020;1;North America;United States;Clothing;Shorts;750.0
+2017;3;North America;United States;Clothing;Socks;245.0
+2017;4;North America;United States;Clothing;Socks;291.0
+2018;1;North America;United States;Clothing;Socks;193.0
+2018;2;North America;United States;Clothing;Socks;287.0
+2017;4;North America;United States;Clothing;Caps;222.0
+2018;2;North America;United States;Clothing;Caps;212.0
+2018;3;North America;United States;Clothing;Caps;504.0
+2019;3;North America;United States;Clothing;Caps;487.0
+2018;2;North America;United States;Clothing;Jerseys;443.0
+2018;3;North America;United States;Clothing;Jerseys;1092.0
+2018;4;North America;United States;Clothing;Jerseys;818.0
+2019;3;North America;United States;Clothing;Jerseys;2361.0
+2018;3;North America;United States;Clothing;Bib-Shorts;791.0
+2019;3;North America;United States;Clothing;Vests;1000.0
+2019;4;North America;United States;Clothing;Vests;797.0
+2020;2;North America;United States;Clothing;Vests;466.0
+2019;3;North America;United States;Accessories;Bottles and Cages;426.0
+2019;3;North America;United States;Accessories;Bike Racks;476.0
+2019;3;North America;United States;Accessories;Cleaners;437.0
+2019;3;North America;United States;Accessories;Hydration Packs;383.0
+2019;4;North America;United States;Clothing;Jerseys;1565.0
+2019;3;North America;United States;Components;Saddles;526.0
+2017;4;North America;United States;Bikes;Road Bikes;1846.0
+2018;1;North America;United States;Bikes;Road Bikes;1651.0
+2018;2;North America;United States;Bikes;Road Bikes;1841.0
+2017;4;North America;United States;Clothing;Jerseys;406.0
+2017;3;North America;United States;Bikes;Road Bikes;1049.0
+2019;2;North America;United States;Bikes;Mountain Bikes;1476.0
+2018;3;North America;United States;Bikes;Mountain Bikes;1822.0
+2018;4;North America;United States;Bikes;Mountain Bikes;1575.0
+2020;1;North America;United States;Components;Road Frames;135.0
+2019;2;North America;United States;Components;Road Frames;1049.0
+2020;2;North America;United States;Bikes;Road Bikes;1334.0
+2018;4;North America;United States;Components;Wheels;940.0
+2019;2;North America;United States;Components;Wheels;918.0
+2019;1;North America;United States;Components;Wheels;375.0
+2018;4;North America;United States;Components;Road Frames;1030.0
+2020;2;North America;United States;Components;Road Frames;253.0
+2019;2;North America;United States;Components;Handlebars;282.0
+2019;4;North America;United States;Components;Handlebars;278.0
+2020;2;North America;United States;Components;Handlebars;175.0
+2020;2;North America;United States;Components;Saddles;168.0
+2019;3;North America;United States;Components;Brakes;220.0
+2019;3;North America;United States;Bikes;Touring Bikes;1744.0
+2020;1;North America;United States;Bikes;Touring Bikes;1226.0
+2020;2;North America;United States;Bikes;Touring Bikes;708.0
+2019;4;North America;United States;Bikes;Touring Bikes;1375.0
+2017;4;North America;United States;Accessories;Helmets;427.0
+2018;2;North America;United States;Accessories;Helmets;453.0
+2018;4;North America;United States;Accessories;Helmets;796.0
+2019;2;North America;United States;Accessories;Helmets;853.0
+2019;4;North America;United States;Accessories;Helmets;779.0
+2020;2;North America;United States;Accessories;Helmets;527.0
+2017;4;North America;United States;Components;Road Frames;513.0
+2018;2;North America;United States;Components;Road Frames;480.0
+2018;3;North America;United States;Clothing;Shorts;491.0
+2018;4;North America;United States;Clothing;Shorts;396.0
+2019;2;North America;United States;Clothing;Shorts;367.0
+2019;1;North America;United States;Clothing;Tights;424.0
+2019;2;North America;United States;Clothing;Tights;756.0
+2018;4;North America;United States;Clothing;Tights;831.0
+2019;3;North America;United States;Clothing;Gloves;657.0
+2019;4;North America;United States;Clothing;Gloves;487.0
+2020;2;North America;United States;Clothing;Gloves;238.0
+2017;3;North America;United States;Accessories;Helmets;321.0
+2017;3;North America;United States;Clothing;Caps;157.0
+2018;1;North America;United States;Clothing;Caps;135.0
+2018;4;North America;United States;Clothing;Caps;400.0
+2019;1;North America;United States;Clothing;Caps;226.0
+2019;2;North America;United States;Clothing;Caps;343.0
+2019;4;North America;United States;Clothing;Caps;335.0
+2020;1;North America;United States;Clothing;Caps;187.0
+2020;2;North America;United States;Clothing;Caps;222.0
+2019;2;North America;United States;Clothing;Jerseys;693.0
+2017;3;North America;United States;Clothing;Jerseys;343.0
+2019;1;North America;United States;Clothing;Jerseys;402.0
+2020;1;North America;United States;Clothing;Jerseys;861.0
+2020;2;North America;United States;Clothing;Jerseys;934.0
+2017;3;North America;United States;Components;Road Frames;300.0
+2018;3;North America;United States;Components;Handlebars;617.0
+2018;3;North America;United States;Accessories;Locks;251.0
+2018;3;North America;United States;Accessories;Pumps;280.0
+2018;4;North America;United States;Clothing;Bib-Shorts;405.0
+2019;2;North America;United States;Clothing;Bib-Shorts;520.0
+2020;1;North America;United States;Clothing;Vests;453.0
+2019;4;North America;United States;Accessories;Bottles and Cages;328.0
+2020;2;North America;United States;Accessories;Bottles and Cages;241.0
+2020;2;North America;United States;Clothing;Socks;441.0
+2019;4;North America;United States;Accessories;Bike Racks;353.0
+2020;1;North America;United States;Accessories;Bike Racks;175.0
+2020;2;North America;United States;Accessories;Bike Racks;232.0
+2019;4;North America;United States;Accessories;Cleaners;302.0
+2020;2;North America;United States;Accessories;Cleaners;188.0
+2019;4;North America;United States;Accessories;Hydration Packs;224.0
+2020;2;North America;United States;Accessories;Hydration Packs;142.0
+2020;2;North America;United States;Components;Pedals;431.0
+2018;1;North America;United States;Accessories;Helmets;183.0
+2017;3;North America;United States;Components;Mountain Frames;169.0
+2018;3;North America;United States;Components;Mountain Frames;943.0
+2018;4;North America;United States;Components;Mountain Frames;691.0
+2019;2;North America;United States;Components;Mountain Frames;696.0
+2019;3;North America;United States;Components;Mountain Frames;1608.0
+2019;4;North America;United States;Components;Mountain Frames;1024.0
+2018;2;North America;United States;Components;Mountain Frames;251.0
+2017;3;North America;United States;Bikes;Mountain Bikes;812.0
+2019;1;North America;United States;Bikes;Mountain Bikes;1302.0
+2019;3;North America;United States;Bikes;Mountain Bikes;1852.0
+2019;4;North America;United States;Bikes;Mountain Bikes;1645.0
+2020;1;North America;United States;Bikes;Mountain Bikes;1335.0
+2019;1;North America;United States;Components;Mountain Frames;361.0
+2020;1;North America;United States;Components;Mountain Frames;553.0
+2019;4;North America;United States;Components;Cranksets;135.0
+2019;3;North America;United States;Components;Cranksets;214.0
+2020;1;North America;United States;Components;Cranksets;91.0
+2018;1;North America;United States;Clothing;Jerseys;256.0
+2017;4;North America;United States;Components;Mountain Frames;234.0
+2018;1;North America;United States;Components;Mountain Frames;134.0
+2018;3;North America;United States;Components;Forks;140.0
+2018;4;North America;United States;Components;Forks;125.0
+2019;1;North America;United States;Components;Forks;50.0
+2019;2;North America;United States;Components;Forks;100.0
+2018;3;North America;United States;Components;Headsets;236.0
+2018;4;North America;United States;Components;Headsets;183.0
+2019;1;North America;United States;Components;Headsets;109.0
+2019;2;North America;United States;Components;Headsets;139.0
+2018;4;North America;United States;Components;Handlebars;284.0
+2019;1;North America;United States;Components;Handlebars;127.0
+2020;1;North America;United States;Components;Handlebars;109.0
+2019;3;North America;United States;Components;Derailleurs;180.0
+2019;4;North America;United States;Components;Derailleurs;171.0
+2019;4;North America;United States;Components;Saddles;277.0
+2020;1;North America;United States;Components;Saddles;85.0
+2020;1;North America;United States;Components;Derailleurs;64.0
+2019;4;North America;United States;Components;Brakes;140.0
+2020;1;North America;United States;Components;Brakes;70.0
+2019;3;North America;United States;Components;Chains;147.0
+2019;4;North America;United States;Components;Chains;106.0
+2020;1;North America;United States;Components;Chains;73.0
+2019;3;North America;United States;Components;Bottom Brackets;168.0
+2019;4;North America;United States;Components;Bottom Brackets;128.0
+2019;1;North America;United States;Clothing;Shorts;191.0
+2020;1;North America;United States;Accessories;Helmets;404.0
+2020;2;North America;United States;Components;Mountain Frames;626.0
+2020;2;North America;United States;Bikes;Mountain Bikes;1053.0
+2019;1;North America;United States;Accessories;Helmets;380.0
+2018;4;North America;United States;Accessories;Locks;173.0
+2019;2;North America;United States;Accessories;Locks;172.0
+2018;4;North America;United States;Accessories;Pumps;167.0
+2019;2;North America;United States;Accessories;Pumps;182.0
+2019;1;North America;United States;Clothing;Bib-Shorts;266.0
+2020;1;North America;United States;Accessories;Bottles and Cages;182.0
+2020;1;North America;United States;Accessories;Cleaners;170.0
+2019;3;North America;United States;Accessories;Tires and Tubes;140.0
+2020;2;North America;United States;Components;Cranksets;70.0
+2019;3;North America;United States;Components;Touring Frames;737.0
+2020;2;North America;United States;Components;Touring Frames;249.0
+2019;4;North America;United States;Components;Touring Frames;376.0
+2020;2;North America;United States;Components;Derailleurs;77.0
+2020;2;North America;United States;Components;Brakes;51.0
+2020;2;North America;United States;Components;Bottom Brackets;70.0
+2020;1;North America;United States;Components;Bottom Brackets;55.0
+2018;1;North America;United States;Components;Road Frames;157.0
+2020;1;North America;United States;Components;Touring Frames;201.0
+2019;1;North America;United States;Accessories;Locks;88.0
+2019;1;North America;United States;Accessories;Pumps;90.0
+2020;2;North America;United States;Components;Chains;36.0
+2020;1;North America;United States;Clothing;Gloves;161.0
+2019;4;North America;United States;Accessories;Tires and Tubes;109.0
+2020;2;North America;United States;Accessories;Tires and Tubes;47.0
+2020;1;North America;United States;Accessories;Hydration Packs;97.0
+2020;1;North America;United States;Accessories;Tires and Tubes;8.0
+2019;3;Pacific;Australia;Components;Touring Frames;130.0
+2020;1;Pacific;Australia;Bikes;Touring Bikes;324.0
+2019;4;Pacific;Australia;Bikes;Touring Bikes;359.0
+2019;3;Pacific;Australia;Components;Bottom Brackets;31.0
+2020;1;Pacific;Australia;Clothing;Caps;33.0
+2020;2;Pacific;Australia;Accessories;Bottles and Cages;3.0
+2019;4;Pacific;Australia;Clothing;Jerseys;181.0
+2019;3;Pacific;Australia;Clothing;Jerseys;245.0
+2019;4;Pacific;Australia;Components;Touring Frames;41.0
+2020;1;Pacific;Australia;Components;Touring Frames;32.0
+2020;2;Pacific;Australia;Components;Touring Frames;44.0
+2019;4;Pacific;Australia;Components;Saddles;17.0
+2020;1;Pacific;Australia;Components;Saddles;5.0
+2020;2;Pacific;Australia;Components;Saddles;5.0
+2019;3;Pacific;Australia;Components;Handlebars;32.0
+2020;2;Pacific;Australia;Bikes;Touring Bikes;156.0
+2019;3;Pacific;Australia;Bikes;Touring Bikes;410.0
+2019;3;Pacific;Australia;Accessories;Helmets;133.0
+2019;3;Pacific;Australia;Bikes;Mountain Bikes;55.0
+2019;4;Pacific;Australia;Bikes;Mountain Bikes;29.0
+2019;3;Pacific;Australia;Clothing;Gloves;75.0
+2019;3;Pacific;Australia;Clothing;Shorts;49.0
+2019;4;Pacific;Australia;Clothing;Shorts;25.0
+2020;1;Pacific;Australia;Clothing;Shorts;18.0
+2020;2;Pacific;Australia;Clothing;Shorts;6.0
+2019;3;Pacific;Australia;Clothing;Caps;75.0
+2019;4;Pacific;Australia;Clothing;Caps;52.0
+2019;3;Pacific;Australia;Clothing;Vests;119.0
+2019;4;Pacific;Australia;Clothing;Vests;86.0
+2020;2;Pacific;Australia;Clothing;Vests;19.0
+2019;3;Pacific;Australia;Accessories;Bottles and Cages;41.0
+2019;3;Pacific;Australia;Accessories;Bike Racks;60.0
+2019;4;Pacific;Australia;Accessories;Bike Racks;45.0
+2020;2;Pacific;Australia;Accessories;Bike Racks;6.0
+2019;3;Pacific;Australia;Accessories;Cleaners;46.0
+2019;3;Pacific;Australia;Accessories;Hydration Packs;39.0
+2020;2;Pacific;Australia;Clothing;Jerseys;35.0
+2019;3;Pacific;Australia;Components;Mountain Frames;40.0
+2019;3;Pacific;Australia;Components;Pedals;24.0
+2019;4;Pacific;Australia;Components;Mountain Frames;25.0
+2020;1;Pacific;Australia;Components;Mountain Frames;14.0
+2020;1;Pacific;Australia;Bikes;Mountain Bikes;10.0
+2019;3;Pacific;Australia;Components;Cranksets;31.0
+2019;4;Pacific;Australia;Components;Cranksets;20.0
+2020;1;Pacific;Australia;Components;Cranksets;15.0
+2019;4;Pacific;Australia;Components;Handlebars;13.0
+2020;1;Pacific;Australia;Components;Handlebars;6.0
+2019;3;Pacific;Australia;Components;Derailleurs;46.0
+2019;4;Pacific;Australia;Components;Derailleurs;32.0
+2019;3;Pacific;Australia;Components;Saddles;36.0
+2019;4;Pacific;Australia;Components;Pedals;7.0
+2020;1;Pacific;Australia;Components;Pedals;2.0
+2020;1;Pacific;Australia;Components;Derailleurs;13.0
+2019;3;Pacific;Australia;Components;Brakes;30.0
+2019;4;Pacific;Australia;Components;Brakes;29.0
+2019;4;Pacific;Australia;Components;Chains;15.0
+2020;1;Pacific;Australia;Components;Chains;13.0
+2020;1;Pacific;Australia;Components;Bottom Brackets;5.0
+2020;2;Pacific;Australia;Clothing;Gloves;5.0
+2020;2;Pacific;Australia;Components;Cranksets;3.0
+2020;2;Pacific;Australia;Components;Derailleurs;8.0
+2020;2;Pacific;Australia;Components;Handlebars;2.0
+2020;2;Pacific;Australia;Components;Chains;4.0
+2020;2;Pacific;Australia;Components;Bottom Brackets;4.0
+2019;4;Pacific;Australia;Components;Bottom Brackets;17.0
+2020;1;Pacific;Australia;Bikes;Road Bikes;1.0
+2019;4;Pacific;Australia;Bikes;Road Bikes;1.0
+2019;3;Pacific;Australia;Components;Road Frames;1.0
+2020;2;Pacific;Australia;Accessories;Helmets;2.0
+2020;1;Pacific;Australia;Clothing;Jerseys;77.0
+2020;1;Pacific;Australia;Accessories;Tires and Tubes;3.0
+2019;4;Pacific;Australia;Accessories;Hydration Packs;40.0
+2019;4;Pacific;Australia;Accessories;Helmets;100.0
+2020;1;Pacific;Australia;Accessories;Helmets;21.0
+2019;4;Pacific;Australia;Clothing;Gloves;34.0
+2020;1;Pacific;Australia;Clothing;Vests;60.0
+2019;4;Pacific;Australia;Accessories;Bottles and Cages;37.0
+2020;1;Pacific;Australia;Accessories;Bottles and Cages;17.0
+2020;1;Pacific;Australia;Accessories;Bike Racks;29.0
+2019;4;Pacific;Australia;Accessories;Cleaners;30.0
+2020;1;Pacific;Australia;Accessories;Cleaners;17.0
+2020;1;Pacific;Australia;Components;Brakes;7.0
+2019;3;Pacific;Australia;Components;Chains;22.0
+2020;2;Pacific;Australia;Clothing;Caps;13.0
+2020;2;Pacific;Australia;Components;Brakes;7.0
+2020;2;Pacific;Australia;Components;Mountain Frames;2.0
+2019;3;Pacific;Australia;Accessories;Tires and Tubes;4.0
+2019;3;North America;Canada;Clothing;Shorts;430.0
+2020;1;North America;Canada;Components;Cranksets;29.0
+2019;3;North America;Canada;Components;Cranksets;70.0
+2019;3;North America;Canada;Bikes;Mountain Bikes;538.0
+2019;4;North America;Canada;Bikes;Mountain Bikes;497.0
+2020;1;North America;Canada;Components;Mountain Frames;189.0
+2019;3;North America;Canada;Components;Handlebars;165.0
+2020;1;North America;Canada;Components;Saddles;34.0
+2019;3;North America;Canada;Components;Mountain Frames;461.0
+2019;4;North America;Canada;Components;Mountain Frames;302.0
+2019;4;North America;Canada;Components;Pedals;181.0
+2019;4;North America;Canada;Components;Chains;22.0
+2020;1;North America;Canada;Components;Bottom Brackets;14.0
+2018;3;North America;Canada;Accessories;Helmets;442.0
+2019;3;North America;Canada;Accessories;Helmets;446.0
+2018;3;North America;Canada;Components;Road Frames;594.0
+2019;3;North America;Canada;Components;Road Frames;331.0
+2018;3;North America;Canada;Components;Wheels;479.0
+2018;3;North America;Canada;Clothing;Tights;354.0
+2019;2;North America;Canada;Clothing;Tights;286.0
+2019;3;North America;Canada;Clothing;Gloves;329.0
+2018;3;North America;Canada;Clothing;Caps;202.0
+2018;4;North America;Canada;Clothing;Caps;137.0
+2019;2;North America;Canada;Clothing;Caps;165.0
+2019;3;North America;Canada;Clothing;Caps;199.0
+2019;4;North America;Canada;Clothing;Caps;147.0
+2018;3;North America;Canada;Clothing;Jerseys;450.0
+2018;4;North America;Canada;Clothing;Jerseys;283.0
+2019;2;North America;Canada;Clothing;Jerseys;276.0
+2019;3;North America;Canada;Clothing;Jerseys;914.0
+2019;4;North America;Canada;Clothing;Jerseys;587.0
+2018;3;North America;Canada;Clothing;Bib-Shorts;314.0
+2019;3;North America;Canada;Clothing;Vests;341.0
+2019;4;North America;Canada;Clothing;Vests;309.0
+2020;1;North America;Canada;Clothing;Vests;186.0
+2019;3;North America;Canada;Accessories;Bottles and Cages;185.0
+2019;4;North America;Canada;Accessories;Bottles and Cages;116.0
+2019;3;North America;Canada;Clothing;Socks;208.0
+2019;4;North America;Canada;Clothing;Socks;118.0
+2020;1;North America;Canada;Clothing;Socks;84.0
+2019;3;North America;Canada;Accessories;Bike Racks;150.0
+2019;4;North America;Canada;Accessories;Bike Racks;159.0
+2019;3;North America;Canada;Accessories;Cleaners;146.0
+2019;3;North America;Canada;Accessories;Hydration Packs;153.0
+2019;3;North America;Canada;Components;Pedals;298.0
+2018;4;North America;Canada;Components;Road Frames;366.0
+2017;4;North America;Canada;Components;Road Frames;139.0
+2018;1;North America;Canada;Components;Road Frames;70.0
+2018;2;North America;Canada;Components;Road Frames;160.0
+2017;3;North America;Canada;Components;Road Frames;127.0
+2017;3;North America;Canada;Bikes;Road Bikes;370.0
+2018;1;North America;Canada;Bikes;Road Bikes;525.0
+2018;2;North America;Canada;Bikes;Road Bikes;620.0
+2017;4;North America;Canada;Bikes;Road Bikes;619.0
+2018;4;North America;Canada;Components;Mountain Frames;201.0
+2018;1;North America;Canada;Bikes;Mountain Bikes;172.0
+2019;1;North America;Canada;Components;Mountain Frames;112.0
+2018;4;North America;Canada;Clothing;Gloves;446.0
+2017;4;North America;Canada;Clothing;Jerseys;147.0
+2018;3;North America;Canada;Bikes;Mountain Bikes;558.0
+2018;4;North America;Canada;Bikes;Mountain Bikes;451.0
+2020;1;North America;Canada;Bikes;Mountain Bikes;350.0
+2020;2;North America;Canada;Bikes;Mountain Bikes;243.0
+2019;1;North America;Canada;Bikes;Mountain Bikes;336.0
+2018;4;North America;Canada;Clothing;Tights;310.0
+2018;3;North America;Canada;Clothing;Gloves;529.0
+2019;1;North America;Canada;Clothing;Gloves;253.0
+2019;2;North America;Canada;Clothing;Gloves;468.0
+2019;4;North America;Canada;Clothing;Shorts;320.0
+2020;1;North America;Canada;Clothing;Shorts;222.0
+2020;2;North America;Canada;Clothing;Shorts;194.0
+2019;2;North America;Canada;Bikes;Mountain Bikes;393.0
+2018;3;North America;Canada;Components;Handlebars;177.0
+2020;2;North America;Canada;Clothing;Vests;205.0
+2020;2;North America;Canada;Accessories;Bottles and Cages;75.0
+2020;2;North America;Canada;Accessories;Bike Racks;94.0
+2020;2;North America;Canada;Clothing;Jerseys;363.0
+2019;3;North America;Canada;Components;Saddles;202.0
+2017;4;North America;Canada;Components;Mountain Frames;51.0
+2018;1;North America;Canada;Components;Mountain Frames;36.0
+2018;2;North America;Canada;Components;Mountain Frames;43.0
+2017;3;North America;Canada;Components;Mountain Frames;41.0
+2017;3;North America;Canada;Bikes;Mountain Bikes;163.0
+2017;4;North America;Canada;Bikes;Mountain Bikes;171.0
+2018;2;North America;Canada;Bikes;Mountain Bikes;189.0
+2017;3;North America;Canada;Clothing;Socks;30.0
+2017;4;North America;Canada;Clothing;Socks;63.0
+2018;1;North America;Canada;Clothing;Socks;33.0
+2018;2;North America;Canada;Clothing;Socks;55.0
+2019;2;North America;Canada;Components;Forks;27.0
+2018;3;North America;Canada;Components;Forks;45.0
+2018;4;North America;Canada;Components;Wheels;233.0
+2019;2;North America;Canada;Components;Wheels;230.0
+2017;3;North America;Canada;Clothing;Jerseys;87.0
+2020;2;North America;Canada;Components;Handlebars;48.0
+2020;1;North America;Canada;Components;Handlebars;35.0
+2020;1;North America;Canada;Components;Pedals;88.0
+2019;2;North America;Canada;Components;Road Frames;347.0
+2019;4;North America;Canada;Components;Road Frames;174.0
+2018;4;North America;Canada;Bikes;Road Bikes;922.0
+2019;1;North America;Canada;Bikes;Road Bikes;749.0
+2019;1;North America;Canada;Components;Wheels;93.0
+2019;2;North America;Canada;Components;Handlebars;67.0
+2020;1;North America;Canada;Accessories;Tires and Tubes;5.0
+2019;4;North America;Canada;Components;Touring Frames;101.0
+2020;2;North America;Canada;Components;Touring Frames;18.0
+2019;3;North America;Canada;Components;Touring Frames;198.0
+2019;3;North America;Canada;Bikes;Touring Bikes;449.0
+2020;1;North America;Canada;Bikes;Touring Bikes;278.0
+2020;2;North America;Canada;Bikes;Touring Bikes;134.0
+2019;4;North America;Canada;Bikes;Touring Bikes;412.0
+2018;4;North America;Canada;Accessories;Helmets;284.0
+2019;2;North America;Canada;Accessories;Helmets;296.0
+2019;4;North America;Canada;Accessories;Helmets;327.0
+2020;2;North America;Canada;Accessories;Helmets;217.0
+2018;3;North America;Canada;Components;Mountain Frames;284.0
+2019;2;North America;Canada;Components;Mountain Frames;178.0
+2018;3;North America;Canada;Clothing;Shorts;165.0
+2018;4;North America;Canada;Clothing;Shorts;166.0
+2019;4;North America;Canada;Clothing;Gloves;172.0
+2020;2;North America;Canada;Components;Mountain Frames;177.0
+2019;1;North America;Canada;Clothing;Caps;86.0
+2020;2;North America;Canada;Clothing;Caps;100.0
+2019;1;North America;Canada;Clothing;Jerseys;136.0
+2018;4;North America;Canada;Components;Handlebars;74.0
+2019;1;North America;Canada;Components;Handlebars;50.0
+2019;4;North America;Canada;Components;Handlebars;82.0
+2018;3;North America;Canada;Accessories;Locks;124.0
+2018;3;North America;Canada;Accessories;Pumps;107.0
+2018;4;North America;Canada;Clothing;Bib-Shorts;161.0
+2019;2;North America;Canada;Clothing;Bib-Shorts;202.0
+2020;1;North America;Canada;Accessories;Bike Racks;73.0
+2019;4;North America;Canada;Accessories;Cleaners;114.0
+2020;2;North America;Canada;Accessories;Cleaners;77.0
+2019;4;North America;Canada;Accessories;Hydration Packs;95.0
+2020;2;North America;Canada;Accessories;Hydration Packs;52.0
+2020;1;North America;Canada;Clothing;Jerseys;346.0
+2019;4;North America;Canada;Components;Saddles;98.0
+2020;2;North America;Canada;Components;Saddles;41.0
+2020;2;North America;Canada;Components;Pedals;116.0
+2019;1;North America;Canada;Accessories;Helmets;141.0
+2020;1;North America;Canada;Accessories;Helmets;152.0
+2019;1;North America;Canada;Clothing;Shorts;80.0
+2019;2;North America;Canada;Clothing;Shorts;156.0
+2019;1;North America;Canada;Clothing;Tights;123.0
+2020;1;North America;Canada;Clothing;Gloves;86.0
+2020;2;North America;Canada;Clothing;Gloves;81.0
+2019;4;North America;Canada;Components;Cranksets;38.0
+2020;2;North America;Canada;Components;Cranksets;22.0
+2020;1;North America;Canada;Clothing;Caps;56.0
+2018;4;North America;Canada;Components;Forks;44.0
+2019;1;North America;Canada;Components;Forks;17.0
+2018;3;North America;Canada;Components;Headsets;76.0
+2018;4;North America;Canada;Components;Headsets;72.0
+2019;1;North America;Canada;Components;Headsets;36.0
+2019;2;North America;Canada;Components;Headsets;48.0
+2018;4;North America;Canada;Accessories;Locks;58.0
+2019;2;North America;Canada;Accessories;Locks;63.0
+2018;4;North America;Canada;Accessories;Pumps;66.0
+2019;1;North America;Canada;Accessories;Pumps;38.0
+2019;2;North America;Canada;Accessories;Pumps;51.0
+2019;1;North America;Canada;Clothing;Bib-Shorts;87.0
+2020;1;North America;Canada;Accessories;Bottles and Cages;57.0
+2019;3;North America;Canada;Accessories;Tires and Tubes;55.0
+2019;4;North America;Canada;Accessories;Tires and Tubes;29.0
+2020;2;North America;Canada;Accessories;Tires and Tubes;27.0
+2020;1;North America;Canada;Accessories;Cleaners;68.0
+2020;1;North America;Canada;Accessories;Hydration Packs;45.0
+2019;3;North America;Canada;Components;Derailleurs;56.0
+2019;4;North America;Canada;Components;Derailleurs;49.0
+2020;2;North America;Canada;Components;Derailleurs;36.0
+2019;3;North America;Canada;Components;Brakes;68.0
+2019;4;North America;Canada;Components;Brakes;44.0
+2020;1;North America;Canada;Components;Derailleurs;27.0
+2020;1;North America;Canada;Components;Brakes;22.0
+2020;2;North America;Canada;Components;Brakes;18.0
+2019;3;North America;Canada;Components;Chains;34.0
+2020;1;North America;Canada;Components;Chains;15.0
+2020;2;North America;Canada;Components;Chains;19.0
+2019;3;North America;Canada;Components;Bottom Brackets;38.0
+2019;4;North America;Canada;Components;Bottom Brackets;55.0
+2020;2;North America;Canada;Components;Bottom Brackets;22.0
+2017;3;North America;Canada;Accessories;Helmets;102.0
+2017;4;North America;Canada;Accessories;Helmets;153.0
+2018;1;North America;Canada;Accessories;Helmets;62.0
+2019;1;North America;Canada;Components;Road Frames;140.0
+2020;1;North America;Canada;Components;Road Frames;60.0
+2020;2;North America;Canada;Components;Road Frames;125.0
+2019;2;North America;Canada;Bikes;Road Bikes;955.0
+2018;3;North America;Canada;Bikes;Road Bikes;1126.0
+2019;3;North America;Canada;Bikes;Road Bikes;589.0
+2019;4;North America;Canada;Bikes;Road Bikes;477.0
+2020;1;North America;Canada;Bikes;Road Bikes;353.0
+2020;2;North America;Canada;Bikes;Road Bikes;327.0
+2018;2;North America;Canada;Accessories;Helmets;124.0
+2017;3;North America;Canada;Clothing;Caps;69.0
+2017;4;North America;Canada;Clothing;Caps;72.0
+2018;1;North America;Canada;Clothing;Caps;43.0
+2018;2;North America;Canada;Clothing;Caps;75.0
+2018;1;North America;Canada;Clothing;Jerseys;74.0
+2018;2;North America;Canada;Clothing;Jerseys;146.0
+2020;2;North America;Canada;Clothing;Socks;43.0
+2020;1;North America;Canada;Components;Touring Frames;63.0
+2019;1;North America;Canada;Accessories;Locks;38.0
+2019;4;Europe;Germany;Accessories;Bike Racks;46.0
+2019;4;Europe;Germany;Accessories;Helmets;148.0
+2019;3;Europe;Germany;Components;Road Frames;27.0
+2019;4;Europe;Germany;Bikes;Road Bikes;51.0
+2020;1;Europe;Germany;Bikes;Road Bikes;57.0
+2020;2;Europe;Germany;Bikes;Road Bikes;48.0
+2019;3;Europe;Germany;Bikes;Road Bikes;47.0
+2020;2;Europe;Germany;Clothing;Gloves;70.0
+2020;1;Europe;Germany;Clothing;Jerseys;195.0
+2019;3;Europe;Germany;Clothing;Jerseys;438.0
+2019;3;Europe;Germany;Components;Handlebars;49.0
+2019;4;Europe;Germany;Components;Road Frames;25.0
+2020;2;Europe;Germany;Components;Road Frames;11.0
+2020;2;Europe;Germany;Clothing;Vests;124.0
+2020;1;Europe;Germany;Accessories;Bottles and Cages;33.0
+2019;3;Europe;Germany;Clothing;Socks;33.0
+2019;4;Europe;Germany;Clothing;Socks;18.0
+2020;1;Europe;Germany;Clothing;Socks;17.0
+2020;2;Europe;Germany;Clothing;Socks;20.0
+2020;1;Europe;Germany;Accessories;Cleaners;29.0
+2019;4;Europe;Germany;Clothing;Jerseys;319.0
+2019;3;Europe;Germany;Components;Pedals;34.0
+2019;4;Europe;Germany;Components;Pedals;34.0
+2020;2;Europe;Germany;Components;Pedals;15.0
+2019;3;Europe;Germany;Components;Cranksets;25.0
+2019;4;Europe;Germany;Components;Cranksets;16.0
+2020;1;Europe;Germany;Bikes;Touring Bikes;262.0
+2019;3;Europe;Germany;Bikes;Touring Bikes;430.0
+2019;4;Europe;Germany;Clothing;Gloves;117.0
+2019;4;Europe;Germany;Components;Handlebars;14.0
+2020;2;Europe;Germany;Components;Handlebars;14.0
+2019;3;Europe;Germany;Components;Saddles;64.0
+2020;1;Europe;Germany;Components;Pedals;8.0
+2019;3;Europe;Germany;Accessories;Helmets;187.0
+2020;1;Europe;Germany;Accessories;Helmets;82.0
+2020;2;Europe;Germany;Accessories;Helmets;112.0
+2019;3;Europe;Germany;Clothing;Gloves;121.0
+2020;1;Europe;Germany;Clothing;Gloves;53.0
+2019;3;Europe;Germany;Clothing;Caps;104.0
+2019;4;Europe;Germany;Clothing;Caps;66.0
+2020;1;Europe;Germany;Clothing;Caps;45.0
+2020;2;Europe;Germany;Clothing;Caps;55.0
+2020;2;Europe;Germany;Clothing;Jerseys;210.0
+2019;3;Europe;Germany;Clothing;Vests;214.0
+2019;4;Europe;Germany;Clothing;Vests;132.0
+2020;1;Europe;Germany;Clothing;Vests;82.0
+2019;3;Europe;Germany;Accessories;Bottles and Cages;102.0
+2019;4;Europe;Germany;Accessories;Bottles and Cages;79.0
+2020;2;Europe;Germany;Accessories;Bottles and Cages;58.0
+2019;3;Europe;Germany;Accessories;Tires and Tubes;28.0
+2019;4;Europe;Germany;Accessories;Tires and Tubes;18.0
+2020;2;Europe;Germany;Accessories;Tires and Tubes;21.0
+2019;3;Europe;Germany;Accessories;Bike Racks;88.0
+2020;1;Europe;Germany;Accessories;Bike Racks;39.0
+2020;2;Europe;Germany;Accessories;Bike Racks;40.0
+2019;3;Europe;Germany;Accessories;Cleaners;54.0
+2019;4;Europe;Germany;Accessories;Cleaners;70.0
+2020;2;Europe;Germany;Accessories;Cleaners;25.0
+2019;3;Europe;Germany;Accessories;Hydration Packs;62.0
+2019;4;Europe;Germany;Accessories;Hydration Packs;69.0
+2020;1;Europe;Germany;Accessories;Hydration Packs;23.0
+2020;2;Europe;Germany;Accessories;Hydration Packs;56.0
+2020;1;Europe;Germany;Components;Touring Frames;71.0
+2020;2;Europe;Germany;Components;Touring Frames;95.0
+2019;3;Europe;Germany;Components;Touring Frames;178.0
+2019;4;Europe;Germany;Components;Touring Frames;110.0
+2020;1;Europe;Germany;Components;Saddles;10.0
+2020;2;Europe;Germany;Components;Saddles;17.0
+2019;4;Europe;Germany;Bikes;Touring Bikes;389.0
+2020;2;Europe;Germany;Bikes;Touring Bikes;253.0
+2019;4;Europe;Germany;Components;Saddles;19.0
+2019;4;Europe;Germany;Components;Brakes;17.0
+2020;1;Europe;Germany;Components;Mountain Frames;28.0
+2019;3;Europe;Germany;Bikes;Mountain Bikes;73.0
+2019;3;Europe;Germany;Clothing;Shorts;50.0
+2020;2;Europe;Germany;Bikes;Mountain Bikes;25.0
+2020;2;Europe;Germany;Components;Mountain Frames;28.0
+2019;3;Europe;Germany;Components;Brakes;12.0
+2019;4;Europe;Germany;Components;Mountain Frames;37.0
+2020;1;Europe;Germany;Components;Derailleurs;2.0
+2019;3;Europe;Germany;Components;Bottom Brackets;19.0
+2019;4;Europe;Germany;Components;Derailleurs;12.0
+2019;4;Europe;Germany;Components;Chains;5.0
+2020;2;Europe;Germany;Components;Chains;6.0
+2020;1;Europe;Germany;Components;Road Frames;7.0
+2019;3;Europe;Germany;Components;Derailleurs;30.0
+2019;3;Europe;Germany;Components;Mountain Frames;57.0
+2019;4;Europe;Germany;Bikes;Mountain Bikes;56.0
+2020;1;Europe;Germany;Bikes;Mountain Bikes;41.0
+2019;4;Europe;Germany;Clothing;Shorts;54.0
+2020;2;Europe;Germany;Clothing;Shorts;11.0
+2020;1;Europe;Germany;Clothing;Shorts;31.0
+2020;2;Europe;Germany;Components;Cranksets;5.0
+2020;1;Europe;Germany;Components;Cranksets;5.0
+2020;1;Europe;Germany;Components;Handlebars;7.0
+2020;2;Europe;Germany;Components;Derailleurs;5.0
+2020;1;Europe;Germany;Components;Brakes;5.0
+2020;2;Europe;Germany;Components;Brakes;1.0
+2019;3;Europe;Germany;Components;Chains;21.0
+2020;1;Europe;Germany;Components;Chains;5.0
+2019;4;Europe;Germany;Components;Bottom Brackets;12.0
+2020;2;Europe;Germany;Components;Bottom Brackets;3.0
+2020;1;Europe;Germany;Components;Bottom Brackets;4.0
+2019;3;Europe;France;Clothing;Vests;241.0
+2019;4;Europe;France;Clothing;Jerseys;285.0
+2019;3;Europe;France;Clothing;Jerseys;385.0
+2019;3;Europe;France;Components;Touring Frames;185.0
+2019;4;Europe;France;Components;Touring Frames;84.0
+2020;1;Europe;France;Components;Touring Frames;42.0
+2020;2;Europe;France;Components;Touring Frames;96.0
+2019;3;Europe;France;Components;Saddles;71.0
+2019;4;Europe;France;Components;Saddles;50.0
+2020;1;Europe;France;Components;Saddles;25.0
+2020;2;Europe;France;Components;Saddles;46.0
+2019;3;Europe;France;Components;Pedals;127.0
+2019;3;Europe;France;Components;Handlebars;90.0
+2019;4;Europe;France;Components;Handlebars;25.0
+2020;2;Europe;France;Components;Handlebars;27.0
+2019;3;Europe;France;Bikes;Touring Bikes;420.0
+2019;4;Europe;France;Bikes;Touring Bikes;345.0
+2020;1;Europe;France;Bikes;Touring Bikes;301.0
+2020;2;Europe;France;Bikes;Touring Bikes;331.0
+2019;3;Europe;France;Accessories;Helmets;205.0
+2019;4;Europe;France;Accessories;Helmets;138.0
+2020;1;Europe;France;Accessories;Helmets;79.0
+2018;3;Europe;France;Components;Road Frames;156.0
+2018;4;Europe;France;Components;Road Frames;115.0
+2019;1;Europe;France;Components;Road Frames;59.0
+2019;2;Europe;France;Components;Road Frames;99.0
+2019;3;Europe;France;Components;Road Frames;154.0
+2019;4;Europe;France;Components;Road Frames;66.0
+2020;1;Europe;France;Components;Road Frames;33.0
+2018;3;Europe;France;Bikes;Road Bikes;418.0
+2018;4;Europe;France;Bikes;Road Bikes;219.0
+2019;1;Europe;France;Bikes;Road Bikes;157.0
+2019;2;Europe;France;Bikes;Road Bikes;230.0
+2019;3;Europe;France;Bikes;Road Bikes;232.0
+2020;1;Europe;France;Bikes;Road Bikes;165.0
+2019;4;Europe;France;Bikes;Road Bikes;250.0
+2018;3;Europe;France;Components;Wheels;135.0
+2018;4;Europe;France;Components;Wheels;39.0
+2019;2;Europe;France;Components;Wheels;63.0
+2019;2;Europe;France;Clothing;Shorts;49.0
+2019;1;Europe;France;Clothing;Gloves;69.0
+2019;3;Europe;France;Clothing;Gloves;134.0
+2019;4;Europe;France;Clothing;Gloves;114.0
+2020;1;Europe;France;Clothing;Gloves;45.0
+2018;4;Europe;France;Clothing;Gloves;112.0
+2019;3;Europe;France;Clothing;Caps;84.0
+2019;4;Europe;France;Clothing;Caps;62.0
+2020;1;Europe;France;Clothing;Caps;35.0
+2020;1;Europe;France;Clothing;Jerseys;190.0
+2018;3;Europe;France;Components;Handlebars;27.0
+2018;4;Europe;France;Components;Handlebars;21.0
+2019;2;Europe;France;Components;Handlebars;13.0
+2018;4;Europe;France;Accessories;Pumps;20.0
+2019;1;Europe;France;Clothing;Bib-Shorts;31.0
+2019;4;Europe;France;Clothing;Vests;130.0
+2020;1;Europe;France;Clothing;Vests;78.0
+2019;3;Europe;France;Accessories;Bottles and Cages;70.0
+2019;4;Europe;France;Accessories;Bottles and Cages;60.0
+2020;1;Europe;France;Accessories;Bottles and Cages;34.0
+2019;3;Europe;France;Accessories;Tires and Tubes;29.0
+2019;4;Europe;France;Accessories;Tires and Tubes;22.0
+2019;3;Europe;France;Clothing;Socks;42.0
+2019;4;Europe;France;Clothing;Socks;24.0
+2019;3;Europe;France;Accessories;Bike Racks;122.0
+2019;4;Europe;France;Accessories;Bike Racks;75.0
+2020;1;Europe;France;Accessories;Bike Racks;40.0
+2019;3;Europe;France;Accessories;Cleaners;95.0
+2019;4;Europe;France;Accessories;Cleaners;52.0
+2020;1;Europe;France;Accessories;Cleaners;27.0
+2019;3;Europe;France;Accessories;Hydration Packs;55.0
+2019;4;Europe;France;Accessories;Hydration Packs;49.0
+2020;1;Europe;France;Accessories;Hydration Packs;28.0
+2019;4;Europe;France;Components;Pedals;95.0
+2020;1;Europe;France;Components;Pedals;28.0
+2019;3;Europe;France;Components;Mountain Frames;227.0
+2019;4;Europe;France;Components;Mountain Frames;142.0
+2020;1;Europe;France;Components;Mountain Frames;99.0
+2019;3;Europe;France;Bikes;Mountain Bikes;196.0
+2019;4;Europe;France;Bikes;Mountain Bikes;184.0
+2020;1;Europe;France;Bikes;Mountain Bikes;94.0
+2019;3;Europe;France;Clothing;Shorts;154.0
+2019;4;Europe;France;Clothing;Shorts;103.0
+2020;1;Europe;France;Clothing;Shorts;91.0
+2019;3;Europe;France;Components;Cranksets;53.0
+2019;4;Europe;France;Components;Cranksets;27.0
+2020;1;Europe;France;Components;Cranksets;17.0
+2018;4;Europe;France;Bikes;Mountain Bikes;95.0
+2020;1;Europe;France;Components;Handlebars;19.0
+2019;3;Europe;France;Components;Derailleurs;70.0
+2019;4;Europe;France;Components;Derailleurs;28.0
+2019;3;Europe;France;Components;Brakes;49.0
+2019;4;Europe;France;Components;Brakes;34.0
+2020;1;Europe;France;Components;Brakes;13.0
+2019;3;Europe;France;Components;Chains;38.0
+2019;4;Europe;France;Components;Chains;24.0
+2020;1;Europe;France;Components;Chains;14.0
+2019;3;Europe;France;Components;Bottom Brackets;31.0
+2019;4;Europe;France;Components;Bottom Brackets;20.0
+2018;3;Europe;France;Accessories;Helmets;123.0
+2018;4;Europe;France;Accessories;Helmets;83.0
+2019;1;Europe;France;Accessories;Helmets;35.0
+2019;2;Europe;France;Accessories;Helmets;49.0
+2020;2;Europe;France;Accessories;Helmets;110.0
+2018;3;Europe;France;Components;Mountain Frames;67.0
+2018;4;Europe;France;Components;Mountain Frames;37.0
+2019;1;Europe;France;Components;Mountain Frames;31.0
+2019;2;Europe;France;Components;Mountain Frames;46.0
+2020;2;Europe;France;Components;Mountain Frames;115.0
+2018;3;Europe;France;Bikes;Mountain Bikes;106.0
+2019;1;Europe;France;Bikes;Mountain Bikes;93.0
+2019;2;Europe;France;Bikes;Mountain Bikes;92.0
+2020;2;Europe;France;Bikes;Mountain Bikes;132.0
+2019;1;Europe;France;Components;Wheels;14.0
+2018;3;Europe;France;Clothing;Shorts;45.0
+2018;4;Europe;France;Clothing;Shorts;44.0
+2019;1;Europe;France;Clothing;Shorts;28.0
+2018;3;Europe;France;Clothing;Tights;105.0
+2018;4;Europe;France;Clothing;Tights;69.0
+2019;1;Europe;France;Clothing;Tights;35.0
+2019;2;Europe;France;Clothing;Tights;61.0
+2018;3;Europe;France;Clothing;Gloves;136.0
+2019;2;Europe;France;Clothing;Gloves;94.0
+2020;2;Europe;France;Clothing;Gloves;67.0
+2020;2;Europe;France;Clothing;Shorts;125.0
+2020;2;Europe;France;Components;Cranksets;28.0
+2018;3;Europe;France;Clothing;Caps;48.0
+2018;4;Europe;France;Clothing;Caps;35.0
+2019;1;Europe;France;Clothing;Caps;11.0
+2019;2;Europe;France;Clothing;Caps;32.0
+2020;2;Europe;France;Clothing;Caps;31.0
+2018;3;Europe;France;Clothing;Jerseys;93.0
+2018;4;Europe;France;Clothing;Jerseys;84.0
+2019;1;Europe;France;Clothing;Jerseys;49.0
+2019;2;Europe;France;Clothing;Jerseys;75.0
+2020;2;Europe;France;Clothing;Jerseys;206.0
+2018;3;Europe;France;Components;Forks;15.0
+2018;4;Europe;France;Components;Forks;11.0
+2019;2;Europe;France;Components;Forks;12.0
+2019;1;Europe;France;Components;Forks;2.0
+2018;3;Europe;France;Components;Headsets;15.0
+2018;4;Europe;France;Components;Headsets;8.0
+2019;1;Europe;France;Components;Headsets;11.0
+2019;2;Europe;France;Components;Headsets;11.0
+2019;1;Europe;France;Components;Handlebars;6.0
+2018;3;Europe;France;Accessories;Locks;26.0
+2018;4;Europe;France;Accessories;Locks;14.0
+2019;1;Europe;France;Accessories;Locks;14.0
+2019;2;Europe;France;Accessories;Locks;16.0
+2018;3;Europe;France;Accessories;Pumps;30.0
+2019;1;Europe;France;Accessories;Pumps;10.0
+2019;2;Europe;France;Accessories;Pumps;30.0
+2018;3;Europe;France;Clothing;Bib-Shorts;83.0
+2018;4;Europe;France;Clothing;Bib-Shorts;46.0
+2019;2;Europe;France;Clothing;Bib-Shorts;41.0
+2020;2;Europe;France;Clothing;Vests;112.0
+2020;2;Europe;France;Accessories;Bottles and Cages;45.0
+2020;2;Europe;France;Accessories;Tires and Tubes;18.0
+2020;2;Europe;France;Accessories;Bike Racks;66.0
+2020;2;Europe;France;Accessories;Cleaners;43.0
+2020;2;Europe;France;Accessories;Hydration Packs;40.0
+2020;2;Europe;France;Components;Derailleurs;32.0
+2020;2;Europe;France;Components;Pedals;61.0
+2020;1;Europe;France;Components;Derailleurs;10.0
+2020;2;Europe;France;Components;Brakes;23.0
+2020;2;Europe;France;Components;Chains;20.0
+2020;2;Europe;France;Components;Bottom Brackets;15.0
+2020;1;Europe;France;Components;Bottom Brackets;14.0
+2020;2;Europe;France;Components;Road Frames;37.0
+2020;2;Europe;France;Bikes;Road Bikes;126.0
+2020;1;Europe;France;Clothing;Socks;13.0
+2020;2;Europe;France;Clothing;Socks;20.0
+2020;1;Europe;France;Accessories;Tires and Tubes;2.0
+2019;3;Europe;United Kingdom;Clothing;Socks;53.0
+2019;3;Europe;United Kingdom;Accessories;Helmets;224.0
+2019;3;Europe;United Kingdom;Clothing;Gloves;141.0
+2019;3;Europe;United Kingdom;Clothing;Caps;84.0
+2019;4;Europe;United Kingdom;Clothing;Caps;66.0
+2020;2;Europe;United Kingdom;Clothing;Caps;43.0
+2019;3;Europe;United Kingdom;Clothing;Jerseys;385.0
+2019;4;Europe;United Kingdom;Clothing;Jerseys;254.0
+2020;2;Europe;United Kingdom;Clothing;Jerseys;177.0
+2019;3;Europe;United Kingdom;Clothing;Vests;181.0
+2019;4;Europe;United Kingdom;Clothing;Vests;136.0
+2020;1;Europe;United Kingdom;Clothing;Vests;85.0
+2020;2;Europe;United Kingdom;Clothing;Vests;63.0
+2019;3;Europe;United Kingdom;Accessories;Bottles and Cages;53.0
+2019;4;Europe;United Kingdom;Accessories;Bottles and Cages;57.0
+2019;3;Europe;United Kingdom;Accessories;Bike Racks;85.0
+2019;4;Europe;United Kingdom;Accessories;Bike Racks;62.0
+2020;2;Europe;United Kingdom;Accessories;Bike Racks;33.0
+2019;3;Europe;United Kingdom;Accessories;Cleaners;62.0
+2019;3;Europe;United Kingdom;Accessories;Hydration Packs;61.0
+2019;3;Europe;United Kingdom;Components;Derailleurs;40.0
+2019;3;Europe;United Kingdom;Components;Brakes;39.0
+2019;3;Europe;United Kingdom;Components;Chains;25.0
+2019;3;Europe;United Kingdom;Bikes;Touring Bikes;329.0
+2019;4;Europe;United Kingdom;Bikes;Touring Bikes;270.0
+2020;2;Europe;United Kingdom;Bikes;Touring Bikes;125.0
+2020;1;Europe;United Kingdom;Bikes;Touring Bikes;218.0
+2018;3;Europe;United Kingdom;Accessories;Helmets;81.0
+2018;4;Europe;United Kingdom;Accessories;Helmets;76.0
+2019;1;Europe;United Kingdom;Accessories;Helmets;22.0
+2019;2;Europe;United Kingdom;Accessories;Helmets;83.0
+2018;3;Europe;United Kingdom;Components;Mountain Frames;74.0
+2018;4;Europe;United Kingdom;Components;Mountain Frames;64.0
+2019;1;Europe;United Kingdom;Components;Mountain Frames;33.0
+2019;2;Europe;United Kingdom;Components;Mountain Frames;65.0
+2018;3;Europe;United Kingdom;Bikes;Mountain Bikes;198.0
+2019;1;Europe;United Kingdom;Bikes;Mountain Bikes;112.0
+2019;2;Europe;United Kingdom;Bikes;Mountain Bikes;96.0
+2018;4;Europe;United Kingdom;Bikes;Mountain Bikes;142.0
+2018;3;Europe;United Kingdom;Components;Wheels;131.0
+2018;4;Europe;United Kingdom;Components;Wheels;63.0
+2019;1;Europe;United Kingdom;Components;Wheels;26.0
+2019;2;Europe;United Kingdom;Components;Wheels;66.0
+2018;4;Europe;United Kingdom;Clothing;Shorts;40.0
+2019;2;Europe;United Kingdom;Clothing;Shorts;24.0
+2018;3;Europe;United Kingdom;Clothing;Shorts;31.0
+2019;1;Europe;United Kingdom;Clothing;Shorts;13.0
+2018;3;Europe;United Kingdom;Clothing;Tights;78.0
+2018;4;Europe;United Kingdom;Clothing;Tights;60.0
+2019;1;Europe;United Kingdom;Clothing;Tights;33.0
+2019;2;Europe;United Kingdom;Clothing;Tights;52.0
+2018;3;Europe;United Kingdom;Clothing;Gloves;186.0
+2018;4;Europe;United Kingdom;Clothing;Gloves;98.0
+2019;2;Europe;United Kingdom;Clothing;Gloves;128.0
+2019;1;Europe;United Kingdom;Clothing;Gloves;73.0
+2018;3;Europe;United Kingdom;Clothing;Caps;36.0
+2018;4;Europe;United Kingdom;Clothing;Caps;26.0
+2019;1;Europe;United Kingdom;Clothing;Caps;21.0
+2019;2;Europe;United Kingdom;Clothing;Caps;32.0
+2018;3;Europe;United Kingdom;Clothing;Jerseys;91.0
+2018;4;Europe;United Kingdom;Clothing;Jerseys;51.0
+2019;1;Europe;United Kingdom;Clothing;Jerseys;45.0
+2019;2;Europe;United Kingdom;Clothing;Jerseys;47.0
+2018;3;Europe;United Kingdom;Components;Forks;16.0
+2018;4;Europe;United Kingdom;Components;Forks;14.0
+2019;2;Europe;United Kingdom;Components;Forks;13.0
+2018;3;Europe;United Kingdom;Components;Headsets;27.0
+2019;1;Europe;United Kingdom;Components;Headsets;14.0
+2019;2;Europe;United Kingdom;Components;Headsets;17.0
+2018;3;Europe;United Kingdom;Components;Handlebars;49.0
+2018;4;Europe;United Kingdom;Components;Handlebars;32.0
+2019;1;Europe;United Kingdom;Components;Handlebars;23.0
+2019;2;Europe;United Kingdom;Components;Handlebars;32.0
+2018;3;Europe;United Kingdom;Accessories;Locks;23.0
+2018;4;Europe;United Kingdom;Accessories;Locks;7.0
+2019;1;Europe;United Kingdom;Accessories;Locks;7.0
+2019;2;Europe;United Kingdom;Accessories;Locks;12.0
+2018;3;Europe;United Kingdom;Accessories;Pumps;15.0
+2018;4;Europe;United Kingdom;Accessories;Pumps;16.0
+2019;1;Europe;United Kingdom;Accessories;Pumps;9.0
+2019;2;Europe;United Kingdom;Accessories;Pumps;19.0
+2018;3;Europe;United Kingdom;Clothing;Bib-Shorts;60.0
+2018;4;Europe;United Kingdom;Clothing;Bib-Shorts;43.0
+2019;1;Europe;United Kingdom;Clothing;Bib-Shorts;15.0
+2019;2;Europe;United Kingdom;Clothing;Bib-Shorts;46.0
+2019;4;Europe;United Kingdom;Accessories;Helmets;140.0
+2020;1;Europe;United Kingdom;Accessories;Helmets;68.0
+2020;2;Europe;United Kingdom;Accessories;Helmets;96.0
+2019;3;Europe;United Kingdom;Components;Mountain Frames;183.0
+2020;2;Europe;United Kingdom;Components;Mountain Frames;31.0
+2019;3;Europe;United Kingdom;Bikes;Mountain Bikes;231.0
+2019;4;Europe;United Kingdom;Bikes;Mountain Bikes;204.0
+2020;1;Europe;United Kingdom;Bikes;Mountain Bikes;138.0
+2020;2;Europe;United Kingdom;Bikes;Mountain Bikes;71.0
+2019;4;Europe;United Kingdom;Clothing;Gloves;91.0
+2020;2;Europe;United Kingdom;Clothing;Gloves;44.0
+2019;3;Europe;United Kingdom;Clothing;Shorts;159.0
+2019;4;Europe;United Kingdom;Clothing;Shorts;139.0
+2020;2;Europe;United Kingdom;Clothing;Shorts;46.0
+2020;1;Europe;United Kingdom;Clothing;Shorts;71.0
+2019;4;Europe;United Kingdom;Components;Mountain Frames;121.0
+2020;1;Europe;United Kingdom;Clothing;Caps;33.0
+2020;1;Europe;United Kingdom;Clothing;Jerseys;191.0
+2020;2;Europe;United Kingdom;Components;Handlebars;13.0
+2019;3;Europe;United Kingdom;Components;Handlebars;72.0
+2019;4;Europe;United Kingdom;Components;Handlebars;27.0
+2020;1;Europe;United Kingdom;Accessories;Bottles and Cages;35.0
+2020;2;Europe;United Kingdom;Accessories;Bottles and Cages;14.0
+2019;3;Europe;United Kingdom;Accessories;Tires and Tubes;13.0
+2020;1;Europe;United Kingdom;Accessories;Bike Racks;37.0
+2019;4;Europe;United Kingdom;Accessories;Cleaners;53.0
+2020;1;Europe;United Kingdom;Accessories;Cleaners;20.0
+2020;2;Europe;United Kingdom;Accessories;Cleaners;48.0
+2019;4;Europe;United Kingdom;Accessories;Hydration Packs;61.0
+2020;2;Europe;United Kingdom;Accessories;Hydration Packs;26.0
+2020;1;Europe;United Kingdom;Components;Mountain Frames;76.0
+2019;3;Europe;United Kingdom;Components;Saddles;70.0
+2019;4;Europe;United Kingdom;Components;Saddles;39.0
+2020;2;Europe;United Kingdom;Components;Saddles;14.0
+2019;3;Europe;United Kingdom;Components;Pedals;80.0
+2019;4;Europe;United Kingdom;Components;Pedals;90.0
+2020;2;Europe;United Kingdom;Components;Pedals;22.0
+2020;1;Europe;United Kingdom;Components;Pedals;20.0
+2018;4;Europe;United Kingdom;Components;Road Frames;63.0
+2018;3;Europe;United Kingdom;Components;Road Frames;134.0
+2020;2;Europe;United Kingdom;Components;Road Frames;19.0
+2019;2;Europe;United Kingdom;Components;Road Frames;54.0
+2019;3;Europe;United Kingdom;Components;Road Frames;135.0
+2019;4;Europe;United Kingdom;Components;Road Frames;42.0
+2018;3;Europe;United Kingdom;Bikes;Road Bikes;212.0
+2018;4;Europe;United Kingdom;Bikes;Road Bikes;199.0
+2019;1;Europe;United Kingdom;Bikes;Road Bikes;184.0
+2019;2;Europe;United Kingdom;Bikes;Road Bikes;183.0
+2019;3;Europe;United Kingdom;Bikes;Road Bikes;252.0
+2020;2;Europe;United Kingdom;Bikes;Road Bikes;87.0
+2019;4;Europe;United Kingdom;Bikes;Road Bikes;227.0
+2020;1;Europe;United Kingdom;Bikes;Road Bikes;192.0
+2019;4;Europe;United Kingdom;Clothing;Socks;45.0
+2020;1;Europe;United Kingdom;Clothing;Socks;23.0
+2020;2;Europe;United Kingdom;Clothing;Socks;20.0
+2018;4;Europe;United Kingdom;Components;Headsets;7.0
+2019;3;Europe;United Kingdom;Components;Cranksets;35.0
+2019;4;Europe;United Kingdom;Components;Cranksets;17.0
+2020;1;Europe;United Kingdom;Components;Cranksets;15.0
+2019;3;Europe;United Kingdom;Components;Touring Frames;129.0
+2019;4;Europe;United Kingdom;Components;Derailleurs;17.0
+2020;1;Europe;United Kingdom;Components;Derailleurs;11.0
+2019;4;Europe;United Kingdom;Components;Brakes;27.0
+2020;1;Europe;United Kingdom;Components;Brakes;10.0
+2019;4;Europe;United Kingdom;Components;Chains;11.0
+2020;1;Europe;United Kingdom;Components;Chains;7.0
+2019;3;Europe;United Kingdom;Components;Bottom Brackets;23.0
+2019;4;Europe;United Kingdom;Components;Bottom Brackets;21.0
+2020;1;Europe;United Kingdom;Components;Bottom Brackets;14.0
+2019;1;Europe;United Kingdom;Components;Road Frames;13.0
+2020;1;Europe;United Kingdom;Components;Road Frames;23.0
+2020;1;Europe;United Kingdom;Clothing;Gloves;38.0
+2019;4;Europe;United Kingdom;Accessories;Tires and Tubes;11.0
+2020;2;Europe;United Kingdom;Accessories;Tires and Tubes;9.0
+2020;1;Europe;United Kingdom;Accessories;Hydration Packs;20.0
+2020;1;Europe;United Kingdom;Accessories;Tires and Tubes;9.0
+2019;4;Europe;United Kingdom;Components;Touring Frames;73.0
+2020;1;Europe;United Kingdom;Components;Touring Frames;49.0
+2020;2;Europe;United Kingdom;Components;Touring Frames;50.0
+2020;1;Europe;United Kingdom;Components;Saddles;18.0
+2019;1;Europe;United Kingdom;Components;Forks;3.0
+2020;1;Europe;United Kingdom;Components;Handlebars;15.0
+2020;2;Europe;United Kingdom;Components;Derailleurs;9.0
+2020;2;Europe;United Kingdom;Components;Brakes;7.0
+2020;2;Europe;United Kingdom;Components;Chains;8.0
+2020;2;Europe;United Kingdom;Components;Cranksets;3.0
+2020;2;Europe;United Kingdom;Components;Bottom Brackets;4.0

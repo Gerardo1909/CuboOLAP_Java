@@ -1,6 +1,8 @@
 package Cubo.excepciones.excepciones_dimension;
 
-public class DimensionException extends Exception {
+import Cubo.excepciones.excepciones_tabla.TablaException;
+
+public class DimensionException extends TablaException {
     public DimensionException(String message) {
         super(message);
     }

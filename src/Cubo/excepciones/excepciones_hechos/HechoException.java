@@ -1,6 +1,8 @@
 package Cubo.excepciones.excepciones_hechos;
 
-public class HechoException extends Exception {
+import Cubo.excepciones.excepciones_tabla.TablaException;
+
+public class HechoException extends TablaException  {
     public HechoException(String message) {
         super(message);
     }

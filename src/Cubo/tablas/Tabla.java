@@ -2,6 +2,7 @@ package Cubo.tablas;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -310,6 +311,46 @@ public abstract class Tabla implements Visualizable{
     }
 
     /**
+     * Elimina todas las columnas de la tabla que tengan el nombre especificado.
+     * 
+     * Este método busca todas las columnas cuyo encabezado coincida con el nombre proporcionado
+     * y las elimina tanto de la lista de encabezados como de cada fila de datos.
+     *
+     * @param nombre_columna El nombre de la columna que se va a eliminar.
+     * @throws ColumnaNoPresenteException Si no existe ninguna columna con el nombre especificado.
+     */
+    public void eliminarColumna(String nombre_columna) throws ColumnaNoPresenteException {
+
+        // Encuentro todos los índices de la columna según 'nombre_columna'
+        List<Integer> indices_columnas = new ArrayList<>();
+        for (int i = 0; i < this.headers.size(); i++) {
+            if (this.headers.get(i).equals(nombre_columna)) {
+                indices_columnas.add(i);
+            }
+        }
+        
+        // Verifico que el nombre de la columna existe en los headers
+        if (indices_columnas.isEmpty()) {
+            throw new ColumnaNoPresenteException("La columna especificada " + nombre_columna + " no existe en los encabezados.");
+        }
+        
+        // Elimino los encabezados de las columnas en orden inverso para evitar problemas de desplazamiento
+        Collections.sort(indices_columnas, Collections.reverseOrder());
+        for (int indice_columna : indices_columnas) {
+            this.headers.remove(indice_columna);
+        }
+        
+        // Elimino los datos de las columnas en cada fila
+        for (List<String> row : this.data) {
+            for (int indice_columna : indices_columnas) {
+                if (row.size() > indice_columna) {
+                    row.remove(indice_columna);
+                }
+            }
+        }
+    }
+
+    /**
      * Obtiene el nombre de la tabla.
      *
      * @return Nombre de la tabla.
@@ -319,42 +360,70 @@ public abstract class Tabla implements Visualizable{
     }
 
     /**
-     * Ver documentación en {@link Visualizable}.
+     * Muestra una parte seleccionada de los datos de la tabla en un formato tabular.
+     *
+     * @param n_filas El número de filas a mostrar.
+     * @param columnas La lista de nombres de columnas a mostrar.
+     * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
+     * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
     @Override
-    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
+    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException {
 
-        // Prevengo el caso de que "n_filas" sea mayor a las filas disponibles
-        if (n_filas > this.data.size()){
+        // Aquí defino el máximo de columnas que se pueden ver
+        int max_cols_mostrar = 4;
+
+        // Previengo el caso donde n_filas es mayor que las filas disponibles
+        if (n_filas > this.data.size()) {
             throw new FilaFueraDeRangoException("La cantidad de filas solicitadas es mayor a la longitud disponible en la tabla " + this.getNombre());
         }
 
-        // Verifico si las columnas especificadas existen en los headers
-        for (String columna : columnas){
-            if (!this.headers.contains(columna)){
-                throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
+        // Verifico si las columnas especificadas existen en los encabezados
+        for (String columna : columnas) {
+            if (!this.headers.contains(columna)) {
+                throw new ColumnaNoPresenteException("La columna especificada " + columna + " no existe en los encabezados.");
             }
         }
 
-        // Armo una lista y guardo las columnas seleccionadas
+        // Genero una lista y almaceno las columnas seleccionadas
         List<List<String>> columnas_seleccionadas = new ArrayList<>();
         for (String columna : columnas) {
             columnas_seleccionadas.add(this.getColumna(columna));
         }
 
-        //Imprimo las columnas seleccionadas con cierto formato
-        for (String columna : columnas) {
-            System.out.print(String.format("%-20s", columna));
-        }
-        System.out.println();
+        // Determino el número de bloques (chunks) a mostrar
+        int cantidad_columnas = columnas.size();
+        int chunks = (int) Math.ceil((double) cantidad_columnas / max_cols_mostrar);
 
-        // Imprimo los datos con cierto formato
-        for (int i = 0; i < n_filas; i++) {
-            for (List<String> columna : columnas_seleccionadas) {
-                System.out.print(String.format("%-20s", columna.get(i)));
+        // Itero a través de cada bloque de columnas
+        for (int indice_chunk = 0; indice_chunk < chunks; indice_chunk++) {
+            int inicio = indice_chunk * max_cols_mostrar;
+            int fin = Math.min(inicio + max_cols_mostrar, cantidad_columnas);
+
+            // Imprimo los encabezados de las columnas
+            for (int i = inicio; i < fin; i++) {
+                System.out.print(String.format("%-30s", columnas.get(i)));
+            }
+            // Imprimo puntos suspensivos si hay más columnas por mostrar
+            if (fin < cantidad_columnas) {
+                System.out.print(String.format("%-30s", "..."));
             }
             System.out.println();
-        }          
+
+            // Imprimo las filas de datos
+            for (int i = 0; i < n_filas; i++) {
+                for (int j = inicio; j < fin; j++) {
+                    System.out.print(String.format("%-30s", columnas_seleccionadas.get(j).get(i)));
+                }
+                if (fin < cantidad_columnas) {
+                    System.out.print(String.format("%-30s", "..."));
+                }
+                System.out.println();
+            }
+
+            // Añado una línea en blanco entre bloques para mejor legibilidad
+            System.out.println();
+        }
     }
 
 }

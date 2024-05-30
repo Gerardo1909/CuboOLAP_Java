@@ -57,6 +57,10 @@ LectorCSV lector = new LectorCSV(';');
 Una vez creada una instancia de una clase que implemente la interfaz `EstrategiaLecturaArchivo` se procede a invocar el método `leerArchivo(String rutaArchivo)` que recibe la ruta de ubicación del archivo y devuelve una lista de listas de cadenas que representan la información en formato tabular. A continuación un ejemplo de su uso: 
 
 ```java
+// Creamos una instancia del lector deseado, en este caso elegimos el 
+// LectorCSV
+LectorCSV lector = new LectorCSV(',');
+
 // Guardamos la ruta de la ubicación del archivo
 String ruta_archivo = "ruta/al/archivo.formato";
 

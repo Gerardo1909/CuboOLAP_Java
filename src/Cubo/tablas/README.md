@@ -154,7 +154,7 @@ El método `obtenerValoresUnicos` devuelve una lista de valores únicos de la co
 
 ### Método `ver`
 
-El método `ver` permite visualizar por consola la estructura de una instancia de tipo `Tabla` una vez este último sea instanciado.
+El método `ver` permite visualizar por consola la estructura de una instancia de tipo `Tabla`.
 
 #### Parámetros del Método
 
@@ -185,16 +185,35 @@ tabla.ver(5, Arrays.asList("columna1", "columna2", "columna3"));
 
 #### Estructura del Resultado
 
-El método `ver` imprime las columnas seleccionadas y los datos correspondientes en un formato tabular. Cada columna tiene 
-un ancho fijo para mantener el alineamiento adecuado. A continuación un ejemplo de su salida por consola:
+El método `ver` imprime las columnas seleccionadas y las filas correspondientes en un formato tabular. Los datos se muestran en bloques de columnas, con un máximo de 4 columnas por bloque, si hay más columnas que el límite de 4 por bloque, se muestra una indicación de puntos suspensivos para las columnas adicionales. 
 
-```java
+A continuación 2 ejemplos de como se vería la impresión que genera el método `ver` por consola:
+
+##### Ejemplo #1
+
+```sh
 columna1             columna2             columna3             
-valor11              valor12              valor13              
-valor21              valor22              valor23              
-valor31              valor32              valor33              
-valor41              valor42              valor43              
-valor51              valor52              valor53   
+valor                valor                valor              
+valor                valor                valor              
+valor                valor                valor              
+valor                valor                valor              
+valor                valor                valor               
+```
+
+##### Ejemplo #2
+
+```sh
+columna1                      columna2                    columna3                columna4                ...
+valor                         valor                       valor                   valor                   ...
+valor                         valor                       valor                   valor                   ...
+valor                         valor                       valor                   valor                   ...
+valor                         valor                       valor                   valor                   ...
+
+columna5                      columna6                  
+valor                         valor                   
+valor                         valor                   
+valor                         valor                  
+valor                         valor                   
 ```
 
 ## Clase `Dimension`

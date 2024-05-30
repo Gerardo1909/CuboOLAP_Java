@@ -1,5 +1,6 @@
 package Cubo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,9 @@ import Cubo.excepciones.excepciones_dimension.NivelNoPresenteException;
 import Cubo.excepciones.excepciones_hechos.HechoNoPresenteException;
 import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
+import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
 import Cubo.excepciones.excepciones_tabla.TablaException;
+import Cubo.exportacion_archivos.EstrategiaExportarArchivo;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 import Cubo.tablas.Tabla;
@@ -27,11 +30,17 @@ import Cubo.utils.Visualizable;
  */
 public class CuboOLAP implements Visualizable {
 
+    // Defino atributos comunes del cubo
     private final List<Dimension> dimensiones;
     private final Hecho hecho;
     private final String nombre;
     private Hecho tabla_operacion;
-    private Map<List<String>, List<List<String>>> proyeccion_cubo;
+    private Hecho tabla_base;
+
+    // Defino los historiales internos de operaciones sobre el cubo
+    private List<ComandoRollUp> historial_rollUp;
+    private List<ComandoDice> historial_dice;
+    private List<ComandoSlice> historial_slice;
 
     /**
      * Constructor para la clase CuboOLAP.
@@ -56,13 +65,28 @@ public class CuboOLAP implements Visualizable {
         this.hecho = hecho;
         this.nombre = nombre;
 
-        // Y ahora en tabla_operacion guardo una gran tabla resultado de hacer merge a la tabla de hechos por cada dimensión,
+        // Inicializo los historiales de operaciones de Dice y RollUp
+        this.historial_rollUp = new ArrayList<>();
+        this.historial_dice = new ArrayList<>();
+
+        // Y ahora en 'tabla_operacion' guardo una gran tabla resultado 
+        // de hacer merge a la tabla de hechos por cada dimensión,
         // esto servirá para realizar las operaciones
         Hecho hechos_merged = hecho.getHechoCopy();
         for (Dimension dimension : dimensiones) {
             Tabla.merge(hechos_merged, dimension, dimension.getPrimaryKey());
         }
         this.tabla_operacion = hechos_merged;
+
+        // Elimino las columnas primaryKey de las dimensiones de 'tabla_operacion'
+        // ya que una vez toda la información junta, estas no sirven más
+        for (Dimension dimension : this.dimensiones){
+            this.tabla_operacion.eliminarColumna(dimension.getPrimaryKey());
+        }
+
+        // Finalmente guardo una 'tabla_base' que servirá para volver al estado original del cubo
+        this.tabla_base = this.tabla_operacion.getHechoCopy();
+
     }
 
     /**
@@ -109,13 +133,17 @@ public class CuboOLAP implements Visualizable {
         }
 
         // Genero una instancia de RollUp
-        ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterios_reduccion, hechos_seleccionados, agregacion_parsed);
+        ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterios_reduccion, hechos_seleccionados, 
+                                                  agregacion_parsed, this.historial_rollUp);
 
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
-        this.proyeccion_cubo = comando.getResultado();
+        // Guardo en el historial la operación realizada
+        this.historial_rollUp = comando.getHistorial();
+
+        // Modifico el estado del cubo
+        this.tabla_operacion = comando.getResultado();
     }
 
     public void drillDown(String dimension) throws TablaException{
@@ -151,13 +179,16 @@ public class CuboOLAP implements Visualizable {
         }
 
         // Genero una instancia de Slice
-        ComandoSlice comando = new ComandoSlice(this.tabla_operacion,dimension, nivel, valor_corte);
+        ComandoSlice comando = new ComandoSlice(this.tabla_operacion, dimension, nivel, valor_corte, this.historial_slice);
 
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
-        this.proyeccion_cubo = comando.getResultado();
+        // Guardo en el historial la operación realizada
+        this.historial_slice = comando.getHistorial();
+
+        // Modifico el estado del cubo
+        this.tabla_operacion = comando.getResultado();
 
     }
 
@@ -193,119 +224,87 @@ public class CuboOLAP implements Visualizable {
              }
         }   
     
-        // Genero una instancia de Dice
-        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterios);
+        // Genero una instancia de ComandoDice
+        ComandoDice comando = new ComandoDice(this.tabla_operacion, criterios, this.historial_dice);
 
         // Ejecuto la operación
         comando.ejecutar();
 
-        // Obtengo el resultado de la operación y lo guardo en el atributo 'proyeccion_cubo'
-        this.proyeccion_cubo = comando.getResultado();
+        // Guardo en el historial la operación realizada
+        this.historial_dice = comando.getHistorial();
+
+        // Modifico el estado del cubo
+        this.tabla_operacion = comando.getResultado();
 
     }
     
     /**
-     * Muestra una vista parcial del cubo con las columnas especificadas y un número limitado de filas.
+     * Muestra una parte seleccionada de los datos del cubo en un formato tabular.
      *
-     * @param n_filas  el número de filas a visualizar. Si se pasa un número grande de filas 
-     *                 (entiendáse por grande un número mayor a la longitud de las filas implicadas en la operación)
-     *                 se mostrarán todas las filas que resultaron de la operación aplicada.
-     * @param columnas la lista de nombres de columnas a visualizar; si es null, se visualizan todas las columnas
-     *                 usadas en la operación aplicada anteriormente.
-     * @throws ColumnaNoPresenteException si alguna de las columnas especificadas no está presente en los encabezados.
+     * @param n_filas El número de filas a mostrar.
+     * @param columnas La lista de nombres de columnas a mostrar.
+     * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
+     * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
     @Override
-    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException{
-    
-        // Verifico que el cubo haya sido operado antes de visualizarse
-        if (this.proyeccion_cubo.isEmpty()) {
-            System.out.println("Al cubo " + this.getNombre() + " no se le han aplicado operaciones visibles aún");
-            return; 
-        }
-
-        //Inicializo una lista que contiene los índices de las columnas a ver
-        List<Integer> indices_columnas = new ArrayList<>();
-
-        // Armo una nueva lista 'columnas_ver' que serán las que finalmente se visualizen, usando los índices obtenidos
-        List<String> columnas_ver = new ArrayList<>();
-
-        // Primero reviso el caso de que se pasaron columnas por argumento
-        if (columnas!= null){
-            // Verifico si las columnas especificadas existen en los headers
-            for (String columna : columnas){
-                if (!this.tabla_operacion.getHeaders().contains(columna)){
-                    throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
-                }
-            }
-
-            // Obtengo los índices de las columnas seleccionadas
-            for (String columna : columnas) {
-                indices_columnas.add(this.proyeccion_cubo.keySet().iterator().next().indexOf(columna));
-            }
-
-            columnas_ver = columnas;
-        }
-
-        // Si no se seleccionan columnas por defecto obtengo los índices de todas las que están en la operación
-        if (columnas == null){
-            for (int i = 0; i < this.proyeccion_cubo.keySet().iterator().next().size(); i++) {
-                indices_columnas.add(i);
-            }
-
-            columnas_ver = this.proyeccion_cubo.keySet().iterator().next();
-        }
-
-        // Filtro la matriz resultante para quedarme solo con las columnas seleccionadas
-        List<List<String>> matriz_filtrada = new ArrayList<>();
-        for (List<String> fila : this.proyeccion_cubo.values().iterator().next()) {
-            List<String> fila_filtrada = new ArrayList<>();
-            for (int indice : indices_columnas) {
-                fila_filtrada.add(fila.get(indice));
-            }
-            matriz_filtrada.add(fila_filtrada);
-        }
-
-        // Muestro las columnas resultantes
-        for (String columna : columnas_ver) {
-            System.out.print(String.format("%-20s", columna));
-        }
-        System.out.println();
-    
-        // Itero sobre las primeras 'n_filas' filas de la matriz resultado
-        int contador_filas = 0;
-        for (List<String> fila : matriz_filtrada) {
-            // Cuando se alcanze el máximo de filas salgo del ciclo
-            if (contador_filas >= n_filas) {
-                break;
-            }
-            // Printeo los elementos de la fila
-            for (String elemento : fila) {
-                System.out.print(String.format("%-20s", elemento));
-            }
-            System.out.println();
-            contador_filas++;
-        }
+    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
+        this.tabla_operacion.ver(n_filas, columnas);
     }
 
-    public String getNombre() {
-        return nombre;
+    /**
+     * Exporta los datos del cubo a un archivo utilizando una estrategia específica de exportación.
+     *
+     * @param ruta_guardado La ruta de destino donde se guardará el archivo.
+     * @param estrategia_exportar La estrategia de exportación a utilizar.
+     * @throws IOException Si ocurre un error de entrada/salida al exportar los datos.
+     */
+    public void exportar(String ruta_guardado, EstrategiaExportarArchivo estrategia_exportar) throws IOException{
+        
+        // Para exportar primero debo juntar los encabezados con los datos
+        // para eso armo una lista vacía que los junte
+        List<List<String>> datos_a_exportar = new ArrayList<>();
+
+        //Añado los headers
+        datos_a_exportar.add(this.tabla_operacion.getHeaders());
+
+        // Añado ahora el resto de información debajo
+        for (List<String> fila : this.tabla_operacion.getData()){
+            datos_a_exportar.add(fila);
+        }
+
+        // Ahora si exporto el cubo
+        estrategia_exportar.exportarArchivo(ruta_guardado, datos_a_exportar);
+
+    }
+
+    /**
+     * Reinicia el cubo a su estado original, restaurando 'tabla_operacion' al estado en que se creó
+     * y limpiando los historiales de operaciones.
+     *
+     * @throws TablaException Si ocurre un error al intentar restaurar el cubo a su estado original.
+     */
+    public void resetear() throws TablaException{
+        this.tabla_operacion = tabla_base.getHechoCopy();
+        this.historial_dice = new ArrayList<>();
+        this.historial_rollUp = new ArrayList<>();
+        this.historial_slice = new ArrayList<>();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         
-        // Nombre del cubo
-        sb.append("CuboOLAP: ").append(nombre).append("\n");
+        // Muestro el nombre del cubo
+        sb.append("CuboOLAP: ").append(this.nombre).append("\n");
         
-        // Información de dimensiones
-        sb.append("Dimensiones: ").append(dimensiones.size()).append("\n");
-        for (Dimension dimension : dimensiones) {
+        // Muestro la información de las dimensiones
+        sb.append("Dimensiones: ").append(this.dimensiones.size()).append("\n");
+        for (Dimension dimension : this.dimensiones) {
             sb.append(" - ").append(dimension.toString()).append("\n");
         }
         
-        // Información de la tabla de hechos usando su propio toString
-        sb.append(hecho.toString());
+        // Muestro la información de la tabla de hechos
+        sb.append(this.hecho.toString());
         
         return sb.toString();
     }

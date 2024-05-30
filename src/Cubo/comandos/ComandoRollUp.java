@@ -24,7 +24,7 @@ public class ComandoRollUp implements ComandoCubo{
     private List<String> niveles_operacion;
     private List<String> hechos_seleccionados;
     private String agregacion;
-    private Map<List<String>, List<List<String>>>resultado;
+    private List<ComandoRollUp> historial_rollUp;
 
     /**
      * Constructor para la clase ComandoRollUp.
@@ -33,14 +33,17 @@ public class ComandoRollUp implements ComandoCubo{
      * @param criterios_reduccion Un mapa que contiene la dimensión junto con su criterio de reducción.
      * @param hechos_seleccionados Los hechos que se verán involucrados en la operación.
      * @param agregacion La operación de agregación a aplicar.
+     * @param historial_rollUp El historial de operaciones RollUp aplicados sobre la instancia de 'CuboOLAP' que 
+     *                        invoca esta clase.
      */
     public ComandoRollUp(Hecho tabla_operacion, Map<Dimension, String> criterios_reduccion, 
-                         List<String> hechos_seleccionados, String agregacion) {
+                         List<String> hechos_seleccionados, String agregacion, List<ComandoRollUp> historial_rollUp) {
 
         this.tabla_operacion = tabla_operacion;
         this.criterios_reduccion = criterios_reduccion;
         this.agregacion = agregacion;
         this.hechos_seleccionados = hechos_seleccionados;
+        this.historial_rollUp = historial_rollUp;
 
         // Obtengo los niveles de la operacion
         this.niveles_operacion = this.obtenerNivelesOperacion(criterios_reduccion);
@@ -49,11 +52,14 @@ public class ComandoRollUp implements ComandoCubo{
     /**
      * Ejecuta el comando RollUp.
      * Agrupa los hechos por los criterios de reducción, aplica la operación de agregación,
-     * y almacena el resultado en el atributo 'resultado'.
+     * y almacena el resultado en 'tabla_operacion', alterando el estado del cubo.
      * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
     public void ejecutar() throws TablaException {
+    
+        // Añado al historial el comando antes de ejecutarlo
+        this.historial_rollUp.add(this);
 
         // Primero agrupo según 'niveles_operacion'
         Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.hechos_seleccionados);
@@ -148,21 +154,28 @@ public class ComandoRollUp implements ComandoCubo{
         List<String> headers_operacion = new ArrayList<>(this.niveles_operacion);
         headers_operacion.addAll(this.hechos_seleccionados);
 
-        // Y ahora armo el mapa que contiene como clave los headers de la operación
-        // y como valor contiene la matriz que contiene la operación
-        Map<List<String>, List<List<String>>> mapa_resultante = new LinkedHashMap<>();
-        mapa_resultante.put(headers_operacion, operacion_resultante);
-
-        this.resultado = mapa_resultante;
+        // Finalmente modifico 'tabla_operacion'
+        this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, 
+                                         headers_operacion, this.hechos_seleccionados);
     }
 
     /**
-     * Devuelve el resultado del comando RollUp.
+     * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.
      *
-     * @return Un mapa donde las claves son los encabezados de la operación y los valores son la matriz de la operación.
+     * @return Un objeto de tipo hecho que representa la tabla sobre la cual se ejecutan las operaciones del cubo.
      */
-    public Map<List<String>, List<List<String>>> getResultado() {
-        return this.resultado;
+    public Hecho getResultado() {
+        return this.tabla_operacion;
+    }
+
+    /**
+     * Devuelve el historial de operaciones RollUp aplicadas sobre la instancia de 'CuboOLAP' que invoca esta clase
+     * con la instancia que se encargó de ejecutar este método ya añadida.
+     *
+     * @return Una lista con datos de tipo ComandoRollUp que representan las operaciones RollUp efectuadas sobre el cubo.
+     */
+    public List<ComandoRollUp> getHistorial(){
+        return this.historial_rollUp;
     }
 
     /**

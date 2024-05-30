@@ -55,6 +55,10 @@ ExportadorCSV exportador = new LectorCSV(';');
 Una vez creada una instancia de una clase que implemente la interfaz `EstrategiaExportarArchivo` se procede a invocar el método `exportarArchivo(String ruta_archivo, List<List<String>> data))` que recibe la ruta de ubicación donde se quiere guardar el archivo y una lista de listas de tipo `String` con la información que se desea guardar: 
 
 ```java
+// Creamos una instancia del exportador deseado, en este caso elegimos el 
+// ExportadorCSV
+ExportadorCSV exportador = new ExportadorCSV(',');
+
 // Guardamos la ruta de la ubicación donde queremos guardar el archivo
 String ruta_archivo = "ruta/al/archivo.formato";
 
