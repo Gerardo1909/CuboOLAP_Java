@@ -40,10 +40,6 @@ El constructor de esta clase permite crear una instancia de tipo `CuboOLAP` prop
    - **Descripción**: Esta excepción se lanza si alguna clave primaria de las dimensiones proporcionadas no está presente en los encabezados de la tabla de hechos.
    - **Cómo Evitarla**: Asegúrate de que todas las claves primarias de las dimensiones están incluidas como encabezados en la tabla de hechos antes de llamar al constructor.
 
-2. **ColumnaNoPresenteException**
-   - **Descripción**: Aunque no se muestra en el fragmento del constructor, este tipo de excepción puede ser lanzada si hay problemas con las columnas en la tabla de hechos o las dimensiones durante la operación de merge.
-   - **Cómo Evitarla**: Verifica que todas las columnas necesarias estén presentes y que no haya conflictos durante el merge de la tabla de hechos con las dimensiones.
-
 ### Ejemplo de Uso
 
 ```java
@@ -232,10 +228,6 @@ El método `rollUp` permite realizar una operación de roll-up en una instancia 
    - **Descripción**: Esta excepción se lanza si algún hecho especificado en `hechos_seleccionados` no está presente en la tabla de hechos.
    - **Cómo Evitarla**: Verifica que todos los hechos especificados existen en la tabla de hechos antes de llamar al método.
 
-5. **TablaException**
-   - **Descripción**: Esta excepción se lanza si ocurre un error inesperado al invocar el comando.
-   - **Cómo Evitarla**: Maneja las excepciones correctamente y asegúrate de que la tabla de hechos y las dimensiones estén bien configuradas.
-
 ### Ejemplo de Uso
 
 ```java
@@ -307,10 +299,6 @@ Esta operación una vez se ejecuta y filtra los datos según los criterios espec
    - **Descripción**: Esta excepción se lanza si el valor de corte no está presente en el nivel seleccionado de la dimensión.
    - **Cómo Evitarla**: Asegúrate de que el valor de corte existe en el nivel especificado antes de llamar al método.
 
-4. **TablaException**
-   - **Descripción**: Esta excepción se lanza si ocurre un error inesperado al invocar el comando.
-   - **Cómo Evitarla**: Maneja las excepciones correctamente y asegúrate de que los datos estén bien configurados.
-
 ### Ejemplo de Uso
 
 ```java
@@ -354,19 +342,15 @@ característica principal es que puede contener varios criterios de corte a dife
 
 ### Excepciones Lanzadas
 
-- **TablaException**
-  - **Descripción**: Se lanza si se produce un error inesperado al ejecutar el comando.
-  - **Cómo Evitarla**: Asegúrate de que los datos del cubo están en un estado correcto antes de realizar la operación de "dice".
-
-- **DimensionNoPresenteException**
+1. **DimensionNoPresenteException**
   - **Descripción**: Se lanza si la dimensión especificada no está presente en el cubo.
   - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas están incluidas en el cubo antes de llamar al método.
 
-- **NivelNoPresenteException**
+2. **NivelNoPresenteException**
   - **Descripción**: Se lanza si el nivel especificado no está presente en la dimensión.
   - **Cómo Evitarla**: Asegúrate de que todos los niveles especificados están presentes en las dimensiones correspondientes.
 
-- **NivelNoPresenteException**
+3. **NivelNoPresenteException**
   - **Descripción**: Se lanza si el valor de corte no está presente en el nivel seleccionado de la dimensión.
   - **Cómo Evitarla**: Comprueba que todos los valores de corte están presentes en los niveles correspondientes de las dimensiones antes de realizar la operación.
 

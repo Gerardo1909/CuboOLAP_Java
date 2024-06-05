@@ -50,9 +50,8 @@ public class CuboOLAP{
      * @param hecho La tabla de hechos para el cubo.
      * @param dimensiones La lista de dimensiones para el cubo.
      * @throws ClaveNoPresenteException Si alguna clave primaria de una dimensión no está presente en la tabla de hechos.
-     * @throws HechoNoPresenteException 
      */
-    public CuboOLAP(String nombre, Hecho hecho, List<Dimension> dimensiones) throws ClaveNoPresenteException, ColumnaNoPresenteException, HechoNoPresenteException{
+    public CuboOLAP(String nombre, Hecho hecho, List<Dimension> dimensiones) throws ClaveNoPresenteException, ColumnaNoPresenteException{
 
         // Verifico que en la tabla de hechos estén todas las claves primarias de las dimensiones
         for (Dimension dimension : dimensiones){
@@ -103,9 +102,8 @@ public class CuboOLAP{
      * @throws DimensionNoPresenteException Si alguna dimensión especificada no está presente en el cubo.
      * @throws NivelNoPresenteException Si algún nivel especificado no está presente en alguna dimensión.
      * @throws HechoNoPresenteException Si algún hecho seleccionado no está presente en la tabla de hechos.
-     * @throws TablaException Si ocurre un error inesperado al invocar el comando.
      */
-    public void rollUp(Map<Dimension, String> criterios_reduccion, List<String> hechos_seleccionados, String agregacion) throws TablaException, AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
+    public void rollUp(Map<Dimension, String> criterios_reduccion, List<String> hechos_seleccionados, String agregacion) throws AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
 
         // Formateo el string de la operación de agregacion
         String agregacion_parsed = agregacion.toLowerCase().trim();
@@ -149,7 +147,7 @@ public class CuboOLAP{
         this.tabla_operacion = comando.getResultado();
     }
 
-    public void drillDown(Map<Dimension, String> criterios_expansion) throws TablaException, DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
+    public void drillDown(Map<Dimension, String> criterios_expansion) throws DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
         
         // Por cada entrada del mapa verifico los criterios seleccionados 
         for (Map.Entry<Dimension, String> criterio : criterios_expansion.entrySet()){
@@ -190,9 +188,8 @@ public class CuboOLAP{
      * @throws DimensionNoPresenteException Si la dimensión especificada no está presente en el cubo.
      * @throws NivelNoPresenteException Si el nivel especificado no está presente en la dimensión.
      * @throws NivelNoPresenteException Si el valor de corte no está presente en el nivel seleccionado de la dimensión.
-     * @throws TablaException Si ocurre un error inesperado al invocar el comando.
      */
-    public void slice(Dimension dimension, String nivel, String valor_corte) throws TablaException,DimensionNoPresenteException, NivelNoPresenteException{
+    public void slice(Dimension dimension, String nivel, String valor_corte) throws DimensionNoPresenteException, NivelNoPresenteException{
 
         // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
         if (!this.dimensiones.contains(dimension)){
@@ -227,12 +224,11 @@ public class CuboOLAP{
      * Realiza una operación de dice en el cubo.
      *
      * @param criterios Un mapa que contiene las dimensiones, niveles y valores a incluir en la operación de "dice".
-     * @throws TablaException Si se produce un error inesperado al ejecutar el comando.
      * @throws DimensionNoPresenteException Si la dimensión especificada no está presente en el cubo.
      * @throws NivelNoPresenteException Si el nivel especificado no está presente en la dimensión.
      * @throws NivelNoPresenteException Si el valor de corte no está presente en el nivel seleccionado de la dimensión.
      */
-    public void dice(Map<Dimension, Map<String, List<String>>> criterios) throws TablaException, DimensionNoPresenteException, NivelNoPresenteException{
+    public void dice(Map<Dimension, Map<String, List<String>>> criterios) throws DimensionNoPresenteException, NivelNoPresenteException{
         
         //Primero hago las verificaciones pertinentes de la existencia de dimension, niveles y valores especificados
         for (Map.Entry<Dimension, Map<String, List<String>>> criterioDimension : criterios.entrySet()){
@@ -310,10 +306,8 @@ public class CuboOLAP{
     /**
      * Reinicia el cubo a su estado original, restaurando 'tabla_operacion' al estado en que se creó
      * y limpiando los historiales de operaciones.
-     *
-     * @throws TablaException Si ocurre un error al intentar restaurar el cubo a su estado original.
      */
-    public void resetear() throws TablaException{
+    public void resetear(){
         this.tabla_operacion = tabla_base.getHechoCopy();
         this.historial_dice = new ArrayList<>();
         this.historial_rollUp = new ArrayList<>();

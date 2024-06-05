@@ -70,16 +70,21 @@ public class ComandoRollUp implements ComandoCubo{
      * Ejecuta el comando RollUp.
      * Agrupa los hechos por los criterios de reducción, aplica la operación de agregación,
      * y almacena el resultado en 'tabla_operacion', alterando el estado del cubo.
-     * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
-    public void ejecutar() throws TablaException {
+    public void ejecutar() {
     
         // Añado al historial el comando antes de ejecutarlo
         this.historial_rollUp.add(this);
 
         // Primero agrupo según 'niveles_operacion'
-        Map<List<String>, List<List<String>>> mapa_agrupacion = Tabla.groupBy(this.tabla_operacion,this.niveles_operacion, this.hechos_seleccionados);
+        Map<List<String>, List<List<String>>> mapa_agrupacion = new LinkedHashMap<>();
+        try {
+            mapa_agrupacion = Tabla.groupBy(this.tabla_operacion, this.niveles_operacion, this.hechos_seleccionados);
+        } catch (TablaException e) {
+            // Este error nunca debería ocurrir ya que todas las posibles excepciones fueron verificadas
+            e.printStackTrace();
+        }
 
         // Ahora armo un nuevo 'mapa_operable' que tendrá como valores las mismas listas pero de tipo double
         Map<List<String>, List<List<Double>>> mapa_operable = new LinkedHashMap<>();
@@ -98,8 +103,8 @@ public class ComandoRollUp implements ComandoCubo{
                     try {
                         Double valorDouble = Double.parseDouble(valorString);
                         listaDouble.add(valorDouble);
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
+                    } catch (NumberFormatException number_exception) {
+                        number_exception.printStackTrace();
                     }
                 }
                 listasHechos_double.add(listaDouble);
@@ -172,8 +177,12 @@ public class ComandoRollUp implements ComandoCubo{
         headers_operacion.addAll(this.hechos_seleccionados);
 
         // Finalmente modifico 'tabla_operacion'
-        this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, 
-                                         headers_operacion, this.hechos_seleccionados);
+        try {
+            this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, headers_operacion, this.hechos_seleccionados);
+        } catch (TablaException tabla_excpetion) {
+            // Esta excepcion no debería ocurrir, ya que la tabla de hechos original debería ser válida
+            tabla_excpetion.printStackTrace();
+        }
     }
 
     /**

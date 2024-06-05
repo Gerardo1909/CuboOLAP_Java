@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import Cubo.CuboOLAP;
-import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
@@ -45,10 +44,9 @@ public class ComandoSlice implements ComandoCubo {
      * Ejecuta el comando Slice.
      * Ejecuta la operación de corte en tabla_operacion', 
      * y almacena el resultado en la misma 'tabla_operacion', alterando el estado del cubo.
-     * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
-    public void ejecutar() throws TablaException {
+    public void ejecutar(){
 
         // Añado al historial el comando antes de ejecutarlo
         this.historial_slice.add(this);
@@ -91,7 +89,12 @@ public class ComandoSlice implements ComandoCubo {
         headers_operacion.removeAll(this.dimension.getHeaders());
 
         // Finalmente modifico 'tabla_operacion'
-        this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, headers_operacion, this.tabla_operacion.getHechos());
+        try {
+            this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, headers_operacion, this.tabla_operacion.getHechos());
+        } catch (Exception e) {
+            // Esta excepcion no debería ocurrir, ya que la tabla de hechos original debería ser válida
+            System.err.println(e.getMessage());
+        }
 
     }
 

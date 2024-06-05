@@ -81,8 +81,14 @@ public class Hecho extends Tabla {
      * @throws HechoNoPresenteException
      * @return Una copia profunda del objeto actual.
      */
-    public Hecho getHechoCopy() throws HechoNoPresenteException{
-        return new Hecho(this.getNombre(), this.getData(), this.getHeaders(), this.getHechos());
+    public Hecho getHechoCopy(){
+        try {
+            return new Hecho(this.getNombre(), this.getData(), this.getHeaders(), this.getHechos());
+        } catch (HechoNoPresenteException e) {
+            // Este error no debería ocurrir, ya que los hechos de la tabla original deberían estar presentes en la copia.
+            System.err.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override

@@ -39,10 +39,9 @@ public class ComandoDice implements ComandoCubo{
      * Ejecuta el comando Dice.
      * Ejecuta la operación de corte en varias dimensiones en la tabla de operación, 
      * y almacena el resultado en la misma 'tabla_operacion', alterando el estado del cubo.
-     * @throws TablaException Si se produce algún error durante la ejecución del comando.
      */
     @Override
-    public void ejecutar() throws TablaException {
+    public void ejecutar(){
 
         // Añado al historial el comando antes de ejecutarlo
         this.historial_dice.add(this);
@@ -93,8 +92,13 @@ public class ComandoDice implements ComandoCubo{
         }
 
         // Finalmente modifico 'tabla_operacion'
-        this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, 
-                                         this.tabla_operacion.getHeaders(), this.tabla_operacion.getHechos());
+        try {
+            this.tabla_operacion = new Hecho(this.tabla_operacion.getNombre(), operacion_resultante, 
+                                             this.tabla_operacion.getHeaders(), this.tabla_operacion.getHechos());
+        } catch (TablaException e) {
+            // Esta excepcion no debería ocurrir, ya que la tabla de hechos original debería ser válida
+            System.out.println(e.getMessage());
+        }
     }
 
 

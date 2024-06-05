@@ -3,9 +3,7 @@ package Cubo.comandos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import Cubo.CuboOLAP;
-import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
@@ -45,8 +43,13 @@ public class ComandoDrillDown implements ComandoCubo {
         this.historial_drillDown = historial_drillDown;
     }
 
+    /**
+     * Ejecuta el comando RollUp.
+     * Desagrupa los hechos por los criterios de expansion, el cubo vuelve a contener todos los hechos originales,
+     * y almacena el resultado en 'tabla_base', alterando el estado del cubo.
+     */
     @Override
-    public void ejecutar() throws TablaException {
+    public void ejecutar(){
 
         // Añado al historial el comando antes de ejecutarlo
         this.historial_drillDown.add(this);
@@ -82,8 +85,6 @@ public class ComandoDrillDown implements ComandoCubo {
         // Obtengo el resultado, modificando la tabla que usé para operar
         this.tabla_base = comando.getResultado();
     }
-
-
 
     /**
      * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.
