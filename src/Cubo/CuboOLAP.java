@@ -14,6 +14,7 @@ import Cubo.excepciones.excepciones_dimension.DimensionNoPresenteException;
 import Cubo.excepciones.excepciones_dimension.NivelNoPresenteException;
 import Cubo.excepciones.excepciones_hechos.HechoNoPresenteException;
 import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
+import Cubo.excepciones.excepciones_operacion.NivelDesagregadoException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
 import Cubo.excepciones.excepciones_tabla.TablaException;
@@ -40,6 +41,7 @@ public class CuboOLAP{
     private List<ComandoRollUp> historial_rollUp;
     private List<ComandoDice> historial_dice;
     private List<ComandoSlice> historial_slice;
+    private List<ComandoDrillDown> historial_drillDown;
 
     /**
      * Constructor para la clase CuboOLAP.
@@ -64,7 +66,8 @@ public class CuboOLAP{
         this.hecho = hecho;
         this.nombre = nombre;
 
-        // Inicializo los historiales de operaciones de Dice y RollUp
+        // Inicializo los historiales dde todos los métodos 
+        this.historial_drillDown = new ArrayList<>();
         this.historial_rollUp = new ArrayList<>();
         this.historial_dice = new ArrayList<>();
         this.historial_slice = new ArrayList<>();
@@ -146,8 +149,36 @@ public class CuboOLAP{
         this.tabla_operacion = comando.getResultado();
     }
 
-    public void drillDown(String dimension) throws TablaException{
-        new ComandoDrillDown(dimension).ejecutar();
+    public void drillDown(Map<Dimension, String> criterios_expansion) throws TablaException, DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
+        
+        // Por cada entrada del mapa verifico los criterios seleccionados 
+        for (Map.Entry<Dimension, String> criterio : criterios_expansion.entrySet()){
+            // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
+            if (!this.dimensiones.contains(criterio.getKey())){
+                throw new DimensionNoPresenteException("La dimensión " + criterio.getKey().getNombre() + " no está presente en el cubo.");
+            }
+            // Verifico que el nivel pasado como argumento esté presente en la dimensión
+            if (!criterio.getKey().getNiveles().containsKey(criterio.getValue())){
+                throw new NivelNoPresenteException("El nivel " + criterio.getValue() + " no está presente en la dimensión " + criterio.getKey().getNombre());
+            }
+            // Verifico que el nivel pasado como argumento no esté desagregado
+            if (this.tabla_operacion.getHeaders().contains(criterio.getValue())){
+                throw new NivelDesagregadoException("El nivel " + criterio.getValue() + " ya está presente en la tabla de hechos.");
+            }
+        }
+
+        // Genero una instancia de DrillDown
+        ComandoDrillDown comando = new ComandoDrillDown(criterios_expansion, this.tabla_base.getHechoCopy(), this.historial_rollUp, 
+                                                        this.historial_dice, this.historial_slice, this.historial_drillDown);
+
+        // Ejecuto la operación
+        comando.ejecutar();
+
+        // Guardo en el historial la operación realizada
+        this.historial_drillDown = comando.getHistorial();
+
+        // Modifico el estado del cubo
+        this.tabla_operacion = comando.getResultado();
     }
 
     /**
@@ -224,7 +255,7 @@ public class CuboOLAP{
              }
         }   
     
-        // Genero una instancia de ComandoDice
+        // Genero una instancia de Dice
         ComandoDice comando = new ComandoDice(this.tabla_operacion, criterios, this.historial_dice);
 
         // Ejecuto la operación

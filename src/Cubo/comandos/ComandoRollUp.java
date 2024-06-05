@@ -46,7 +46,24 @@ public class ComandoRollUp implements ComandoCubo{
         this.historial_rollUp = historial_rollUp;
 
         // Obtengo los niveles de la operacion
-        this.niveles_operacion = this.obtenerNivelesOperacion(criterios_reduccion);
+        this.niveles_operacion = new ArrayList<>();
+        for (Map.Entry<Dimension, String> entrada : criterios_reduccion.entrySet()) {
+            Dimension dimension = entrada.getKey();
+            String nivel = entrada.getValue();
+            this.niveles_operacion = obtenerNivelesOperacion(dimension, nivel, this.niveles_operacion);
+        }
+
+    }
+
+    // Constructor para uso dentro del módulo
+    protected ComandoRollUp(Hecho tabla_operacion, List<String> hechos_seleccionados, String agregacion, 
+                            List<String> niveles_operacion, List<ComandoRollUp> historial_rollUp) {
+
+        this.tabla_operacion = tabla_operacion;
+        this.agregacion = agregacion;
+        this.hechos_seleccionados = hechos_seleccionados;
+        this.niveles_operacion = niveles_operacion;
+        this.historial_rollUp = historial_rollUp;
     }
 
     /**
@@ -179,6 +196,15 @@ public class ComandoRollUp implements ComandoCubo{
     }
 
     /**
+     * Devuelve los niveles de agregación implicados en la operación.
+     *
+     * @return Una lista de cadenas que representa los niveles de operación.
+     */
+    protected List<String> getNivelesOperacion(){
+        return new ArrayList<>(this.niveles_operacion);
+    }
+
+    /**
      * Método privado de ayuda para calcular la suma de una lista de dobles.
      *
      * @param lista_a_sumar La lista de dobles a sumar.
@@ -193,50 +219,38 @@ public class ComandoRollUp implements ComandoCubo{
     }
 
     /**
-     * Este método recupera los niveles de operación basándose en el mapa proporcionado de dimensiones y sus niveles correspondientes.
-     * Itera a través de cada entrada en el mapa y recupera la dimensión y el nivel.
-     * Luego, obtiene el índice del nivel y, si no es el más abstracto (cuando el índice es distinto de 0),
-     * incluye en la lista todos los niveles posteriores a él.
+     * Obtiene los niveles de operación para una dimensión y nivel específicos.
      *
-     * @param mapa_dimension_nivel Un mapa que contiene las dimensiones y sus niveles correspondientes.
-     * @return Una lista de cadenas que representa los niveles de operación.
+     * @param dimension la dimensión en la que se realizará la operación
+     * @param nivel el nivel específico a partir del cual se obtendrán los niveles de operación
+     * @param niveles_operacion la lista donde se guardan los niveles de operación
+     * @return la lista de niveles de operación modificada
      */
-    private List<String> obtenerNivelesOperacion(Map <Dimension, String> mapa_dimension_nivel){
+    protected static List<String> obtenerNivelesOperacion(Dimension dimension, String nivel, List<String> niveles_operacion) {
 
-        // Genero una lista para guardar el resultado final
-        List<String> niveles_resultantes = new ArrayList<>();
+        // Obtengo el índice del nivel
+        int indice_nivel = dimension.getIndicesNiveles().get(nivel);
 
-        // Itero sobre cada entrada del mapa 'criterios_reduccion'
-        for (Map.Entry<Dimension, String> entrada : mapa_dimension_nivel.entrySet()) {
+        // Si es distinto de 0, es decir no es el más abstracto, debo incluir en la lista
+        // todo los niveles detrás de él
+        if (indice_nivel != 0) {
+            for (int i = 0; i <= indice_nivel; i++) {
 
-            // Guardo la dimension y el nivel sobre el cual estoy ahora
-            Dimension dimension = entrada.getKey();
-            String nivel = entrada.getValue();
+                // Obtengo el nivel por su indice
+                String nivel_anterior = obtenerClavePorValor(dimension.getIndicesNiveles(), i);
 
-            // Obtengo el índice del nivel
-            int indice_nivel = dimension.getIndicesNiveles().get(nivel);
+                // Y lo agrego a la lista
+                niveles_operacion.add(nivel_anterior);
 
-            // Si es distinto de 0, es decir no es el más abstracto, debo incluir en la lista
-            // todo los niveles detrás de él
-            if (indice_nivel!= 0) {
-                for (int i = 0; i <= indice_nivel; i++) {
-                   
-                    // Obtengo el nivel por su indice
-                    String nivel_anterior = obtenerClavePorValor(dimension.getIndicesNiveles(), i);
-
-                    // Y lo agrego a la lista
-                    niveles_resultantes.add(nivel_anterior);
-
-                }
             }
-            else { 
-                niveles_resultantes.add(nivel);
-            }
-
+        } else {
+            // Si es el más abstracto, simplemente lo agrego a la lista
+            niveles_operacion.add(nivel);
         }
 
-        return niveles_resultantes;
-    }
+        // Retorno la lista 'niveles_operacion' modificada
+        return niveles_operacion;
+        }
 
     /**
      * Este método obtiene la clave de un mapa dado su valor.
@@ -249,7 +263,7 @@ public class ComandoRollUp implements ComandoCubo{
      * @param valor El valor por el que se quiere buscar en el mapa.
      * @return La clave del mapa que coincide con el valor dado, o null si no se encuentra ninguna coincidencia.
      */
-    private static <K, V> K obtenerClavePorValor(Map<K, V> mapa, V valor) {
+    protected static <K, V> K obtenerClavePorValor(Map<K, V> mapa, V valor) {
         for (Map.Entry<K, V> entrada : mapa.entrySet()) {
             if (Objects.equals(entrada.getValue(), valor)) {
                 return entrada.getKey();

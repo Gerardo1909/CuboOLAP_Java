@@ -10,6 +10,8 @@ import Cubo.tablas.Dimension;
 
 /**
  * Esta clase implementa el comando Dice para la clase {@link CuboOLAP}.
+ * "Filtra" el cubo según los criterios especificados, resultando un cubo con misma dimensionalidad 
+ * pero menos registros.
  * Implementa la interfaz {@link ComandoCubo}.
  */
 public class ComandoDice implements ComandoCubo{
