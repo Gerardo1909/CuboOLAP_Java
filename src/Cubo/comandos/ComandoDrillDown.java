@@ -86,25 +86,18 @@ public class ComandoDrillDown implements ComandoCubo {
         this.tabla_base = comando.getResultado();
     }
 
-    /**
-     * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.
-     *
-     * @return Un objeto de tipo hecho que representa la tabla sobre la cual se ejecutan las operaciones del cubo.
-     */
-    public Hecho getResultado() {
-        return this.tabla_base;
-    }
+
+    // Métodos de ayuda para método ejecutar()
 
     /**
-     * Devuelve el historial de operaciones DrillDown aplicadas sobre la instancia de 'CuboOLAP' que invoca esta clase
-     * con la instancia que se encargó de ejecutar este método ya añadida.
+     * Obtiene los niveles de desagregación a partir de una lista de niveles y una lista de niveles de desagregación,
+     * en función de una dimensión dada.
      *
-     * @return Una lista con datos de tipo ComandoDrillDown que representan las operaciones DrillDown efectuadas sobre el cubo.
+     * @param lista_niveles           La lista de niveles existentes.
+     * @param niveles_desagregacion   La lista de niveles de desagregación a añadir.
+     * @param dimension               La dimensión sobre la cual se realiza la desagregación.
+     * @return                        Una lista con los niveles de desagregación añadidos.
      */
-    public List<ComandoDrillDown> getHistorial(){
-        return this.historial_drillDown;
-    }
-
     private List<String> obtenerNivelesDesagregacion(List<String> lista_niveles, List<String> niveles_desagregacion, Dimension dimension) {
 
         // Primero defino una lista 'lista_resultado' 
@@ -145,6 +138,28 @@ public class ComandoDrillDown implements ComandoCubo {
 
         // Devuelvo la lista con los niveles de desagregación añadidos
         return lista_resultado;
+    }
+
+
+    // Getters de la clase
+
+    /**
+     * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.
+     *
+     * @return Un objeto de tipo hecho que representa la tabla sobre la cual se ejecutan las operaciones del cubo.
+     */
+    public Hecho getResultado() {
+        return this.tabla_base;
+    }
+
+    /**
+     * Devuelve el historial de operaciones DrillDown aplicadas sobre la instancia de 'CuboOLAP' que invoca esta clase
+     * con la instancia que se encargó de ejecutar este método ya añadida.
+     *
+     * @return Una lista con datos de tipo ComandoDrillDown que representan las operaciones DrillDown efectuadas sobre el cubo.
+     */
+    public List<ComandoDrillDown> getHistorial(){
+        return this.historial_drillDown;
     }
 
 

@@ -17,7 +17,6 @@ import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
 import Cubo.excepciones.excepciones_operacion.NivelDesagregadoException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
-import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.exportacion_archivos.EstrategiaExportarArchivo;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;

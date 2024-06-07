@@ -1,37 +1,1235 @@
-anio;region;categoria;valor_total
-2018;North America;Components;3273942.150000018
-2019;North America;Components;4285236.790000052
-2018;North America;Bikes;1.8827625290000148E7
-2019;North America;Bikes;2.0723330779999968E7
-2019;North America;Clothing;683028.1099999952
-2020;North America;Clothing;219205.850000001
-2020;North America;Bikes;7895007.350000155
-2020;North America;Components;1074260.7400000016
-2018;North America;Accessories;84699.5800000001
-2019;North America;Accessories;212287.50000000105
-2017;North America;Bikes;7399568.630000018
-2018;North America;Clothing;437368.76000000024
-2017;North America;Clothing;34469.130000000034
-2017;North America;Accessories;20243.08999999998
-2020;North America;Accessories;83170.83000000009
-2017;North America;Components;615474.7300000003
-2019;Pacific;Components;125213.50000000007
-2020;Pacific;Bikes;460463.9799999999
-2019;Pacific;Bikes;708517.1299999993
-2020;Pacific;Clothing;7794.589999999999
-2020;Pacific;Accessories;3147.7699999999995
-2019;Pacific;Clothing;26278.58999999999
-2020;Pacific;Components;43996.69000000001
-2019;Pacific;Accessories;15612.600000000002
-2019;Europe;Accessories;73367.67000000004
-2019;Europe;Components;1076244.830000003
-2019;Europe;Bikes;4395924.720000031
-2020;Europe;Bikes;2352070.2899999963
-2020;Europe;Clothing;78525.76999999986
-2019;Europe;Clothing;174963.3600000002
-2020;Europe;Components;394904.05
-2020;Europe;Accessories;37474.87999999998
-2018;Europe;Components;337101.42000000033
-2018;Europe;Bikes;1306524.9899999998
-2018;Europe;Clothing;52421.889999999956
-2018;Europe;Accessories;9102.169999999996
+anio;region;categoria;subcategoria;producto;valor_total
+2018;North America;Components;Road Frames;LL Road Frame - Black, 52;98920.53000000014
+2019;North America;Components;Road Frames;LL Road Frame - Black, 52;101992.89000000019
+2018;North America;Bikes;Road Bikes;Road-650 Black, 52;479511.26000000007
+2019;North America;Bikes;Road Bikes;Road-650 Black, 52;285663.56999999983
+2018;North America;Components;Wheels;LL Road Rear Wheel;30730.70000000004
+2018;North America;Components;Road Frames;LL Road Frame - Red, 60;108743.68000000018
+2018;North America;Bikes;Road Bikes;Road-650 Red, 60;476147.7000000005
+2019;North America;Bikes;Road Bikes;Road-650 Red, 60;270552.04
+2018;North America;Bikes;Road Bikes;Road-650 Red, 44;416084.7300000001
+2019;North America;Bikes;Road Bikes;Road-650 Red, 44;277583.1699999999
+2018;North America;Components;Road Frames;ML Road Frame-W - Yellow, 44;146835.31999999995
+2019;North America;Components;Road Frames;ML Road Frame-W - Yellow, 44;210707.7999999999
+2019;North America;Clothing;Socks;Racing Socks, M;3699.670000000001
+2020;North America;Clothing;Socks;Racing Socks, M;1763.5999999999995
+2019;North America;Clothing;Socks;Racing Socks, L;6064.529999999998
+2020;North America;Clothing;Socks;Racing Socks, L;3383.2300000000023
+2019;North America;Components;Pedals;LL Road Pedal;10639.020000000008
+2019;North America;Components;Pedals;ML Road Pedal;12925.75
+2019;North America;Components;Pedals;HL Road Pedal;17152.270000000026
+2019;North America;Bikes;Road Bikes;Road-350-W Yellow, 48;606859.9999999999
+2020;North America;Bikes;Road Bikes;Road-350-W Yellow, 48;445776.6799999998
+2018;North America;Components;Road Frames;HL Road Frame - Red, 62;144845.94000000018
+2019;North America;Components;Handlebars;LL Road Handlebars;2191.0400000000004
+2019;North America;Components;Road Frames;ML Road Frame-W - Yellow, 38;130624.59999999996
+2020;North America;Components;Pedals;ML Road Pedal;6518.75
+2018;North America;Accessories;Helmets;Sport-100 Helmet, Black;22535.889999999992
+2019;North America;Accessories;Helmets;Sport-100 Helmet, Black;29166.939999999988
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Black, 38;630176.8799999995
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Black, 38;566524.9899999994
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Black, 42;600612.0299999994
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Black, 42;520422.6799999997
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Black, 44;636319.3499999992
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Black, 44;545060.0499999996
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Black, 48;552822.2699999997
+2018;North America;Components;Wheels;HL Mountain Rear Wheel;87922.92000000016
+2018;North America;Clothing;Tights;Women's Tights, S;50082.21000000002
+2018;North America;Clothing;Tights;Women's Tights, L;49002.97000000001
+2018;North America;Clothing;Gloves;Full-Finger Gloves, S;6176.089999999993
+2019;North America;Clothing;Gloves;Full-Finger Gloves, S;3805.9299999999967
+2018;North America;Clothing;Gloves;Full-Finger Gloves, M;24316.380000000037
+2019;North America;Clothing;Gloves;Full-Finger Gloves, M;18307.030000000028
+2018;North America;Clothing;Gloves;Full-Finger Gloves, L;37343.630000000005
+2019;North America;Clothing;Gloves;Full-Finger Gloves, L;27478.610000000033
+2019;North America;Clothing;Shorts;Women's Mountain Shorts, S;54139.689999999995
+2020;North America;Clothing;Shorts;Women's Mountain Shorts, S;34210.499999999985
+2019;North America;Clothing;Shorts;Women's Mountain Shorts, M;14822.469999999978
+2019;North America;Clothing;Shorts;Women's Mountain Shorts, L;52679.57000000003
+2020;North America;Clothing;Shorts;Women's Mountain Shorts, L;32540.739999999994
+2017;North America;Clothing;Socks;Mountain Bike Socks, M;3111.549999999999
+2018;North America;Clothing;Socks;Mountain Bike Socks, M;3036.9500000000003
+2017;North America;Clothing;Socks;Mountain Bike Socks, L;376.1999999999998
+2018;North America;Accessories;Helmets;Sport-100 Helmet, Blue;24435.459999999985
+2019;North America;Accessories;Helmets;Sport-100 Helmet, Blue;30259.63999999998
+2017;North America;Clothing;Caps;AWC Logo Cap;2692.140000000004
+2018;North America;Clothing;Caps;AWC Logo Cap;8726.61
+2019;North America;Clothing;Caps;AWC Logo Cap;10361.200000000004
+2018;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;49853.15999999995
+2019;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;57720.479999999974
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 38;524447.6999999998
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 42;535565.3699999994
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 44;521047.6499999999
+2019;North America;Components;Handlebars;ML Mountain Handlebars;22000.340000000026
+2018;North America;Clothing;Bib-Shorts;Men's Bib-Shorts, M;46237.85000000002
+2019;North America;Clothing;Vests;Classic Vest, S;57124.10999999999
+2020;North America;Clothing;Vests;Classic Vest, S;34259.48999999998
+2019;North America;Accessories;Bottles and Cages;Water Bottle - 30 oz.;3079.86
+2019;North America;Accessories;Bike Racks;Hitch Rack - 4-Bike;79912.8
+2019;North America;Accessories;Cleaners;Bike Wash - Dissolver;4657.399999999996
+2019;North America;Accessories;Hydration Packs;Hydration Pack - 70 oz.;27768.649999999987
+2019;North America;Clothing;Jerseys;Short-Sleeve Classic Jersey, L;32280.209999999977
+2019;North America;Clothing;Jerseys;Short-Sleeve Classic Jersey, XL;44281.73999999998
+2019;North America;Components;Saddles;HL Mountain Seat/Saddle;8652.919999999987
+2019;North America;Components;Pedals;HL Mountain Pedal;17497.250000000022
+2017;North America;Bikes;Road Bikes;Road-650 Black, 58;110317.97999999997
+2018;North America;Bikes;Road Bikes;Road-650 Black, 58;394982.88000000006
+2017;North America;Bikes;Road Bikes;Road-650 Black, 52;144783.6600000001
+2017;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;14792.120000000028
+2017;North America;Bikes;Road Bikes;Road-450 Red, 58;245436.9099999999
+2018;North America;Bikes;Road Bikes;Road-450 Red, 58;262961.86999999994
+2017;North America;Bikes;Road Bikes;Road-450 Red, 52;307926.0799999997
+2018;North America;Bikes;Road Bikes;Road-450 Red, 52;313174.8199999997
+2017;North America;Bikes;Road Bikes;Road-650 Red, 60;145972.08000000013
+2017;North America;Bikes;Road Bikes;Road-650 Red, 62;116609.88000000002
+2018;North America;Bikes;Road Bikes;Road-650 Red, 62;401559.9299999998
+2017;North America;Bikes;Road Bikes;Road-650 Red, 44;145552.62000000002
+2018;North America;Bikes;Road Bikes;Road-650 Red, 48;402045.37
+2019;North America;Bikes;Mountain Bikes;Mountain-200 Black, 42;1082789.829999999
+2018;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 38;554601.0599999999
+2019;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 38;1007791.5099999986
+2018;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 46;619187.8300000001
+2019;North America;Components;Road Frames;LL Road Frame - Black, 58;59136.05000000001
+2020;North America;Components;Road Frames;LL Road Frame - Black, 52;24684.260000000006
+2020;North America;Components;Pedals;LL Road Pedal;5853.889999999994
+2018;North America;Components;Road Frames;LL Road Frame - Black, 60;11588.22
+2019;North America;Components;Road Frames;LL Road Frame - Black, 60;8497.859999999999
+2019;North America;Components;Road Frames;LL Road Frame - Black, 44;17933.89
+2019;North America;Bikes;Road Bikes;Road-650 Black, 60;138118.25999999992
+2018;North America;Bikes;Road Bikes;Road-650 Black, 62;148034.6999999999
+2018;North America;Bikes;Road Bikes;Road-650 Black, 48;151021.24999999994
+2019;North America;Bikes;Road Bikes;Road-250 Black, 44;815887.6800000004
+2020;North America;Bikes;Road Bikes;Road-250 Black, 44;310794.1200000002
+2019;North America;Bikes;Road Bikes;Road-250 Black, 48;727651.2000000007
+2020;North America;Bikes;Road Bikes;Road-250 Black, 48;256551.74999999994
+2018;North America;Bikes;Road Bikes;Road-250 Black, 52;335088.64000000036
+2019;North America;Bikes;Road Bikes;Road-250 Black, 52;562162.9800000004
+2020;North America;Bikes;Road Bikes;Road-250 Black, 52;175921.19999999995
+2018;North America;Components;Wheels;ML Road Front Wheel;51713.40999999996
+2019;North America;Components;Wheels;ML Road Front Wheel;19820.990000000005
+2019;North America;Components;Wheels;HL Road Front Wheel;31686.40000000003
+2019;North America;Components;Wheels;LL Road Rear Wheel;22828.52000000003
+2018;North America;Components;Road Frames;HL Road Frame - Black, 44;130396.94000000013
+2019;North America;Components;Road Frames;HL Road Frame - Black, 44;154524.00000000003
+2020;North America;Components;Road Frames;HL Road Frame - Black, 44;15460.199999999997
+2018;North America;Components;Road Frames;HL Road Frame - Black, 48;31232.799999999992
+2019;North America;Components;Road Frames;HL Road Frame - Black, 48;40368.3
+2018;North America;Clothing;Gloves;Half-Finger Gloves, L;2176.0200000000013
+2019;North America;Bikes;Road Bikes;Road-750 Black, 58;81645.48000000003
+2020;North America;Bikes;Road Bikes;Road-750 Black, 58;53782.34000000001
+2019;North America;Components;Road Frames;HL Road Frame - Red, 62;151791.13999999996
+2018;North America;Components;Road Frames;HL Road Frame - Red, 44;147991.96000000014
+2019;North America;Components;Road Frames;HL Road Frame - Red, 44;147496.63999999998
+2020;North America;Components;Road Frames;HL Road Frame - Red, 44;20613.6
+2018;North America;Components;Road Frames;HL Road Frame - Red, 48;31232.799999999992
+2019;North America;Components;Road Frames;HL Road Frame - Red, 48;39509.399999999994
+2019;North America;Components;Road Frames;LL Road Frame - Red, 48;30754.16000000002
+2019;North America;Components;Road Frames;LL Road Frame - Red, 60;41679.98000000003
+2019;North America;Components;Road Frames;LL Road Frame - Red, 62;34524.29000000003
+2019;North America;Bikes;Road Bikes;Road-250 Red, 44;439803.00000000023
+2019;North America;Bikes;Road Bikes;Road-250 Red, 48;398754.7200000003
+2018;North America;Bikes;Road Bikes;Road-250 Red, 52;373832.5500000005
+2019;North America;Bikes;Road Bikes;Road-250 Red, 52;301998.0599999998
+2019;North America;Bikes;Road Bikes;Road-550-W Yellow, 38;400108.92999999993
+2020;North America;Bikes;Road Bikes;Road-550-W Yellow, 38;152609.83
+2019;North America;Bikes;Road Bikes;Road-550-W Yellow, 40;346181.6399999998
+2020;North America;Bikes;Road Bikes;Road-550-W Yellow, 40;125045.93999999999
+2018;North America;Bikes;Road Bikes;Road-550-W Yellow, 42;162070.19999999992
+2019;North America;Bikes;Road Bikes;Road-550-W Yellow, 42;266779.3
+2020;North America;Bikes;Road Bikes;Road-550-W Yellow, 48;165383.33999999994
+2019;North America;Components;Handlebars;HL Road Handlebars;17725.11999999999
+2020;North America;Components;Handlebars;HL Road Handlebars;3391.52
+2018;North America;Components;Road Frames;ML Road Frame-W - Yellow, 38;91819.34999999999
+2020;North America;Components;Road Frames;ML Road Frame-W - Yellow, 38;37117.6
+2019;North America;Components;Road Frames;ML Road Frame-W - Yellow, 40;25696.7
+2019;North America;Components;Road Frames;ML Road Frame-W - Yellow, 48;129683.69999999995
+2020;North America;Components;Road Frames;ML Road Frame-W - Yellow, 48;32121.000000000004
+2019;North America;Components;Saddles;HL Road Seat/Saddle;3221.1599999999994
+2020;North America;Components;Saddles;HL Road Seat/Saddle;284.21999999999997
+2020;North America;Components;Pedals;HL Road Pedal;9232.100000000008
+2020;North America;Bikes;Road Bikes;Road-350-W Yellow, 42;219426.8499999998
+2019;North America;Bikes;Road Bikes;Road-350-W Yellow, 44;152067.9099999999
+2019;North America;Components;Brakes;Front Brakes;21104.040000000005
+2019;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 46;323280.14000000025
+2020;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 46;220287.76000000018
+2020;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 60;241219.88000000018
+2020;North America;Bikes;Touring Bikes;Touring-1000 Blue, 46;221193.7200000001
+2019;North America;Bikes;Touring Bikes;Touring-1000 Blue, 60;498222.4400000004
+2020;North America;Bikes;Touring Bikes;Touring-1000 Blue, 60;266610.24000000017
+2019;North America;Bikes;Touring Bikes;Touring-2000 Blue, 54;218770.1600000002
+2020;North America;Bikes;Touring Bikes;Touring-2000 Blue, 54;131932.7100000001
+2019;North America;Bikes;Touring Bikes;Touring-3000 Blue, 50;94872.69000000005
+2017;North America;Accessories;Helmets;Sport-100 Helmet, Black;6682.890000000001
+2020;North America;Accessories;Helmets;Sport-100 Helmet, Black;9438.459999999992
+2017;North America;Components;Road Frames;LL Road Frame - Black, 58;19286.640000000003
+2018;North America;Components;Road Frames;LL Road Frame - Black, 58;62462.60000000006
+2017;North America;Components;Road Frames;LL Road Frame - Black, 52;30537.180000000044
+2019;North America;Bikes;Road Bikes;Road-650 Black, 58;248706.80999999994
+2017;North America;Bikes;Road Bikes;Road-650 Black, 60;57885.47999999993
+2018;North America;Bikes;Road Bikes;Road-650 Black, 60;237827.54999999996
+2017;North America;Bikes;Road Bikes;Road-650 Black, 62;26845.439999999988
+2019;North America;Bikes;Road Bikes;Road-650 Black, 62;76575.77000000002
+2017;North America;Bikes;Road Bikes;Road-650 Black, 44;57046.559999999925
+2018;North America;Bikes;Road Bikes;Road-650 Black, 44;241439.33000000002
+2019;North America;Bikes;Road Bikes;Road-650 Black, 44;140279.28999999995
+2017;North America;Bikes;Road Bikes;Road-650 Black, 48;26425.979999999992
+2019;North America;Bikes;Road Bikes;Road-650 Black, 48;74696.61000000004
+2018;North America;Bikes;Road Bikes;Road-250 Black, 44;481820.8900000004
+2018;North America;Bikes;Road Bikes;Road-250 Black, 48;409218.29000000044
+2018;North America;Bikes;Road Bikes;Road-250 Black, 58;213357.22000000012
+2019;North America;Bikes;Road Bikes;Road-250 Black, 58;388440.6900000004
+2020;North America;Bikes;Road Bikes;Road-250 Black, 58;167125.13999999998
+2018;North America;Components;Wheels;HL Road Front Wheel;70106.1600000001
+2018;North America;Clothing;Shorts;Men's Sports Shorts, M;24883.42999999999
+2019;North America;Clothing;Shorts;Men's Sports Shorts, M;15999.949999999986
+2019;North America;Clothing;Tights;Women's Tights, S;31531.939999999995
+2019;North America;Clothing;Tights;Women's Tights, L;34917.43999999999
+2019;North America;Clothing;Gloves;Half-Finger Gloves, S;11061.689999999997
+2018;North America;Clothing;Gloves;Half-Finger Gloves, M;6821.530000000011
+2019;North America;Clothing;Gloves;Half-Finger Gloves, M;18375.600000000006
+2020;North America;Clothing;Gloves;Half-Finger Gloves, M;4410.91
+2019;North America;Bikes;Road Bikes;Road-750 Black, 44;42442.69000000001
+2020;North America;Bikes;Road Bikes;Road-750 Black, 44;32399.00000000001
+2019;North America;Bikes;Road Bikes;Road-750 Black, 48;165969.23
+2020;North America;Bikes;Road Bikes;Road-750 Black, 48;120621.46000000004
+2019;North America;Bikes;Road Bikes;Road-750 Black, 52;140287.65000000008
+2020;North America;Bikes;Road Bikes;Road-750 Black, 52;96225.03000000001
+2017;North America;Accessories;Helmets;Sport-100 Helmet, Red;6440.610000000001
+2018;North America;Accessories;Helmets;Sport-100 Helmet, Red;21258.62999999997
+2019;North America;Accessories;Helmets;Sport-100 Helmet, Red;27248.60999999998
+2020;North America;Accessories;Helmets;Sport-100 Helmet, Red;8012.199999999996
+2017;North America;Accessories;Helmets;Sport-100 Helmet, Blue;7119.589999999999
+2020;North America;Accessories;Helmets;Sport-100 Helmet, Blue;9599.739999999993
+2020;North America;Clothing;Caps;AWC Logo Cap;3011.1500000000015
+2018;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;26236.84000000007
+2019;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;31899.260000000035
+2020;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;15737.709999999994
+2017;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;7181.160000000007
+2018;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;25646.56000000007
+2019;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;21959.330000000038
+2017;North America;Components;Road Frames;LL Road Frame - Red, 44;31821.619999999984
+2018;North America;Components;Road Frames;LL Road Frame - Red, 44;105296.17000000026
+2019;North America;Components;Road Frames;LL Road Frame - Red, 44;42489.30000000003
+2017;North America;Components;Road Frames;LL Road Frame - Red, 48;20049.45999999999
+2018;North America;Components;Road Frames;LL Road Frame - Red, 48;71717.1300000001
+2017;North America;Components;Road Frames;LL Road Frame - Red, 60;31453.739999999983
+2017;North America;Components;Road Frames;LL Road Frame - Red, 62;20601.28
+2018;North America;Components;Road Frames;LL Road Frame - Red, 62;70300.82000000012
+2017;North America;Components;Road Frames;ML Road Frame - Red, 48;48895.300000000025
+2018;North America;Components;Road Frames;ML Road Frame - Red, 48;40329.7
+2017;North America;Bikes;Road Bikes;Road-150 Red, 62;234018.64000000004
+2018;North America;Bikes;Road Bikes;Road-150 Red, 62;332778.80000000016
+2017;North America;Bikes;Road Bikes;Road-150 Red, 44;111641.92000000003
+2018;North America;Bikes;Road Bikes;Road-150 Red, 44;223283.84000000005
+2017;North America;Bikes;Road Bikes;Road-150 Red, 48;111641.92000000003
+2018;North America;Bikes;Road Bikes;Road-150 Red, 48;223283.84000000008
+2017;North America;Bikes;Road Bikes;Road-150 Red, 52;111641.92000000004
+2018;North America;Bikes;Road Bikes;Road-150 Red, 52;223283.84000000005
+2017;North America;Bikes;Road Bikes;Road-150 Red, 56;382158.88000000024
+2018;North America;Bikes;Road Bikes;Road-150 Red, 56;410069.36000000016
+2017;North America;Bikes;Road Bikes;Road-450 Red, 60;140841.1899999999
+2018;North America;Bikes;Road Bikes;Road-450 Red, 60;165335.30999999997
+2017;North America;Bikes;Road Bikes;Road-450 Red, 44;137342.02999999988
+2018;North America;Bikes;Road Bikes;Road-450 Red, 44;165335.30999999994
+2017;North America;Bikes;Road Bikes;Road-450 Red, 48;45489.08000000001
+2018;North America;Bikes;Road Bikes;Road-450 Red, 48;90978.15999999999
+2017;North America;Bikes;Road Bikes;Road-650 Red, 58;22231.379999999997
+2018;North America;Bikes;Road Bikes;Road-650 Red, 58;136642.26
+2019;North America;Bikes;Road Bikes;Road-650 Red, 58;78454.93000000002
+2019;North America;Bikes;Road Bikes;Road-650 Red, 62;236492.26999999996
+2017;North America;Bikes;Road Bikes;Road-650 Red, 48;110737.43999999999
+2019;North America;Bikes;Road Bikes;Road-650 Red, 48;244345.58999999988
+2017;North America;Bikes;Road Bikes;Road-650 Red, 52;57885.47999999994
+2018;North America;Bikes;Road Bikes;Road-650 Red, 52;240197.7700000001
+2019;North America;Bikes;Road Bikes;Road-650 Red, 52;143755.74
+2018;North America;Bikes;Road Bikes;Road-250 Red, 44;530988.7500000003
+2018;North America;Bikes;Road Bikes;Road-250 Red, 48;458323.5600000006
+2018;North America;Bikes;Road Bikes;Road-250 Red, 58;215975.10000000012
+2019;North America;Bikes;Road Bikes;Road-250 Red, 58;407027.61000000034
+2020;North America;Bikes;Road Bikes;Road-250 Red, 58;156863.06999999995
+2018;North America;Bikes;Road Bikes;Road-550-W Yellow, 38;233641.1699999999
+2018;North America;Bikes;Road Bikes;Road-550-W Yellow, 40;191482.93999999997
+2020;North America;Bikes;Road Bikes;Road-550-W Yellow, 42;86053.12000000001
+2018;North America;Bikes;Road Bikes;Road-550-W Yellow, 44;97842.37999999996
+2019;North America;Bikes;Road Bikes;Road-550-W Yellow, 44;184495.75999999995
+2020;North America;Bikes;Road Bikes;Road-550-W Yellow, 44;75968.77
+2018;North America;Bikes;Road Bikes;Road-550-W Yellow, 48;226778.2199999999
+2019;North America;Bikes;Road Bikes;Road-550-W Yellow, 48;410798.32
+2018;North America;Components;Handlebars;LL Road Handlebars;2550.4499999999994
+2018;North America;Components;Handlebars;HL Road Handlebars;15088.000000000004
+2018;North America;Components;Road Frames;ML Road Frame-W - Yellow, 48;85330.35
+2018;North America;Accessories;Locks;Cable Lock;9055.0
+2018;North America;Accessories;Pumps;Minipump;7414.599999999995
+2019;North America;Clothing;Bib-Shorts;Men's Bib-Shorts, M;29923.019999999997
+2018;North America;Clothing;Bib-Shorts;Men's Bib-Shorts, L;20084.279999999984
+2019;North America;Clothing;Vests;Classic Vest, M;32285.16000000001
+2020;North America;Clothing;Vests;Classic Vest, M;14872.970000000003
+2020;North America;Accessories;Bottles and Cages;Water Bottle - 30 oz.;1641.950000000002
+2020;North America;Accessories;Bike Racks;Hitch Rack - 4-Bike;40946.399999999994
+2020;North America;Accessories;Cleaners;Bike Wash - Dissolver;2379.949999999998
+2020;North America;Accessories;Hydration Packs;Hydration Pack - 70 oz.;11032.939999999995
+2019;North America;Clothing;Jerseys;Short-Sleeve Classic Jersey, S;21823.77999999999
+2020;North America;Clothing;Jerseys;Short-Sleeve Classic Jersey, S;9004.420000000004
+2020;North America;Clothing;Jerseys;Short-Sleeve Classic Jersey, L;16305.109999999999
+2020;North America;Clothing;Jerseys;Short-Sleeve Classic Jersey, XL;22869.38
+2019;North America;Bikes;Road Bikes;Road-350-W Yellow, 40;551475.7500000001
+2020;North America;Bikes;Road Bikes;Road-350-W Yellow, 40;409919.94999999995
+2019;North America;Bikes;Road Bikes;Road-350-W Yellow, 42;327354.22999999986
+2020;North America;Bikes;Road Bikes;Road-350-W Yellow, 44;108182.53999999995
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Black, 42;62178.899999999994
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Black, 42;271181.14999999997
+2019;North America;Components;Mountain Frames;HL Mountain Frame - Black, 42;314040.4600000001
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Black, 48;48585.59999999999
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Black, 38;50028.99999999999
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Black, 38;136394.4999999999
+2019;North America;Components;Mountain Frames;HL Mountain Frame - Black, 38;171816.83999999994
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Black, 48;507091.49999999965
+2018;North America;Bikes;Mountain Bikes;Mountain-200 Black, 38;708250.98
+2019;North America;Bikes;Mountain Bikes;Mountain-200 Black, 38;1286278.0699999966
+2020;North America;Bikes;Mountain Bikes;Mountain-200 Black, 38;456104.97999999975
+2018;North America;Bikes;Mountain Bikes;Mountain-200 Black, 42;692616.2400000001
+2020;North America;Bikes;Mountain Bikes;Mountain-200 Black, 42;352371.71999999986
+2018;North America;Bikes;Mountain Bikes;Mountain-200 Black, 46;468711.18000000005
+2019;North America;Bikes;Mountain Bikes;Mountain-200 Black, 46;824720.1299999992
+2020;North America;Bikes;Mountain Bikes;Mountain-200 Black, 46;339978.8199999999
+2018;North America;Bikes;Mountain Bikes;Mountain-300 Black, 38;205175.2300000002
+2019;North America;Bikes;Mountain Bikes;Mountain-300 Black, 38;190919.45000000007
+2018;North America;Bikes;Mountain Bikes;Mountain-300 Black, 40;248590.56000000014
+2019;North America;Bikes;Mountain Bikes;Mountain-300 Black, 40;199710.51
+2018;North America;Bikes;Mountain Bikes;Mountain-300 Black, 44;231332.43000000005
+2019;North America;Bikes;Mountain Bikes;Mountain-300 Black, 44;198284.94000000006
+2018;North America;Bikes;Mountain Bikes;Mountain-300 Black, 48;236516.3500000001
+2019;North America;Bikes;Mountain Bikes;Mountain-300 Black, 48;204484.0400000001
+2018;North America;Components;Mountain Frames;ML Mountain Frame - Black, 38;55035.37999999998
+2019;North America;Components;Mountain Frames;ML Mountain Frame - Black, 38;43526.079999999994
+2018;North America;Components;Wheels;LL Mountain Front Wheel;12866.850000000008
+2019;North America;Components;Wheels;LL Mountain Front Wheel;6961.949999999994
+2018;North America;Components;Wheels;ML Mountain Rear Wheel;60806.440000000046
+2019;North America;Components;Wheels;ML Mountain Rear Wheel;44978.40000000003
+2019;North America;Components;Wheels;HL Mountain Rear Wheel;61205.890000000094
+2018;North America;Components;Mountain Frames;ML Mountain Frame - Black, 44;70939.13999999998
+2019;North America;Components;Mountain Frames;ML Mountain Frame - Black, 44;44363.119999999995
+2018;North America;Components;Mountain Frames;ML Mountain Frame - Black, 48;109875.31999999995
+2019;North America;Components;Mountain Frames;ML Mountain Frame - Black, 48;70646.12
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Black, 42;32521.790000000008
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Black, 42;13188.559999999998
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Black, 44;44456.49999999999
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Black, 44;28325.429999999997
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Black, 48;32671.660000000014
+2019;North America;Components;Cranksets;LL Crankset;18004.590000000015
+2019;North America;Components;Cranksets;ML Crankset;7694.500000000001
+2019;North America;Components;Cranksets;HL Crankset;57135.039999999986
+2020;North America;Components;Cranksets;HL Crankset;31102.720000000012
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Black, 42;60910.119999999995
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Black, 44;48598.500000000015
+2017;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;6315.9600000000055
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 42;96516.61999999995
+2019;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 42;97722.95999999998
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 48;69589.49999999996
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 48;72045.59999999996
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 46;51303.88999999998
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 46;136475.86999999988
+2019;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 46;161506.91999999995
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 38;64310.50999999995
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 38;272641.0699999998
+2019;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 38;335217.4399999999
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 38;589557.1099999994
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 42;524447.6499999997
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 44;545085.3199999996
+2017;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 48;458997.74999999965
+2020;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 38;361731.79
+2018;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 42;637043.46
+2019;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 42;817375.449999999
+2019;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 46;841146.9899999993
+2018;North America;Components;Forks;LL Fork;10226.950000000004
+2018;North America;Components;Forks;HL Fork;32843.649999999994
+2019;North America;Components;Forks;HL Fork;20791.19
+2018;North America;Components;Headsets;LL Headset;1764.7199999999991
+2018;North America;Components;Headsets;ML Headset;21285.52
+2019;North America;Components;Headsets;ML Headset;14375.029999999997
+2018;North America;Components;Headsets;HL Headset;9804.04000000001
+2018;North America;Components;Handlebars;LL Mountain Handlebars;5902.469999999994
+2019;North America;Components;Handlebars;LL Mountain Handlebars;8282.969999999992
+2020;North America;Components;Handlebars;LL Mountain Handlebars;2992.639999999999
+2018;North America;Components;Handlebars;ML Mountain Handlebars;13427.020000000011
+2020;North America;Components;Handlebars;ML Mountain Handlebars;6315.500000000001
+2019;North America;Components;Derailleurs;Rear Derailleur;12316.72
+2019;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 40;96292.81999999993
+2020;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 40;47403.65
+2019;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 42;65316.54999999998
+2019;North America;Components;Brakes;Rear Brakes;9009.899999999994
+2019;North America;Components;Saddles;ML Mountain Seat/Saddle;6312.300000000002
+2020;North America;Components;Saddles;ML Mountain Seat/Saddle;2371.480000000001
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 42;46789.71000000005
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 42;28358.970000000027
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 44;33428.73000000003
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 52;35013.030000000035
+2019;North America;Components;Pedals;LL Mountain Pedal;5926.759999999994
+2019;North America;Components;Pedals;ML Mountain Pedal;7226.5
+2020;North America;Components;Pedals;HL Mountain Pedal;9212.660000000005
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 40;34479.660000000025
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 40;14733.990000000005
+2019;North America;Components;Derailleurs;Front Derailleur;15733.300000000012
+2020;North America;Components;Derailleurs;Front Derailleur;8727.510000000004
+2020;North America;Components;Brakes;Front Brakes;9904.499999999995
+2019;North America;Components;Chains;Chain;3746.860000000002
+2020;North America;Components;Chains;Chain;1736.0200000000004
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 40;71187.90000000004
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 42;69831.94000000003
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 44;61357.19000000003
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 48;68136.99000000002
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 52;71865.88000000002
+2019;North America;Components;Bottom Brackets;LL Bottom Bracket;5538.69
+2019;North America;Components;Bottom Brackets;HL Bottom Bracket;15890.020000000008
+2019;North America;Clothing;Shorts;Men's Sports Shorts, L;4786.669999999996
+2020;North America;Components;Road Frames;HL Road Frame - Red, 62;20613.6
+2020;North America;Components;Road Frames;ML Road Frame-W - Yellow, 44;45326.3
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Black, 48;57492.96000000001
+2018;North America;Bikes;Mountain Bikes;Mountain-100 Silver, 48;450157.95999999973
+2020;North America;Components;Mountain Frames;HL Mountain Frame - Black, 42;91502.87999999999
+2018;North America;Components;Wheels;ML Mountain Front Wheel;22575.59999999999
+2019;North America;Components;Wheels;ML Mountain Front Wheel;7776.040000000003
+2018;North America;Components;Wheels;HL Mountain Front Wheel;28640.669999999995
+2018;North America;Components;Wheels;LL Mountain Rear Wheel;12478.049999999988
+2019;North America;Components;Wheels;LL Mountain Rear Wheel;3316.9500000000007
+2020;North America;Clothing;Shorts;Women's Mountain Shorts, M;8733.919999999982
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Black, 48;11390.119999999995
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Black, 40;29807.080000000005
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Black, 40;29159.1
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Black, 42;28511.120000000006
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Black, 44;25919.200000000004
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Black, 48;60262.14000000003
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Black, 48;34990.91999999999
+2019;North America;Bikes;Mountain Bikes;Mountain-500 Black, 52;31103.04000000001
+2020;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;8787.069999999996
+2020;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 38;98243.99999999999
+2020;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 42;339436.7399999999
+2020;North America;Bikes;Mountain Bikes;Mountain-200 Silver, 46;309253.7699999999
+2018;North America;Components;Handlebars;HL Mountain Handlebars;11545.599999999999
+2019;North America;Components;Handlebars;HL Mountain Handlebars;15324.159999999989
+2020;North America;Components;Handlebars;HL Mountain Handlebars;2381.2799999999997
+2019;North America;Accessories;Locks;Cable Lock;5409.0
+2019;North America;Accessories;Pumps;Minipump;4328.389999999997
+2018;North America;Clothing;Bib-Shorts;Men's Bib-Shorts, S;23386.65999999999
+2019;North America;Clothing;Bib-Shorts;Men's Bib-Shorts, S;18032.65999999999
+2020;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 42;36918.049999999996
+2019;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 46;28180.050000000007
+2020;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 46;4587.449999999999
+2019;North America;Components;Saddles;LL Mountain Seat/Saddle;3205.1899999999973
+2020;North America;Components;Saddles;LL Mountain Seat/Saddle;823.8299999999998
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 44;9822.66
+2020;North America;Components;Pedals;LL Mountain Pedal;1360.2399999999993
+2020;North America;Components;Pedals;ML Mountain Pedal;1750.75
+2019;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 38;62328.149999999994
+2020;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 38;44783.93
+2019;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 40;108604.87000000007
+2020;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 40;75255.47000000003
+2019;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 42;51709.28
+2020;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 42;39243.64999999999
+2019;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 46;56156.89000000001
+2020;North America;Bikes;Mountain Bikes;Mountain-400-W Silver, 46;42013.789999999986
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 40;25311.359999999997
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 42;26667.330000000005
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 44;27119.310000000005
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 48;25650.370000000003
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Silver, 52;34916.080000000016
+2020;North America;Components;Mountain Frames;HL Mountain Frame - Black, 38;51824.63999999998
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 48;4752.900000000001
+2019;North America;Components;Wheels;HL Mountain Front Wheel;6844.940000000002
+2019;North America;Accessories;Tires and Tubes;Patch Kit/8 Patches;456.21000000000043
+2020;North America;Components;Cranksets;LL Crankset;8844.36
+2019;North America;Components;Touring Frames;HL Touring Frame - Yellow, 60;75293.75
+2019;North America;Components;Touring Frames;LL Touring Frame - Yellow, 62;26089.86999999999
+2020;North America;Components;Touring Frames;HL Touring Frame - Yellow, 54;48790.34999999999
+2019;North America;Components;Touring Frames;HL Touring Frame - Blue, 54;124515.67000000003
+2020;North America;Components;Touring Frames;HL Touring Frame - Blue, 54;40959.79999999998
+2019;North America;Components;Touring Frames;HL Touring Frame - Blue, 60;88023.31999999996
+2020;North America;Components;Touring Frames;HL Touring Frame - Blue, 60;30117.499999999993
+2020;North America;Components;Derailleurs;Rear Derailleur;3279.6
+2019;North America;Components;Touring Frames;LL Touring Frame - Blue, 50;23005.75
+2019;North America;Components;Touring Frames;LL Touring Frame - Yellow, 44;22405.59999999999
+2019;North America;Components;Saddles;LL Touring Seat/Saddle;927.3899999999998
+2019;North America;Components;Saddles;HL Touring Seat/Saddle;4705.419999999998
+2019;North America;Components;Handlebars;HL Touring Handlebars;5548.939999999998
+2020;North America;Bikes;Touring Bikes;Touring-2000 Blue, 60;118812.33000000015
+2019;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 50;198354.66000000006
+2020;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 50;133030.92000000004
+2019;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 54;73429.37000000001
+2020;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 54;52926.28
+2019;North America;Bikes;Touring Bikes;Touring-1000 Yellow, 60;347764.3900000003
+2019;North America;Bikes;Touring Bikes;Touring-3000 Blue, 54;74606.46000000002
+2020;North America;Bikes;Touring Bikes;Touring-3000 Blue, 54;54785.430000000044
+2019;North America;Bikes;Touring Bikes;Touring-3000 Blue, 58;47659.05000000003
+2019;North America;Bikes;Touring Bikes;Touring-3000 Blue, 62;23495.45
+2019;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 44;94093.19000000006
+2020;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 44;62624.610000000044
+2019;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 50;71711.29000000001
+2020;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 50;48995.100000000006
+2019;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 54;46211.44000000003
+2020;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 54;34296.57000000001
+2019;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 58;30510.72000000001
+2020;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 58;16034.759999999997
+2019;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 62;92422.88000000002
+2020;North America;Bikes;Touring Bikes;Touring-3000 Yellow, 62;63084.870000000024
+2019;North America;Bikes;Touring Bikes;Touring-1000 Blue, 46;348121.5600000003
+2020;North America;Bikes;Touring Bikes;Touring-1000 Blue, 50;134461.36000000007
+2019;North America;Bikes;Touring Bikes;Touring-1000 Blue, 54;123017.84000000005
+2020;North America;Bikes;Touring Bikes;Touring-1000 Blue, 54;57217.600000000006
+2019;North America;Bikes;Touring Bikes;Touring-2000 Blue, 46;99860.67000000009
+2020;North America;Bikes;Touring Bikes;Touring-2000 Blue, 46;61228.440000000046
+2019;North America;Bikes;Touring Bikes;Touring-2000 Blue, 50;44463.51000000002
+2020;North America;Bikes;Touring Bikes;Touring-2000 Blue, 50;32072.039999999997
+2019;North America;Bikes;Touring Bikes;Touring-3000 Blue, 44;27170.11999999999
+2020;North America;Bikes;Touring Bikes;Touring-3000 Blue, 44;21825.089999999997
+2020;North America;Bikes;Touring Bikes;Touring-3000 Blue, 50;70545.45000000004
+2020;North America;Components;Bottom Brackets;LL Bottom Bracket;1651.89
+2020;North America;Components;Bottom Brackets;HL Bottom Bracket;8017.9000000000015
+2020;North America;Bikes;Mountain Bikes;Mountain-500 Black, 52;27539.15
+2020;North America;Components;Road Frames;LL Road Frame - Black, 58;12544.459999999997
+2018;North America;Components;Road Frames;LL Road Frame - Black, 44;18324.32
+2018;North America;Components;Wheels;HL Road Rear Wheel;17996.159999999993
+2020;North America;Clothing;Gloves;Half-Finger Gloves, L;969.5400000000002
+2020;North America;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;5428.189999999998
+2018;North America;Components;Road Frames;LL Road Frame - Red, 52;15947.289999999997
+2019;North America;Components;Touring Frames;LL Touring Frame - Yellow, 50;15203.799999999994
+2020;North America;Components;Saddles;HL Mountain Seat/Saddle;3347.4799999999987
+2018;North America;Components;Mountain Frames;ML Mountain Frame - Black, 40;11927.820000000002
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 42;9393.67
+2019;North America;Components;Forks;LL Fork;3823.990000000001
+2019;North America;Components;Headsets;HL Headset;7259.480000000005
+2018;North America;Components;Wheels;ML Road Rear Wheel;9913.799999999997
+2019;North America;Components;Touring Frames;HL Touring Frame - Yellow, 46;25901.05
+2019;North America;Components;Touring Frames;HL Touring Frame - Yellow, 50;28310.449999999997
+2019;North America;Components;Touring Frames;HL Touring Frame - Blue, 46;36743.349999999984
+2019;North America;Components;Touring Frames;LL Touring Frame - Blue, 54;13203.300000000003
+2020;North America;Components;Touring Frames;LL Touring Frame - Yellow, 50;9002.25
+2019;North America;Components;Saddles;ML Touring Seat/Saddle;1150.5200000000002
+2019;North America;Components;Pedals;Touring Pedal;3935.7899999999995
+2019;North America;Components;Handlebars;LL Touring Handlebars;857.1499999999997
+2019;North America;Bikes;Touring Bikes;Touring-2000 Blue, 60;181935.90000000017
+2018;North America;Clothing;Shorts;Men's Sports Shorts, S;9774.879999999992
+2019;North America;Clothing;Shorts;Men's Sports Shorts, S;7760.639999999992
+2018;North America;Clothing;Shorts;Men's Sports Shorts, L;8961.509999999993
+2018;North America;Clothing;Tights;Women's Tights, M;11022.549999999988
+2018;North America;Clothing;Gloves;Half-Finger Gloves, S;3461.8500000000026
+2019;North America;Clothing;Bib-Shorts;Men's Bib-Shorts, L;9880.169999999995
+2019;North America;Components;Touring Frames;HL Touring Frame - Yellow, 54;102138.45999999999
+2020;North America;Components;Saddles;HL Touring Seat/Saddle;1926.38
+2020;North America;Bikes;Touring Bikes;Touring-3000 Blue, 58;33851.159999999996
+2020;North America;Bikes;Touring Bikes;Touring-3000 Blue, 62;13362.3
+2019;North America;Bikes;Touring Bikes;Touring-1000 Blue, 50;224579.0800000002
+2017;North America;Components;Road Frames;LL Road Frame - Black, 44;2321.54
+2019;North America;Clothing;Tights;Women's Tights, M;4588.979999999997
+2019;North America;Clothing;Gloves;Half-Finger Gloves, L;5093.680000000004
+2017;North America;Components;Road Frames;HL Road Frame - Red, 62;9855.04
+2019;North America;Components;Road Frames;LL Road Frame - Red, 52;1416.31
+2017;North America;Components;Road Frames;ML Road Frame - Red, 52;19629.5
+2018;North America;Components;Road Frames;ML Road Frame - Red, 52;12491.499999999998
+2018;North America;Components;Road Frames;ML Road Frame-W - Yellow, 40;29849.400000000005
+2020;North America;Clothing;Gloves;Half-Finger Gloves, S;2917.9200000000005
+2020;North America;Accessories;Tires and Tubes;Patch Kit/8 Patches;119.19000000000003
+2020;North America;Components;Touring Frames;HL Touring Frame - Yellow, 60;40959.79999999999
+2020;North America;Components;Touring Frames;LL Touring Frame - Yellow, 62;9002.250000000002
+2020;North America;Components;Touring Frames;HL Touring Frame - Blue, 46;6023.5
+2019;North America;Components;Touring Frames;HL Touring Frame - Blue, 50;35538.65
+2020;North America;Components;Touring Frames;HL Touring Frame - Blue, 50;7228.200000000001
+2020;North America;Components;Touring Frames;LL Touring Frame - Blue, 50;11402.85
+2020;North America;Components;Touring Frames;LL Touring Frame - Blue, 54;7801.950000000002
+2020;North America;Components;Touring Frames;LL Touring Frame - Yellow, 44;9402.349999999997
+2019;North America;Components;Touring Frames;LL Touring Frame - Yellow, 58;4801.200000000001
+2019;North America;Components;Touring Frames;LL Touring Frame - Blue, 44;3200.8
+2020;North America;Components;Handlebars;HL Touring Handlebars;274.7
+2020;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 42;11461.8
+2020;North America;Components;Mountain Frames;HL Mountain Frame - Silver, 46;46665.900000000016
+2018;North America;Components;Mountain Frames;HL Mountain Frame - Black, 44;6478.08
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Black, 52;1798.44
+2017;North America;Components;Road Frames;HL Road Frame - Red, 44;8338.880000000001
+2017;North America;Components;Road Frames;LL Road Frame - Red, 52;919.7
+2017;North America;Components;Road Frames;LL Road Frame - Black, 60;178.58
+2019;North America;Components;Saddles;LL Road Seat/Saddle;81.35
+2020;North America;Components;Mountain Frames;LL Mountain Frame - Silver, 52;13149.690000000002
+2017;North America;Components;Mountain Frames;HL Mountain Frame - Black, 44;7287.84
+2019;North America;Components;Mountain Frames;ML Mountain Frame-W - Silver, 38;1310.7
+2018;North America;Clothing;Socks;Mountain Bike Socks, L;136.80000000000004
+2020;North America;Components;Brakes;Rear Brakes;383.4
+2020;North America;Components;Touring Frames;HL Touring Frame - Yellow, 46;3011.75
+2019;North America;Components;Touring Frames;LL Touring Frame - Blue, 62;1800.45
+2019;North America;Clothing;Vests;Classic Vest, L;342.90000000000003
+2020;North America;Components;Road Frames;LL Road Frame - Black, 44;404.66
+2020;North America;Components;Touring Frames;HL Touring Frame - Yellow, 50;2409.4
+2019;North America;Components;Mountain Frames;LL Mountain Frame - Black, 40;1049.0900000000001
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 62;1600.4
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 60;6625.849999999999
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 44;1800.45
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 54;7571.969999999999
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 62;6681.15
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 46;73763.04000000001
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 54;35761.0
+2019;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 54;34987.68
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 44;4899.51
+2019;Pacific;Components;Bottom Brackets;HL Bottom Bracket;1968.0300000000002
+2020;Pacific;Clothing;Caps;AWC Logo Cap;240.74
+2020;Pacific;Accessories;Bottles and Cages;Water Bottle - 30 oz.;59.800000000000004
+2019;Pacific;Clothing;Jerseys;Short-Sleeve Classic Jersey, S;2170.13
+2019;Pacific;Clothing;Jerseys;Short-Sleeve Classic Jersey, L;2947.49
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 60;7830.55
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 60;3614.1
+2020;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 62;2200.55
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 54;28069.489999999994
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 54;4216.45
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 54;18070.500000000004
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 54;8432.9
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 60;3011.75
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 50;3800.9500000000007
+2020;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 50;1200.3
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 54;2200.5499999999997
+2020;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 44;1800.4499999999998
+2020;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 50;1000.25
+2019;Pacific;Components;Saddles;HL Touring Seat/Saddle;978.9799999999998
+2020;Pacific;Components;Saddles;HL Touring Seat/Saddle;189.47999999999996
+2019;Pacific;Components;Handlebars;HL Touring Handlebars;1098.8000000000002
+2020;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 60;27698.579999999998
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 46;61032.22
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 46;48634.96
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 50;36714.68
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 50;21456.6
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 60;59601.8
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 60;72952.44000000002
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 54;13585.039999999999
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 58;6681.15
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 44;12471.479999999998
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 50;19041.319999999996
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 50;9353.609999999999
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 54;10912.59
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 54;8017.38
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 62;14364.52
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 46;41482.759999999995
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 50;34330.56
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 50;31469.679999999997
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 60;72952.44
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 60;50065.399999999994
+2019;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 46;17493.84
+2020;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 46;10933.65
+2020;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 54;19680.57
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 50;18707.28
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 50;8908.199999999999
+2019;Pacific;Accessories;Helmets;Sport-100 Helmet, Black;1616.2300000000002
+2019;Pacific;Bikes;Mountain Bikes;Mountain-200 Black, 38;23408.83
+2019;Pacific;Bikes;Mountain Bikes;Mountain-200 Black, 42;19277.86
+2019;Pacific;Clothing;Gloves;Half-Finger Gloves, M;1133.5700000000002
+2019;Pacific;Clothing;Shorts;Women's Mountain Shorts, S;1343.68
+2020;Pacific;Clothing;Shorts;Women's Mountain Shorts, S;419.9
+2019;Pacific;Clothing;Shorts;Women's Mountain Shorts, M;545.87
+2020;Pacific;Clothing;Shorts;Women's Mountain Shorts, M;125.97
+2019;Pacific;Clothing;Shorts;Women's Mountain Shorts, L;1217.71
+2020;Pacific;Clothing;Shorts;Women's Mountain Shorts, L;461.89000000000004
+2019;Pacific;Accessories;Helmets;Sport-100 Helmet, Red;1532.2700000000002
+2019;Pacific;Accessories;Helmets;Sport-100 Helmet, Blue;1742.17
+2019;Pacific;Clothing;Caps;AWC Logo Cap;669.2299999999998
+2019;Pacific;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;3788.7200000000007
+2019;Pacific;Components;Handlebars;ML Mountain Handlebars;371.5
+2019;Pacific;Clothing;Vests;Classic Vest, S;4918.92
+2020;Pacific;Clothing;Vests;Classic Vest, S;2495.6400000000003
+2019;Pacific;Accessories;Bottles and Cages;Water Bottle - 30 oz.;233.22
+2019;Pacific;Accessories;Bike Racks;Hitch Rack - 4-Bike;7528.8
+2020;Pacific;Accessories;Bike Racks;Hitch Rack - 4-Bike;2520.0
+2019;Pacific;Accessories;Cleaners;Bike Wash - Dissolver;362.52000000000004
+2019;Pacific;Accessories;Hydration Packs;Hydration Pack - 70 oz.;2591.9100000000003
+2019;Pacific;Clothing;Jerseys;Short-Sleeve Classic Jersey, XL;2706.72
+2020;Pacific;Clothing;Jerseys;Short-Sleeve Classic Jersey, XL;1348.5
+2019;Pacific;Components;Mountain Frames;ML Mountain Frame-W - Silver, 40;1092.25
+2019;Pacific;Components;Pedals;LL Mountain Pedal;121.45
+2019;Pacific;Components;Mountain Frames;HL Mountain Frame - Black, 42;4048.8
+2020;Pacific;Components;Mountain Frames;HL Mountain Frame - Black, 42;1619.52
+2019;Pacific;Components;Mountain Frames;HL Mountain Frame - Black, 38;809.76
+2020;Pacific;Bikes;Mountain Bikes;Mountain-200 Black, 38;6884.950000000001
+2020;Pacific;Bikes;Mountain Bikes;Mountain-200 Black, 42;1376.99
+2019;Pacific;Bikes;Mountain Bikes;Mountain-200 Black, 46;6884.95
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Black, 42;1648.5700000000002
+2020;Pacific;Components;Mountain Frames;LL Mountain Frame - Black, 42;149.87
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Black, 44;599.48
+2020;Pacific;Components;Mountain Frames;LL Mountain Frame - Black, 44;149.87
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Black, 48;149.87
+2019;Pacific;Components;Cranksets;LL Crankset;2316.38
+2019;Pacific;Components;Cranksets;HL Crankset;7046.709999999998
+2020;Pacific;Components;Cranksets;HL Crankset;4373.82
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Black, 42;647.98
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Black, 48;323.99
+2019;Pacific;Components;Mountain Frames;HL Mountain Frame - Silver, 42;818.7
+2019;Pacific;Components;Mountain Frames;HL Mountain Frame - Silver, 46;3274.8
+2019;Pacific;Components;Mountain Frames;HL Mountain Frame - Silver, 38;4093.5
+2020;Pacific;Components;Mountain Frames;HL Mountain Frame - Silver, 38;818.7
+2019;Pacific;Bikes;Mountain Bikes;Mountain-200 Silver, 38;15311.89
+2020;Pacific;Bikes;Mountain Bikes;Mountain-200 Silver, 38;4175.97
+2019;Pacific;Bikes;Mountain Bikes;Mountain-200 Silver, 42;5567.96
+2019;Pacific;Bikes;Mountain Bikes;Mountain-200 Silver, 46;6959.950000000001
+2019;Pacific;Components;Handlebars;LL Mountain Handlebars;240.48
+2020;Pacific;Components;Handlebars;LL Mountain Handlebars;26.72
+2020;Pacific;Components;Handlebars;ML Mountain Handlebars;185.75
+2019;Pacific;Components;Handlebars;HL Mountain Handlebars;72.16
+2019;Pacific;Components;Derailleurs;Rear Derailleur;1238.9599999999998
+2020;Pacific;Components;Mountain Frames;ML Mountain Frame-W - Silver, 40;873.8
+2019;Pacific;Components;Mountain Frames;ML Mountain Frame-W - Silver, 42;1529.15
+2019;Pacific;Components;Mountain Frames;ML Mountain Frame-W - Silver, 46;436.9
+2019;Pacific;Components;Saddles;LL Mountain Seat/Saddle;16.27
+2019;Pacific;Components;Saddles;ML Mountain Seat/Saddle;93.92
+2020;Pacific;Components;Saddles;ML Mountain Seat/Saddle;23.48
+2019;Pacific;Components;Saddles;HL Mountain Seat/Saddle;63.16
+2020;Pacific;Components;Saddles;HL Mountain Seat/Saddle;63.16
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 42;1425.87
+2020;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 42;316.86
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 44;475.29
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 52;316.86
+2020;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 52;633.72
+2019;Pacific;Components;Pedals;ML Mountain Pedal;74.5
+2019;Pacific;Components;Pedals;HL Mountain Pedal;534.49
+2020;Pacific;Components;Pedals;HL Mountain Pedal;97.18
+2019;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 40;792.1500000000001
+2020;Pacific;Components;Mountain Frames;LL Mountain Frame - Silver, 40;158.43
+2019;Pacific;Components;Derailleurs;Front Derailleur;3348.29
+2020;Pacific;Components;Derailleurs;Front Derailleur;1097.8
+2019;Pacific;Components;Brakes;Front Brakes;2428.2000000000003
+2019;Pacific;Components;Chains;Chain;449.18
+2020;Pacific;Components;Chains;Chain;206.38
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Silver, 40;3389.8999999999996
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Silver, 42;1016.97
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Silver, 44;677.98
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Silver, 48;1355.96
+2019;Pacific;Bikes;Mountain Bikes;Mountain-500 Silver, 52;2033.94
+2019;Pacific;Components;Bottom Brackets;LL Bottom Bracket;680.1899999999999
+2020;Pacific;Components;Bottom Brackets;HL Bottom Bracket;583.12
+2020;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 54;1000.2500000000001
+2019;Pacific;Components;Saddles;ML Touring Seat/Saddle;93.92
+2020;Pacific;Clothing;Gloves;Half-Finger Gloves, S;29.38
+2019;Pacific;Clothing;Gloves;Half-Finger Gloves, L;29.38
+2020;Pacific;Components;Derailleurs;Rear Derailleur;72.88
+2019;Pacific;Components;Brakes;Rear Brakes;1341.9
+2019;Pacific;Components;Saddles;LL Touring Seat/Saddle;178.97
+2019;Pacific;Components;Pedals;Touring Pedal;631.6700000000001
+2019;Pacific;Components;Handlebars;LL Touring Handlebars;138.25
+2020;Pacific;Components;Handlebars;HL Touring Handlebars;109.88
+2019;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 60;26240.76
+2019;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 54;23840.71
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Yellow, 54;18595.719999999998
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 58;13919.099999999999
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 62;6347.12
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 44;15589.409999999998
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 58;7571.99
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 58;5344.92
+2020;Pacific;Bikes;Touring Bikes;Touring-3000 Yellow, 62;10689.839999999998
+2020;Pacific;Bikes;Touring Bikes;Touring-1000 Blue, 54;14304.400000000001
+2019;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 50;15307.109999999999
+2020;Pacific;Bikes;Touring Bikes;Touring-2000 Blue, 50;7289.099999999999
+2019;Pacific;Bikes;Touring Bikes;Touring-3000 Blue, 44;8128.75
+2020;Pacific;Components;Bottom Brackets;LL Bottom Bracket;32.39
+2020;Pacific;Bikes;Road Bikes;Road-250 Black, 48;1466.01
+2019;Pacific;Bikes;Road Bikes;Road-250 Black, 52;1466.01
+2019;Pacific;Components;Road Frames;ML Road Frame-W - Yellow, 44;356.9
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 44;200.05
+2020;Pacific;Accessories;Helmets;Sport-100 Helmet, Blue;125.94
+2020;Pacific;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;29.99
+2020;Pacific;Accessories;Tires and Tubes;Patch Kit/8 Patches;4.11
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 46;1204.7
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 50;602.35
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Yellow, 50;1807.05
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 46;1807.0500000000002
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 46;1204.7
+2019;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 50;2409.4
+2020;Pacific;Components;Touring Frames;HL Touring Frame - Blue, 50;602.35
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 58;600.15
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Blue, 62;400.1
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 50;1600.4
+2019;Pacific;Components;Touring Frames;LL Touring Frame - Yellow, 58;200.05
+2020;Pacific;Components;Saddles;ML Touring Seat/Saddle;23.48
+2020;Pacific;Accessories;Helmets;Sport-100 Helmet, Black;356.83000000000004
+2019;Pacific;Clothing;Gloves;Half-Finger Gloves, S;426.01
+2019;Pacific;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;1308.5600000000002
+2020;Pacific;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;1079.64
+2019;Pacific;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;359.88
+2019;Pacific;Clothing;Vests;Classic Vest, M;2712.7200000000003
+2020;Pacific;Accessories;Cleaners;Bike Wash - Dissolver;81.09
+2020;Pacific;Clothing;Jerseys;Short-Sleeve Classic Jersey, L;906.92
+2020;Pacific;Components;Brakes;Front Brakes;830.6999999999998
+2020;Pacific;Bikes;Mountain Bikes;Mountain-200 Black, 46;1376.99
+2020;Pacific;Clothing;Vests;Classic Vest, M;457.2
+2019;Pacific;Accessories;Tires and Tubes;Patch Kit/8 Patches;5.48
+2020;Pacific;Clothing;Gloves;Half-Finger Gloves, M;44.07
+2020;Pacific;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;89.97
+2020;Pacific;Clothing;Jerseys;Short-Sleeve Classic Jersey, S;64.78
+2020;Pacific;Components;Brakes;Rear Brakes;63.9
+2019;Europe;Accessories;Bike Racks;Hitch Rack - 4-Bike;32922.0
+2019;Europe;Accessories;Helmets;Sport-100 Helmet, Black;8394.749999999998
+2019;Europe;Components;Road Frames;LL Road Frame - Black, 58;11496.07
+2019;Europe;Components;Road Frames;LL Road Frame - Black, 52;20360.729999999996
+2019;Europe;Bikes;Road Bikes;Road-250 Black, 44;116809.66
+2020;Europe;Bikes;Road Bikes;Road-250 Black, 44;49844.34
+2019;Europe;Bikes;Road Bikes;Road-250 Black, 48;92829.90999999997
+2020;Europe;Bikes;Road Bikes;Road-250 Black, 48;43980.299999999996
+2019;Europe;Bikes;Road Bikes;Road-250 Black, 52;83667.32999999999
+2020;Europe;Bikes;Road Bikes;Road-250 Black, 52;27854.19
+2019;Europe;Bikes;Road Bikes;Road-250 Black, 58;55132.479999999996
+2020;Europe;Bikes;Road Bikes;Road-250 Black, 58;14660.1
+2020;Europe;Clothing;Gloves;Half-Finger Gloves, M;2369.000000000001
+2019;Europe;Bikes;Road Bikes;Road-750 Black, 58;16847.48
+2020;Europe;Bikes;Road Bikes;Road-750 Black, 58;11339.65
+2019;Europe;Bikes;Road Bikes;Road-750 Black, 44;5507.83
+2020;Europe;Bikes;Road Bikes;Road-750 Black, 44;7775.759999999999
+2019;Europe;Bikes;Road Bikes;Road-750 Black, 48;39850.77
+2020;Europe;Bikes;Road Bikes;Road-750 Black, 48;26653.570000000003
+2019;Europe;Bikes;Road Bikes;Road-750 Black, 52;28187.13
+2020;Europe;Bikes;Road Bikes;Road-750 Black, 52;18143.44
+2020;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;7537.469999999998
+2019;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;7347.729999999997
+2019;Europe;Bikes;Road Bikes;Road-250 Red, 58;33770.61
+2020;Europe;Bikes;Road Bikes;Road-250 Red, 58;27854.190000000002
+2019;Europe;Bikes;Road Bikes;Road-550-W Yellow, 38;59398.45000000001
+2020;Europe;Bikes;Road Bikes;Road-550-W Yellow, 38;26891.600000000002
+2019;Europe;Bikes;Road Bikes;Road-550-W Yellow, 40;49072.380000000005
+2020;Europe;Bikes;Road Bikes;Road-550-W Yellow, 40;16807.25
+2019;Europe;Bikes;Road Bikes;Road-550-W Yellow, 42;35367.27
+2020;Europe;Bikes;Road Bikes;Road-550-W Yellow, 42;16134.96
+2019;Europe;Bikes;Road Bikes;Road-550-W Yellow, 44;18247.88
+2020;Europe;Bikes;Road Bikes;Road-550-W Yellow, 44;12101.219999999998
+2019;Europe;Bikes;Road Bikes;Road-550-W Yellow, 48;56616.45000000001
+2020;Europe;Bikes;Road Bikes;Road-550-W Yellow, 48;25547.020000000004
+2019;Europe;Components;Handlebars;HL Road Handlebars;3214.4000000000005
+2019;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 38;19856.549999999996
+2019;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 44;35754.75000000001
+2020;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 44;10350.099999999999
+2019;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 48;19661.85000000001
+2020;Europe;Clothing;Vests;Classic Vest, M;6828.789999999997
+2020;Europe;Accessories;Bottles and Cages;Water Bottle - 30 oz.;648.2100000000002
+2019;Europe;Clothing;Socks;Racing Socks, M;528.2199999999998
+2020;Europe;Clothing;Socks;Racing Socks, M;231.76999999999998
+2019;Europe;Clothing;Socks;Racing Socks, L;621.63
+2020;Europe;Clothing;Socks;Racing Socks, L;377.29999999999995
+2020;Europe;Accessories;Cleaners;Bike Wash - Dissolver;902.6399999999996
+2019;Europe;Clothing;Jerseys;Short-Sleeve Classic Jersey, S;8483.45
+2019;Europe;Components;Pedals;LL Road Pedal;1967.4900000000002
+2020;Europe;Components;Pedals;LL Road Pedal;995.89
+2019;Europe;Components;Pedals;ML Road Pedal;2086.0
+2019;Europe;Components;Pedals;HL Road Pedal;2866.8099999999995
+2020;Europe;Components;Pedals;HL Road Pedal;1020.3900000000001
+2019;Europe;Bikes;Road Bikes;Road-350-W Yellow, 40;118337.37999999998
+2020;Europe;Bikes;Road Bikes;Road-350-W Yellow, 40;83688.37999999999
+2019;Europe;Bikes;Road Bikes;Road-350-W Yellow, 42;71067.08
+2020;Europe;Bikes;Road Bikes;Road-350-W Yellow, 42;35720.65
+2019;Europe;Bikes;Road Bikes;Road-350-W Yellow, 44;23473.57
+2020;Europe;Bikes;Road Bikes;Road-350-W Yellow, 44;21432.39
+2019;Europe;Bikes;Road Bikes;Road-350-W Yellow, 48;147492.21999999994
+2020;Europe;Bikes;Road Bikes;Road-350-W Yellow, 48;83314.15999999996
+2019;Europe;Components;Cranksets;ML Crankset;2770.02
+2019;Europe;Components;Cranksets;HL Crankset;23084.049999999996
+2019;Europe;Components;Pedals;Touring Pedal;2040.78
+2020;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 60;51023.700000000004
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 54;28506.34
+2019;Europe;Components;Road Frames;HL Road Frame - Black, 44;31232.74
+2019;Europe;Clothing;Gloves;Half-Finger Gloves, S;3392.1400000000026
+2019;Europe;Components;Road Frames;HL Road Frame - Red, 62;30529.999999999996
+2019;Europe;Components;Road Frames;HL Road Frame - Red, 44;34824.5
+2019;Europe;Components;Handlebars;LL Road Handlebars;534.4000000000001
+2020;Europe;Components;Handlebars;HL Road Handlebars;793.76
+2020;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 38;7851.8
+2020;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 48;8208.699999999999
+2019;Europe;Components;Saddles;HL Road Seat/Saddle;442.11999999999995
+2020;Europe;Accessories;Helmets;Sport-100 Helmet, Black;3957.2999999999997
+2020;Europe;Clothing;Gloves;Half-Finger Gloves, S;1850.9399999999998
+2019;Europe;Clothing;Gloves;Half-Finger Gloves, M;6014.7000000000035
+2019;Europe;Clothing;Gloves;Half-Finger Gloves, L;2385.51
+2019;Europe;Accessories;Helmets;Sport-100 Helmet, Red;7285.990000000001
+2020;Europe;Accessories;Helmets;Sport-100 Helmet, Red;3454.25
+2019;Europe;Accessories;Helmets;Sport-100 Helmet, Blue;8480.909999999998
+2020;Europe;Accessories;Helmets;Sport-100 Helmet, Blue;3978.2800000000007
+2019;Europe;Clothing;Caps;AWC Logo Cap;2925.56
+2020;Europe;Clothing;Caps;AWC Logo Cap;1288.36
+2019;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;8856.929999999997
+2020;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;3838.719999999999
+2019;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;15793.56
+2020;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;3418.8599999999997
+2019;Europe;Clothing;Vests;Classic Vest, S;22913.079999999987
+2020;Europe;Clothing;Vests;Classic Vest, S;13380.099999999997
+2019;Europe;Clothing;Vests;Classic Vest, M;14543.999999999996
+2019;Europe;Accessories;Bottles and Cages;Water Bottle - 30 oz.;1222.8900000000006
+2019;Europe;Accessories;Tires and Tubes;Patch Kit/8 Patches;165.2900000000001
+2020;Europe;Accessories;Tires and Tubes;Patch Kit/8 Patches;80.83
+2020;Europe;Accessories;Bike Racks;Hitch Rack - 4-Bike;18177.6
+2019;Europe;Accessories;Cleaners;Bike Wash - Dissolver;1796.3399999999992
+2019;Europe;Accessories;Hydration Packs;Hydration Pack - 70 oz.;11549.179999999997
+2020;Europe;Accessories;Hydration Packs;Hydration Pack - 70 oz.;6275.7699999999995
+2020;Europe;Clothing;Jerseys;Short-Sleeve Classic Jersey, S;4113.53
+2019;Europe;Clothing;Jerseys;Short-Sleeve Classic Jersey, L;11882.180000000006
+2020;Europe;Clothing;Jerseys;Short-Sleeve Classic Jersey, L;6451.0
+2019;Europe;Clothing;Jerseys;Short-Sleeve Classic Jersey, XL;17270.17
+2020;Europe;Clothing;Jerseys;Short-Sleeve Classic Jersey, XL;10907.77
+2020;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 60;22889.300000000007
+2019;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 62;12203.049999999997
+2020;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 62;11002.75
+2019;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 46;13854.05
+2019;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 50;13854.050000000001
+2019;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 54;69711.91
+2020;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 54;33129.25
+2019;Europe;Components;Touring Frames;HL Touring Frame - Blue, 50;15661.100000000002
+2019;Europe;Components;Touring Frames;HL Touring Frame - Blue, 54;58427.95
+2020;Europe;Components;Touring Frames;HL Touring Frame - Blue, 54;34936.299999999996
+2019;Europe;Components;Touring Frames;HL Touring Frame - Blue, 60;36141.00000000001
+2020;Europe;Components;Touring Frames;HL Touring Frame - Blue, 60;28912.8
+2019;Europe;Components;Touring Frames;LL Touring Frame - Blue, 50;12003.000000000002
+2020;Europe;Components;Touring Frames;LL Touring Frame - Blue, 50;7001.75
+2019;Europe;Components;Touring Frames;LL Touring Frame - Blue, 54;9402.35
+2020;Europe;Components;Touring Frames;LL Touring Frame - Blue, 54;5601.400000000001
+2019;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 44;14130.18
+2020;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 44;5801.45
+2019;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 50;9602.4
+2020;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 50;6201.55
+2019;Europe;Components;Saddles;ML Touring Seat/Saddle;610.48
+2019;Europe;Components;Saddles;HL Touring Seat/Saddle;2842.2
+2020;Europe;Components;Saddles;HL Touring Seat/Saddle;1294.7800000000002
+2019;Europe;Components;Handlebars;LL Touring Handlebars;553.0
+2019;Europe;Components;Handlebars;HL Touring Handlebars;2527.2400000000007
+2019;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 60;85452.48000000001
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 46;148765.94000000003
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 46;157682.20000000007
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 50;84396.06999999999
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 50;90117.72000000003
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 60;222624.5700000001
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 60;145380.40000000002
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 54;47102.28000000001
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 54;32069.519999999997
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 58;27949.579999999998
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 44;58853.669999999984
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 44;48371.490000000005
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 50;43538.990000000005
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 50;34296.56999999999
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 54;17816.4
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 62;62068.09000000001
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 62;51667.560000000005
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 46;221217.64000000007
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 46;130170.04
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 50;128739.6
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 50;84395.96000000002
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 60;194063.12000000002
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 60;181999.68000000005
+2019;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 46;58774.41000000001
+2020;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 46;37174.41
+2019;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 54;113272.47000000002
+2020;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 54;79183.89000000001
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 50;55008.260000000024
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 50;41423.13000000001
+2020;Europe;Clothing;Gloves;Half-Finger Gloves, L;426.01
+2019;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 60;50737.909999999996
+2019;Europe;Components;Touring Frames;HL Touring Frame - Blue, 46;10239.95
+2019;Europe;Components;Touring Frames;LL Touring Frame - Yellow, 58;2200.55
+2019;Europe;Components;Touring Frames;LL Touring Frame - Blue, 44;1600.3999999999999
+2019;Europe;Components;Saddles;LL Touring Seat/Saddle;374.21
+2020;Europe;Components;Handlebars;HL Touring Handlebars;769.16
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 54;53403.189999999995
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 58;19598.039999999997
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 58;14030.47
+2019;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 54;48634.96000000001
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 44;14475.89
+2019;Europe;Components;Cranksets;LL Crankset;6317.399999999999
+2019;Europe;Components;Brakes;Rear Brakes;3258.900000000001
+2020;Europe;Components;Mountain Frames;HL Mountain Frame - Black, 38;17004.96
+2019;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 42;207335.63000000015
+2019;Europe;Clothing;Shorts;Women's Mountain Shorts, S;11460.829999999996
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 48;6155.8099999999995
+2020;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 46;17192.7
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 52;8238.36
+2020;Europe;Components;Derailleurs;Front Derailleur;2854.2799999999997
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 42;5197.879999999999
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 44;12026.07
+2019;Europe;Components;Bottom Brackets;HL Bottom Bracket;4737.850000000001
+2019;Europe;Components;Derailleurs;Front Derailleur;7858.41
+2019;Europe;Components;Chains;Chain;1496.1600000000005
+2020;Europe;Components;Chains;Chain;728.3999999999999
+2020;Europe;Components;Touring Frames;HL Touring Frame - Blue, 46;5421.15
+2020;Europe;Components;Pedals;ML Road Pedal;1005.75
+2020;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 46;5421.150000000001
+2020;Europe;Components;Touring Frames;HL Touring Frame - Yellow, 50;1807.0500000000002
+2020;Europe;Components;Road Frames;LL Road Frame - Black, 58;3641.9399999999996
+2019;Europe;Components;Road Frames;LL Road Frame - Black, 44;3770.71
+2019;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 40;7754.449999999999
+2019;Europe;Components;Brakes;Front Brakes;8087.61
+2019;Europe;Components;Mountain Frames;HL Mountain Frame - Black, 42;69124.19
+2020;Europe;Components;Mountain Frames;HL Mountain Frame - Black, 42;28341.6
+2019;Europe;Components;Mountain Frames;HL Mountain Frame - Black, 38;35408.66
+2019;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 38;268910.07999999996
+2020;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 38;112454.17000000004
+2020;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 42;77983.53
+2019;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 46;105093.96
+2020;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 46;48194.65
+2020;Europe;Clothing;Shorts;Women's Mountain Shorts, S;7008.109999999999
+2019;Europe;Clothing;Shorts;Women's Mountain Shorts, M;3821.089999999998
+2020;Europe;Clothing;Shorts;Women's Mountain Shorts, M;2141.49
+2019;Europe;Clothing;Shorts;Women's Mountain Shorts, L;11238.769999999999
+2020;Europe;Clothing;Shorts;Women's Mountain Shorts, L;6356.549999999997
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 42;7343.629999999997
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 42;3596.88
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 44;8392.72
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 44;4945.709999999999
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 48;6294.539999999999
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 48;1049.0900000000001
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 52;449.61
+2020;Europe;Components;Cranksets;LL Crankset;2526.96
+2020;Europe;Components;Cranksets;HL Crankset;11906.509999999998
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 42;10691.669999999998
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 48;14903.539999999995
+2019;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 42;20467.500000000004
+2019;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 46;43316.61000000001
+2019;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 38;64900.53
+2020;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 38;27017.1
+2019;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 38;156940.32000000004
+2020;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 38;65423.53000000002
+2019;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 42;160078.90000000005
+2020;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 42;62639.55000000001
+2019;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 46;133332.81000000003
+2020;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 46;44543.68
+2019;Europe;Components;Handlebars;LL Mountain Handlebars;2052.5600000000004
+2020;Europe;Components;Handlebars;LL Mountain Handlebars;935.2
+2019;Europe;Components;Handlebars;ML Mountain Handlebars;4056.0700000000006
+2020;Europe;Components;Handlebars;ML Mountain Handlebars;1188.8
+2019;Europe;Components;Handlebars;HL Mountain Handlebars;1974.5600000000002
+2019;Europe;Components;Derailleurs;Rear Derailleur;3862.6400000000003
+2020;Europe;Components;Derailleurs;Rear Derailleur;1238.96
+2019;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 40;22405.710000000006
+2020;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 40;10267.15
+2019;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 42;11577.85
+2020;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 42;8737.999999999998
+2019;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 46;6335.049999999999
+2019;Europe;Components;Saddles;LL Mountain Seat/Saddle;618.2599999999999
+2020;Europe;Components;Saddles;LL Mountain Seat/Saddle;276.59
+2019;Europe;Components;Saddles;ML Mountain Seat/Saddle;1455.7600000000002
+2020;Europe;Components;Saddles;ML Mountain Seat/Saddle;892.24
+2019;Europe;Components;Saddles;HL Mountain Seat/Saddle;1736.9
+2020;Europe;Components;Saddles;HL Mountain Seat/Saddle;947.4000000000001
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 42;9923.01
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 42;5861.910000000001
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 44;2693.31
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 52;4911.33
+2019;Europe;Components;Pedals;LL Mountain Pedal;1724.5899999999992
+2020;Europe;Components;Pedals;LL Mountain Pedal;412.93
+2019;Europe;Components;Pedals;ML Mountain Pedal;2011.5
+2019;Europe;Components;Pedals;HL Mountain Pedal;4713.2300000000005
+2020;Europe;Components;Pedals;HL Mountain Pedal;1895.0099999999998
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 40;8872.080000000002
+2020;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 40;3643.89
+2020;Europe;Components;Brakes;Front Brakes;3578.4
+2019;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 40;19390.979999999996
+2020;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 40;9233.8
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 40;15932.529999999997
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 42;12542.63
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 44;9152.729999999998
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 44;2259.94
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 48;14915.559999999996
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 48;4067.91
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 52;15932.529999999999
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 52;8022.79
+2019;Europe;Components;Bottom Brackets;LL Bottom Bracket;1975.7899999999997
+2020;Europe;Components;Bottom Brackets;LL Bottom Bracket;453.46000000000004
+2020;Europe;Components;Bottom Brackets;HL Bottom Bracket;2915.6
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Yellow, 54;34330.56
+2019;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 62;12582.869999999999
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Blue, 62;12026.07
+2020;Europe;Bikes;Touring Bikes;Touring-3000 Yellow, 58;11580.66
+2020;Europe;Bikes;Touring Bikes;Touring-1000 Blue, 54;30039.240000000005
+2019;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 50;18951.66
+2020;Europe;Bikes;Touring Bikes;Touring-2000 Blue, 50;21867.3
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 40;7775.760000000001
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 44;8423.74
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 44;4859.849999999999
+2019;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 52;6155.8099999999995
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 52;2267.9300000000003
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 44;5703.4800000000005
+2019;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 38;4616.9
+2019;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 42;8772.109999999999
+2020;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 42;5540.279999999999
+2020;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 46;3693.52
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Silver, 40;3389.91
+2020;Europe;Components;Touring Frames;HL Touring Frame - Blue, 50;3011.75
+2018;Europe;Components;Road Frames;LL Road Frame - Black, 58;4414.56
+2019;Europe;Components;Road Frames;LL Road Frame - Black, 60;3844.27
+2018;Europe;Components;Road Frames;LL Road Frame - Black, 44;2207.28
+2018;Europe;Components;Road Frames;LL Road Frame - Black, 52;8093.36
+2020;Europe;Components;Road Frames;LL Road Frame - Black, 52;5867.569999999999
+2018;Europe;Bikes;Road Bikes;Road-650 Black, 58;35970.25
+2019;Europe;Bikes;Road Bikes;Road-650 Black, 58;19731.180000000004
+2018;Europe;Bikes;Road Bikes;Road-650 Black, 60;17382.23
+2019;Europe;Bikes;Road Bikes;Road-650 Black, 60;13623.910000000002
+2018;Europe;Bikes;Road Bikes;Road-650 Black, 62;7516.64
+2018;Europe;Bikes;Road Bikes;Road-650 Black, 44;11744.75
+2019;Europe;Bikes;Road Bikes;Road-650 Black, 44;11274.960000000003
+2018;Europe;Bikes;Road Bikes;Road-650 Black, 48;7046.849999999999
+2018;Europe;Bikes;Road Bikes;Road-650 Black, 52;39462.36
+2019;Europe;Bikes;Road Bikes;Road-650 Black, 52;28657.19000000001
+2018;Europe;Bikes;Road Bikes;Road-250 Black, 44;57593.36000000001
+2018;Europe;Bikes;Road Bikes;Road-250 Black, 48;54975.479999999996
+2018;Europe;Bikes;Road Bikes;Road-250 Black, 52;40577.14
+2018;Europe;Components;Wheels;ML Road Front Wheel;4768.960000000001
+2019;Europe;Components;Wheels;ML Road Front Wheel;2682.5400000000004
+2018;Europe;Components;Wheels;HL Road Front Wheel;7327.48
+2019;Europe;Components;Wheels;HL Road Front Wheel;3168.64
+2018;Europe;Components;Wheels;LL Road Rear Wheel;2701.6
+2018;Europe;Components;Wheels;ML Road Rear Wheel;660.92
+2018;Europe;Components;Wheels;HL Road Rear Wheel;1713.92
+2018;Europe;Components;Road Frames;HL Road Frame - Black, 44;21082.14
+2018;Europe;Components;Road Frames;HL Road Frame - Black, 48;6246.56
+2019;Europe;Components;Road Frames;HL Road Frame - Black, 48;12024.599999999999
+2019;Europe;Clothing;Shorts;Men's Sports Shorts, L;683.8100000000001
+2018;Europe;Clothing;Gloves;Half-Finger Gloves, L;367.38
+2018;Europe;Components;Road Frames;HL Road Frame - Red, 62;20301.319999999996
+2018;Europe;Components;Road Frames;HL Road Frame - Red, 44;18739.679999999997
+2018;Europe;Components;Road Frames;HL Road Frame - Red, 48;6246.56
+2019;Europe;Components;Road Frames;HL Road Frame - Red, 48;12883.5
+2018;Europe;Components;Road Frames;LL Road Frame - Red, 44;10318.829999999998
+2019;Europe;Components;Road Frames;LL Road Frame - Red, 44;4855.92
+2018;Europe;Components;Road Frames;LL Road Frame - Red, 48;4855.92
+2019;Europe;Components;Road Frames;LL Road Frame - Red, 48;4248.93
+2018;Europe;Components;Road Frames;LL Road Frame - Red, 52;1416.31
+2018;Europe;Components;Road Frames;LL Road Frame - Red, 60;8093.199999999999
+2019;Europe;Components;Road Frames;LL Road Frame - Red, 60;5462.909999999999
+2018;Europe;Components;Road Frames;LL Road Frame - Red, 62;7688.539999999999
+2019;Europe;Components;Road Frames;LL Road Frame - Red, 62;3641.9399999999996
+2018;Europe;Bikes;Road Bikes;Road-650 Red, 58;7986.429999999999
+2018;Europe;Bikes;Road Bikes;Road-650 Red, 60;40292.30000000001
+2019;Europe;Bikes;Road Bikes;Road-650 Red, 60;41905.26000000001
+2019;Europe;Bikes;Road Bikes;Road-650 Red, 62;34106.75
+2018;Europe;Bikes;Road Bikes;Road-650 Red, 44;34294.9
+2019;Europe;Bikes;Road Bikes;Road-650 Red, 44;34294.67
+2018;Europe;Bikes;Road Bikes;Road-650 Red, 48;31006.140000000007
+2018;Europe;Bikes;Road Bikes;Road-650 Red, 52;22549.920000000002
+2019;Europe;Bikes;Road Bikes;Road-650 Red, 52;13154.12
+2018;Europe;Bikes;Road Bikes;Road-250 Red, 44;77331.98999999999
+2019;Europe;Bikes;Road Bikes;Road-250 Red, 44;49844.34
+2018;Europe;Bikes;Road Bikes;Road-250 Red, 48;61572.42
+2019;Europe;Bikes;Road Bikes;Road-250 Red, 48;29320.199999999997
+2018;Europe;Bikes;Road Bikes;Road-250 Red, 52;46912.32
+2019;Europe;Bikes;Road Bikes;Road-250 Red, 52;19058.13
+2018;Europe;Bikes;Road Bikes;Road-550-W Yellow, 38;22809.88
+2018;Europe;Bikes;Road Bikes;Road-550-W Yellow, 40;24610.659999999996
+2018;Europe;Bikes;Road Bikes;Road-550-W Yellow, 42;10204.42
+2018;Europe;Bikes;Road Bikes;Road-550-W Yellow, 48;30013.0
+2018;Europe;Components;Handlebars;LL Road Handlebars;145.74
+2018;Europe;Components;Handlebars;HL Road Handlebars;1377.6
+2018;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 38;7137.899999999999
+2018;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 40;4866.75
+2018;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 44;18493.65
+2018;Europe;Components;Road Frames;ML Road Frame-W - Yellow, 48;12004.650000000001
+2018;Europe;Accessories;Pumps;Minipump;965.9900000000002
+2019;Europe;Clothing;Bib-Shorts;Men's Bib-Shorts, L;1457.73
+2018;Europe;Components;Wheels;ML Mountain Rear Wheel;9436.509999999998
+2018;Europe;Components;Wheels;HL Mountain Rear Wheel;10326.89
+2019;Europe;Clothing;Gloves;Full-Finger Gloves, M;2199.99
+2018;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 42;86543.77
+2018;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 46;84513.79999999999
+2018;Europe;Accessories;Helmets;Sport-100 Helmet, Black;2655.4100000000003
+2018;Europe;Components;Mountain Frames;HL Mountain Frame - Black, 42;19876.049999999996
+2018;Europe;Components;Mountain Frames;HL Mountain Frame - Black, 38;11778.400000000001
+2018;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 38;82373.82000000002
+2018;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 42;83603.28000000001
+2018;Europe;Bikes;Mountain Bikes;Mountain-200 Black, 46;50407.86000000001
+2018;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 38;25271.61
+2019;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 38;21383.67
+2018;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 40;29807.539999999997
+2019;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 40;23975.63
+2018;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 44;30455.530000000002
+2019;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 44;23975.63
+2018;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 48;22679.649999999998
+2019;Europe;Bikes;Mountain Bikes;Mountain-300 Black, 48;15551.759999999998
+2018;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 38;3975.94
+2019;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 38;5022.24
+2018;Europe;Components;Wheels;LL Mountain Front Wheel;1879.5400000000002
+2019;Europe;Components;Wheels;LL Mountain Front Wheel;765.45
+2018;Europe;Components;Wheels;ML Mountain Front Wheel;2132.1400000000003
+2018;Europe;Components;Wheels;HL Mountain Front Wheel;3962.86
+2018;Europe;Components;Wheels;LL Mountain Rear Wheel;1895.4
+2019;Europe;Components;Wheels;ML Mountain Rear Wheel;4248.6
+2019;Europe;Components;Wheels;HL Mountain Rear Wheel;6871.549999999999
+2018;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 40;2301.8599999999997
+2018;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 44;9207.44
+2019;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 44;5022.24
+2018;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 48;10881.52
+2019;Europe;Components;Mountain Frames;ML Mountain Frame - Black, 48;8788.919999999998
+2018;Europe;Clothing;Shorts;Men's Sports Shorts, S;1295.64
+2019;Europe;Clothing;Shorts;Men's Sports Shorts, S;1547.5700000000002
+2018;Europe;Clothing;Shorts;Men's Sports Shorts, M;2879.1999999999994
+2019;Europe;Clothing;Shorts;Men's Sports Shorts, M;1871.4800000000002
+2018;Europe;Clothing;Shorts;Men's Sports Shorts, L;1583.5600000000002
+2018;Europe;Clothing;Tights;Women's Tights, S;6609.74
+2019;Europe;Clothing;Tights;Women's Tights, S;3014.3299999999995
+2018;Europe;Clothing;Tights;Women's Tights, M;1484.67
+2019;Europe;Clothing;Tights;Women's Tights, M;629.86
+2018;Europe;Clothing;Tights;Women's Tights, L;5657.4699999999975
+2019;Europe;Clothing;Tights;Women's Tights, L;4499.0
+2018;Europe;Clothing;Gloves;Half-Finger Gloves, S;508.67999999999995
+2018;Europe;Clothing;Gloves;Half-Finger Gloves, M;1116.27
+2018;Europe;Clothing;Gloves;Full-Finger Gloves, S;820.4399999999998
+2018;Europe;Clothing;Gloves;Full-Finger Gloves, M;3896.2700000000004
+2018;Europe;Clothing;Gloves;Full-Finger Gloves, L;3884.0999999999995
+2019;Europe;Clothing;Gloves;Full-Finger Gloves, L;3329.5899999999997
+2018;Europe;Accessories;Helmets;Sport-100 Helmet, Red;2041.73
+2018;Europe;Accessories;Helmets;Sport-100 Helmet, Blue;2389.040000000001
+2018;Europe;Clothing;Caps;AWC Logo Cap;743.4300000000002
+2018;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, M;2785.9599999999996
+2018;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, L;4275.16
+2018;Europe;Clothing;Jerseys;Long-Sleeve Logo Jersey, XL;2047.6399999999999
+2018;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 42;17118.21
+2020;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 42;4912.200000000001
+2018;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 46;11164.05
+2018;Europe;Components;Mountain Frames;HL Mountain Frame - Silver, 38;26049.45
+2018;Europe;Bikes;Mountain Bikes;Mountain-200 Silver, 38;74115.27
+2018;Europe;Components;Forks;LL Fork;1956.4600000000003
+2019;Europe;Components;Forks;LL Fork;889.3
+2018;Europe;Components;Forks;HL Fork;4681.46
+2019;Europe;Components;Forks;HL Fork;2753.8
+2018;Europe;Components;Headsets;LL Headset;184.68
+2018;Europe;Components;Headsets;ML Headset;2071.2999999999997
+2019;Europe;Components;Headsets;ML Headset;2368.95
+2018;Europe;Components;Headsets;HL Headset;972.9200000000001
+2019;Europe;Components;Headsets;HL Headset;1047.76
+2018;Europe;Components;Handlebars;LL Mountain Handlebars;801.5699999999999
+2018;Europe;Components;Handlebars;ML Mountain Handlebars;1823.58
+2018;Europe;Components;Handlebars;HL Mountain Handlebars;983.9999999999999
+2018;Europe;Accessories;Locks;Cable Lock;1050.0
+2019;Europe;Accessories;Locks;Cable Lock;735.0
+2019;Europe;Accessories;Pumps;Minipump;815.3200000000002
+2018;Europe;Clothing;Bib-Shorts;Men's Bib-Shorts, S;3435.5599999999995
+2019;Europe;Clothing;Bib-Shorts;Men's Bib-Shorts, S;2159.6
+2018;Europe;Clothing;Bib-Shorts;Men's Bib-Shorts, M;6277.229999999999
+2019;Europe;Clothing;Bib-Shorts;Men's Bib-Shorts, M;3543.54
+2018;Europe;Clothing;Bib-Shorts;Men's Bib-Shorts, L;2753.49
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Silver, 48;2218.02
+2020;Europe;Components;Pedals;ML Mountain Pedal;298.0
+2018;Europe;Components;Road Frames;LL Road Frame - Black, 60;735.76
+2019;Europe;Components;Wheels;LL Road Rear Wheel;2228.8199999999997
+2018;Europe;Bikes;Road Bikes;Road-650 Red, 62;29862.980000000003
+2019;Europe;Bikes;Road Bikes;Road-650 Red, 48;24710.95
+2019;Europe;Clothing;Gloves;Full-Finger Gloves, S;433.01
+2019;Europe;Components;Wheels;ML Mountain Front Wheel;877.94
+2019;Europe;Components;Wheels;HL Mountain Front Wheel;540.39
+2019;Europe;Components;Wheels;LL Mountain Rear Wheel;315.9
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 40;3239.9000000000005
+2020;Europe;Bikes;Mountain Bikes;Mountain-500 Black, 42;2915.9100000000003
+2020;Europe;Components;Handlebars;HL Mountain Handlebars;216.48
+2020;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 38;6001.969999999998
+2019;Europe;Bikes;Mountain Bikes;Mountain-400-W Silver, 46;4155.21
+2020;Europe;Components;Road Frames;HL Road Frame - Black, 44;3435.6
+2020;Europe;Components;Road Frames;HL Road Frame - Red, 62;1717.8
+2020;Europe;Components;Road Frames;HL Road Frame - Red, 44;2576.7
+2019;Europe;Components;Touring Frames;LL Touring Frame - Blue, 62;800.2
+2019;Europe;Components;Road Frames;LL Road Frame - Red, 52;404.66
+2020;Europe;Components;Saddles;HL Road Seat/Saddle;94.74
+2020;Europe;Components;Brakes;Rear Brakes;191.7
+2020;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 46;436.9
+2019;Europe;Bikes;Road Bikes;Road-650 Black, 62;4228.110000000001
+2019;Europe;Bikes;Road Bikes;Road-650 Black, 48;5637.48
+2018;Europe;Bikes;Road Bikes;Road-250 Black, 58;10471.52
+2019;Europe;Bikes;Road Bikes;Road-650 Red, 58;2348.9500000000003
+2018;Europe;Bikes;Road Bikes;Road-250 Red, 58;9162.580000000002
+2018;Europe;Bikes;Road Bikes;Road-550-W Yellow, 44;5402.34
+2019;Europe;Clothing;Vests;Classic Vest, L;114.3
+2019;Europe;Components;Touring Frames;LL Touring Frame - Blue, 58;200.05
+2020;Europe;Components;Saddles;ML Touring Seat/Saddle;23.48
+2019;Europe;Components;Mountain Frames;LL Mountain Frame - Black, 40;149.87
+2019;Europe;Components;Mountain Frames;ML Mountain Frame-W - Silver, 38;218.45
+2019;Europe;Components;Saddles;LL Road Seat/Saddle;81.35
+2020;Europe;Components;Pedals;Touring Pedal;48.59

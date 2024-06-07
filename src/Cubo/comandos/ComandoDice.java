@@ -52,41 +52,8 @@ public class ComandoDice implements ComandoCubo{
         // Itero sobre cada fila de la tabla de operación
         for (List<String> fila : this.tabla_operacion.getData()) {
 
-            //Genero un flag que me va a ayudar a verificar si una fila de la tabla cumple con los criterios o no
-            boolean cumple_criterios = true;
-
-            // Itero sobre los criterios de la dimensión
-            for (Map.Entry<Dimension, Map<String, List<String>>> criterioDimension : this.criterios.entrySet()) {
-
-                // Obtengo el mapa que contiene a los niveles con los valores permitidos
-                Map<String, List<String>> valores_nivel = criterioDimension.getValue();
-
-                // Itero sobre cada nivel
-                for (Map.Entry<String, List<String>> valor_nivel : valores_nivel.entrySet()) {
-
-                    // Obtengo el nombre del nivel y los valores permitidos para ese nivel
-                    String nivel = valor_nivel.getKey();
-                    List<String> valores_permitidos = valor_nivel.getValue();
-
-                    // Obtengo el índice del nivel de la dimensión en la tabla de operación
-                    int indice_nivel = tabla_operacion.getHeaders().indexOf(nivel);
-
-                    // Verifico si la fila en la que estoy contiene alguno de los valores permitidos
-                    if (!valores_permitidos.contains(fila.get(indice_nivel))) {
-                        // De no ser así entonces pongo el flag en falso
-                        cumple_criterios = false;
-                        break;
-                    }
-                }
-
-                 // Si un criterio de dimensión no se cumple para una fila, no tiene sentido seguir revisando más criterios
-                if (!cumple_criterios) {
-                    break;
-                }
-            }
-
-            // Si la fila cumple con todos los criterios, la añado a la lista de operacion_resultante
-            if (cumple_criterios) {
+            // Verifico si la fila cumple con los criterios
+            if (cumpleCriterios(fila)) {
                 operacion_resultante.add(fila);
             }
         }
@@ -101,6 +68,45 @@ public class ComandoDice implements ComandoCubo{
         }
     }
 
+    
+    // Métodos de ayuda para método ejecutar()
+
+    /**
+     * Verifica si una fila cumple con los criterios de corte.
+     *
+     * @param fila La fila a verificar.
+     * @return true si la fila cumple con los criterios, false de lo contrario.
+     */
+    private boolean cumpleCriterios(List<String> fila) {
+        
+        // Itero sobre los criterios de la dimensión
+        for (Map.Entry<Dimension, Map<String, List<String>>> criterioDimension : this.criterios.entrySet()) {
+
+            // Obtengo el mapa que contiene a los niveles con los valores permitidos
+            Map<String, List<String>> valores_nivel = criterioDimension.getValue();
+
+            // Itero sobre cada nivel
+            for (Map.Entry<String, List<String>> valor_nivel : valores_nivel.entrySet()) {
+
+                // Obtengo el nombre del nivel y los valores permitidos para ese nivel
+                String nivel = valor_nivel.getKey();
+                List<String> valores_permitidos = valor_nivel.getValue();
+
+                // Obtengo el índice del nivel de la dimensión en la tabla de operación
+                int indice_nivel = tabla_operacion.getHeaders().indexOf(nivel);
+
+                // Verifico si la fila en la que estoy no contiene alguno de los valores permitidos
+                if (!valores_permitidos.contains(fila.get(indice_nivel))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+    // Getters de la clase
 
     /**
      * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.

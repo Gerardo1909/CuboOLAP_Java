@@ -87,94 +87,16 @@ public class ComandoRollUp implements ComandoCubo{
         }
 
         // Ahora armo un nuevo 'mapa_operable' que tendrá como valores las mismas listas pero de tipo double
-        Map<List<String>, List<List<Double>>> mapa_operable = new LinkedHashMap<>();
-        for (Map.Entry<List<String>, List<List<String>>> entrada : mapa_agrupacion.entrySet()) {
-
-            // Obtengo clave y valor del mapa_agrupacion
-            List<String> clave = entrada.getKey();
-            List<List<String>> listasHechos_string = entrada.getValue();
-            
-            // Recorro cada lista de hechos_string y la convierto en una lista de doubles
-            List<List<Double>> listasHechos_double = new ArrayList<>();
-            for (List<String> listaString : listasHechos_string) {
-                List<Double> listaDouble = new ArrayList<>();
-                for (String valorString : listaString) {
-                    // Verifico que el valor sea un número y lo convierto en double
-                    try {
-                        Double valorDouble = Double.parseDouble(valorString);
-                        listaDouble.add(valorDouble);
-                    } catch (NumberFormatException number_exception) {
-                        number_exception.printStackTrace();
-                    }
-                }
-                listasHechos_double.add(listaDouble);
-            }
-        
-            // Guardo la entrada resultante
-            mapa_operable.put(clave, listasHechos_double);
-        }
+        Map<List<String>, List<List<Double>>> mapa_operable = convertirAListasDouble(mapa_agrupacion);
 
         // Armo el mapa que tendrá el resultado con la operación de agregación elegida aplicada
-        Map<List<String>, List<Double>> mapa_operacion = new LinkedHashMap<>();
-
-        // Recorro cada entrada de 'mapa_operable'
-        for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_operable.entrySet()) {
-            List<String> clave = entrada.getKey();
-            List<List<Double>> listasHechos = entrada.getValue();
-
-            // Aplico la operación elegida a cada lista de hechos
-            List<Double> operaciones = new ArrayList<>();
-            for (List<Double> lista : listasHechos) {
-
-                switch (this.agregacion) {
-                    case "sum":
-                        double suma = sumarLista(lista);
-                        operaciones.add(suma);
-                        break;
-                    case "max":
-                        double max = Collections.max(lista);
-                        operaciones.add(max);
-                        break;
-                    case "min":
-                        double min = Collections.min(lista);
-                        operaciones.add(min);
-                        break;
-                    case "count":
-                        double count = (double) lista.size();
-                        operaciones.add(count);
-                        break;
-                }
-            }
-
-            // Guardo la entrada resultante
-            mapa_operacion.put(clave, operaciones);
-        }
+        Map<List<String>, List<Double>> mapa_operacion = aplicarAgregacion(mapa_operable);
 
         // Ahora guardo en una lista de listas de String la información del mapa resultante
-        List<List<String>> operacion_resultante = new ArrayList<>();
-        for (Map.Entry<List<String>, List<Double>> entrada : mapa_operacion.entrySet()){
-
-            //Tomo la clave y valor del mapa_operacion
-            List<String> clave = entrada.getKey();
-            List<Double> valor = entrada.getValue();
-
-            //Parseo los valores Double de la lista 'valor'
-            List<String> valor_parseado = new ArrayList<>();
-            for (Double hecho : valor) {
-                valor_parseado.add(String.valueOf(hecho));
-            }
-
-            //Creo una nueva lista que contenga los valores de clave y valor, simulando una fila
-            List<String> fila = new ArrayList<>(clave);
-            fila.addAll(valor_parseado);
-
-            //Y añado dicha fila a fila a 'operacion_resultante'
-            operacion_resultante.add(fila);
-        }
+        List<List<String>> operacion_resultante = convertirAListaString(mapa_operacion);
 
         // Genero una lista para guardar los headers de la operacion resultante
-        List<String> headers_operacion = new ArrayList<>(this.niveles_operacion);
-        headers_operacion.addAll(this.hechos_seleccionados);
+        List<String> headers_operacion = obtenerHeadersOperacion();
 
         // Finalmente modifico 'tabla_operacion'
         try {
@@ -185,32 +107,174 @@ public class ComandoRollUp implements ComandoCubo{
         }
     }
 
+
+    // Métodos de ayuda para método ejecutar()
+
     /**
-     * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.
+     * Convierte el mapa de agrupación a un nuevo mapa con listas de tipo double.
      *
-     * @return Un objeto de tipo hecho que representa la tabla sobre la cual se ejecutan las operaciones del cubo.
+     * @param mapa_agrupacion El mapa de agrupación original.
+     * @return El nuevo mapa con listas de tipo double.
      */
-    public Hecho getResultado() {
-        return this.tabla_operacion;
+    private Map<List<String>, List<List<Double>>> convertirAListasDouble(Map<List<String>, List<List<String>>> mapa_agrupacion) {
+        
+        // Creo un mapa para guardar la operación resultante
+        Map<List<String>, List<List<Double>>> mapa_operable = new LinkedHashMap<>();
+
+        // Itero sobre el mapa de agrupación
+        for (Map.Entry<List<String>, List<List<String>>> entrada : mapa_agrupacion.entrySet()) {
+
+            // Obtengo la clave y los valores del mapa
+            List<String> clave = entrada.getKey();
+            List<List<String>> listasHechos_string = entrada.getValue();
+
+            // Creo una lista de listas de valores Double para guardar los valores convertidos
+            List<List<Double>> listasHechos_double = new ArrayList<>();
+
+            // Itero sobre las listas de valores String
+            for (List<String> listaString : listasHechos_string) {
+
+                // Creo una lista para guardar los valores Double
+                List<Double> listaDouble = new ArrayList<>();
+
+                    // Itero sobre los valores de tipo String
+                    for (String valorString : listaString) {
+
+                        try {
+                        // Intento convertir el valor de tipo String a tipo Double
+                        Double valorDouble = Double.parseDouble(valorString);
+
+                        // Si la conversión es exitosa, agrego el valor Double a la lista
+                        listaDouble.add(valorDouble);
+
+                        } catch (NumberFormatException number_exception) {
+                        // Si ocurre una excepción al convertir el valor, imprimo el stack trace
+                        number_exception.printStackTrace();
+                        }
+
+                    }
+
+            // Agrego la lista de valores Double a la lista de listas de valores Double
+            listasHechos_double.add(listaDouble);
+            }
+
+            // Agrego las claves y la lista de listas de valores Double al mapa operable
+            mapa_operable.put(clave, listasHechos_double);
+        }
+
+        // Retorno el mapa operable con listas de valores Double
+        return mapa_operable;
     }
 
     /**
-     * Devuelve el historial de operaciones RollUp aplicadas sobre la instancia de 'CuboOLAP' que invoca esta clase
-     * con la instancia que se encargó de ejecutar este método ya añadida.
+     * Aplica la operación de agregación elegida al mapa operable.
      *
-     * @return Una lista con datos de tipo ComandoRollUp que representan las operaciones RollUp efectuadas sobre el cubo.
+     * @param mapa_operable El mapa operable con listas de tipo double.
+     * @return El mapa con la operación de agregación aplicada.
      */
-    public List<ComandoRollUp> getHistorial(){
-        return this.historial_rollUp;
+    private Map<List<String>, List<Double>> aplicarAgregacion(Map<List<String>, List<List<Double>>> mapa_operable) {
+        
+        // Creo un mapa para guardar la operación resultante
+        Map<List<String>, List<Double>> mapa_operacion = new LinkedHashMap<>();
+
+        // Itero sobre el mapa operable
+        for (Map.Entry<List<String>, List<List<Double>>> entrada : mapa_operable.entrySet()) {
+
+            // Obtengo la clave y los valores del mapa
+            List<String> clave = entrada.getKey();
+            List<List<Double>> listasHechos = entrada.getValue();
+
+            // Creo una lista para guardar las operaciones de agregación
+            List<Double> operaciones = new ArrayList<>();
+
+            // Itero sobre las listas de hechos seleccionados
+            for (List<Double> lista : listasHechos) {
+
+                // Realizo la operación de agregación correspondiente
+                switch (this.agregacion) {
+                    case "sum":
+                    double suma = sumarLista(lista);
+                    operaciones.add(suma);
+                    break;
+
+                    case "max":
+                    double max = Collections.max(lista);
+                    operaciones.add(max);
+                    break;
+
+                    case "min":
+                    double min = Collections.min(lista);
+                    operaciones.add(min);
+                    break;
+
+                    case "count":
+                    double count = (double) lista.size();
+                    operaciones.add(count);
+                    break;
+                }
+            }
+
+            // Agrego las claves y las operaciones al mapa de operación
+            mapa_operacion.put(clave, operaciones);
+        }
+
+        // Retorno el mapa de operación con la operación de agregación aplicada
+        return mapa_operacion;
     }
 
     /**
-     * Devuelve los niveles de agregación implicados en la operación.
+     * Convierte el mapa operación a una lista de listas de tipo String.
      *
-     * @return Una lista de cadenas que representa los niveles de operación.
+     * @param mapa_operacion El mapa operación con listas de tipo double.
+     * @return La lista de listas de tipo String.
      */
-    protected List<String> getNivelesOperacion(){
-        return new ArrayList<>(this.niveles_operacion);
+    private List<List<String>> convertirAListaString(Map<List<String>, List<Double>> mapa_operacion) {
+        
+        // Creo una lista de listas de String para guardar la operación resultante
+        List<List<String>> operacion_resultante = new ArrayList<>();
+
+        // Itero sobre el mapa de operación
+        for (Map.Entry<List<String>, List<Double>> entrada : mapa_operacion.entrySet()) {
+
+            // Obtengo la clave y los valores del mapa
+            List<String> clave = entrada.getKey();
+            List<Double> valor = entrada.getValue();
+
+            // Creo una nueva lista para guardar los valores parseados
+            List<String> valor_parseado = new ArrayList<>();
+
+            // Convierto los valores double a String
+            for (Double hecho : valor) {
+                valor_parseado.add(String.valueOf(hecho));
+            }
+
+            // Creo una nueva fila con la clave y los valores parseados
+            List<String> fila = new ArrayList<>(clave);
+            fila.addAll(valor_parseado);
+
+            // Agrego la fila a la lista 'operacion_resultante'
+            operacion_resultante.add(fila);
+        }
+
+        // Retorno la lista de listas de String
+        return operacion_resultante;
+    }
+
+    /**
+     * Genera los headers de la operación resultante.
+     *
+     * @return La lista de headers.
+     */
+    private List<String> obtenerHeadersOperacion() {
+
+        // Creo una lista con los niveles de operación
+        List<String> headers_operacion = new ArrayList<>(this.niveles_operacion);
+
+        // Agrego los hechos seleccionados a la lista
+        headers_operacion.addAll(this.hechos_seleccionados);
+
+        // Devuelvo la lista de headers resultante
+        return headers_operacion;
     }
 
     /**
@@ -279,6 +343,37 @@ public class ComandoRollUp implements ComandoCubo{
             }
         }
         return null; 
+    }
+
+    
+    // Getters de la clase
+
+    /**
+     * Devuelve la 'tabla_operacion' del cubo con el método ya aplicado.
+     *
+     * @return Un objeto de tipo hecho que representa la tabla sobre la cual se ejecutan las operaciones del cubo.
+     */
+    public Hecho getResultado() {
+        return this.tabla_operacion;
+    }
+
+    /**
+     * Devuelve el historial de operaciones RollUp aplicadas sobre la instancia de 'CuboOLAP' que invoca esta clase
+     * con la instancia que se encargó de ejecutar este método ya añadida.
+     *
+     * @return Una lista con datos de tipo ComandoRollUp que representan las operaciones RollUp efectuadas sobre el cubo.
+     */
+    public List<ComandoRollUp> getHistorial(){
+        return this.historial_rollUp;
+    }
+
+    /**
+     * Devuelve los niveles de agregación implicados en la operación.
+     *
+     * @return Una lista de cadenas que representa los niveles de operación.
+     */
+    protected List<String> getNivelesOperacion(){
+        return new ArrayList<>(this.niveles_operacion);
     }
 
 }
