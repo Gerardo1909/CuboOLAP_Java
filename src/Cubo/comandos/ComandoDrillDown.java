@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import Cubo.CuboOLAP;
 import Cubo.cubo_utils.OperacionAgregacion;
+import Cubo.cubo_utils.OperacionesComunes;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
@@ -92,7 +93,7 @@ public class ComandoDrillDown implements ComandoCubo {
 
             // Obtengo los niveles de desagregación
             List<String> niveles_detalle = new ArrayList<>();
-            List<String> niveles_desagregacion = ComandoRollUp.obtenerNivelesOperacion(dimension, nivel_detalle, niveles_detalle);
+            List<String> niveles_desagregacion = OperacionesComunes.obtenerNivelesOperacion(dimension, nivel_detalle, niveles_detalle);
 
             // Añado dichos niveles a 'niveles_actuales', esto logra el efecto de desagrupar las dimensiones seleccionadas
             niveles_actuales = obtenerNivelesDesagregacion(niveles_actuales, niveles_desagregacion, dimension);
@@ -130,7 +131,7 @@ public class ComandoDrillDown implements ComandoCubo {
         List<String> lista_resultado = new ArrayList<>();
 
         // Obtengo el nivel mas abstracto de la dimensión sobre la cual itero
-        String nivel_abstracto = ComandoRollUp.obtenerClavePorValor(dimension.getIndicesNiveles(), 0);
+        String nivel_abstracto = OperacionesComunes.obtenerClavePorValor(dimension.getIndicesNiveles(), 0);
 
         // En lista resultado añado todos los niveles que no estén en la dimensión
         for (String nivel : lista_niveles) {
