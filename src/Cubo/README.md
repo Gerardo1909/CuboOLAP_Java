@@ -172,9 +172,9 @@ String ruta_guardado = "/ruta/a/archivo.csv";
 cubo.exportar(ruta_guardado, estrategia_exportar);
 ```
 
-## Reinicio del estado del cubo a través del método `resetear`
+## Reinicio del estado del cubo a través del método `reiniciar`
 
-El método `resetear`  permite reiniciar el cubo a su estado original, restaurando tanto las tablas de dimensiones como las tablas de hechos a su estado inicial y limpiando los historiales de operaciones.
+El método `reiniciar`  permite reiniciar el cubo a su estado original, restaurando tanto las tablas de dimensiones como las tablas de hechos a su estado inicial y limpiando los historiales de operaciones.
 
 Este método fue creado para facilitar la exploración de distintos aspectos de las tablas de dimensiones y de hechos después de trabajar con alguna dimensión o hecho específico, evitando la necesidad de generar una nueva instancia del cubo para ejecutar otras operaciones.
 
@@ -182,7 +182,7 @@ Este método fue creado para facilitar la exploración de distintos aspectos de 
 
 ```java
 // Ejecutamos el método
-cubo.resetear();
+cubo.reiniciar();
 
 // Podemos imprimir por consola algún aviso sobre el reinicio
 System.out.println("El cubo ha sido reiniciado a su estado original.");
@@ -193,7 +193,7 @@ cubo.proyectar(...)
 
 ## Método `rollUp`
 
-El método `rollUp` permite realizar una operación de roll-up en una instancia de `CuboOLAP`, lo que implica una agregación de los datos a un nivel superior en la jerarquía de dimensiones.
+El método `rollUp` permite realizar una operación de roll-up en una instancia de `CuboOLAP`, lo que implica una agregación de los datos a un nivel superior en la jerarquía de dimensiones. 
 
 ### Parámetros del Método
 
@@ -204,7 +204,7 @@ El método `rollUp` permite realizar una operación de roll-up en una instancia 
 
 2. **hechos_seleccionados**: `List<String>`
    - **Descripción**: La lista de hechos a incluir en la operación de roll-up.
-   - **Requisitos**: Debe ser una lista válida de nombres de hechos que existen en la tabla de hechos del cubo.
+   - **Requisitos**: Debe ser una lista válida de nombres de hechos que existen en la tabla de hechos asociada al cubo.
 
 3. **agregacion**: `String`
    - **Descripción**: La operación de agregación a realizar.
@@ -217,16 +217,20 @@ El método `rollUp` permite realizar una operación de roll-up en una instancia 
    - **Cómo Evitarla**: Asegúrate de pasar una de las operaciones soportadas: `"sum"`, `"max"`, `"min"`, `"count"`.
 
 2. **DimensionNoPresenteException**
-   - **Descripción**: Esta excepción se lanza si alguna dimensión especifcada en `criterios_reduccion` no está presente en las dimensiones del cubo.
-   - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas existan en las dimensiones del cubo antes de llamar al método.
+   - **Descripción**: Esta excepción se lanza si alguna dimensión especifcada en `criterios_reduccion` no está en el cubo.
+   - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas estén presentes en el cubo antes de invocar al método.
 
 3. **NivelNoPresenteException**
-   - **Descripción**: Esta excepción se lanza si algún nivel especificado en `criterios_reduccion` no está presente en las dimensiones del cubo.
-   - **Cómo Evitarla**: Verifica que todos los niveles especificados existen en las dimensiones del cubo antes de llamar al método.
+   - **Descripción**: Esta excepción se lanza si algún nivel especificado en `criterios_reduccion` no está presente en el cubo.
+   - **Cómo Evitarla**: Verifica que todos los niveles especificados estén presentes en las dimensiones asociadas al cubo al momento de invocar al método.
 
 4. **HechoNoPresenteException**
-   - **Descripción**: Esta excepción se lanza si algún hecho especificado en `hechos_seleccionados` no está presente en la tabla de hechos.
-   - **Cómo Evitarla**: Verifica que todos los hechos especificados existen en la tabla de hechos antes de llamar al método.
+   - **Descripción**: Esta excepción se lanza si algún hecho especificado en `hechos_seleccionados` no está presente en el cubo.
+   - **Cómo Evitarla**: Verifica que todos los hechos especificados existen en la tabla de hechos asociada al cubo antes de llamar al método.
+
+5. **ArgumentosInoperablesException**
+   - **Descripción**: Esta excepción se lanza si el mapa `criterios_reduccion` está vacío a la hora de invocar al método.
+   - **Cómo Evitarla**: Verifica que el mapa contenga las condiciones de agregación antes de invocar al método.
 
 ### Ejemplo de Uso
 
@@ -275,7 +279,7 @@ Esta operación una vez se ejecuta y filtra los datos según los criterios espec
 
 1. **dimension**: `Dimension`
    - **Descripción**: La dimensión en la que se va a realizar la operación de slice.
-   - **Requisitos**: Debe ser una instancia válida de la clase `Dimension` que esté presente en el cubo.
+   - **Requisitos**: Debe ser una instancia válida de la clase `Dimension` que esté presente en el cubo al momento de invocar al método.
 
 2. **nivel**: `String`
    - **Descripción**: El nivel en la dimensión en el que se va a realizar la operación de slice.
@@ -289,15 +293,20 @@ Esta operación una vez se ejecuta y filtra los datos según los criterios espec
 
 1. **DimensionNoPresenteException**
    - **Descripción**: Esta excepción se lanza si la dimensión especificada no está presente en el cubo.
-   - **Cómo Evitarla**: Asegúrate de que la dimensión pasada como argumento esté incluida en el cubo antes de llamar al método.
+   - **Cómo Evitarla**: Asegúrate de que la dimensión pasada como argumento esté incluida en el cubo al momento de invocar al método.
 
 2. **NivelNoPresenteException**
-   - **Descripción**: Esta excepción se lanza si el nivel especificado no está presente en la dimensión.
-   - **Cómo Evitarla**: Verifica que el nivel especificado existe en la dimensión antes de llamar al método.
+   - **Descripción**: Esta excepción se lanza si el nivel especificado no está presente presente en el cubo al momento de invocar al método.
+   - **Cómo Evitarla**: Verifica que el nivel especificado existe entre una de las dimensiones presentes en el cubo al invocar el método.
 
 3. **ValorNoPresenteException**
-   - **Descripción**: Esta excepción se lanza si el valor de corte no está presente en el nivel seleccionado de la dimensión.
-   - **Cómo Evitarla**: Asegúrate de que el valor de corte existe en el nivel especificado antes de llamar al método.
+   - **Descripción**: Esta excepción se lanza si el valor de corte no está presente en el cubo para el nivel seleccionado de la dimensión al momento de invocar al método.
+   - **Cómo Evitarla**: Asegúrate de que el valor de corte existe en el cubo para el nivel especificado al momento de invocar al método.
+
+4. **SliceException**
+   - **Descripción**: Esta excepción se lanza si a la dimensión pasada como argumento se le aplicó la operación Slice anteriormente al momento de invocar al método.
+   - **Cómo Evitarla**: Intenta usando el método `reiniciar` si quieres volver a aplicar alguna operación de Slice a la dimensión pasada como argumento.
+
 
 ### Ejemplo de Uso
 
@@ -323,7 +332,7 @@ El método `slice` luego de haberse ejecutado modifica el estado interno del cub
 y eliminando completamente la dimensión que se vió implicada en la operación, reduciendo así la dimensionalidad del cubo.
 
 El cubo resultante contará con el resto de dimensiones pero filtradas según los criterios especificos. Una forma ideal de visualizar estos resultados 
-podría ser usando el método `exportar` de la clase `CuboOLAP` para exportar la información del cubo y analizar la información restante.
+podría ser usando el método `exportar` de la clase `CuboOLAP` para exportar el cubo y analizar la información restante.
 
 ## Método `dice`
 
@@ -343,16 +352,17 @@ característica principal es que puede contener varios criterios de corte a dife
 ### Excepciones Lanzadas
 
 1. **DimensionNoPresenteException**
-  - **Descripción**: Se lanza si la dimensión especificada no está presente en el cubo.
-  - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas están incluidas en el cubo antes de llamar al método.
+  - **Descripción**: Se lanza si la dimensión especificada no está presente en el cubo al momento de invocar al método.
+  - **Cómo Evitarla**: Verifica que todas las dimensiones especificadas están incluidas en el cubo antes de invocar al método.
 
 2. **NivelNoPresenteException**
-  - **Descripción**: Se lanza si el nivel especificado no está presente en la dimensión.
-  - **Cómo Evitarla**: Asegúrate de que todos los niveles especificados están presentes en las dimensiones correspondientes.
+  - **Descripción**: Se lanza si el nivel especificado no está presente en el cubo al momento de invocar al método.
+  - **Cómo Evitarla**: Asegúrate de que todos los niveles especificados estén presentes en el cubo al momento de invocar al método.
 
-3. **NivelNoPresenteException**
-  - **Descripción**: Se lanza si el valor de corte no está presente en el nivel seleccionado de la dimensión.
-  - **Cómo Evitarla**: Comprueba que todos los valores de corte están presentes en los niveles correspondientes de las dimensiones antes de realizar la operación.
+3. **ValorNoPresenteException**
+  - **Descripción**: Se lanza si el valor de corte no está presente en el cubo para el nivel seleccionado de la dimensión al momento de invocar al método.
+  - **Cómo Evitarla**: Comprueba que todos los valores de corte están presentes en los niveles correspondientes de las dimensiones antes de realizar la operación,
+                       además asegurate de no haber antes filtrado antes al cubo al momento de invocar al método.
 
 ### Ejemplo de Uso
 

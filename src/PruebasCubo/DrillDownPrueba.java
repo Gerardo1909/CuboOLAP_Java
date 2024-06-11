@@ -44,22 +44,23 @@ public class DrillDownPrueba {
             "sum"
         );
 
-        // Visualizo el resultado
-        List<String> columnas_visualizacion = new ArrayList<>(Arrays.asList("anio", "region", "categoria", "valor_total"));
-        cuboPrueba.proyectar(10, columnas_visualizacion);
+        // Pruebo el método dice para ver como se comporta y si mantiene el filtro
+        Map<String, List<String>> criteriosFechas = new LinkedHashMap<>();
+        criteriosFechas.put("anio", Arrays.asList("2018"));
 
-        System.out.println("----------------------------------------------------");
+        Map<Dimension, Map<String, List<String>>> criterios = new LinkedHashMap<>();
+        criterios.put(dimFechas, criteriosFechas);
+        // Ejecuto el método
+        cuboPrueba.dice(criterios);
 
-        // Ahora pruebo a desagrupar la dimension fechas a nivel mes
+        // Ahora pruebo a desagrupar las dimensiones a su nivel más fino
         Map<Dimension, String> criterios_expansion = new LinkedHashMap<>();
-        criterios_expansion.put(dimFechas, "mes");
+        criterios_expansion.put(dimFechas, "fecha");
+        criterios_expansion.put(dimPuntoVenta, "punto_venta");
+        criterios_expansion.put(dimProducto, "producto");
 
         // Pruebo la operación DrillDown
         cuboPrueba.drillDown(criterios_expansion);
-
-        // Visualizo el resultado
-        columnas_visualizacion = new ArrayList<>(Arrays.asList("anio", "quarter", "mes", "region", "categoria", "valor_total", "costo"));
-        cuboPrueba.proyectar(10, columnas_visualizacion);
 
         // Pruebo la exportacion del cubo
         ExportadorCSV exportadorCSV = new ExportadorCSV(';');

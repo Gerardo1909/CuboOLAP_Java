@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import Cubo.CuboOLAP;
+import Cubo.cubo_utils.OperacionAgregacion;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
 
@@ -54,6 +55,27 @@ public class ComandoDrillDown implements ComandoCubo {
         // Añado al historial el comando antes de ejecutarlo
         this.historial_drillDown.add(this);
 
+        // Hago una copia del historial de operaciones dice para no modificar el original
+        List<ComandoDice> historial_dice_copy = new ArrayList<>(this.historial_dice);
+
+        // Aplico todas las operaciones dice que se hayan hecho antes de aplicar el rollUp
+        for (ComandoDice comando : this.historial_dice) {
+            
+            // Obtengo los criterios
+            Map<Dimension, Map<String, List<String>>> criterios = comando.getCriterios();
+
+            // Creo una instancia que represente el comando que estoy ejecutando
+            ComandoDice comando_dice = new ComandoDice(this.tabla_base, criterios, historial_dice_copy);
+
+            // Ejecuto el comando
+            comando_dice.ejecutar();
+
+            // Modifico la tabla base
+            this.tabla_base = comando_dice.getResultado();
+
+        }
+
+
         // Obtengo el último método RollUp aplicado sobre el cubo
         ComandoRollUp ultimo_rollUp = this.historial_rollUp.get(this.historial_rollUp.size() - 1);
 
@@ -76,8 +98,12 @@ public class ComandoDrillDown implements ComandoCubo {
             niveles_actuales = obtenerNivelesDesagregacion(niveles_actuales, niveles_desagregacion, dimension);
         }
 
+        // Utilizo la operación de agregación suma, ya que sería la operación esperada a la hora de desagrupar información
+        OperacionAgregacion operacion_suma = OperacionAgregacion.SUM;
+
         // Finalmente uso la clase ComandoRollUp para "agrupar" por los niveles obtenidos
-        ComandoRollUp comando = new ComandoRollUp(this.tabla_base, this.tabla_base.getHechos(), "sum", niveles_actuales, historial_rollUp);
+        ComandoRollUp comando = new ComandoRollUp(this.tabla_base, this.tabla_base.getHechos(), operacion_suma, 
+                                                  niveles_actuales, this.historial_rollUp);
 
         // Ejecuto el comando
         comando.ejecutar();

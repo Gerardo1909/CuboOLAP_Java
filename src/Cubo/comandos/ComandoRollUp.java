@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import Cubo.CuboOLAP;
+import Cubo.cubo_utils.OperacionAgregacion;
 import Cubo.excepciones.excepciones_tabla.TablaException;
 import Cubo.tablas.Dimension;
 import Cubo.tablas.Hecho;
@@ -23,7 +24,7 @@ public class ComandoRollUp implements ComandoCubo{
     private Map<Dimension, String> criterios_reduccion;
     private List<String> niveles_operacion;
     private List<String> hechos_seleccionados;
-    private String agregacion;
+    private OperacionAgregacion agregacion;
     private List<ComandoRollUp> historial_rollUp;
 
     /**
@@ -37,7 +38,7 @@ public class ComandoRollUp implements ComandoCubo{
      *                        invoca esta clase.
      */
     public ComandoRollUp(Hecho tabla_operacion, Map<Dimension, String> criterios_reduccion, 
-                         List<String> hechos_seleccionados, String agregacion, List<ComandoRollUp> historial_rollUp) {
+                         List<String> hechos_seleccionados, OperacionAgregacion agregacion, List<ComandoRollUp> historial_rollUp) {
 
         this.tabla_operacion = tabla_operacion;
         this.criterios_reduccion = criterios_reduccion;
@@ -55,8 +56,16 @@ public class ComandoRollUp implements ComandoCubo{
 
     }
 
-    // Constructor para uso dentro del módulo
-    protected ComandoRollUp(Hecho tabla_operacion, List<String> hechos_seleccionados, String agregacion, 
+    /**
+     * Crea un objeto ComandoRollUp que representa un comando de roll-up en una operación OLAP.
+     *
+     * @param tabla_operacion     El hecho sobre el cual se realiza la operación.
+     * @param hechos_seleccionados Los hechos seleccionados para la operación.
+     * @param agregacion          La operación de agregación a aplicar.
+     * @param niveles_operacion   Los niveles de operación para el roll-up.
+     * @param historial_rollUp    El historial de comandos de roll-up.
+     */
+    protected ComandoRollUp(Hecho tabla_operacion, List<String> hechos_seleccionados, OperacionAgregacion agregacion, 
                             List<String> niveles_operacion, List<ComandoRollUp> historial_rollUp) {
 
         this.tabla_operacion = tabla_operacion;
@@ -191,27 +200,8 @@ public class ComandoRollUp implements ComandoCubo{
             for (List<Double> lista : listasHechos) {
 
                 // Realizo la operación de agregación correspondiente
-                switch (this.agregacion) {
-                    case "sum":
-                    double suma = sumarLista(lista);
-                    operaciones.add(suma);
-                    break;
-
-                    case "max":
-                    double max = Collections.max(lista);
-                    operaciones.add(max);
-                    break;
-
-                    case "min":
-                    double min = Collections.min(lista);
-                    operaciones.add(min);
-                    break;
-
-                    case "count":
-                    double count = (double) lista.size();
-                    operaciones.add(count);
-                    break;
-                }
+                double resultado = this.agregacion.aplicar(lista);
+                operaciones.add(resultado);
             }
 
             // Agrego las claves y las operaciones al mapa de operación
@@ -275,20 +265,6 @@ public class ComandoRollUp implements ComandoCubo{
 
         // Devuelvo la lista de headers resultante
         return headers_operacion;
-    }
-
-    /**
-     * Método privado de ayuda para calcular la suma de una lista de dobles.
-     *
-     * @param lista_a_sumar La lista de dobles a sumar.
-     * @return La suma de los elementos en la lista.
-     */
-    private Double sumarLista(List<Double> lista_a_sumar){
-        Double suma = 0.0;
-        for (Double numero : lista_a_sumar){
-            suma+= numero;
-        }
-        return suma;
     }
 
     /**

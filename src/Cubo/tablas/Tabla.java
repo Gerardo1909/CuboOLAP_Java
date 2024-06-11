@@ -76,14 +76,14 @@ public abstract class Tabla{
         // Verifico que estén las columnas de agrupación
         for (String columna : columnas_agrupacion) {
             if (!tabla_operacion.getHeaders().contains(columna)) {
-                throw new ColumnaNoPresenteException("La columna que agrupa" + columna + " no está presente en la tabla " + tabla_operacion.getNombre());
+                throw new ColumnaNoPresenteException("La columna que agrupa " + columna + " no esta presente en la tabla " + tabla_operacion.getNombre());
             }
         }
 
         // Verifico que estén las columnas a agrupar
         for (String columna : columnas_a_agrupar) {
             if (!tabla_operacion.getHeaders().contains(columna)) {
-                throw new ColumnaNoPresenteException("La columna a agrupar" + columna + " no está presente en la tabla " + tabla_operacion.getNombre());
+                throw new ColumnaNoPresenteException("La columna a agrupar " + columna + " no esta presente en la tabla " + tabla_operacion.getNombre());
             }
         }
 
@@ -422,5 +422,42 @@ public abstract class Tabla{
             System.out.println();
         }
     }
+
+
+    /**
+    * Compara este objeto `Tabla` con el objeto especificado para determinar si son iguales.
+    * Devuelve `true` si el objeto dado también es un objeto `Tabla` y tiene los mismos encabezados y datos que este objeto `Tabla`.
+    * 
+    * @param obj el objeto a comparar con este objeto `Tabla`
+    * @return `true` si el objeto dado es igual a este objeto `Tabla`, `false` en caso contrario
+    */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Tabla)) {
+            return false;
+        }
+        Tabla tabla = (Tabla) obj;
+
+        // La igualdad la defino según si sus headers y su información son iguales
+        return this.headers.equals(tabla.headers) && this.data.equals(tabla.data);
+    }
+
+    /**
+     * Devuelve el valor hash del objeto Tabla.
+     * 
+     * @return El valor hash del objeto Tabla.
+     */
+    @Override  
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.headers.hashCode();
+        result = 31 * result + this.data.hashCode();
+        return result;
+    }
+
+
 
 }

@@ -126,4 +126,8 @@ public class ComandoDice implements ComandoCubo{
     public List<ComandoDice> getHistorial(){
         return this.historial_dice;
     }
+
+    protected Map<Dimension, Map<String, List<String>>> getCriterios(){
+        return this.criterios;
+    }
 }

@@ -1,6 +1,5 @@
 package PruebasCubo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,20 +30,16 @@ public class RollUpPrueba {
 
         // Armo el mapa que le voy a pasar al método como argumento
         Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
-        criterios_reduccion.put(dimFechas, "anio");
         criterios_reduccion.put(dimPuntoVenta, "region");
         criterios_reduccion.put(dimProducto, "categoria");
+        criterios_reduccion.put(dimFechas, "mes");
 
         // Pruebo la operación RollUp
         cuboPrueba.rollUp(
             criterios_reduccion,
-            Arrays.asList("valor_total"),
-            "sum"
+            Arrays.asList("valor_total", "costo", "valor_unitario", "cantidad"),
+            "min"
         );
-
-        // Visualizo el resultado
-        List<String> columnas_visualizacion = new ArrayList<>(Arrays.asList("anio", "region", "categoria", "valor_total"));
-        cuboPrueba.proyectar(10, columnas_visualizacion);
 
         // Pruebo la exportacion del cubo
         ExportadorCSV exportadorCSV = new ExportadorCSV(';');

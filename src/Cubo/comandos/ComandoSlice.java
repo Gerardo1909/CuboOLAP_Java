@@ -150,4 +150,12 @@ public class ComandoSlice implements ComandoCubo {
         return this.historial_slice;
     }
 
+    /**
+     * Devuelve la dimensión a la cual se le aplicó el método Slice.
+     *
+     * @return la dimensión asociada al método.
+     */
+    public Dimension getDimension() {
+        return this.dimension;
+    }
 }

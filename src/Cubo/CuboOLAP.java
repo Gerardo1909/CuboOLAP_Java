@@ -2,18 +2,21 @@ package Cubo;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import Cubo.comandos.ComandoDice;
 import Cubo.comandos.ComandoDrillDown;
 import Cubo.comandos.ComandoRollUp;
 import Cubo.comandos.ComandoSlice;
+import Cubo.cubo_utils.OperacionAgregacion;
+import Cubo.excepciones.excepciones_cubo.SliceException;
 import Cubo.excepciones.excepciones_dimension.ClaveNoPresenteException;
 import Cubo.excepciones.excepciones_dimension.DimensionNoPresenteException;
 import Cubo.excepciones.excepciones_dimension.NivelNoPresenteException;
+import Cubo.excepciones.excepciones_dimension.ValorNoPresenteException;
 import Cubo.excepciones.excepciones_hechos.HechoNoPresenteException;
 import Cubo.excepciones.excepciones_operacion.AgregacionNoSoportadaException;
+import Cubo.excepciones.excepciones_operacion.ArgumentosInoperablesException;
 import Cubo.excepciones.excepciones_operacion.NivelDesagregadoException;
 import Cubo.excepciones.excepciones_tabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepciones_tabla.FilaFueraDeRangoException;
@@ -101,40 +104,48 @@ public class CuboOLAP{
      * @throws DimensionNoPresenteException Si alguna dimensión especificada no está presente en el cubo.
      * @throws NivelNoPresenteException Si algún nivel especificado no está presente en alguna dimensión.
      * @throws HechoNoPresenteException Si algún hecho seleccionado no está presente en la tabla de hechos.
+     * @throws ArgumentosInoperablesException Si el mapa de criterios de reducción está vacío.
      */
-    public void rollUp(Map<Dimension, String> criterios_reduccion, List<String> hechos_seleccionados, String agregacion) throws AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
+    public void rollUp(Map<Dimension, String> criterios_reduccion, List<String> hechos_seleccionados, String agregacion) throws ArgumentosInoperablesException, AgregacionNoSoportadaException, NivelNoPresenteException, DimensionNoPresenteException, HechoNoPresenteException{
 
-        // Formateo el string de la operación de agregacion
-        String agregacion_parsed = agregacion.toLowerCase().trim();
-
-        // Armo una lista que contiene los nombres exactos de las operaciones de agregación soportadas
-        List<String> operaciones_soportadas = new ArrayList<>(Arrays.asList("sum", "max", "min", "count"));
-
-        // Verifico que la operación de agregacion seleccionada esté presente en dicha lista
-        if (!operaciones_soportadas.contains(agregacion_parsed)){
-            throw new AgregacionNoSoportadaException("La operación de agregación " + agregacion_parsed + " no está soportada.");
+        // Verifico que 'criterios_reduccion' no sea un mapa vacío
+        if (criterios_reduccion.isEmpty()){
+            throw new ArgumentosInoperablesException("El mapa de criterios de reducción no puede estar vacío.");
         }
 
-        // Verifico que estén presentes todas las dimensiones y niveles pasadas en el mapa 'criterios_reduccion'
-        for (Dimension dimension : criterios_reduccion.keySet()){
-            if (!this.dimensiones.contains(dimension)){
-                throw new DimensionNoPresenteException("La dimensión " + dimension.getNombre() + " no está presente en el cubo " + this.nombre);
+        // Verifico que la operación de agregación sea una de las soportadas por el método 
+        String agregacion_parsed = agregacion.toLowerCase().trim();
+        OperacionAgregacion operacion;
+        if (OperacionAgregacion.esOperacionValida(agregacion_parsed)){
+            // Si la operación indicada en el String es válida, uso esa constante del enum
+            operacion = OperacionAgregacion.valueOf(agregacion_parsed.toUpperCase());
+        } else{
+            throw new AgregacionNoSoportadaException("La operación de agregación " + agregacion + " no está soportada por el método RollUp.");
+        }
+
+        // Itero sobre cada entrada del mapa 'criterios_reduccion' para verificar que los niveles y dimensiones seleccionados estén presentes
+        // en el cubo
+        for (Map.Entry<Dimension, String> criterio : criterios_reduccion.entrySet()){
+            // Verifico que la dimensión pasada como argumento esté presente en el cubo
+            if (!this.dimensiones.contains(criterio.getKey())){
+                throw new DimensionNoPresenteException("La dimensión " + criterio.getKey().getNombre() + " no está presente en el cubo <" + this.getNombre() + ">.");
             }
-            if (!dimension.getNiveles().containsKey(criterios_reduccion.get(dimension))){
-                throw new NivelNoPresenteException("El nivel " + criterios_reduccion.get(dimension) + " no está presente en la dimensión " + dimension.getNombre());
+            // Verifico que el nivel pasado como argumento esté presente en el cubo
+            if (!this.tabla_operacion.getHeaders().contains(criterio.getValue())){
+                throw new NivelNoPresenteException("El nivel " + criterio.getValue() + " no está presente en el cubo <" + this.getNombre() + ">.");
             }
         }
 
         // Verifico que estén presentes todos los hechos seleccionados para la operación
         for (String hecho: hechos_seleccionados){
-            if (!tabla_operacion.getHeaders().contains(hecho)){
-                throw new HechoNoPresenteException("El hecho " + hecho + " no está presente en la tabla de hechos " + this.hecho.getNombre());
+            if (!this.tabla_operacion.getHeaders().contains(hecho)){
+                throw new HechoNoPresenteException("El hecho " + hecho + " no está presente en el cubo <" + this.getNombre() + ">.");
             }
         }
 
         // Genero una instancia de RollUp
         ComandoRollUp comando = new ComandoRollUp(this.tabla_operacion, criterios_reduccion, hechos_seleccionados, 
-                                                  agregacion_parsed, this.historial_rollUp);
+                                                  operacion, this.historial_rollUp);
 
         // Ejecuto la operación
         comando.ejecutar();
@@ -146,26 +157,31 @@ public class CuboOLAP{
         this.tabla_operacion = comando.getResultado();
     }
 
-    public void drillDown(Map<Dimension, String> criterios_expansion) throws DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
+    public void drillDown(Map<Dimension, String> criterios_desagregacion) throws ArgumentosInoperablesException, DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
         
+        // Verifico que 'criterios_desagregacion' no sea un mapa vacío
+        if (criterios_desagregacion.isEmpty()){
+            throw new ArgumentosInoperablesException("El mapa de criterios de desagregacion no puede estar vacio.");
+        }
+
         // Por cada entrada del mapa verifico los criterios seleccionados 
-        for (Map.Entry<Dimension, String> criterio : criterios_expansion.entrySet()){
+        for (Map.Entry<Dimension, String> criterio : criterios_desagregacion.entrySet()){
             // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
             if (!this.dimensiones.contains(criterio.getKey())){
-                throw new DimensionNoPresenteException("La dimensión " + criterio.getKey().getNombre() + " no está presente en el cubo.");
+                throw new DimensionNoPresenteException("La dimension " + criterio.getKey().getNombre() + " no esta presente en el cubo <" + this.getNombre() + ">.");
             }
             // Verifico que el nivel pasado como argumento esté presente en la dimensión
             if (!criterio.getKey().getNiveles().containsKey(criterio.getValue())){
-                throw new NivelNoPresenteException("El nivel " + criterio.getValue() + " no está presente en la dimensión " + criterio.getKey().getNombre());
+                throw new NivelNoPresenteException("El nivel " + criterio.getValue() + " no esta presente en el cubo <" + this.getNombre() + ">.");
             }
             // Verifico que el nivel pasado como argumento no esté desagregado
             if (this.tabla_operacion.getHeaders().contains(criterio.getValue())){
-                throw new NivelDesagregadoException("El nivel " + criterio.getValue() + " ya está presente en la tabla de hechos.");
+                throw new NivelDesagregadoException("El nivel " + criterio.getValue() + " ya esta desagregado en el cubo <" + this.getNombre() + ">.");
             }
         }
 
         // Genero una instancia de DrillDown
-        ComandoDrillDown comando = new ComandoDrillDown(criterios_expansion, this.tabla_base.getHechoCopy(), this.historial_rollUp, 
+        ComandoDrillDown comando = new ComandoDrillDown(criterios_desagregacion, this.tabla_base.getHechoCopy(), this.historial_rollUp, 
                                                         this.historial_dice, this.historial_slice, this.historial_drillDown);
 
         // Ejecuto la operación
@@ -184,27 +200,44 @@ public class CuboOLAP{
      * @param dimension La dimensión en la que realizar la operación de slice.
      * @param nivel El nivel en la dimensión en el que realizar la operación de slice.
      * @param valor_corte El valor de corte para la operación de slice.
+     * @throws SliceException Si la dimensión especificada ya ha sido filtrada anteriormente en una operación de slice.
      * @throws DimensionNoPresenteException Si la dimensión especificada no está presente en el cubo.
-     * @throws NivelNoPresenteException Si el nivel especificado no está presente en la dimensión.
-     * @throws NivelNoPresenteException Si el valor de corte no está presente en el nivel seleccionado de la dimensión.
+     * @throws NivelNoPresenteException Si el nivel especificado no está presente en el cubo.
+     * @throws ValorNoPresenteException Si el valor de corte no está presente en el cubo para el nivel seleccionado de la dimensión.
      */
-    public void slice(Dimension dimension, String nivel, String valor_corte) throws DimensionNoPresenteException, NivelNoPresenteException{
+    public void slice(Dimension dimension, String nivel, String valor_corte) throws SliceException, DimensionNoPresenteException, NivelNoPresenteException, ValorNoPresenteException{
+
+        // Verifico que la dimensión pasada como argumento no se haya visto involucrada en 
+        // esta operación anteriormente
+        if (this.historial_slice.size() > 0){
+            for (ComandoSlice comando : this.historial_slice){
+                if (comando.getDimension().equals(dimension)){
+                    throw new SliceException("La dimension " + dimension.getNombre() + " ya ha sido filtrada anteriormente en una operacion de slice en el cubo <" + this.getNombre() + ">.");
+                }
+            }
+        }
 
         // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
         if (!this.dimensiones.contains(dimension)){
-            throw new DimensionNoPresenteException("La dimensión " + dimension.getNombre() + " no está presente en el cubo.");
+            throw new DimensionNoPresenteException("La dimension " + dimension.getNombre() + " no esta presente en el cubo <" + this.getNombre() + ">.");
         }
 
-        // Verifico que el nivel pasado como argumento esté presente en la dimensión
-        if (!dimension.getNiveles().containsKey(nivel)){
-            throw new NivelNoPresenteException("El nivel " + nivel + " no está presente en la dimensión " + dimension.getNombre());
+        // Verifico que el nivel pasado como argumento esté presente en el cubo a la hora de ejecutar el método
+        if (!this.tabla_operacion.getHeaders().contains(nivel)){
+            throw new NivelNoPresenteException("El nivel " + nivel + " no esta presente en el cubo <" + this.getNombre() + ">.");
         }
 
-        // Verifico que el valor de corte pasado como argumento esté presente en el nivel
-        if (!dimension.getNiveles().get(nivel).contains(valor_corte)){
-            throw new DimensionNoPresenteException("El valor de corte " + valor_corte + " no está presente en el nivel " + nivel + " de la dimensión " + dimension.getNombre());
+        // Verifico que el valor de corte pasado como argumento esté presente en el nivel de la dimensión a la hora de ejecutar el método
+        try{
+            if (!this.tabla_operacion.getColumna(nivel).contains(valor_corte)){
+                throw new ValorNoPresenteException("El valor " + valor_corte + " del nivel "+ nivel + " no esta presente en el cubo <" + this.getNombre() + ">.");
+            }
+        } catch (ColumnaNoPresenteException e){
+            // Esta excepción no debería ocurrir ya que anteriormente se verificó que el nivel estuviese presente
+            // en el cubo
+            e.printStackTrace();
         }
-
+        
         // Genero una instancia de Slice
         ComandoSlice comando = new ComandoSlice(this.tabla_operacion, dimension, nivel, valor_corte, this.historial_slice);
 
@@ -224,27 +257,39 @@ public class CuboOLAP{
      *
      * @param criterios Un mapa que contiene las dimensiones, niveles y valores a incluir en la operación de "dice".
      * @throws DimensionNoPresenteException Si la dimensión especificada no está presente en el cubo.
-     * @throws NivelNoPresenteException Si el nivel especificado no está presente en la dimensión.
-     * @throws NivelNoPresenteException Si el valor de corte no está presente en el nivel seleccionado de la dimensión.
+     * @throws NivelNoPresenteException Si el nivel especificado no está presente en el cubo.
+     * @throws ValorNoPresenteException Si el valor de corte no está presente en el cubo para el nivel seleccionado de la dimensión.
+     * @throws ArgumentosInoperablesException Si el mapa de criterios de filtrado está vacío.
      */
-    public void dice(Map<Dimension, Map<String, List<String>>> criterios) throws DimensionNoPresenteException, NivelNoPresenteException{
+    public void dice(Map<Dimension, Map<String, List<String>>> criterios) throws ArgumentosInoperablesException, DimensionNoPresenteException, NivelNoPresenteException, ValorNoPresenteException{
         
+        // Verifico que 'criterios' no sea un mapa vacío
+        if (criterios.isEmpty()){
+            throw new ArgumentosInoperablesException("El mapa de criterios de filtrado para la operación dice no puede estar vacío.");
+        }
+
         //Primero hago las verificaciones pertinentes de la existencia de dimension, niveles y valores especificados
         for (Map.Entry<Dimension, Map<String, List<String>>> criterioDimension : criterios.entrySet()){
             // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
             if (!this.dimensiones.contains(criterioDimension.getKey())){
-                throw new DimensionNoPresenteException("La dimensión " + criterioDimension.getKey().getNombre() + " no está presente en el cubo.");
+                throw new DimensionNoPresenteException("La dimensión " + criterioDimension.getKey().getNombre() + " no está presente en el cubo <" + this.getNombre() + ">.");
             }
             // Verifico que el nivel pasado como argumento esté presente en la dimensión
             for (Map.Entry<String, List<String>> criterioNivel : criterioDimension.getValue().entrySet()){
-                if (!criterioDimension.getKey().getNiveles().containsKey(criterioNivel.getKey())){
-                    throw new NivelNoPresenteException("El nivel " + criterioNivel.getKey() + " no está presente en la dimensión " + criterioDimension.getKey().getNombre());
+                if (!this.tabla_operacion.getHeaders().contains(criterioNivel.getKey())){
+                    throw new NivelNoPresenteException("El nivel " + criterioNivel.getKey() + " no está presente en el cubo <" + this.getNombre() + ">.");
                 }
                 // Finalmente verifico que los valores del nivel elegidos estén en el mismo
                 // nivel
                 for (String valor : criterioNivel.getValue()){
-                    if (!criterioDimension.getKey().getNiveles().get(criterioNivel.getKey()).contains(valor)){
-                        throw new NivelNoPresenteException("El valor " + valor + " no está presente en el nivel " + criterioNivel.getKey() + " de la dimensión " + criterioDimension.getKey().getNombre());
+                    try {
+                        if (!this.tabla_operacion.getColumna(criterioNivel.getKey()).contains(valor)){
+                            throw new ValorNoPresenteException("El valor " + valor + " del nivel " + criterioNivel.getKey() + " no está presente en el cubo <" + this.getNombre() + ">.");
+                        }
+                    } catch (ColumnaNoPresenteException e){
+                        // Esta excepción no debería ocurrir ya que anteriormente se verificó que el nivel estuviese presente
+                        // en el cubo
+                        e.printStackTrace();
                     }
                 }
              }
@@ -306,7 +351,7 @@ public class CuboOLAP{
      * Reinicia el cubo a su estado original, restaurando 'tabla_operacion' al estado en que se creó
      * y limpiando los historiales de operaciones.
      */
-    public void resetear(){
+    public void reiniciar(){
         this.tabla_operacion = tabla_base.getHechoCopy();
         this.historial_dice = new ArrayList<>();
         this.historial_rollUp = new ArrayList<>();
@@ -332,5 +377,8 @@ public class CuboOLAP{
         return sb.toString();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 }
 
