@@ -22,13 +22,13 @@ public class ExportadorCSV implements EstrategiaExportarArchivo {
 
     /**
      * Exporta los datos a un archivo CSV.
-     * @param ruta_archivo La ruta del archivo CSV.
+     * @param rutaArchivo La ruta del archivo CSV.
      * @param data Los datos a exportar, representados como una lista de listas de cadenas.
      * @throws IOException Si se produce algún error al escribir el archivo.
      */
     @Override
-    public void exportarArchivo(String ruta_archivo, List<List<String>> data) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ruta_archivo))) {
+    public void exportarArchivo(String rutaArchivo, List<List<String>> data) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (List<String> row : data) {
                 writer.write(String.join(String.valueOf(separador), row));
                 writer.newLine();

@@ -26,16 +26,16 @@ public class Dimension extends Tabla {
      * @param niveles la lista de niveles de la dimensión
      * @param primaryKey la clave primaria de la dimensión
      * @param estrategia_lectura la estrategia de lectura del archivo de la dimensión
-     * @param ruta_archivo la ruta del archivo de la dimensión
+     * @param rutaArchivo la ruta del archivo de la dimensión
      * @return una instancia de la clase Dimension
      * @throws IOException si ocurre un error de lectura del archivo
      * @throws ColumnaNoPresenteException si la clave primaria no está presente en la dimensión
      * @throws NivelNoPresenteException si alguno de los niveles no está presente en la dimensión
      */
-    public static Dimension crearTablaDimension(String nombre, List<String> niveles, String primaryKey, EstrategiaLecturaArchivo estrategia_lectura, String ruta_archivo) throws IOException, ColumnaNoPresenteException, NivelNoPresenteException {
+    public static Dimension crearTablaDimension(String nombre, List<String> niveles, String primaryKey, EstrategiaLecturaArchivo estrategia_lectura, String rutaArchivo) throws IOException, ColumnaNoPresenteException, NivelNoPresenteException {
        
         // Leo el archivo de la dimensión
-        List<List<String>> archivo_dim = estrategia_lectura.leerArchivo(ruta_archivo);
+        List<List<String>> archivo_dim = estrategia_lectura.leerArchivo(rutaArchivo);
 
         // Guardo los headers de la dimensión
         List<String> headers_dim = archivo_dim.get(0);

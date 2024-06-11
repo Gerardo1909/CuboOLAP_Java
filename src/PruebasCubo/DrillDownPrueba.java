@@ -54,13 +54,13 @@ public class DrillDownPrueba {
         cuboPrueba.dice(criterios);
 
         // Ahora pruebo a desagrupar las dimensiones a su nivel más fino
-        Map<Dimension, String> criterios_expansion = new LinkedHashMap<>();
-        criterios_expansion.put(dimFechas, "fecha");
-        criterios_expansion.put(dimPuntoVenta, "punto_venta");
-        criterios_expansion.put(dimProducto, "producto");
+        Map<Dimension, String> criteriosDesagregacion = new LinkedHashMap<>();
+        criteriosDesagregacion.put(dimFechas, "fecha");
+        criteriosDesagregacion.put(dimPuntoVenta, "punto_venta");
+        criteriosDesagregacion.put(dimProducto, "producto");
 
         // Pruebo la operación DrillDown
-        cuboPrueba.drillDown(criterios_expansion);
+        cuboPrueba.drillDown(criteriosDesagregacion);
 
         // Pruebo la exportacion del cubo
         ExportadorCSV exportadorCSV = new ExportadorCSV(';');

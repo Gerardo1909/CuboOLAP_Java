@@ -138,15 +138,15 @@ public class Cubo{
         this.tablaOperacion = comando.getResultado();
     }
 
-    public void drillDown(Map<Dimension, String> criterios_desagregacion) throws ArgumentosInoperablesException, DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
+    public void drillDown(Map<Dimension, String> criteriosDesagregacion) throws ArgumentosInoperablesException, DimensionNoPresenteException, NivelNoPresenteException, NivelDesagregadoException{
         
-        // Verifico que 'criterios_desagregacion' no sea un mapa vacío
-        if (criterios_desagregacion.isEmpty()){
+        // Verifico que 'criteriosDesagregacion' no sea un mapa vacío
+        if (criteriosDesagregacion.isEmpty()){
             throw new ArgumentosInoperablesException("El mapa de criterios de desagregacion no puede estar vacio.");
         }
 
         // Por cada entrada del mapa verifico los criterios seleccionados 
-        for (Map.Entry<Dimension, String> criterio : criterios_desagregacion.entrySet()){
+        for (Map.Entry<Dimension, String> criterio : criteriosDesagregacion.entrySet()){
             // Verifico que la dimensión pasada como argumento esté en la lista de dimensiones
             if (!this.dimensiones.contains(criterio.getKey())){
                 throw new DimensionNoPresenteException("La dimension " + criterio.getKey().getNombre() + " no esta presente en el cubo <" + this.getNombre() + ">.");
@@ -162,7 +162,7 @@ public class Cubo{
         }
 
         // Genero una instancia de DrillDown
-        ComandoDrillDown comando = new ComandoDrillDown(criterios_desagregacion, this.tablaBase.getCuerpoCopy(), this.historialRollUp, 
+        ComandoDrillDown comando = new ComandoDrillDown(criteriosDesagregacion, this.tablaBase.getCuerpoCopy(), this.historialRollUp, 
                                                         this.historialDice, this.historialSlice, this.historialDrillDown);
 
         // Ejecuto la operación
@@ -293,23 +293,23 @@ public class Cubo{
     /**
      * Proyecta una parte seleccionada de los datos del cubo en un formato tabular.
      *
-     * @param n_filas El número de filas a mostrar.
+     * @param cantFilas El número de filas a mostrar.
      * @param columnas La lista de nombres de columnas a mostrar.
      * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
      * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
-    public void proyectar(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
-        this.tablaOperacion.ver(n_filas, columnas);
+    public void proyectar(int cantFilas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException{
+        this.tablaOperacion.ver(cantFilas, columnas);
     }
 
     /**
      * Exporta los datos del cubo a un archivo utilizando una estrategia específica de exportación.
      *
-     * @param ruta_guardado La ruta de destino donde se guardará el archivo.
-     * @param estrategia_exportar La estrategia de exportación a utilizar.
+     * @param rutaGuardadoArchivo La ruta de destino donde se guardará el archivo.
+     * @param estrategiaExportacion La estrategia de exportación a utilizar.
      * @throws IOException Si ocurre un error de entrada/salida al exportar los datos.
      */
-    public void exportar(String ruta_guardado, EstrategiaExportarArchivo estrategia_exportar) throws IOException{
+    public void exportar(String rutaGuardadoArchivo, EstrategiaExportarArchivo estrategiaExportacion) throws IOException{
         
         // Para exportar primero debo juntar los encabezados con los datos
         // para eso armo una lista vacía que los junte
@@ -324,7 +324,7 @@ public class Cubo{
         }
 
         // Ahora si exporto el cubo
-        estrategia_exportar.exportarArchivo(ruta_guardado, datos_a_exportar);
+        estrategiaExportacion.exportarArchivo(rutaGuardadoArchivo, datos_a_exportar);
 
     }
 

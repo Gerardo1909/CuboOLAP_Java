@@ -12,7 +12,7 @@ Define el método `leerArchivo(String rutaArchivo)` que todas las clases que rep
 
 #### Parámetros del Método
 
-1. **ruta_archivo**: `String`
+1. **rutaArchivo**: `String`
    - **Descripción**: La ruta del archivo que se va a leer.
    - **Requisitos**: Debe ser una ruta válida a un archivo que se desea leer.
 
@@ -62,10 +62,10 @@ Una vez creada una instancia de una clase que implemente la interfaz `Estrategia
 LectorCSV lector = new LectorCSV(',');
 
 // Guardamos la ruta de la ubicación del archivo
-String ruta_archivo = "ruta/al/archivo.formato";
+String rutaArchivo = "ruta/al/archivo.formato";
 
 // Ejecutamos el método 
-List<List<String>> archivo = Lector.leerArchivo(ruta_archivo);
+List<List<String>> archivo = Lector.leerArchivo(rutaArchivo);
 ```
 
 ## Beneficios

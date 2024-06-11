@@ -14,7 +14,7 @@ import Cubo.tablasCubo.Dimension;
 public class ComandoDrillDown implements ComandoCubo {
 
     private CuerpoCubo tablaBase;
-    private Map<Dimension, String> criterios_expansion;
+    private Map<Dimension, String> criteriosDesagregacion;
     private List<ComandoRollUp> historialRollUp;
     private List<ComandoDice> historialDice;
     private List<ComandoSlice> historialSlice;
@@ -24,17 +24,17 @@ public class ComandoDrillDown implements ComandoCubo {
     /**
      *  Constructor para la clase ComandoDrillDown.
      * 
-     * @param criterios_expansion Un mapa que contiene dimensiones como clave y como valor el nivel al cual se va a expandir.
+     * @param criteriosDesagregacion Un mapa que contiene dimensiones como clave y como valor el nivel al cual se va a expandir.
      * @param tablaBase La tabla que se utilizará para llevar a cabo la operación.
      * @param historialRollUp El historial de operaciones RollUp aplicados sobre la instancia de 'Cubo' que invoca esta clase 
      * @param historialDice El historial de operaciones Dice aplicados sobre la instancia de 'Cubo' que invoca esta clase 
      * @param historialSlice El historial de operaciones Slice aplicados sobre la instancia de 'Cubo' que invoca esta clase  
      * @param historialDrillDown  El historial de operaciones DrillDown aplicados sobre la instancia de 'Cubo' que invoca esta clase 
      */
-    public ComandoDrillDown(Map<Dimension, String> criterios_expansion, CuerpoCubo tablaBase, List<ComandoRollUp> historialRollUp, List<ComandoDice> historialDice, 
+    public ComandoDrillDown(Map<Dimension, String> criteriosDesagregacion, CuerpoCubo tablaBase, List<ComandoRollUp> historialRollUp, List<ComandoDice> historialDice, 
                             List<ComandoSlice> historialSlice, List<ComandoDrillDown> historialDrillDown) {
 
-        this.criterios_expansion = criterios_expansion;
+        this.criteriosDesagregacion = criteriosDesagregacion;
         this.tablaBase = tablaBase;
         this.historialRollUp = historialRollUp;
         this.historialDice = historialDice;
@@ -81,8 +81,8 @@ public class ComandoDrillDown implements ComandoCubo {
         // a agrupación
         List<String> niveles_actuales = ultimo_rollUp.getNivelesOperacion();
 
-        // Ahora por cada entrada del mapa "criterios_expansion" voy obteniendo los niveles de detalle especificados 
-        for (Map.Entry<Dimension, String> criterio : this.criterios_expansion.entrySet()) {
+        // Ahora por cada entrada del mapa "criteriosDesagregacion" voy obteniendo los niveles de detalle especificados 
+        for (Map.Entry<Dimension, String> criterio : this.criteriosDesagregacion.entrySet()) {
             
             // Guardo la dimension y el nivel de detalle
             Dimension dimension = criterio.getKey();

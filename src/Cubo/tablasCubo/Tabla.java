@@ -131,18 +131,18 @@ public abstract class Tabla{
     /**
      * Muestra una parte seleccionada de los datos de la tabla en un formato tabular.
      *
-     * @param n_filas El número de filas a mostrar.
+     * @param cantFilas El número de filas a mostrar.
      * @param columnas La lista de nombres de columnas a mostrar.
      * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
      * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
      */
-    public void ver(int n_filas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException {
+    public void ver(int cantFilas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException {
 
         // Aquí defino el máximo de columnas que se pueden ver
         int max_cols_mostrar = 4;
 
-        // Previengo el caso donde n_filas es mayor que las filas disponibles
-        if (n_filas > this.data.size()) {
+        // Previengo el caso donde cantFilas es mayor que las filas disponibles
+        if (cantFilas > this.data.size()) {
             throw new FilaFueraDeRangoException("La cantidad de filas solicitadas es mayor a la longitud disponible en la tabla " + this.getNombre());
         }
 
@@ -179,7 +179,7 @@ public abstract class Tabla{
             System.out.println();
 
             // Imprimo las filas de datos
-            for (int i = 0; i < n_filas; i++) {
+            for (int i = 0; i < cantFilas; i++) {
                 for (int j = inicio; j < fin; j++) {
                     System.out.print(String.format("%-30s", columnas_seleccionadas.get(j).get(i)));
                 }

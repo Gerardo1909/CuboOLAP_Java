@@ -8,11 +8,11 @@ Este módulo, al igual que el módulo de [`lectura_archivos`](../lectura_archivo
 
 ### **Interfaz `EstrategiaExportarArchivo`**
 
-Define el método `exportarArchivo(String ruta_archivo, List<List<String>> data)` que todas las clases que representen modos de exportación de archivos deben implementar. Este método es responsable de exportar los datos proporcionados a un archivo en la ruta especificada.
+Define el método `exportarArchivo(String rutaArchivo, List<List<String>> data)` que todas las clases que representen modos de exportación de archivos deben implementar. Este método es responsable de exportar los datos proporcionados a un archivo en la ruta especificada.
 
 #### Parámetros del Método
 
-1. **ruta_archivo**: `String`
+1. **rutaArchivo**: `String`
    - **Descripción**: La ruta completa del archivo donde se exportarán los datos. No debe ser nula o vacía.
    - **Requisitos**: Debe ser una ruta válida a un archivo que se desea crear o sobrescribir.
 
@@ -52,7 +52,7 @@ ExportadorCSV exportador = new LectorCSV(';');
 
 ## ¿Cómo funciona?
 
-Una vez creada una instancia de una clase que implemente la interfaz `EstrategiaExportarArchivo` se procede a invocar el método `exportarArchivo(String ruta_archivo, List<List<String>> data))` que recibe la ruta de ubicación donde se quiere guardar el archivo y una lista de listas de tipo `String` con la información que se desea guardar: 
+Una vez creada una instancia de una clase que implemente la interfaz `EstrategiaExportarArchivo` se procede a invocar el método `exportarArchivo(String rutaArchivo, List<List<String>> data))` que recibe la ruta de ubicación donde se quiere guardar el archivo y una lista de listas de tipo `String` con la información que se desea guardar: 
 
 ```java
 // Creamos una instancia del exportador deseado, en este caso elegimos el 
@@ -60,7 +60,7 @@ Una vez creada una instancia de una clase que implemente la interfaz `Estrategia
 ExportadorCSV exportador = new ExportadorCSV(',');
 
 // Guardamos la ruta de la ubicación donde queremos guardar el archivo
-String ruta_archivo = "ruta/al/archivo.formato";
+String rutaArchivo = "ruta/al/archivo.formato";
 
 // Preparamos los datos a exportar
 List<List<String>> datos = Arrays.asList(

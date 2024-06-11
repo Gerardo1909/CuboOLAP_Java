@@ -23,13 +23,13 @@ public class LectorCSV implements EstrategiaLecturaArchivo{
 
     /**
      * Lee un archivo CSV y devuelve una lista de listas, donde cada lista interna representa una fila del archivo.
-     * @param ruta_archivo La ruta al archivo CSV.
+     * @param rutaArchivo La ruta al archivo CSV.
      * @return Una lista de listas, donde cada lista interna representa una fila del archivo.
      * @throws IOException Si se produce algún error al leer el archivo.
      */
     @Override
-    public List<List<String>> leerArchivo(String ruta_archivo) throws IOException{
-        try (BufferedReader reader = new BufferedReader(new FileReader(ruta_archivo))) {
+    public List<List<String>> leerArchivo(String rutaArchivo) throws IOException{
+        try (BufferedReader reader = new BufferedReader(new FileReader(rutaArchivo))) {
             String line;
 
             // Crea una lista para almacenar las filas del archivo

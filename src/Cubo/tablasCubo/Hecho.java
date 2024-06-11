@@ -20,15 +20,15 @@ public class Hecho extends Tabla {
      * @param nombre el nombre de la tabla de hechos.
      * @param hechos la lista de hechos a verificar en la tabla de hechos
      * @param estrategia_lectura la estrategia de lectura de archivo a utilizar
-     * @param ruta_archivo la ruta del archivo a leer
+     * @param rutaArchivo la ruta del archivo a leer
      * @return una instancia de la clase Hecho.
      * @throws IOException si ocurre un error de lectura del archivo
      * @throws HechoNoPresenteException si alguno de los hechos no está presente en la tabla de hechos
      */
-    public static Hecho crearTablaHechos(String nombre, List<String> hechos, EstrategiaLecturaArchivo estrategia_lectura, String ruta_archivo) throws IOException, HechoNoPresenteException {
+    public static Hecho crearTablaHechos(String nombre, List<String> hechos, EstrategiaLecturaArchivo estrategia_lectura, String rutaArchivo) throws IOException, HechoNoPresenteException {
         
         // Leo el archivo del hecho
-        List<List<String>> archivo_hecho = estrategia_lectura.leerArchivo(ruta_archivo);
+        List<List<String>> archivo_hecho = estrategia_lectura.leerArchivo(rutaArchivo);
 
         // Guardo los headers del hecho
         List<String> headers_hecho = archivo_hecho.get(0);
