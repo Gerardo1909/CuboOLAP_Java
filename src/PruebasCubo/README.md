@@ -2,22 +2,22 @@
 
 ## Descripción
 
-Este módulo Java tiene el propósito de ser usado para probar el correcto funcionamiento de la clase `CuboOLAP`. 
+Este módulo Java tiene el propósito de ser usado para probar el correcto funcionamiento de la clase `Cubo`. 
 
 ## Componentes
 
 ### **Clase `Inicializador`**:
 
-Define un método estático `main` que se encarga de primero inicializar una instancia de `CuboOLAP` para luego poder ejecutar los archivos que realizan pruebas
+Define un método estático `main` que se encarga de primero inicializar una instancia de `Cubo` para luego poder ejecutar los archivos que realizan pruebas
 sobre los métodos de la misma, este orden es el que permite el correcto funcionamiento de las pruebas.
 
 ### **Clase `CuboPruebaManager`**:
 
-Es la clase encargada de almacenar a una instancia de `CuboOLAP` junto con sus datos relacionados para poder realizar pruebas sobre la misma en otros módulos posteriormente.
+Es la clase encargada de almacenar a una instancia de `Cubo` junto con sus datos relacionados para poder realizar pruebas sobre la misma en otros módulos posteriormente.
 
 ### **Clases `MetodoPrueba`**:
 
-Son distintas clases que se encargan de probar los métodos de la clase `CuboOLAP`.
+Son distintas clases que se encargan de probar los métodos de la clase `Cubo`.
 
 ## ¿Cómo se usa?
 

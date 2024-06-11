@@ -3,9 +3,9 @@ package PruebasCubo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import Cubo.CuboOLAP;
-import Cubo.exportacion_archivos.ExportadorCSV;
-import Cubo.tablas.Dimension;
+import Cubo.Cubo;
+import Cubo.exportacionArchivos.ExportadorCSV;
+import Cubo.tablasCubo.Dimension;
 
 public class SlicePrueba {
     public static void main(String[] args) throws Exception {
@@ -21,7 +21,7 @@ public class SlicePrueba {
         Dimension dimPuntoVenta = dimensiones.get(2);
 
         // Importo el cubo generado anteriormente
-        CuboOLAP cuboPrueba = CuboPruebaManager.getCuboPrueba();
+        Cubo cuboPrueba = CuboPruebaManager.getCuboPrueba();
         if (cuboPrueba == null) {
             System.out.println("El cubo no está configurado correctamente.");
             return;

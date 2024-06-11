@@ -6,9 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import Cubo.CuboOLAP;
-import Cubo.exportacion_archivos.ExportadorCSV;
-import Cubo.tablas.Dimension;
+import Cubo.Cubo;
+import Cubo.exportacionArchivos.ExportadorCSV;
+import Cubo.tablasCubo.Dimension;
 
 public class DrillDownPrueba {
     public static void main(String[] args) throws Exception {
@@ -24,7 +24,7 @@ public class DrillDownPrueba {
         Dimension dimPuntoVenta = dimensiones.get(2);
 
         // Importo el cubo generado anteriormente
-        CuboOLAP cuboPrueba = CuboPruebaManager.getCuboPrueba();
+        Cubo cuboPrueba = CuboPruebaManager.getCuboPrueba();
         if (cuboPrueba == null) {
             System.out.println("El cubo no está configurado correctamente.");
             return;
@@ -32,14 +32,14 @@ public class DrillDownPrueba {
 
         // Para probar el DrillDown primero se debe hacer un RollUp
         // por lo tanto genero el mapa para pasar como argumento
-        Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
-        criterios_reduccion.put(dimFechas, "anio");
-        criterios_reduccion.put(dimPuntoVenta, "region");
-        criterios_reduccion.put(dimProducto, "categoria");
+        Map<Dimension, String> criteriosAgregacion = new LinkedHashMap<>();
+        criteriosAgregacion.put(dimFechas, "anio");
+        criteriosAgregacion.put(dimPuntoVenta, "region");
+        criteriosAgregacion.put(dimProducto, "categoria");
 
         // ejecuto el RollUp
         cuboPrueba.rollUp(
-            criterios_reduccion,
+            criteriosAgregacion,
             Arrays.asList("valor_total"),
             "sum"
         );

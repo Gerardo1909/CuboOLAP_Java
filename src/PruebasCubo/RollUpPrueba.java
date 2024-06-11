@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import Cubo.CuboOLAP;
-import Cubo.exportacion_archivos.ExportadorCSV;
-import Cubo.tablas.Dimension;
+import Cubo.Cubo;
+import Cubo.exportacionArchivos.ExportadorCSV;
+import Cubo.tablasCubo.Dimension;
 
 public class RollUpPrueba {
     public static void main(String[] args) throws Exception {
@@ -22,21 +22,22 @@ public class RollUpPrueba {
         Dimension dimPuntoVenta = dimensiones.get(2);
 
         // Importo el cubo generado anteriormente
-        CuboOLAP cuboPrueba = CuboPruebaManager.getCuboPrueba();
+        Cubo cuboPrueba = CuboPruebaManager.getCuboPrueba();
         if (cuboPrueba == null) {
             System.out.println("El cubo no está configurado correctamente.");
             return;
         }
 
         // Armo el mapa que le voy a pasar al método como argumento
-        Map<Dimension, String> criterios_reduccion = new LinkedHashMap<>();
-        criterios_reduccion.put(dimPuntoVenta, "region");
-        criterios_reduccion.put(dimProducto, "categoria");
-        criterios_reduccion.put(dimFechas, "mes");
+        Map<Dimension, String> criteriosAgregacion = new LinkedHashMap<>();
+        criteriosAgregacion.put(dimFechas, "mes");
+        criteriosAgregacion.put(dimPuntoVenta, "region");
+        criteriosAgregacion.put(dimProducto, "categoria");
+
 
         // Pruebo la operación RollUp
         cuboPrueba.rollUp(
-            criterios_reduccion,
+            criteriosAgregacion,
             Arrays.asList("valor_total", "costo", "valor_unitario", "cantidad"),
             "min"
         );

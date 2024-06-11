@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import Cubo.CuboOLAP;
-import Cubo.tablas.Dimension;
+import Cubo.Cubo;
+import Cubo.tablasCubo.Dimension;
 
 public class DicePrueba {
     public static void main(String[] args) throws Exception {
         // Importo el cubo generado anteriormente
-        CuboOLAP cuboPrueba = CuboPruebaManager.getCuboPrueba();
+        Cubo cuboPrueba = CuboPruebaManager.getCuboPrueba();
         if (cuboPrueba == null) {
             System.out.println("El cubo no está configurado correctamente.");
             return;

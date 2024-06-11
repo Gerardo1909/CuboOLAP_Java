@@ -2,15 +2,15 @@ package PruebasCubo;
 
 import java.util.ArrayList;
 import java.util.List;
-import Cubo.CuboOLAP;
-import Cubo.tablas.Dimension;
+import Cubo.Cubo;
+import Cubo.tablasCubo.Dimension;
 
 // Esta clase sirve para poder probar un cubo de prueba en diferentes clases
 public class CuboPruebaManager {
-    private static CuboOLAP cuboPrueba;
+    private static Cubo cuboPrueba;
     private static List<Dimension> dimensionesCuboPrueba = new ArrayList<>();
 
-    public static void setCuboPrueba(CuboOLAP cubo) {
+    public static void setCuboPrueba(Cubo cubo) {
         cuboPrueba = cubo;
     }
 
@@ -22,7 +22,7 @@ public class CuboPruebaManager {
         dimensionesCuboPrueba.add(dimension);
     }
 
-    public static CuboOLAP getCuboPrueba() {
+    public static Cubo getCuboPrueba() {
         return cuboPrueba;
     }
 

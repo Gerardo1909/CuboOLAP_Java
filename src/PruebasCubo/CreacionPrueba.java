@@ -3,10 +3,10 @@ package PruebasCubo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import Cubo.CuboOLAP;
-import Cubo.lectura_archivos.LectorCSV;
-import Cubo.tablas.Dimension;
-import Cubo.tablas.Hecho;
+import Cubo.Cubo;
+import Cubo.lecturaArchivos.LectorCSV;
+import Cubo.tablasCubo.Dimension;
+import Cubo.tablasCubo.Hecho;
 
 public class CreacionPrueba {
     public static void main(String[] args) throws Exception {
@@ -27,10 +27,10 @@ public class CreacionPrueba {
         LectorCSV lectorCSV = new LectorCSV(';');
 
         // Instancio las clases correspondientes
-        Hecho ventas = new Hecho("Ventas", hechosVentas, lectorCSV, rutaVentas);
-        Dimension fechas = new Dimension("Fechas", niveles_fechas, "id_fecha", lectorCSV, rutaFechas);
-        Dimension productos = new Dimension("Productos", niveles_Productos, "id_producto", lectorCSV, rutaProductos);
-        Dimension puntos_venta = new Dimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta", lectorCSV, rutaPuntosVenta);
+        Hecho ventas = Hecho.crearTablaHechos("Ventas", hechosVentas, lectorCSV, rutaVentas);
+        Dimension fechas = Dimension.crearTablaDimension("Fechas", niveles_fechas, "id_fecha", lectorCSV, rutaFechas);
+        Dimension productos = Dimension.crearTablaDimension("Productos", niveles_Productos, "id_producto", lectorCSV, rutaProductos);
+        Dimension puntos_venta = Dimension.crearTablaDimension("Puntos de venta", niveles_PuntosVenta, "id_punto_venta", lectorCSV, rutaPuntosVenta);
 
         // Armo una lista con las dimensiones 
         List<Dimension> dimensiones = new ArrayList<>();
@@ -39,7 +39,7 @@ public class CreacionPrueba {
         dimensiones.add(puntos_venta);
 
         // Armo un nuevo Cubo
-        CuboOLAP cuboPrueba = new CuboOLAP("Cubo de Prueba", ventas, dimensiones);
+        Cubo cuboPrueba = Cubo.crearCuboOLAP("Cubo de Prueba", ventas, dimensiones);
 
         // Guardo el cubo y sus datos asociados para probarlos en otras clases
         CuboPruebaManager.setCuboPrueba(cuboPrueba);
