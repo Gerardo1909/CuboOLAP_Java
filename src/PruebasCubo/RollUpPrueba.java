@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import Cubo.Cubo;
+import Cubo.ImplementacionCubo.Cubo;
 import Cubo.exportacionArchivos.ExportadorCSV;
 import Cubo.tablasCubo.Dimension;
 
@@ -28,6 +28,7 @@ public class RollUpPrueba {
             return;
         }
 
+
         // Armo el mapa que le voy a pasar al método como argumento
         Map<Dimension, String> criteriosAgregacion = new LinkedHashMap<>();
         criteriosAgregacion.put(dimFechas, "mes");
@@ -39,7 +40,7 @@ public class RollUpPrueba {
         cuboPrueba.rollUp(
             criteriosAgregacion,
             Arrays.asList("valor_total", "costo", "valor_unitario", "cantidad"),
-            "min"
+            "count"
         );
 
         // Pruebo la exportacion del cubo

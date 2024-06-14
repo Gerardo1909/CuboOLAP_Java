@@ -1,9 +1,12 @@
 package Cubo.tablasCubo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import Cubo.excepciones.excepcionesDimension.NivelNoPresenteException;
 import Cubo.excepciones.excepcionesTabla.ColumnaNoPresenteException;
 import Cubo.lecturaArchivos.EstrategiaLecturaArchivo;
@@ -15,7 +18,7 @@ import Cubo.lecturaArchivos.EstrategiaLecturaArchivo;
 public class Dimension extends Tabla {
 
     private Map<String, List<String>> niveles;
-    private Map<String, Integer> indices_niveles;
+    private Map<String, Integer> indicesNiveles;
     private String primaryKey;
 
 
@@ -23,19 +26,20 @@ public class Dimension extends Tabla {
      * Crea una instancia de la clase Dimension con los parámetros especificados.
      * 
      * @param nombre el nombre de la dimensión
-     * @param niveles la lista de niveles de la dimensión
+     * @param niveles La lista de niveles de la dimensión. Estas deben ser pasadas en orden de jerarquía
+     *                siendo el nivel más alto/abstracto el primero en la lista y el más fino el último en la lista
      * @param primaryKey la clave primaria de la dimensión
-     * @param estrategia_lectura la estrategia de lectura del archivo de la dimensión
+     * @param estrategiaLectura la estrategia de lectura del archivo de la dimensión
      * @param rutaArchivo la ruta del archivo de la dimensión
      * @return una instancia de la clase Dimension
      * @throws IOException si ocurre un error de lectura del archivo
      * @throws ColumnaNoPresenteException si la clave primaria no está presente en la dimensión
      * @throws NivelNoPresenteException si alguno de los niveles no está presente en la dimensión
      */
-    public static Dimension crearTablaDimension(String nombre, List<String> niveles, String primaryKey, EstrategiaLecturaArchivo estrategia_lectura, String rutaArchivo) throws IOException, ColumnaNoPresenteException, NivelNoPresenteException {
+    public static Dimension crearTablaDimension(String nombre, List<String> niveles, String primaryKey, EstrategiaLecturaArchivo estrategiaLectura, String rutaArchivo) throws IOException, ColumnaNoPresenteException, NivelNoPresenteException {
        
         // Leo el archivo de la dimensión
-        List<List<String>> archivo_dim = estrategia_lectura.leerArchivo(rutaArchivo);
+        List<List<String>> archivo_dim = estrategiaLectura.leerArchivo(rutaArchivo);
 
         // Guardo los headers de la dimensión
         List<String> headers_dim = archivo_dim.get(0);
@@ -65,14 +69,13 @@ public class Dimension extends Tabla {
      * @param niveles La lista de niveles de la dimensión. Estas deben ser pasadas en orden de jerarquía
      *                siendo el nivel más alto/abstracto el primero en la lista y el más fino el último en la lista
      * @param primaryKey La clave primaria de la dimensión.
-     * @param data Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
+     * @param datosTabla Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
      * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
-     * @throws ColumnaNoPresenteException
      */
-    private Dimension (String nombre , List<String> niveles, String primaryKey, List<List<String>> data, List<String> headers)throws ColumnaNoPresenteException {
+    private Dimension (String nombre , List<String> niveles, String primaryKey, List<List<String>> datosTabla, List<String> headers) {
 
         // Uso el constructor base para la información general
-        super(nombre, data, headers);
+        super(nombre, datosTabla, headers);
 
         // Ahora obtengo los índices de los niveles 
         Map<String, Integer> map_indices = new LinkedHashMap<>();
@@ -91,9 +94,42 @@ public class Dimension extends Tabla {
 
         // Añado la información a niveles
         this.niveles = map_niveles;  
-        this.indices_niveles = map_indices;  
+        this.indicesNiveles = map_indices;  
     }
 
+    /**
+     * Obtiene valores únicos de una columna específica de la tabla.
+     *
+     * @param columna Columna de la que se van a obtener los valores únicos.
+     * @return Lista de valores únicos de la columna.
+     */
+    private List<String> obtenerValoresUnicos(String columna){
+
+        // Primero obtengo la columna deseada
+        List<String> columna_seleccionada = new ArrayList<>();
+        try {
+            columna_seleccionada = this.getColumna(columna);
+        } catch (ColumnaNoPresenteException e) {
+            // Esta excepción no debería lanzarse ya que se verifica la validez de la 
+            // columna en el factory method.
+            throw new IllegalStateException("Esta excepción no debería lanzarse.");
+        }
+
+        // Uso un set que solo permite valores únicos
+        Set<String> valores_unicos = new HashSet<>();
+
+        // Recorro la columna y agrego los valores únicos a un set
+        for (String valor : columna_seleccionada) {
+            if (valor != null) {
+                valores_unicos.add(valor);
+            }
+        }
+
+        return new ArrayList<>(valores_unicos);
+}
+
+
+    
     /**
      * Método para obtener la clave primaria de la dimensión.
      *
@@ -120,26 +156,30 @@ public class Dimension extends Tabla {
      * @return Un mapa que contiene los nombres de los niveles como claves y sus índices correspondientes como valores.
      */
     public Map<String, Integer> getIndicesNiveles(){
-        return this.indices_niveles;
+        return this.indicesNiveles;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getNombre()).append(" (Niveles : ");
+
+        String informacionTablaDimension = "TABLA DE DIMENSION <" + this.getNombre() + ">";
+        informacionTablaDimension += " / (NIVELES: ";
+
+        // Agrego los niveles
         
-        int size = niveles.size();
-        int count = 0;
-        
-        for (String nivel : niveles.keySet()) {
-            sb.append(nivel);
-            if (count < size - 1) {
-                sb.append(" > ");
+        // Inicializo un contador para saber en que nivel debo cerrar el paréntesis
+        int contador = 0;
+
+        for (String nivel : this.niveles.keySet()) {
+            informacionTablaDimension += nivel;
+            contador++;
+            if (contador < this.niveles.size()) {
+                informacionTablaDimension += ", ";
             }
-            count++;
         }
-        
-        sb.append(")");
-        return sb.toString();
+
+        informacionTablaDimension += ")";
+
+        return informacionTablaDimension;
     }
 }

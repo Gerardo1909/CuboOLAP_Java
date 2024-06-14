@@ -1,6 +1,6 @@
 package Cubo.excepciones.excepcionesOperacion;
 
-public class ArgumentosInoperablesException  extends Exception{
+public class ArgumentosInoperablesException  extends RuntimeException {
     public ArgumentosInoperablesException(String mensaje){
         super(mensaje);
     }

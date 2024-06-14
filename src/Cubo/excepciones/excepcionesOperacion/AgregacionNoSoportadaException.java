@@ -1,6 +1,6 @@
 package Cubo.excepciones.excepcionesOperacion;
 
-public class AgregacionNoSoportadaException extends Exception {
+public class AgregacionNoSoportadaException extends RuntimeException {
     public AgregacionNoSoportadaException(String message) {
         super(message);
     }

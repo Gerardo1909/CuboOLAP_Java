@@ -1,9 +1,7 @@
 package Cubo.tablasCubo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import Cubo.excepciones.excepcionesTabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepcionesTabla.FilaFueraDeRangoException;
 
@@ -13,7 +11,7 @@ import Cubo.excepciones.excepcionesTabla.FilaFueraDeRangoException;
 public abstract class Tabla{
 
     protected List<String> headers;
-    protected List<List<String>> data;
+    protected List<List<String>> datosTabla;
     protected String nombre;
    
     /**
@@ -21,13 +19,13 @@ public abstract class Tabla{
      * Crea nuevas listas para 'encabezados' y 'datos' para asegurarse de su inmutabilidad.
      *
      * @param nombre El nombre de la tabla.
-     * @param data Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
+     * @param datosTabla Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
      * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
      */
-    protected Tabla(String nombre, List<List<String>> data, List<String> headers){
+    protected Tabla(String nombre, List<List<String>> datosTabla, List<String> headers){
         this.nombre = nombre;
         this.headers = new ArrayList<>(headers);
-        this.data = new ArrayList<>(data);
+        this.datosTabla = new ArrayList<>(datosTabla);
     }
 
 
@@ -56,10 +54,10 @@ public abstract class Tabla{
      *
      * @return Lista de listas de datos de la tabla.
      */
-    public List<List<String>> getData() {
+    public List<List<String>> getDatosTabla() {
         List<List<String>> datosCopy = new ArrayList<>();
-            for (List<String> row : data) {
-                datosCopy.add(new ArrayList<>(row));
+            for (List<String> fila : this.datosTabla) {
+                datosCopy.add(new ArrayList<>(fila));
             }
         return datosCopy;
     }
@@ -82,10 +80,10 @@ public abstract class Tabla{
         }
     
         // Ahora hago una copia de los datos para cuidar la inmutabilidad
-        List<List<String> > datos_copy = this.getData();
+        List<List<String>> datos_copy = this.getDatosTabla();
     
         // Creo la lista que corresponde a la columna
-        List<String>  columna = new ArrayList<>();
+        List<String> columna = new ArrayList<>();
     
         // Y agrego el resto de datos
         for (int i = 0; i < datos_copy.size(); i++) {
@@ -97,36 +95,6 @@ public abstract class Tabla{
 
 
     // Métodos de la clase
-
-    /**
-     * Obtiene valores únicos de una columna específica de la tabla.
-     *
-     * @param columna Columna de la que se van a obtener los valores únicos.
-     * @return Lista de valores únicos de la columna.
-     * @throws ColumnaNoPresenteException Si la columna especificada no existe en la tabla.
-     */
-    public List<String> obtenerValoresUnicos(String columna) throws ColumnaNoPresenteException{
-
-        // Verifico si la columna existe en los headers
-        if (!this.headers.contains(columna)) {
-            throw new ColumnaNoPresenteException("La columna especificada" + columna + "no existe en los encabezados.");
-        }
-
-        // Primero obtengo la columna deseada
-        List<String> columna_seleccionada = this.getColumna(columna);
-
-        // Uso un set que solo permite valores únicos
-        Set<String> valores_unicos = new HashSet<>();
-
-        // Recorro la columna y agrego los valores únicos a un set
-        for (String valor : columna_seleccionada) {
-            if (valor != null) {
-                valores_unicos.add(valor);
-            }
-        }
-
-        return new ArrayList<>(valores_unicos);
-}
 
     /**
      * Muestra una parte seleccionada de los datos de la tabla en un formato tabular.
@@ -142,7 +110,7 @@ public abstract class Tabla{
         int max_cols_mostrar = 4;
 
         // Previengo el caso donde cantFilas es mayor que las filas disponibles
-        if (cantFilas > this.data.size()) {
+        if (cantFilas > this.datosTabla.size()) {
             throw new FilaFueraDeRangoException("La cantidad de filas solicitadas es mayor a la longitud disponible en la tabla " + this.getNombre());
         }
 
@@ -212,7 +180,7 @@ public abstract class Tabla{
         Tabla tabla = (Tabla) obj;
 
         // La igualdad la defino según si sus headers y su información son iguales
-        return this.headers.equals(tabla.headers) && this.data.equals(tabla.data);
+        return this.headers.equals(tabla.headers) && this.datosTabla.equals(tabla.datosTabla);
     }
 
     /**
@@ -224,7 +192,7 @@ public abstract class Tabla{
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.headers.hashCode();
-        result = 31 * result + this.data.hashCode();
+        result = 31 * result + this.datosTabla.hashCode();
         return result;
     }
 

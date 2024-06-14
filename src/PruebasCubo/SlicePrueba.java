@@ -1,9 +1,7 @@
 package PruebasCubo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import Cubo.Cubo;
+import Cubo.ImplementacionCubo.Cubo;
 import Cubo.exportacionArchivos.ExportadorCSV;
 import Cubo.tablasCubo.Dimension;
 

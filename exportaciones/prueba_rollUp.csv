@@ -1,274 +1,274 @@
 anio;quarter;mes;region;categoria;valor_total;costo;valor_unitario;cantidad
-2018;3;9;North America;Components;20.52;15.18;20.52;1.0
-2019;3;9;North America;Components;12.14;8.99;12.14;1.0
-2018;3;9;North America;Bikes;469.79;486.71;430.64;1.0
-2018;4;12;North America;Bikes;469.79;486.71;430.64;1.0
-2019;1;3;North America;Bikes;469.79;486.71;454.13;1.0
-2019;2;6;North America;Bikes;469.79;486.71;430.64;1.0
-2019;3;9;North America;Clothing;5.39;3.36;4.94;1.0
-2019;4;12;North America;Clothing;5.39;3.36;4.94;1.0
-2020;1;3;North America;Clothing;5.39;3.36;4.94;1.0
-2019;4;12;North America;Components;12.14;8.99;11.74;1.0
-2019;3;9;North America;Bikes;323.99;294.58;313.19;1.0
-2019;4;12;North America;Bikes;323.99;294.58;296.99;1.0
-2020;1;3;North America;Bikes;323.99;294.58;323.99;1.0
-2019;1;3;North America;Components;24.29;17.98;24.29;1.0
-2020;1;3;North America;Components;12.14;8.99;12.14;1.0
-2018;3;8;North America;Accessories;15.0;10.31;11.59;1.0
-2019;3;8;North America;Accessories;1.37;0.86;1.37;1.0
-2017;4;11;North America;Bikes;419.46;413.15;419.46;1.0
-2018;2;5;North America;Bikes;419.46;413.15;405.48;1.0
-2018;1;2;North America;Bikes;419.46;413.15;419.46;1.0
-2018;3;8;North America;Components;20.52;15.18;20.52;1.0
-2018;3;8;North America;Clothing;5.19;5.23;4.75;1.0
-2019;2;5;North America;Clothing;5.19;5.23;4.75;1.0
-2018;4;11;North America;Clothing;5.19;5.23;5.01;1.0
-2019;1;2;North America;Clothing;10.38;9.71;5.19;1.0
-2019;3;8;North America;Clothing;5.39;3.36;4.94;1.0
-2019;4;11;North America;Clothing;5.39;3.36;4.94;1.0
-2020;2;5;North America;Clothing;5.39;3.36;4.5;1.0
-2020;1;2;North America;Clothing;5.39;3.36;5.21;1.0
-2017;3;8;North America;Clothing;5.19;5.71;4.75;1.0
-2017;4;11;North America;Clothing;5.19;3.4;5.01;1.0
-2018;1;2;North America;Clothing;5.19;3.4;5.01;1.0
-2018;2;5;North America;Clothing;5.19;3.4;4.75;1.0
-2019;3;8;North America;Components;16.27;12.04;12.14;1.0
-2017;4;12;North America;Bikes;419.46;413.15;419.46;1.0
-2018;1;3;North America;Bikes;419.46;413.15;419.46;1.0
-2018;2;6;North America;Bikes;419.46;413.15;405.48;1.0
-2018;2;6;North America;Clothing;5.19;3.4;4.75;1.0
-2017;4;12;North America;Clothing;5.19;3.4;5.01;1.0
-2017;3;9;North America;Bikes;419.46;413.15;419.46;1.0
-2018;3;9;North America;Accessories;11.99;8.25;11.59;1.0
-2019;2;5;North America;Components;24.29;17.98;24.29;1.0
-2019;4;11;North America;Components;12.14;8.99;12.14;1.0
-2019;1;2;North America;Bikes;469.79;486.71;454.13;1.0
-2018;3;8;North America;Bikes;234.9;486.71;234.9;1.0
-2018;4;11;North America;Bikes;469.79;486.71;454.13;1.0
-2020;2;5;North America;Bikes;113.0;294.58;113.0;1.0
-2019;2;5;North America;Bikes;469.79;486.71;430.64;1.0
-2019;3;8;North America;Bikes;323.99;294.58;296.99;1.0
-2018;4;11;North America;Components;20.52;15.18;20.52;1.0
-2019;1;2;North America;Components;24.29;17.98;24.29;1.0
-2020;2;5;North America;Components;12.14;8.99;12.14;1.0
-2019;4;11;North America;Bikes;323.99;294.58;323.99;1.0
-2020;1;2;North America;Bikes;323.99;294.58;323.99;1.0
-2020;1;2;North America;Components;12.14;8.99;12.14;1.0
-2019;3;7;North America;Components;12.14;8.99;12.14;1.0
-2019;3;7;North America;Bikes;323.99;294.58;296.99;1.0
-2020;1;1;North America;Bikes;323.99;294.58;323.99;1.0
-2020;2;4;North America;Bikes;323.99;294.58;296.99;1.0
-2019;4;10;North America;Bikes;323.99;294.58;313.19;1.0
-2017;4;11;North America;Accessories;20.19;12.03;20.19;1.0
-2018;2;5;North America;Accessories;20.19;12.03;19.51;1.0
-2018;4;11;North America;Accessories;11.99;8.25;11.99;1.0
-2019;2;5;North America;Accessories;11.99;8.25;11.99;1.0
-2019;4;11;North America;Accessories;2.74;1.71;1.37;1.0
-2020;2;5;North America;Accessories;1.37;0.86;1.37;1.0
-2017;4;11;North America;Components;178.58;176.2;178.58;1.0
-2018;2;5;North America;Components;178.58;176.2;178.58;1.0
-2017;3;8;North America;Bikes;419.46;413.15;405.48;1.0
-2017;3;8;North America;Accessories;20.19;12.03;20.19;1.0
-2017;3;8;North America;Components;178.58;176.2;178.58;1.0
-2020;1;2;North America;Accessories;1.37;0.86;1.37;1.0
-2017;4;12;North America;Accessories;20.19;12.03;19.51;1.0
-2018;1;3;North America;Accessories;20.19;12.03;20.19;1.0
-2018;2;6;North America;Accessories;20.19;12.03;20.19;1.0
-2017;3;9;North America;Components;178.58;176.2;178.58;1.0
-2018;4;12;North America;Components;20.52;15.18;20.52;1.0
-2019;2;6;North America;Components;24.29;17.98;24.29;1.0
-2018;2;6;North America;Components;178.58;176.2;178.58;1.0
-2018;3;9;North America;Clothing;5.19;5.23;4.32;1.0
-2018;4;12;North America;Clothing;5.19;5.23;4.75;1.0
-2019;1;3;North America;Clothing;5.19;5.23;5.01;1.0
-2019;2;6;North America;Clothing;5.19;5.23;4.75;1.0
-2017;3;9;North America;Accessories;20.19;12.03;20.19;1.0
-2017;3;9;North America;Clothing;5.19;3.4;5.19;1.0
-2018;1;3;North America;Clothing;5.19;5.71;5.19;1.0
-2017;4;12;North America;Components;178.58;176.2;178.58;1.0
-2018;1;3;North America;Components;178.58;176.2;178.58;1.0
-2019;3;9;North America;Accessories;1.37;0.86;1.37;1.0
-2019;1;2;North America;Accessories;11.99;8.25;11.99;1.0
-2020;1;3;North America;Accessories;1.37;0.86;1.37;1.0
-2019;4;12;North America;Accessories;1.37;0.86;1.37;1.0
-2018;4;12;North America;Accessories;11.99;8.25;11.99;1.0
-2019;1;3;North America;Accessories;15.0;10.31;11.99;1.0
-2019;2;6;North America;Accessories;11.99;8.25;11.99;1.0
-2018;1;1;North America;Bikes;419.46;413.15;405.48;1.0
-2018;1;2;North America;Accessories;20.19;12.03;20.19;1.0
-2018;1;2;North America;Components;178.58;176.2;178.58;1.0
-2019;4;10;North America;Components;12.14;8.99;12.14;1.0
-2020;1;1;North America;Components;23.48;17.38;12.14;1.0
-2018;3;7;North America;Accessories;16.82;13.88;11.59;1.0
-2019;3;7;North America;Accessories;1.37;0.86;1.37;1.0
-2018;3;7;North America;Bikes;234.9;486.71;234.9;1.0
-2019;1;1;North America;Bikes;469.79;486.71;430.64;1.0
-2019;2;4;North America;Bikes;469.79;486.71;430.64;1.0
-2018;3;7;North America;Components;20.52;15.18;20.52;1.0
-2018;4;10;North America;Components;20.52;15.18;20.52;1.0
-2019;2;4;North America;Components;24.29;17.98;24.29;1.0
-2018;3;7;North America;Clothing;10.38;9.71;4.75;1.0
-2018;4;10;North America;Clothing;5.19;5.23;5.19;1.0
-2019;2;4;North America;Clothing;5.19;5.23;5.19;1.0
-2019;3;7;North America;Clothing;5.39;3.36;4.5;1.0
-2019;4;10;North America;Clothing;5.39;3.36;4.5;1.0
-2020;2;4;North America;Clothing;5.39;6.72;4.94;1.0
-2018;4;10;North America;Bikes;469.79;486.71;454.13;1.0
-2020;1;1;North America;Clothing;5.39;3.36;5.21;1.0
-2019;4;10;North America;Accessories;2.99;1.87;1.37;1.0
-2020;2;4;North America;Accessories;2.74;1.71;1.37;1.0
-2020;2;4;North America;Components;12.14;8.99;12.14;1.0
-2017;3;7;North America;Accessories;20.19;12.03;20.19;1.0
-2017;4;10;North America;Accessories;20.19;12.03;20.19;1.0
-2018;2;4;North America;Accessories;20.19;12.03;20.19;1.0
-2020;1;1;North America;Accessories;2.74;1.71;1.37;1.0
-2017;4;10;North America;Components;178.58;176.2;178.58;1.0
-2018;2;4;North America;Components;178.58;176.2;178.58;1.0
-2017;3;7;North America;Components;178.58;176.2;178.58;1.0
-2017;3;7;North America;Bikes;419.46;413.15;419.46;1.0
-2017;4;10;North America;Bikes;419.46;413.15;405.48;1.0
-2018;2;4;North America;Bikes;419.46;413.15;405.48;1.0
-2017;3;7;North America;Clothing;5.19;3.4;5.19;1.0
-2018;2;4;North America;Clothing;5.19;5.71;5.19;1.0
-2017;4;10;North America;Clothing;5.19;3.4;5.19;1.0
-2018;1;1;North America;Clothing;5.19;5.71;5.19;1.0
-2019;1;1;North America;Clothing;5.19;5.23;5.19;1.0
-2018;4;10;North America;Accessories;11.99;8.25;11.99;1.0
-2019;1;1;North America;Accessories;20.19;13.88;11.99;1.0
-2019;2;4;North America;Accessories;11.99;8.25;11.99;1.0
-2019;1;1;North America;Components;24.29;17.98;24.29;1.0
-2018;1;1;North America;Components;178.58;176.2;178.58;1.0
-2018;1;1;North America;Accessories;20.19;12.03;20.19;1.0
-2019;3;9;Pacific;Components;16.27;12.04;12.14;1.0
-2020;1;3;Pacific;Bikes;445.41;461.44;445.41;1.0
-2019;4;12;Pacific;Bikes;338.99;308.22;338.99;1.0
-2020;1;2;Pacific;Clothing;5.39;6.92;5.39;1.0
-2020;2;5;Pacific;Accessories;2.99;1.87;2.99;1.0
-2019;4;11;Pacific;Clothing;5.39;6.92;5.39;1.0
-2019;3;8;Pacific;Clothing;32.34;27.48;5.39;2.0
-2019;3;8;Pacific;Components;12.14;8.99;12.14;1.0
-2019;4;11;Pacific;Components;23.48;17.38;23.48;1.0
-2020;1;2;Pacific;Components;63.16;46.74;31.58;1.0
-2020;2;5;Pacific;Components;23.48;17.38;23.48;1.0
-2020;1;2;Pacific;Bikes;445.41;461.44;445.41;1.0
-2020;2;5;Pacific;Bikes;445.41;461.44;445.41;1.0
-2019;3;8;Pacific;Bikes;334.06;461.44;334.06;1.0
-2019;4;11;Pacific;Bikes;445.41;461.44;445.41;1.0
-2019;3;8;Pacific;Accessories;5.98;3.73;2.99;2.0
-2020;2;5;Pacific;Clothing;16.17;20.77;5.39;1.0
-2019;4;11;Pacific;Accessories;11.96;7.47;2.99;2.0
-2019;4;12;Pacific;Components;12.14;8.99;12.14;1.0
-2020;1;3;Pacific;Components;12.14;8.99;12.14;1.0
-2019;3;9;Pacific;Bikes;323.99;294.58;323.99;1.0
-2019;3;9;Pacific;Clothing;21.56;18.32;4.94;1.0
-2019;4;12;Pacific;Clothing;10.78;9.16;4.94;1.0
-2020;1;3;Pacific;Clothing;21.56;26.18;4.94;1.0
-2020;2;4;Pacific;Clothing;26.95;18.32;5.39;1.0
-2019;3;7;Pacific;Clothing;29.38;18.32;14.69;1.0
-2019;3;7;Pacific;Components;12.14;8.99;12.14;1.0
-2019;4;10;Pacific;Components;12.14;8.99;12.14;1.0
-2020;1;1;Pacific;Components;12.14;8.99;12.14;1.0
-2020;2;4;Pacific;Components;31.58;23.37;12.14;1.0
-2019;4;10;Pacific;Bikes;445.41;461.44;445.41;1.0
-2019;3;7;Pacific;Bikes;334.06;461.44;334.06;1.0
-2020;1;1;Pacific;Bikes;445.41;461.44;445.41;1.0
-2020;2;4;Pacific;Bikes;445.41;461.44;445.41;1.0
-2020;1;2;Pacific;Accessories;4.11;2.57;1.37;3.0
-2019;3;9;Pacific;Accessories;2.74;1.71;1.37;1.0
-2019;4;12;Pacific;Accessories;5.98;3.73;2.99;2.0
-2020;1;3;Pacific;Accessories;8.97;5.6;2.99;1.0
-2020;1;1;Pacific;Clothing;26.95;34.61;5.39;1.0
-2019;4;10;Pacific;Accessories;8.97;5.6;2.99;3.0
-2019;4;10;Pacific;Clothing;32.39;41.57;29.99;1.0
-2020;1;1;Pacific;Accessories;14.31;8.92;4.77;3.0
-2019;4;10;Europe;Accessories;2.74;1.71;1.37;1.0
-2019;3;7;Europe;Components;16.27;12.04;12.14;1.0
-2019;4;10;Europe;Bikes;323.99;294.58;323.99;1.0
-2020;1;1;Europe;Bikes;323.99;294.58;323.99;1.0
-2020;2;4;Europe;Bikes;323.99;294.58;323.99;1.0
-2019;3;7;Europe;Bikes;323.99;294.58;323.99;1.0
-2020;2;4;Europe;Clothing;10.78;9.16;4.94;1.0
-2020;1;1;Europe;Clothing;5.39;3.36;5.21;1.0
-2019;3;7;Europe;Clothing;5.39;3.36;4.94;1.0
-2019;4;10;Europe;Components;12.14;8.99;12.14;1.0
-2020;2;4;Europe;Components;16.27;12.04;12.14;1.0
-2020;1;1;Europe;Accessories;4.77;2.97;2.99;1.0
-2019;4;10;Europe;Clothing;5.39;3.36;4.94;1.0
-2019;3;9;Europe;Components;16.27;12.04;11.74;1.0
-2019;4;12;Europe;Components;16.27;12.04;12.14;1.0
-2020;1;3;Europe;Bikes;323.99;294.58;313.19;1.0
-2019;3;9;Europe;Bikes;323.99;294.58;323.99;1.0
-2020;1;1;Europe;Components;24.29;17.98;23.48;1.0
-2019;3;8;Europe;Accessories;1.37;0.86;1.33;1.0
-2019;4;11;Europe;Accessories;2.74;1.71;1.37;1.0
-2020;1;2;Europe;Accessories;2.74;1.71;1.37;1.0
-2020;2;5;Europe;Accessories;1.37;0.86;1.37;1.0
-2019;3;8;Europe;Clothing;10.78;6.72;4.94;1.0
-2019;4;11;Europe;Clothing;5.39;3.36;4.94;1.0
-2020;1;2;Europe;Clothing;5.39;3.36;5.39;1.0
-2020;2;5;Europe;Clothing;5.39;6.72;5.21;1.0
-2020;1;2;Europe;Components;12.14;8.99;12.14;1.0
-2020;2;5;Europe;Components;12.14;8.99;12.14;1.0
-2019;3;8;Europe;Components;12.14;8.99;11.74;1.0
-2019;4;11;Europe;Components;12.14;8.99;12.14;1.0
-2019;3;8;Europe;Bikes;323.99;294.58;323.99;1.0
-2020;1;2;Europe;Bikes;323.99;294.58;323.99;1.0
-2019;4;11;Europe;Bikes;323.99;294.58;323.99;1.0
-2020;2;5;Europe;Bikes;113.0;294.58;113.0;1.0
-2020;1;3;Europe;Clothing;5.39;3.36;5.39;1.0
-2019;4;12;Europe;Accessories;2.99;1.87;1.37;1.0
-2019;4;12;Europe;Bikes;323.99;294.58;323.99;1.0
-2019;3;9;Europe;Clothing;10.78;6.72;4.94;1.0
-2019;4;12;Europe;Clothing;5.39;3.36;5.39;1.0
-2020;1;3;Europe;Accessories;2.74;1.71;1.37;1.0
-2020;2;4;Europe;Accessories;2.74;1.71;1.37;2.0
-2019;3;7;Europe;Accessories;1.37;0.86;1.37;1.0
-2020;1;3;Europe;Components;36.42;26.96;12.14;1.0
-2019;3;9;Europe;Accessories;1.37;0.86;1.37;1.0
-2018;3;9;Europe;Components;24.29;17.98;20.52;1.0
-2018;4;12;Europe;Components;20.52;15.18;20.52;1.0
-2019;1;3;Europe;Components;67.54;49.98;24.29;1.0
-2019;2;6;Europe;Components;33.77;24.99;24.29;1.0
-2018;3;9;Europe;Bikes;469.79;486.71;430.64;1.0
-2018;4;12;Europe;Bikes;469.79;486.71;469.79;1.0
-2019;1;3;Europe;Bikes;469.79;486.71;469.79;1.0
-2019;2;6;Europe;Bikes;469.79;486.71;469.79;1.0
-2019;2;6;Europe;Clothing;14.13;9.71;5.19;1.0
-2019;1;3;Europe;Clothing;10.38;9.71;5.19;1.0
-2018;4;12;Europe;Clothing;10.38;9.71;5.19;1.0
-2018;4;12;Europe;Accessories;11.99;8.25;11.99;1.0
-2018;3;8;Europe;Accessories;23.98;16.49;11.99;2.0
-2018;4;11;Europe;Accessories;23.98;16.49;11.99;2.0
-2019;1;2;Europe;Accessories;20.19;13.88;11.99;1.0
-2019;2;5;Europe;Accessories;15.0;10.31;11.99;1.0
-2018;3;8;Europe;Components;24.29;17.98;20.52;1.0
-2018;4;11;Europe;Components;36.45;26.97;24.29;1.0
-2019;1;2;Europe;Components;48.58;35.96;24.29;1.0
-2019;2;5;Europe;Components;48.58;35.96;24.29;1.0
-2018;3;8;Europe;Bikes;234.9;486.71;234.9;1.0
-2018;4;11;Europe;Bikes;469.79;486.71;469.79;1.0
-2019;1;2;Europe;Bikes;469.79;486.71;454.13;1.0
-2019;2;5;Europe;Bikes;469.79;486.71;454.13;1.0
-2018;3;8;Europe;Clothing;5.19;5.23;4.75;1.0
-2018;4;11;Europe;Clothing;5.19;5.23;5.19;1.0
-2019;1;2;Europe;Clothing;15.57;15.67;5.19;1.0
-2019;2;5;Europe;Clothing;5.19;5.23;5.01;1.0
-2018;3;9;Europe;Accessories;20.19;13.88;11.99;1.0
-2018;3;9;Europe;Clothing;10.38;10.46;5.19;1.0
-2018;3;7;Europe;Accessories;11.99;8.25;11.59;1.0
-2018;4;10;Europe;Accessories;15.0;10.31;11.99;1.0
-2019;2;4;Europe;Accessories;11.99;8.25;11.99;1.0
-2019;2;4;Europe;Components;33.77;24.99;33.77;1.0
-2018;3;7;Europe;Bikes;600.26;598.44;234.9;1.0
-2019;1;1;Europe;Bikes;469.79;486.71;469.79;1.0
-2019;2;4;Europe;Bikes;469.79;486.71;454.13;1.0
-2018;4;10;Europe;Bikes;469.79;486.71;454.13;1.0
-2018;3;7;Europe;Components;36.45;26.97;24.29;1.0
-2018;4;10;Europe;Components;36.45;26.97;33.77;1.0
-2019;1;1;Europe;Components;67.54;49.99;33.77;1.0
-2018;3;7;Europe;Clothing;20.76;19.43;5.19;1.0
-2018;4;10;Europe;Clothing;5.19;5.23;5.19;1.0
-2019;2;4;Europe;Clothing;5.19;5.23;5.01;1.0
-2019;1;1;Europe;Clothing;10.38;10.46;5.19;1.0
-2019;1;1;Europe;Accessories;20.19;13.88;11.99;1.0
-2019;2;6;Europe;Accessories;40.38;27.76;11.99;2.0
+2018;3;9;North America;Components;761.0;761.0;761.0;761.0
+2019;3;9;North America;Components;1116.0;1116.0;1116.0;1116.0
+2018;3;9;North America;Bikes;569.0;569.0;569.0;569.0
+2018;4;12;North America;Bikes;569.0;569.0;569.0;569.0
+2019;1;3;North America;Bikes;492.0;492.0;492.0;492.0
+2019;2;6;North America;Bikes;527.0;527.0;527.0;527.0
+2019;3;9;North America;Clothing;454.0;454.0;454.0;454.0
+2019;4;12;North America;Clothing;385.0;385.0;385.0;385.0
+2020;1;3;North America;Clothing;276.0;276.0;276.0;276.0
+2019;4;12;North America;Components;749.0;749.0;749.0;749.0
+2019;3;9;North America;Bikes;880.0;880.0;880.0;880.0
+2019;4;12;North America;Bikes;886.0;886.0;886.0;886.0
+2020;1;3;North America;Bikes;789.0;789.0;789.0;789.0
+2019;1;3;North America;Components;267.0;267.0;267.0;267.0
+2020;1;3;North America;Components;410.0;410.0;410.0;410.0
+2018;3;8;North America;Accessories;196.0;196.0;196.0;196.0
+2019;3;8;North America;Accessories;295.0;295.0;295.0;295.0
+2017;4;11;North America;Bikes;648.0;648.0;648.0;648.0
+2018;2;5;North America;Bikes;650.0;650.0;650.0;650.0
+2018;1;2;North America;Bikes;627.0;627.0;627.0;627.0
+2018;3;8;North America;Components;996.0;996.0;996.0;996.0
+2018;3;8;North America;Clothing;559.0;559.0;559.0;559.0
+2019;2;5;North America;Clothing;482.0;482.0;482.0;482.0
+2018;4;11;North America;Clothing;469.0;469.0;469.0;469.0
+2019;1;2;North America;Clothing;305.0;305.0;305.0;305.0
+2019;3;8;North America;Clothing;538.0;538.0;538.0;538.0
+2019;4;11;North America;Clothing;435.0;435.0;435.0;435.0
+2020;2;5;North America;Clothing;402.0;402.0;402.0;402.0
+2020;1;2;North America;Clothing;295.0;295.0;295.0;295.0
+2017;3;8;North America;Clothing;117.0;117.0;117.0;117.0
+2017;4;11;North America;Clothing;152.0;152.0;152.0;152.0
+2018;1;2;North America;Clothing;93.0;93.0;93.0;93.0
+2018;2;5;North America;Clothing;157.0;157.0;157.0;157.0
+2019;3;8;North America;Components;1046.0;1046.0;1046.0;1046.0
+2017;4;12;North America;Bikes;442.0;442.0;442.0;442.0
+2018;1;3;North America;Bikes;445.0;445.0;445.0;445.0
+2018;2;6;North America;Bikes;459.0;459.0;459.0;459.0
+2018;2;6;North America;Clothing;126.0;126.0;126.0;126.0
+2017;4;12;North America;Clothing;124.0;124.0;124.0;124.0
+2017;3;9;North America;Bikes;317.0;317.0;317.0;317.0
+2018;3;9;North America;Accessories;154.0;154.0;154.0;154.0
+2019;2;5;North America;Components;623.0;623.0;623.0;623.0
+2019;4;11;North America;Components;684.0;684.0;684.0;684.0
+2019;1;2;North America;Bikes;780.0;780.0;780.0;780.0
+2018;3;8;North America;Bikes;869.0;869.0;869.0;869.0
+2018;4;11;North America;Bikes;830.0;830.0;830.0;830.0
+2020;2;5;North America;Bikes;766.0;766.0;766.0;766.0
+2019;2;5;North America;Bikes;801.0;801.0;801.0;801.0
+2019;3;8;North America;Bikes;816.0;816.0;816.0;816.0
+2018;4;11;North America;Components;643.0;643.0;643.0;643.0
+2019;1;2;North America;Components;296.0;296.0;296.0;296.0
+2020;2;5;North America;Components;675.0;675.0;675.0;675.0
+2019;4;11;North America;Bikes;777.0;777.0;777.0;777.0
+2020;1;2;North America;Bikes;705.0;705.0;705.0;705.0
+2020;1;2;North America;Components;353.0;353.0;353.0;353.0
+2019;3;7;North America;Components;687.0;687.0;687.0;687.0
+2019;3;7;North America;Bikes;544.0;544.0;544.0;544.0
+2020;1;1;North America;Bikes;480.0;480.0;480.0;480.0
+2020;2;4;North America;Bikes;497.0;497.0;497.0;497.0
+2019;4;10;North America;Bikes;533.0;533.0;533.0;533.0
+2017;4;11;North America;Accessories;78.0;78.0;78.0;78.0
+2018;2;5;North America;Accessories;74.0;74.0;74.0;74.0
+2018;4;11;North America;Accessories;130.0;130.0;130.0;130.0
+2019;2;5;North America;Accessories;134.0;134.0;134.0;134.0
+2019;4;11;North America;Accessories;195.0;195.0;195.0;195.0
+2020;2;5;North America;Accessories;193.0;193.0;193.0;193.0
+2017;4;11;North America;Components;228.0;228.0;228.0;228.0
+2018;2;5;North America;Components;231.0;231.0;231.0;231.0
+2017;3;8;North America;Bikes;441.0;441.0;441.0;441.0
+2017;3;8;North America;Accessories;67.0;67.0;67.0;67.0
+2017;3;8;North America;Components;160.0;160.0;160.0;160.0
+2020;1;2;North America;Accessories;110.0;110.0;110.0;110.0
+2017;4;12;North America;Accessories;64.0;64.0;64.0;64.0
+2018;1;3;North America;Accessories;43.0;43.0;43.0;43.0
+2018;2;6;North America;Accessories;60.0;60.0;60.0;60.0
+2017;3;9;North America;Components;117.0;117.0;117.0;117.0
+2018;4;12;North America;Components;489.0;489.0;489.0;489.0
+2019;2;6;North America;Components;483.0;483.0;483.0;483.0
+2018;2;6;North America;Components;174.0;174.0;174.0;174.0
+2018;3;9;North America;Clothing;468.0;468.0;468.0;468.0
+2018;4;12;North America;Clothing;384.0;384.0;384.0;384.0
+2019;1;3;North America;Clothing;259.0;259.0;259.0;259.0
+2019;2;6;North America;Clothing;406.0;406.0;406.0;406.0
+2017;3;9;North America;Accessories;64.0;64.0;64.0;64.0
+2017;3;9;North America;Clothing;95.0;95.0;95.0;95.0
+2018;1;3;North America;Clothing;83.0;83.0;83.0;83.0
+2017;4;12;North America;Components;173.0;173.0;173.0;173.0
+2018;1;3;North America;Components;82.0;82.0;82.0;82.0
+2019;3;9;North America;Accessories;237.0;237.0;237.0;237.0
+2019;1;2;North America;Accessories;76.0;76.0;76.0;76.0
+2020;1;3;North America;Accessories;112.0;112.0;112.0;112.0
+2019;4;12;North America;Accessories;173.0;173.0;173.0;173.0
+2018;4;12;North America;Accessories;118.0;118.0;118.0;118.0
+2019;1;3;North America;Accessories;74.0;74.0;74.0;74.0
+2019;2;6;North America;Accessories;114.0;114.0;114.0;114.0
+2018;1;1;North America;Bikes;282.0;282.0;282.0;282.0
+2018;1;2;North America;Accessories;43.0;43.0;43.0;43.0
+2018;1;2;North America;Components;103.0;103.0;103.0;103.0
+2019;4;10;North America;Components;454.0;454.0;454.0;454.0
+2020;1;1;North America;Components;242.0;242.0;242.0;242.0
+2018;3;7;North America;Accessories;123.0;123.0;123.0;123.0
+2019;3;7;North America;Accessories;161.0;161.0;161.0;161.0
+2018;3;7;North America;Bikes;483.0;483.0;483.0;483.0
+2019;1;1;North America;Bikes;430.0;430.0;430.0;430.0
+2019;2;4;North America;Bikes;469.0;469.0;469.0;469.0
+2018;3;7;North America;Components;570.0;570.0;570.0;570.0
+2018;4;10;North America;Components;391.0;391.0;391.0;391.0
+2019;2;4;North America;Components;394.0;394.0;394.0;394.0
+2018;3;7;North America;Clothing;372.0;372.0;372.0;372.0
+2018;4;10;North America;Clothing;312.0;312.0;312.0;312.0
+2019;2;4;North America;Clothing;337.0;337.0;337.0;337.0
+2019;3;7;North America;Clothing;307.0;307.0;307.0;307.0
+2019;4;10;North America;Clothing;284.0;284.0;284.0;284.0
+2020;2;4;North America;Clothing;269.0;269.0;269.0;269.0
+2018;4;10;North America;Bikes;475.0;475.0;475.0;475.0
+2020;1;1;North America;Clothing;224.0;224.0;224.0;224.0
+2019;4;10;North America;Accessories;130.0;130.0;130.0;130.0
+2020;2;4;North America;Accessories;133.0;133.0;133.0;133.0
+2020;2;4;North America;Components;484.0;484.0;484.0;484.0
+2017;3;7;North America;Accessories;37.0;37.0;37.0;37.0
+2017;4;10;North America;Accessories;36.0;36.0;36.0;36.0
+2018;2;4;North America;Accessories;36.0;36.0;36.0;36.0
+2020;1;1;North America;Accessories;109.0;109.0;109.0;109.0
+2017;4;10;North America;Components;96.0;96.0;96.0;96.0
+2018;2;4;North America;Components;92.0;92.0;92.0;92.0
+2017;3;7;North America;Components;61.0;61.0;61.0;61.0
+2017;3;7;North America;Bikes;198.0;198.0;198.0;198.0
+2017;4;10;North America;Bikes;297.0;297.0;297.0;297.0
+2018;2;4;North America;Bikes;292.0;292.0;292.0;292.0
+2017;3;7;North America;Clothing;56.0;56.0;56.0;56.0
+2018;2;4;North America;Clothing;74.0;74.0;74.0;74.0
+2017;4;10;North America;Clothing;70.0;70.0;70.0;70.0
+2018;1;1;North America;Clothing;41.0;41.0;41.0;41.0
+2019;1;1;North America;Clothing;210.0;210.0;210.0;210.0
+2018;4;10;North America;Accessories;93.0;93.0;93.0;93.0
+2019;1;1;North America;Accessories;64.0;64.0;64.0;64.0
+2019;2;4;North America;Accessories;102.0;102.0;102.0;102.0
+2019;1;1;North America;Components;188.0;188.0;188.0;188.0
+2018;1;1;North America;Components;40.0;40.0;40.0;40.0
+2018;1;1;North America;Accessories;14.0;14.0;14.0;14.0
+2019;3;9;Pacific;Components;125.0;125.0;125.0;125.0
+2020;1;3;Pacific;Bikes;109.0;109.0;109.0;109.0
+2019;4;12;Pacific;Bikes;115.0;115.0;115.0;115.0
+2020;1;2;Pacific;Clothing;6.0;6.0;6.0;6.0
+2020;2;5;Pacific;Accessories;5.0;5.0;5.0;5.0
+2019;4;11;Pacific;Clothing;15.0;15.0;15.0;15.0
+2019;3;8;Pacific;Clothing;20.0;20.0;20.0;20.0
+2019;3;8;Pacific;Components;37.0;37.0;37.0;37.0
+2019;4;11;Pacific;Components;19.0;19.0;19.0;19.0
+2020;1;2;Pacific;Components;13.0;13.0;13.0;13.0
+2020;2;5;Pacific;Components;28.0;28.0;28.0;28.0
+2020;1;2;Pacific;Bikes;40.0;40.0;40.0;40.0
+2020;2;5;Pacific;Bikes;39.0;39.0;39.0;39.0
+2019;3;8;Pacific;Bikes;42.0;42.0;42.0;42.0
+2019;4;11;Pacific;Bikes;41.0;41.0;41.0;41.0
+2019;3;8;Pacific;Accessories;14.0;14.0;14.0;14.0
+2020;2;5;Pacific;Clothing;13.0;13.0;13.0;13.0
+2019;4;11;Pacific;Accessories;4.0;4.0;4.0;4.0
+2019;4;12;Pacific;Components;70.0;70.0;70.0;70.0
+2020;1;3;Pacific;Components;38.0;38.0;38.0;38.0
+2019;3;9;Pacific;Bikes;119.0;119.0;119.0;119.0
+2019;3;9;Pacific;Clothing;72.0;72.0;72.0;72.0
+2019;4;12;Pacific;Clothing;56.0;56.0;56.0;56.0
+2020;1;3;Pacific;Clothing;26.0;26.0;26.0;26.0
+2020;2;4;Pacific;Clothing;9.0;9.0;9.0;9.0
+2019;3;7;Pacific;Clothing;6.0;6.0;6.0;6.0
+2019;3;7;Pacific;Components;28.0;28.0;28.0;28.0
+2019;4;10;Pacific;Components;17.0;17.0;17.0;17.0
+2020;1;1;Pacific;Components;6.0;6.0;6.0;6.0
+2020;2;4;Pacific;Components;19.0;19.0;19.0;19.0
+2019;4;10;Pacific;Bikes;40.0;40.0;40.0;40.0
+2019;3;7;Pacific;Bikes;39.0;39.0;39.0;39.0
+2020;1;1;Pacific;Bikes;37.0;37.0;37.0;37.0
+2020;2;4;Pacific;Bikes;36.0;36.0;36.0;36.0
+2020;1;2;Pacific;Accessories;1.0;1.0;1.0;1.0
+2019;3;9;Pacific;Accessories;51.0;51.0;51.0;51.0
+2019;4;12;Pacific;Accessories;40.0;40.0;40.0;40.0
+2020;1;3;Pacific;Accessories;17.0;17.0;17.0;17.0
+2020;1;1;Pacific;Clothing;5.0;5.0;5.0;5.0
+2019;4;10;Pacific;Accessories;1.0;1.0;1.0;1.0
+2019;4;10;Pacific;Clothing;3.0;3.0;3.0;3.0
+2020;1;1;Pacific;Accessories;2.0;2.0;2.0;2.0
+2019;4;10;Europe;Accessories;52.0;52.0;52.0;52.0
+2019;3;7;Europe;Components;147.0;147.0;147.0;147.0
+2019;4;10;Europe;Bikes;105.0;105.0;105.0;105.0
+2020;1;1;Europe;Bikes;104.0;104.0;104.0;104.0
+2020;2;4;Europe;Bikes;111.0;111.0;111.0;111.0
+2019;3;7;Europe;Bikes;115.0;115.0;115.0;115.0
+2020;2;4;Europe;Clothing;87.0;87.0;87.0;87.0
+2020;1;1;Europe;Clothing;79.0;79.0;79.0;79.0
+2019;3;7;Europe;Clothing;98.0;98.0;98.0;98.0
+2019;4;10;Europe;Components;99.0;99.0;99.0;99.0
+2020;2;4;Europe;Components;101.0;101.0;101.0;101.0
+2020;1;1;Europe;Accessories;45.0;45.0;45.0;45.0
+2019;4;10;Europe;Clothing;92.0;92.0;92.0;92.0
+2019;3;9;Europe;Components;284.0;284.0;284.0;284.0
+2019;4;12;Europe;Components;180.0;180.0;180.0;180.0
+2020;1;3;Europe;Bikes;192.0;192.0;192.0;192.0
+2019;3;9;Europe;Bikes;210.0;210.0;210.0;210.0
+2020;1;1;Europe;Components;49.0;49.0;49.0;49.0
+2019;3;8;Europe;Accessories;104.0;104.0;104.0;104.0
+2019;4;11;Europe;Accessories;72.0;72.0;72.0;72.0
+2020;1;2;Europe;Accessories;51.0;51.0;51.0;51.0
+2020;2;5;Europe;Accessories;74.0;74.0;74.0;74.0
+2019;3;8;Europe;Clothing;185.0;185.0;185.0;185.0
+2019;4;11;Europe;Clothing;153.0;153.0;153.0;153.0
+2020;1;2;Europe;Clothing;110.0;110.0;110.0;110.0
+2020;2;5;Europe;Clothing;146.0;146.0;146.0;146.0
+2020;1;2;Europe;Components;145.0;145.0;145.0;145.0
+2020;2;5;Europe;Components;239.0;239.0;239.0;239.0
+2019;3;8;Europe;Components;368.0;368.0;368.0;368.0
+2019;4;11;Europe;Components;246.0;246.0;246.0;246.0
+2019;3;8;Europe;Bikes;289.0;289.0;289.0;289.0
+2020;1;2;Europe;Bikes;247.0;247.0;247.0;247.0
+2019;4;11;Europe;Bikes;263.0;263.0;263.0;263.0
+2020;2;5;Europe;Bikes;267.0;267.0;267.0;267.0
+2020;1;3;Europe;Clothing;76.0;76.0;76.0;76.0
+2019;4;12;Europe;Accessories;54.0;54.0;54.0;54.0
+2019;4;12;Europe;Bikes;212.0;212.0;212.0;212.0
+2019;3;9;Europe;Clothing;137.0;137.0;137.0;137.0
+2019;4;12;Europe;Clothing;109.0;109.0;109.0;109.0
+2020;1;3;Europe;Accessories;40.0;40.0;40.0;40.0
+2020;2;4;Europe;Accessories;51.0;51.0;51.0;51.0
+2019;3;7;Europe;Accessories;54.0;54.0;54.0;54.0
+2020;1;3;Europe;Components;92.0;92.0;92.0;92.0
+2019;3;9;Europe;Accessories;75.0;75.0;75.0;75.0
+2018;3;9;Europe;Components;105.0;105.0;105.0;105.0
+2018;4;12;Europe;Components;64.0;64.0;64.0;64.0
+2019;1;3;Europe;Components;32.0;32.0;32.0;32.0
+2019;2;6;Europe;Components;63.0;63.0;63.0;63.0
+2018;3;9;Europe;Bikes;87.0;87.0;87.0;87.0
+2018;4;12;Europe;Bikes;77.0;77.0;77.0;77.0
+2019;1;3;Europe;Bikes;70.0;70.0;70.0;70.0
+2019;2;6;Europe;Bikes;74.0;74.0;74.0;74.0
+2019;2;6;Europe;Clothing;27.0;27.0;27.0;27.0
+2019;1;3;Europe;Clothing;21.0;21.0;21.0;21.0
+2018;4;12;Europe;Clothing;27.0;27.0;27.0;27.0
+2018;4;12;Europe;Accessories;4.0;4.0;4.0;4.0
+2018;3;8;Europe;Accessories;29.0;29.0;29.0;29.0
+2018;4;11;Europe;Accessories;25.0;25.0;25.0;25.0
+2019;1;2;Europe;Accessories;16.0;16.0;16.0;16.0
+2019;2;5;Europe;Accessories;27.0;27.0;27.0;27.0
+2018;3;8;Europe;Components;127.0;127.0;127.0;127.0
+2018;4;11;Europe;Components;79.0;79.0;79.0;79.0
+2019;1;2;Europe;Components;43.0;43.0;43.0;43.0
+2019;2;5;Europe;Components;64.0;64.0;64.0;64.0
+2018;3;8;Europe;Bikes;93.0;93.0;93.0;93.0
+2018;4;11;Europe;Bikes;86.0;86.0;86.0;86.0
+2019;1;2;Europe;Bikes;93.0;93.0;93.0;93.0
+2019;2;5;Europe;Bikes;87.0;87.0;87.0;87.0
+2018;3;8;Europe;Clothing;95.0;95.0;95.0;95.0
+2018;4;11;Europe;Clothing;83.0;83.0;83.0;83.0
+2019;1;2;Europe;Clothing;55.0;55.0;55.0;55.0
+2019;2;5;Europe;Clothing;88.0;88.0;88.0;88.0
+2018;3;9;Europe;Accessories;9.0;9.0;9.0;9.0
+2018;3;9;Europe;Clothing;32.0;32.0;32.0;32.0
+2018;3;7;Europe;Accessories;19.0;19.0;19.0;19.0
+2018;4;10;Europe;Accessories;16.0;16.0;16.0;16.0
+2019;2;4;Europe;Accessories;17.0;17.0;17.0;17.0
+2019;2;4;Europe;Components;39.0;39.0;39.0;39.0
+2018;3;7;Europe;Bikes;44.0;44.0;44.0;44.0
+2019;1;1;Europe;Bikes;35.0;35.0;35.0;35.0
+2019;2;4;Europe;Bikes;38.0;38.0;38.0;38.0
+2018;4;10;Europe;Bikes;40.0;40.0;40.0;40.0
+2018;3;7;Europe;Components;55.0;55.0;55.0;55.0
+2018;4;10;Europe;Components;29.0;29.0;29.0;29.0
+2019;1;1;Europe;Components;11.0;11.0;11.0;11.0
+2018;3;7;Europe;Clothing;57.0;57.0;57.0;57.0
+2018;4;10;Europe;Clothing;50.0;50.0;50.0;50.0
+2019;2;4;Europe;Clothing;53.0;53.0;53.0;53.0
+2019;1;1;Europe;Clothing;34.0;34.0;34.0;34.0
+2019;1;1;Europe;Accessories;11.0;11.0;11.0;11.0
+2019;2;6;Europe;Accessories;4.0;4.0;4.0;4.0

@@ -3,17 +3,20 @@ package Cubo.ImplementacionCubo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import Cubo.Cubo;
 import Cubo.tablasCubo.Dimension;
 
 /**
- * Esta clase implementa el comando Slice para la clase {@link Cubo}.
- * "Corta" los hechos según la dimensión, nivel y valor especificados, resultando un cubo 
- * de menor dimensionalidad pero con información según los criterios especificados.
+ * <p>
+ * Esta clase se encarga de implementar el método Dice para la clase {@link Cubo}.
+ * </p>
+ * 
+ * <p>
  * Implementa la interfaz {@link ComandoCubo}.
+ * </p>
  */
-public class ComandoSlice implements ComandoCubo {
+class ComandoSlice implements ComandoCubo {
 
+    // Atributos de la clase ComandoSlice
     private CuerpoCubo tablaOperacion;
     private Dimension dimension;
     private String nivel;
@@ -21,13 +24,19 @@ public class ComandoSlice implements ComandoCubo {
     private List<ComandoSlice> historialSlice;
 
     /**
-     * Constructor para la clase ComandoSlice.
+     * <p>
+     * <b>Constructor para la clase ComandoSlice.</b>
+     * </p>
+     * 
+     * <p>
+     * Se encarga de recibir todos los argumentos del método junto con el cuerpo del cubo y su historial de operaciones.
+     * </p>
      *
      * @param tablaOperacion La tabla que se utilizará para llevar a cabo la operación.
-     * @param dimension La dimensión en la que se va a cortar.
-     * @param nivel El nivel dentro de la dimensión en la que se va a cortar.
-     * @param valorCorte El valor para filtrar.
-     * @param historialSlice El historial de operaciones Slice aplicados sobre la instancia de 'Cubo' que 
+     * @param dimension La dimensión sobre la cual se aplica el método.
+     * @param nivel El nivel de la dimensión implicado en el método.
+     * @param valorCorte El valor del nivel de la dimensión al cual se fijará la misma.
+     * @param historialSlice El historial de operaciones Slice aplicados sobre la instancia de Cubo que 
      *                        invoca esta clase.
      */
     public ComandoSlice(CuerpoCubo tablaOperacion, Dimension dimension, String nivel,
@@ -40,33 +49,33 @@ public class ComandoSlice implements ComandoCubo {
     }
 
     /**
-     * Ejecuta el comando Slice.
-     * Ejecuta la operación de corte en tablaOperacion', 
-     * y almacena el resultado en la misma 'tablaOperacion', alterando el estado del cubo.
+     * Ejecuta el método Slice para la clase {@link Cubo}.
      */
     @Override
     public void ejecutar() {
+
         // Añado al historial el comando antes de ejecutarlo
         this.historialSlice.add(this);
 
-        // Primero obtengo el índice del nivel por el cual se va a filtrar
+        // Obtengo el índice del nivel por el cual se va a filtrar
         Integer indice_nivel = this.tablaOperacion.getHeaders().indexOf(this.nivel);
 
-        // Genero la tabla que contendrá a la operación resultante
+        // Genero una matriz que contendrá a la operación resultante
         List<List<String>> operacion_resultante = new ArrayList<>();
 
-        // Ahora itero por cada fila de 'tablaOperacion' y me quedo con aquellas que cumplan con la condición de corte
-        for (List<String> fila : this.tablaOperacion.getData()) {
+        // Ahora itero por cada fila de la tabla de operación y me quedo 
+        // con aquellas que cumplan con la condición de corte
+        for (List<String> fila : this.tablaOperacion.getDatosTabla()) {
             if (fila.get(indice_nivel).equals(this.valorCorte)) {
                 List<String> nueva_fila = crearFilaFiltrada(fila);
                 operacion_resultante.add(nueva_fila);
             }
         }
 
-        // Genero una lista para guardar los headers de la operacion resultante
+        // Guardo los headers de la operación
         List<String> headers_operacion = obtenerHeadersOperacion();
 
-        // Actualizo la tabla de operación con la operación resultante
+        // Actualizo el estado interno del cubo
         this.tablaOperacion = new CuerpoCubo(operacion_resultante, headers_operacion, this.tablaOperacion.getHechosCubo());
     }
 
@@ -83,12 +92,11 @@ public class ComandoSlice implements ComandoCubo {
     private List<String> crearFilaFiltrada(List<String> fila) {
         
         // Creo una nueva lista de strings que contendrá la fila filtrada
+        // e itero sobre los encabezados de la dimensión
         List<String> nueva_fila = new ArrayList<>(fila);
-
-        // Itero sobre los headers de la dimensión
         for (String columna : this.dimension.getHeaders()) {
 
-            // Obtengo el índice de la columna en la tabla de hechos
+            // Obtengo el indice del nivel a eliminar
             int indice_nivel_eliminar = this.tablaOperacion.getHeaders().indexOf(columna);
 
             // Verifico si el índice es válido y si la fila tiene suficientes elementos
@@ -105,11 +113,9 @@ public class ComandoSlice implements ComandoCubo {
     }
 
     /**
-     * Obtiene los headers de la operación resultante eliminando las 
-     * columnas correspondientes a la dimensión sobre la cual se aplica la operación
-     * de Slice.
+     * Se encarga de generar los encabezados de la operación resultante.
      *
-     * @return Los headers de la operación resultante.
+     * @return Una lista que contiene los encabezados implicados en la operación Slice.
      */
     private List<String> obtenerHeadersOperacion() {
         // Creo una nueva lista de headers de operación y la inicializo con los headers de la tabla de operación
@@ -126,30 +132,43 @@ public class ComandoSlice implements ComandoCubo {
     // Getters de la clase
 
     /**
-     * Devuelve la 'tablaOperacion' del cubo con el método ya aplicado.
-     *
-     * @return Un objeto de tipo CuerpoCubo que representa la tabla sobre la cual se ejecutan las operaciones del cubo.
+     * @return El cuerpo del cubo con el método ya aplicado
      */
     public CuerpoCubo getResultado() {
         return this.tablaOperacion;
     }
 
     /**
-     * Devuelve el historial de operaciones Slice aplicadas sobre la instancia de 'Cubo' que invoca esta clase
-     * con la instancia que se encargó de ejecutar este método ya añadida.
-     *
-     * @return Una lista con datos de tipo ComandoSlice que representan las operaciones Slice efectuadas sobre el cubo.
+     * @return Una lista que representa el historial de métodos Slice aplicados 
+     *         sobre la instancia de Cubo que invoca esta clase junto con la
+     *         instancia que se encargó de ejecutar el mismo.
      */
     public List<ComandoSlice> getHistorial(){
         return this.historialSlice;
     }
 
     /**
-     * Devuelve la dimensión a la cual se le aplicó el método Slice.
-     *
-     * @return la dimensión asociada al método.
+     * @return La dimensión que se vió implicada en la 
+     *         ejecución de este método.
      */
     public Dimension getDimension() {
         return this.dimension;
     }
+
+    /**
+     * @return El nivel de la dimensión que se vió implicada en la 
+     *         ejecución de este método.
+     */
+    public String getNivelCorte() {
+        return this.nivel;
+    }
+
+    /**
+     * @return El valor del nivel de la dimensión que se vió implicada en la 
+     *         ejecución de este método.
+     */
+    public String getValorCorte() {
+        return this.valorCorte;
+    }
+
 }

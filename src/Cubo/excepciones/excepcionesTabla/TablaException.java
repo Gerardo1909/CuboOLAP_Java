@@ -1,6 +1,6 @@
 package Cubo.excepciones.excepcionesTabla;
 
-public class TablaException  extends Exception {
+public class TablaException  extends RuntimeException {
     public TablaException(String message) {
         super(message);
     }

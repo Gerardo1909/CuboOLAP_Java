@@ -1,6 +1,6 @@
 package Cubo.excepciones.excepcionesOperacion;
 
-public class NivelDesagregadoException extends Exception{
+public class NivelDesagregadoException extends RuntimeException {
     public NivelDesagregadoException(String message) {
         super(message);
     }

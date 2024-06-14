@@ -1,6 +1,6 @@
 package Cubo.excepciones.excepcionesCubo;
 
-public class CuboException extends Exception {
+public class CuboException extends RuntimeException {
 
     public CuboException(String message) {
         super(message);

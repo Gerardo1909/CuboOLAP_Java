@@ -5,43 +5,74 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import Cubo.tablasCubo.Dimension;
 import Cubo.tablasCubo.Hecho;
 import Cubo.tablasCubo.Tabla;
 
-public class CuerpoCubo extends Tabla{
+/** 
+ * <p>
+ * Esta clase representa la estructura interna de una instancia de la clase
+ * {@link Cubo}.
+ * </p>
+ * 
+ * <p>
+ * Esta clase extiende de la clase {@link Tabla}.
+ * </p>
+ */
+class CuerpoCubo extends Tabla{
 
-    private List<String> hechosCubo;
+    // Atributos de la clase CuerpoCubo
+    private final List<String> hechosCubo;
+
+
+    // Métodos para la creación de instancias de la clase CuerpoCubo
 
     /**
-     * Método estático para configurar el cuerpo del cubo OLAP.
+     * Método para crear el <b>cuerpo interno de un cubo</b>, el cual es una instancia de CuerpoCubo.
      *
-     * @param tablaHechos Tabla de hechos.
-     * @param tablasDimensiones Lista de tablas de dimensiones.
-     * @return CuerpoCubo configurado.
+     * @param tablaHechos La tabla de hechos asociada a las dimensiones del cubo que representa esta instancia.
+     * @param tablasDimensiones Una lista que contiene todas las dimensiones asociadas al cubo que representa esta instancia.
+     * 
+     * @return EL cuerpo del cubo configurado y preparado para realizar operaciones.
      */
-    public static CuerpoCubo configurarCubo(Hecho tablaHechos, List<Dimension> tablasDimensiones){
+    public static CuerpoCubo configurarCubo(Hecho tablaHechos, List<Dimension> tablasDimensiones, Map<Dimension, String> clavesForaneasDims){
 
         // Inicializo el cuerpo del cubo obteniendo la información de la tabla de hechos
-        CuerpoCubo cuerpoCubo = new CuerpoCubo(tablaHechos.getData(), tablaHechos.getHeaders(), tablaHechos.getHechos());
+        CuerpoCubo cuerpoCubo = new CuerpoCubo(tablaHechos.getDatosTabla(), tablaHechos.getHeaders(), tablaHechos.getHechos());
 
         // Fusiono la tabla de hechos con cada una de las tablas de dimensiones
         for (Dimension dimension : tablasDimensiones) {
-            cuerpoCubo.merge(cuerpoCubo, dimension, dimension.getPrimaryKey());
+            String claveForanea = clavesForaneasDims.get(dimension);
+            cuerpoCubo.merge(cuerpoCubo, claveForanea, dimension, dimension.getPrimaryKey());
         }
         
-        // Elimino las columnas primaryKey de las dimensiones de 'tablaOperacion'
-        // ya que una vez toda la información junta, estas no sirven más
+        // Elimino las columnas de las claves primarias y foráneas de las dimensiones
+        // ya que una vez fusionadas con la tabla de hechos estas no sirven más
         for (Dimension dimension : tablasDimensiones){
             cuerpoCubo.eliminarColumna(dimension.getPrimaryKey());
+            cuerpoCubo.eliminarColumna(clavesForaneasDims.get(dimension));
         }
 
+        // Retorno el cuerpo del cubo configurado
         return cuerpoCubo;
     }
 
-    protected CuerpoCubo(List<List<String>> data, List<String> headers, List<String> hechosCubo) {
-        super("Estructura interna del cubo OLAP",data, headers);
+    /**
+     * <p>
+     * <b>Constructor para la clase CuerpoCubo.</b>
+     * </p>
+     * 
+     * <p>
+     * Se encarga de inicializar el "cuerpo" del cubo que representa esta instancia, guardando
+     * toda la información interna del mismo.
+     * </p>
+     *
+     * @param datosTabla La matriz de información interna del cubo que representa esta instancia.
+     * @param headers Una lista que contiene los encabezados de las tablas contenidas en el cubo que representa esta instancia.
+     * @param hechosCubo Una lista que contiene los nombres de los hechos presentes en el cubo que representa esta instancia.
+     */
+    protected CuerpoCubo(List<List<String>> datosTabla, List<String> headers, List<String> hechosCubo) {
+        super("Estructura interna del cubo",datosTabla, headers);
         this.hechosCubo = hechosCubo;
     }
 
@@ -49,113 +80,94 @@ public class CuerpoCubo extends Tabla{
     // Métodos de ayuda para la clase
 
     /**
-     * Método para fusionar dos tablas según una columna específica.
-     *
-     * @param tabla_izq Tabla izquierda.
-     * @param tabla_der Tabla derecha.
-     * @param on Columna por la que se va a fusionar.
+     * Método para fusionar la información contenida en dos objetos de tipo tabla.
+     * 
+     * @param tablaIzq Tabla izquierda a fusionar.
+     * @param claveTablaIzq Clave de la tabla izquierda.
+     * @param tablaDer Tabla derecha a fusionar.
+     * @param claveTablaDer Clave de la tabla derecha.
+     * 
      */
-    private void merge(Tabla tabla_izq, Tabla tabla_der, String on){
+    private void merge(Tabla tablaIzq, String claveTablaIzq, Tabla tablaDer, String claveTablaDer) {
 
-        // Obtengo las columnas de ambos archivos
-        List<String> columnas_tabla_izq = tabla_izq.getHeaders();
-        List<String> columnas_tabla_der = tabla_der.getHeaders();
+        // Obtengo los índices de las claves correspondientes en ambas tablas
+        int indiceClaveIzq = tablaIzq.getHeaders().indexOf(claveTablaIzq);
+        int indiceClaveDer = tablaDer.getHeaders().indexOf(claveTablaDer);
+    
+        // Preparo la lista de headers y datos resultantes
+        List<String> headersResultado = new ArrayList<>(tablaIzq.getHeaders());
+        headersResultado.addAll(tablaDer.getHeaders());
+        List<List<String>> datosResultado = new ArrayList<>();
+    
+        // Genero un mapa que me ayudará a agrupar las filas de la 
+        // tabla izquierda según el valor de su clave
+        Map<String, List<List<String>>> mapaIzq = new LinkedHashMap<>();
 
-        // Genero la lista donde se van a guardar los resultados
-        List<List<String>> resultado = new ArrayList<>();
-
-        // Me armo una lista para guardar los headers de la tabla resultante
-        List<String> headersResultado = new ArrayList<>(columnas_tabla_izq); // Ver que inicialmente tiene las columnas de la tabla de izquierda
-        headersResultado.addAll(columnas_tabla_der);
-
-        // Ahora armo un mapa que por clave tiene valores únicos de la columna por la cual se junta
-        // y como valor tiene todas las filas que coinciden en dicha columna
-        Map<String, List<List<String>>> mapa_merge = new LinkedHashMap<>();
-
-        // Primero itero por la tabla izquierda para añadirle los primeros valores al mapa
-        for (List<String> fila_tabla_izq : tabla_izq.getData()) {
-
-            // Evito una posible 'NullPointerException'
-            if (fila_tabla_izq == null) continue;
-
-            // En cada iteración obtengo el valor de la columna por la cual se junta para esa fila
-            String valor_on = fila_tabla_izq.get(columnas_tabla_izq.indexOf(on));
-
-            // Esta lista de listas de String representa todas las filas con ese mismo valor
-            // trás cada iteración se debe hacer más grande hasta terminar
-            List<List<String>> filas_coincidentes = mapa_merge.get(valor_on);
-
-            // Y esta es una verificación para añadir esa listas de filas de no existir aún
-            if (filas_coincidentes == null) {
-                filas_coincidentes = new ArrayList<>();
-                mapa_merge.put(valor_on, filas_coincidentes);
-            }
-            filas_coincidentes.add(fila_tabla_izq);
+        // Itero sobre la tabla izquierda y voy agrupando las filas
+        for (List<String> fila : tablaIzq.getDatosTabla()) {
+            if (fila == null) continue;
+            String clave = fila.get(indiceClaveIzq);
+            mapaIzq.computeIfAbsent(clave, k -> new ArrayList<>()).add(fila);
         }
-
-        // Itero sobre las filas de la tabla derecha para terminar de completar las filas del mapa_merge
-        for (List<String> fila_tabla_der : tabla_der.getData()) {
-
-            // Evito una posible 'NullPointerException'
-            if (fila_tabla_der == null) continue;
-
-            // En cada iteración obtengo el valor de la columna por la cual se junta para esa fila            
-            String valor_on = fila_tabla_der.get(columnas_tabla_der.indexOf(on));
-
-            // Y aquí hago la validación para juntar las tablas
-            if (mapa_merge.containsKey(valor_on)) {
-
-                // Tomo todas las filas con la misma clave
-                List<List<String>> filas_coincidentes = mapa_merge.get(valor_on);
-
-                // Recorro cada una
-                for (List<String> fila_coincidente : filas_coincidentes) {
-
-                    // Armo una lista que representa la fila resultante de la unión
-                    List<String> filaResultado = new ArrayList<>(fila_coincidente);
-                    filaResultado.addAll(fila_tabla_der);
-
-                    // Y lo añado a la tabla resultante
-                    resultado.add(filaResultado);
+    
+        // Itero sobre la tabla derecha y voy agrupando sus filas
+        // junto con las filas de la tabla izquierda
+        for (List<String> filaDer : tablaDer.getDatosTabla()) {
+            if (filaDer == null) continue;
+            String clave = filaDer.get(indiceClaveDer);
+            List<List<String>> filasIzq = mapaIzq.get(clave);
+            if (filasIzq != null) {
+                for (List<String> filaIzq : filasIzq) {
+                    List<String> filaCombinada = new ArrayList<>(filaIzq);
+                    filaCombinada.addAll(filaDer);
+                    datosResultado.add(filaCombinada);
                 }
             }
         }
-
-        // Modifico los atributos 'data' y 'headers' del cuerpo del cubo
-        this.data = resultado;
+    
+        // Actualizo la información interna de esta instancia
+        this.datosTabla = datosResultado;
         this.headers = headersResultado;
-}
+    }
 
     /**
+     * <p>
      * Elimina todas las columnas de la tabla que tengan el nombre especificado.
+     * </p>
      * 
-     * Este método busca todas las columnas cuyo encabezado coincida con el nombre proporcionado
-     * y las elimina tanto de la lista de encabezados como de cada fila de datos.
+     * <p>
+     * Si no se encuentra ninguna columna con el nombre especificado, no se hace nada
+     * sobre la tabla.
+     * </p>
      *
-     * @param nombre_columna El nombre de la columna que se va a eliminar.
+     * @param nombreColumna El nombre de la columna que se va a eliminar.
      */
     private void eliminarColumna(String nombreColumna){
 
-        // Encuentro todos los índices de la columna según 'nombre_columna'
-        List<Integer> indices_columnas = new ArrayList<>();
+        // Encuentro todos los indices de las columnas que coinciden con el nombre
+        List<Integer> indicesColumnas = new ArrayList<>();
         for (int i = 0; i < this.headers.size(); i++) {
             if (this.headers.get(i).equals(nombreColumna)) {
-                indices_columnas.add(i);
+                indicesColumnas.add(i);
             }
         }
-        
+
+        // Si no se encontraron índices, no se hace nada
+        if (indicesColumnas.isEmpty()) {
+            return;
+        }
 
         // Elimino los encabezados de las columnas en orden inverso para evitar problemas de desplazamiento
-        Collections.sort(indices_columnas, Collections.reverseOrder());
-        for (int indice_columna : indices_columnas) {
-            this.headers.remove(indice_columna);
+        Collections.sort(indicesColumnas, Collections.reverseOrder());
+        for (int indiceColumna : indicesColumnas) {
+            this.headers.remove(indiceColumna);
         }
-        
+
         // Elimino los datos de las columnas en cada fila
-        for (List<String> row : this.data) {
-            for (int indice_columna : indices_columnas) {
-                if (row.size() > indice_columna) {
-                    row.remove(indice_columna);
+        for (List<String> fila : this.datosTabla) {
+            for (int indiceColumna : indicesColumnas) {
+                if (fila.size() > indiceColumna) {
+                    fila.remove(indiceColumna);
                 }
             }
         }
@@ -165,16 +177,24 @@ public class CuerpoCubo extends Tabla{
     // Getters de la clase
 
     /**
-     * Obtiene los hechos del cubo.
+     * Obtiene los hechos presentes en el cubo 
+     * que representa esta instancia.
      *
-     * @return Lista de hechos del cubo.
+     * @return Una lista que contiene los nombres
+     *         de los hechos presentes en el cubo.
      */
     public List<String> getHechosCubo() {
         return new ArrayList<>(hechosCubo);
     }    
 
+    /**
+     * Devuelve una copia profunda del cuerpo del cubo
+     * que representa esta instancia.
+     *
+     * @return Una copia profunda del cuerpo del cubo.
+     */
     public CuerpoCubo getCuerpoCopy(){
-        return new CuerpoCubo(this.getData(), this.getHeaders(), this.getHechosCubo());
+        return new CuerpoCubo(this.getDatosTabla(), this.getHeaders(), this.getHechosCubo());
     }
 
 }

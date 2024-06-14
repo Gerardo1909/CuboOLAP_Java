@@ -5,47 +5,71 @@ import java.util.List;
 /**
  * Enum que contiene las operaciones de agregación permitidas en el método RollUp.
  */
-public enum OperacionAgregacion {
+enum OperacionAgregacion {
     /**
      * Operación de suma.
      */
     SUM("sum") {
         /**
-         * Aplica la operación de suma a una lista de valores.
-         * @param values La lista de valores.
-         * @return El resultado de la suma.
+         * Suma los valores de todos los hechos agregados.
+         * 
+         * @param hechosAgregados La lista de valores de los hechos implicados en la operación.
+         * 
+         * @return Un valor que representa a todos los hechos agregados sumados.
          */
         @Override
-        public double aplicar(List<Double> values) {
-            return values.stream().mapToDouble(Double::doubleValue).sum();
+        public double aplicar(List<Double> hechosAgregados) {
+            double sumaHechos = 0;
+            for (Double hecho : hechosAgregados) {
+                if (hecho != null) {
+                    sumaHechos += hecho;
+                }
+            }
+            return sumaHechos;
         }
     },
     /**
-     * Operación de máximo.
+     * Operación de hallar máximo.
      */
     MAX("max") {
         /**
-         * Aplica la operación de máximo a una lista de valores.
-         * @param values La lista de valores.
-         * @return El máximo valor.
+         * Encuentra el valor máximo entre los hechos agregados.
+         * 
+         * @param hechosAgregados La lista de valores de los hechos implicados en la operación.
+         * 
+         * @return El valor máximo entre los hechos en la lista.
          */
         @Override
-        public double aplicar(List<Double> values) {
-            return values.stream().mapToDouble(Double::doubleValue).max().orElse(Double.MIN_VALUE);
+        public double aplicar(List<Double> hechosAgregados) {
+            double maxHecho = Double.MIN_VALUE;
+            for (Double hecho : hechosAgregados) {
+                if (hecho != null && hecho > maxHecho) {
+                    maxHecho = hecho;
+                }
+            }
+            return maxHecho;
         }
     },
     /**
-     * Operación de mínimo.
+     * Operación de hallar mínimo.
      */
     MIN("min") {
         /**
-         * Aplica la operación de mínimo a una lista de valores.
-         * @param values La lista de valores.
-         * @return El mínimo valor.
+         * Encuentra el valor mínimo entre los hechos agregados.
+         * 
+         * @param hechosAgregados La lista de valores de los hechos implicados en la operación.
+         * 
+         * @return El valor mínimo entre los hechos en la lista.
          */
         @Override
-        public double aplicar(List<Double> values) {
-            return values.stream().mapToDouble(Double::doubleValue).min().orElse(Double.MAX_VALUE);
+        public double aplicar(List<Double> hechosAgregados) {
+            double minHecho = Double.MAX_VALUE;
+            for (Double hecho : hechosAgregados) {
+                if (hecho != null && hecho < minHecho) {
+                    minHecho = hecho;
+                }
+            }
+            return minHecho;
         }
     },
     /**
@@ -53,20 +77,30 @@ public enum OperacionAgregacion {
      */
     COUNT("count") {
         /**
-         * Aplica la operación de conteo a una lista de valores.
-         * @param values La lista de valores.
-         * @return El número de elementos en la lista.
+         * Aplica la operación de conteo a los hechos agregados.
+         * 
+         * @param hechosAgregados La lista de valores de los hechos implicados en la operación.
+         * 
+         * @return El número de hechos presentes en la lista.
          */
         @Override
-        public double aplicar(List<Double> values) {
-            return values.size();
+        public double aplicar(List<Double> hechosAgregados) {
+            return hechosAgregados.size();
         }
     };
 
+    // Atributos del enum OperacionAgregacion
     private final String operacion;
 
     /**
-     * Constructor de OperacionAgregacion.
+     * <p>
+     * <b>Constructor para el enum OperacionAgregacion.</b>
+     * </p>
+     * 
+     * <p>
+     * Asocia un String que representa el nombre de la operación con una instancia de este enum.
+     * </p>
+     * 
      * @param operacion El nombre de la operación.
      */
     OperacionAgregacion(String operacion) {
@@ -74,24 +108,32 @@ public enum OperacionAgregacion {
     }
 
     /**
-     * Obtiene el nombre de la operación.
+     * Obtiene el nombre de la operación que contiene 
+     * una instancia de este enum.
+     * 
      * @return El nombre de la operación.
      */
-    public String getOperacion() {
-        return operacion;
+    private String getOperacion() {
+        return this.operacion;
     }
 
     /**
-     * Aplica la operación de agregación a una lista de valores.
-     * @param values La lista de valores.
+     * Aplica la operación de agregación a una lista de valores
+     * que representan los hechos seleccionados en la operación
+     * rollUp.
+     * 
+     * @param hechosAgregados La lista de valores de los hechos implicados en la operación.
+     * 
      * @return El resultado de la operación de agregación.
      */
-    public abstract double aplicar(List<Double> values);
+    public abstract double aplicar(List<Double> hechosAgregados);
 
     /**
-     * Verifica si una operación de agregación es válida.
+     * Verifica si la operación de agregación ingresada en formato
+     * cadena coincide con una de las operaciones disponibles en este enum.
      * 
      * @param op la operación de agregación a verificar
+     * 
      * @return true si la operación es válida, false de lo contrario
      */
     public static boolean esOperacionValida(String op) {
