@@ -98,7 +98,7 @@ class ComandoDrillDown implements ComandoCubo {
      * Se encarga de re-ejecutar las operaciones Dice aplicadas anteriormente sobre el cubo.
      */
     private void aplicarOperacionesDice(List<ComandoDice> historialDice) {
-        for (ComandoDice comando : historialDice) {
+        for (ComandoDice comando : this.historialDice) {
             ComandoDice comandoDice = new ComandoDice(this.tablaBase, comando.getCriteriosDice(), historialDice);
             comandoDice.ejecutar();
             this.tablaBase = comandoDice.getResultado();
@@ -109,7 +109,7 @@ class ComandoDrillDown implements ComandoCubo {
      * Se encarga de re-ejecutar las operaciones Slice aplicadas anteriormente sobre el cubo.
      */
     private void aplicarOperacionesSlice(List<ComandoSlice> historialSlice) {
-        for (ComandoSlice comando : historialSlice) {
+        for (ComandoSlice comando : this.historialSlice) {
             ComandoSlice comandoSlice = new ComandoSlice(this.tablaBase, comando.getDimension(), comando.getNivelCorte(), 
                                                         comando.getValorCorte(), historialSlice);
             comandoSlice.ejecutar();

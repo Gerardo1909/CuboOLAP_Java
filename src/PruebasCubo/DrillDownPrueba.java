@@ -53,9 +53,7 @@ public class DrillDownPrueba {
 
         // Ahora pruebo a desagrupar las dimensiones a su nivel más fino
         Map<Dimension, String> criteriosDesagregacion = new LinkedHashMap<>();
-        criteriosDesagregacion.put(dimFechas, "fecha");
         criteriosDesagregacion.put(dimPuntoVenta, "punto_venta");
-        criteriosDesagregacion.put(dimProducto, "producto");
 
         // Pruebo la operación DrillDown
         cuboPrueba.drillDown(criteriosDesagregacion);
