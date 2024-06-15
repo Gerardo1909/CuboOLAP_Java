@@ -198,7 +198,8 @@ public class Cubo{
      * </p>
      * 
      * <p>
-     * Del mismo modo esta operación solo desagrega los hechos que estuvieron implicados anteriormente en una operación rollUp.
+     * Del mismo modo esta operación solo desagrega los hechos que estuvieron implicados en la última operación RollUp efectuada
+     * sobre este cubo.
      * </p>
      *
      * @param criteriosDesagregacion Un mapa de criterios que contiene como clave la dimensión sobre la cual se quiere aplicar la operación 
@@ -373,7 +374,20 @@ public class Cubo{
      * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos de este cubo.
      */
     public void proyectar(int cantFilas, List<String> nombresColumnas){
-        this.tablaOperacion.ver(cantFilas, nombresColumnas);
+
+        // Encierro en un bloque try-catch para lanzar las excepciones adecuandolas
+        // a las excepciones de la clase Cubo
+        try{
+            this.tablaOperacion.ver(cantFilas, nombresColumnas);
+        } catch (ColumnaNoPresenteException e){
+            for (String columna : nombresColumnas){
+                if (!this.tablaOperacion.getHeaders().contains(columna)){
+                    throw new ColumnaNoPresenteException("La columna especificada '" + columna + "' no esta presente en el cubo <" + this.nombre + ">.");
+                }
+            }
+        } catch (FilaFueraDeRangoException e){
+            throw new FilaFueraDeRangoException("La cantidad de filas solicitadas es mayor a la longitud disponible en el cubo <" + this.nombre + ">.");
+        }
     }
 
     /**

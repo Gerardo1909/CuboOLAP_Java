@@ -6,21 +6,36 @@ import Cubo.excepciones.excepcionesTabla.ColumnaNoPresenteException;
 import Cubo.excepciones.excepcionesTabla.FilaFueraDeRangoException;
 
 /**
- * Clase abstracta que representa una tabla de datos en formato tabular.
+ * <p>
+ * Esta clase es una abstracción para representar información en formato
+ * tabular.
+ * </p>
+ * 
+ * <p>
+ * Se encarga de representar el comportamiento común entre datos que presentan 
+ * un formato tabular.
+ * </p>
  */
 public abstract class Tabla{
 
+    // Atributos de la clase Tabla
     protected List<String> headers;
     protected List<List<String>> datosTabla;
     protected String nombre;
    
     /**
-     * Constructor para crear una tabla a partir de datos y encabezados dados.
-     * Crea nuevas listas para 'encabezados' y 'datos' para asegurarse de su inmutabilidad.
+     * <p>
+     * <b>Constructor para la clase Tabla.</b>
+     * </p>
+     * 
+     * <p>
+     * Se encarga de inicializar una nueva tabla con un nombre, una matriz de información interna y
+     * encabezados que representan las columnas presentes en la misma.
+     * </p>
      *
      * @param nombre El nombre de la tabla.
-     * @param datosTabla Los datos de la tabla. Debe ser una lista de listas, donde cada lista interna representa una fila.
-     * @param headers Los encabezados de la tabla. Debe ser una lista de cadenas, donde cada cadena representa un nombre de columna.
+     * @param datosTabla Una matriz que representa la información interna de la tabla.
+     * @param headers Una lista que representa los encabezados de la tabla..
      */
     protected Tabla(String nombre, List<List<String>> datosTabla, List<String> headers){
         this.nombre = nombre;
@@ -32,27 +47,22 @@ public abstract class Tabla{
     // Getters de la clase
 
     /**
-     * Obtiene el nombre de la tabla.
-     *
-     * @return Nombre de la tabla.
+     * @return El nombre de esta tabla.
      */
     public String getNombre(){
         return this.nombre;
     }
 
     /**
-     * Obtiene los encabezados de la tabla.
-     *
-     * @return Lista de encabezados de la tabla.
+     * @return Una copia de la lista que contiene los encabezados de esta tabla.
      */
     public List<String> getHeaders() {
         return new ArrayList<>(headers);
         }
     
     /**
-     * Obtiene los datos de la tabla.
-     *
-     * @return Lista de listas de datos de la tabla.
+     * @return Una copia de la matriz que contiene la información
+     *         interna de esta tabla.
      */
     public List<List<String>> getDatosTabla() {
         List<List<String>> datosCopy = new ArrayList<>();
@@ -63,29 +73,28 @@ public abstract class Tabla{
     }
 
     /**
-     * Obtiene una columna específica de la tabla.
+     * Se encarga de obtener la información interna de una columna presente en esta 
+     * tabla. 
      *
      * @param nombre_columna Nombre de la columna que se va a obtener.
-     * @return Lista de valores de la columna.
+     * 
      * @throws ColumnaNoPresenteException Si la columna especificada no existe en la tabla.
+     * 
+     * @return Una lista que contiene los valores presentes en la columna seleccionada de esta tabla, 
+     *         notar que no se incluye el nombre que representa a la misma.
      */
-    public List<String> getColumna(String nombre_columna) throws ColumnaNoPresenteException{
-
-        //Primero busco el índice de la columna según 'nombre_columna'
-        int indice_columna = this.headers.indexOf(nombre_columna);
-        
+    public List<String> getColumna(String nombre_columna){
+ 
         // Verifico si el nombre de la columna existe en los headers
+        int indice_columna = this.headers.indexOf(nombre_columna);
         if (indice_columna == -1) {
-            throw new ColumnaNoPresenteException("La columna especificada" + nombre_columna + "no existe en los encabezados.");
+            throw new ColumnaNoPresenteException("La columna especificada '" + nombre_columna + "' no existe en los encabezados.");
         }
     
-        // Ahora hago una copia de los datos para cuidar la inmutabilidad
+        // Hago una copia de la matriz de datos y añado la 
+        // información referente a la columna solicitada
         List<List<String>> datos_copy = this.getDatosTabla();
-    
-        // Creo la lista que corresponde a la columna
         List<String> columna = new ArrayList<>();
-    
-        // Y agrego el resto de datos
         for (int i = 0; i < datos_copy.size(); i++) {
             columna.add(datos_copy.get(i).get(indice_columna));
         }
@@ -97,78 +106,99 @@ public abstract class Tabla{
     // Métodos de la clase
 
     /**
-     * Muestra una parte seleccionada de los datos de la tabla en un formato tabular.
+     * Muestra una parte especificada los datos internos de esta tabla mediante una impresión por consola.
      *
      * @param cantFilas El número de filas a mostrar.
-     * @param columnas La lista de nombres de columnas a mostrar.
-     * @throws ColumnaNoPresenteException Si una columna solicitada no está presente en los datos del objeto.
-     * @throws FilaFueraDeRangoException Si el número solicitado de filas está fuera del rango de datos del objeto.
+     * @param columnas Una lista que contiene los nombres de las columnas a mostrar.
+     * 
+     * @throws ColumnaNoPresenteException Si una de las columnas solicitadas no está presente en esta tabla.
+     * @throws FilaFueraDeRangoException Si el número solicitado de filas a mostrar es mayor a las disponibles
+     *                                   en esta tabla.
      */
-    public void ver(int cantFilas, List<String> columnas) throws ColumnaNoPresenteException, FilaFueraDeRangoException {
+    public void ver(int cantFilas, List<String> columnas){
 
-        // Aquí defino el máximo de columnas que se pueden ver
-        int max_cols_mostrar = 4;
+        // Máximo de columnas a mostrar en la consola para evitar desborde
+        int maxColsMostrar = 4;
 
-        // Previengo el caso donde cantFilas es mayor que las filas disponibles
+        // Verifico que los argumentos estén dentro de los límites
         if (cantFilas > this.datosTabla.size()) {
-            throw new FilaFueraDeRangoException("La cantidad de filas solicitadas es mayor a la longitud disponible en la tabla " + this.getNombre());
+            throw new FilaFueraDeRangoException("La cantidad de filas solicitadas es mayor a la longitud disponible en la tabla '" + this.getNombre() + "'.");
         }
-
-        // Verifico si las columnas especificadas existen en los encabezados
         for (String columna : columnas) {
             if (!this.headers.contains(columna)) {
-                throw new ColumnaNoPresenteException("La columna especificada " + columna + " no existe en los encabezados.");
+                throw new ColumnaNoPresenteException("La columna especificada '" + columna + "' no existe entre los encabezados.");
             }
         }
 
-        // Genero una lista y almaceno las columnas seleccionadas
-        List<List<String>> columnas_seleccionadas = new ArrayList<>();
-        for (String columna : columnas) {
-            columnas_seleccionadas.add(this.getColumna(columna));
-        }
+        // Hago la impresión por consola
+        List<List<String>> columnasSeleccionadas = seleccionarColumnas(columnas);
+        int cantidadColumnas = columnas.size();
+        int chunks = (int) Math.ceil((double) cantidadColumnas / maxColsMostrar);
+        for (int indiceChunk = 0; indiceChunk < chunks; indiceChunk++) {
+            int inicio = indiceChunk * maxColsMostrar;
+            int fin = Math.min(inicio + maxColsMostrar, cantidadColumnas);
 
-        // Determino el número de bloques (chunks) a mostrar
-        int cantidad_columnas = columnas.size();
-        int chunks = (int) Math.ceil((double) cantidad_columnas / max_cols_mostrar);
+            imprimirEncabezados(columnas, inicio, fin);
+            imprimirFilas(cantFilas, columnasSeleccionadas, inicio, fin);
 
-        // Itero a través de cada bloque de columnas
-        for (int indice_chunk = 0; indice_chunk < chunks; indice_chunk++) {
-            int inicio = indice_chunk * max_cols_mostrar;
-            int fin = Math.min(inicio + max_cols_mostrar, cantidad_columnas);
-
-            // Imprimo los encabezados de las columnas
-            for (int i = inicio; i < fin; i++) {
-                System.out.print(String.format("%-30s", columnas.get(i)));
-            }
-            // Imprimo puntos suspensivos si hay más columnas por mostrar
-            if (fin < cantidad_columnas) {
-                System.out.print(String.format("%-30s", "..."));
-            }
-            System.out.println();
-
-            // Imprimo las filas de datos
-            for (int i = 0; i < cantFilas; i++) {
-                for (int j = inicio; j < fin; j++) {
-                    System.out.print(String.format("%-30s", columnas_seleccionadas.get(j).get(i)));
-                }
-                if (fin < cantidad_columnas) {
-                    System.out.print(String.format("%-30s", "..."));
-                }
-                System.out.println();
-            }
-
-            // Añado una línea en blanco entre bloques para mejor legibilidad
             System.out.println();
         }
     }
 
     /**
-    * Compara este objeto `Tabla` con el objeto especificado para determinar si son iguales.
-    * Devuelve `true` si el objeto dado también es un objeto `Tabla` y tiene los mismos encabezados y datos que este objeto `Tabla`.
-    * 
-    * @param obj el objeto a comparar con este objeto `Tabla`
-    * @return `true` si el objeto dado es igual a este objeto `Tabla`, `false` en caso contrario
-    */
+     * Se encarga de traer la información interna de las columnas que se desean visualizar en 
+     * el método 'ver()'.
+     *
+     * @param columnas Una lista que contiene los nombres de las columnas seleccionadas.
+     * 
+     * @return Una matriz que contiene únicamente la información interna de las columnas seleccionadas.
+     */
+    private List<List<String>> seleccionarColumnas(List<String> columnas) {
+        List<List<String>> columnasSeleccionadas = new ArrayList<>();
+        for (String columna : columnas) {
+            columnasSeleccionadas.add(this.getColumna(columna));
+        }
+        return columnasSeleccionadas;
+    }
+
+    /**
+     * Se encarga de imprimir los encabezados de las columnas que se desean visualizar en 
+     * el método 'ver()'.
+     */
+    private void imprimirEncabezados(List<String> columnas, int inicio, int fin) {
+        for (int i = inicio; i < fin; i++) {
+            System.out.print(String.format("%-30s", columnas.get(i)));
+        }
+        if (fin < columnas.size()) {
+            System.out.print(String.format("%-30s", "..."));
+        }
+        System.out.println();
+    }
+
+    /**
+     * Se encarga de imprimir las filas de las columnas que se desean visualizar en 
+     * el método 'ver()'.
+     */
+    private void imprimirFilas(int cantFilas, List<List<String>> columnasSeleccionadas, int inicio, int fin) {
+        for (int i = 0; i < cantFilas; i++) {
+            for (int j = inicio; j < fin; j++) {
+                System.out.print(String.format("%-30s", columnasSeleccionadas.get(j).get(i)));
+            }
+            if (fin < columnasSeleccionadas.size()) {
+                System.out.print(String.format("%-30s", "..."));
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Método para comparar dos intancias de la clase Tabla.
+     * 
+     * @param obj El objeto a comparar con esta tabla.
+     * 
+     * @return `true` si los objetos comparados contienen la misma matriz de información interna y los mismos encabezados, 
+     *          `false` en caso contrario.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -178,15 +208,11 @@ public abstract class Tabla{
             return false;
         }
         Tabla tabla = (Tabla) obj;
-
-        // La igualdad la defino según si sus headers y su información son iguales
         return this.headers.equals(tabla.headers) && this.datosTabla.equals(tabla.datosTabla);
     }
 
     /**
-     * Devuelve el valor hash del objeto Tabla.
-     * 
-     * @return El valor hash del objeto Tabla.
+     * @return El valor hash de esta tabla.
      */
     @Override  
     public int hashCode() {
@@ -195,7 +221,5 @@ public abstract class Tabla{
         result = 31 * result + this.datosTabla.hashCode();
         return result;
     }
-
-
 
 }

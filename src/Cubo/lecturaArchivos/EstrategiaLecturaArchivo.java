@@ -4,18 +4,31 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Este interfaz define una estrategia para leer archivos.
- * Proporciona la firma de un método para leer un archivo y devolver su contenido como una lista de listas de cadenas.
+ * <p>
+ * Esta interfaz define un método para la lectura de archivos en diferentes formatos.
+ * </p>
+ * 
+ * <p>
+ * Está inspirada en el patrón de diseño "Strategy", en donde cada forma de lectura de archivos
+ * tiene una clase que se encarga de su implementación.
+ * </p>
  */
 public interface EstrategiaLecturaArchivo {
-
     /**
-     * Lee un archivo desde la ruta dada y devuelve su contenido como una lista de listas de cadenas.
-     * Cada lista interna representa una línea en el archivo, y cada cadena en la lista interna representa un campo.
+     * <p>
+     * Lee un archivo desde la ruta dada y devuelve su contenido como una matriz de datos de tipo cadena.
+     * </p>
+     * 
+     * <p>
+     * En este enfoque cada lista dentro de la matriz representa una fila del archivo y cada 
+     * elemento en cada lista representa un campo.
+     * </p>
      *
-     * @param rutaArchivo La ruta del archivo que se va a leer.
-     * @return Una lista de listas de cadenas que representa el contenido del archivo.
-     * @throws IOException Si se produce un error de E/S al leer el archivo.
+     * @param rutaArchivo La ruta donde se ubica el archivo a leer.
+     * 
+     * @throws IOException Si ocurre un error de entrada/salida al leer los datos del archivo.
+     * 
+     * @return Una matriz de datos de tipo cadena que representa la información interna del archivo. 
      */ 
     public List<List<String>> leerArchivo(String rutaArchivo) throws IOException;
 }

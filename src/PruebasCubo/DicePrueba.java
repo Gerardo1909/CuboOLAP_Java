@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import Cubo.ImplementacionCubo.Cubo;
+import Cubo.exportacionArchivos.ExportadorCSV;
 import Cubo.tablasCubo.Dimension;
 
 public class DicePrueba {
@@ -42,6 +43,12 @@ public class DicePrueba {
         // Ejecuto el método
         cuboPrueba.dice(criterios);
 
+        // Visualizo por consola
         cuboPrueba.proyectar(10, new ArrayList<>(Arrays.asList("anio", "provincia", "costo")));
+
+        // Pruebo la exportacion del cubo
+        ExportadorCSV exportadorCSV = new ExportadorCSV(';');
+        cuboPrueba.exportar("exportaciones/prueba_Dice.csv", exportadorCSV);
+    
     }
 }

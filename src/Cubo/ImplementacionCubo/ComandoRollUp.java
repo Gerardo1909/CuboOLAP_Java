@@ -115,7 +115,7 @@ class ComandoRollUp implements ComandoCubo{
 
     // Métodos de ayuda para método ejecutar()
 
-   /**
+    /**
      * Se encarga de agrupar la información contenida en el cuerpo del cubo.
      *
      * @param tablaOperacion La tabla sobre la que se realiza la operación de agrupación.
@@ -127,47 +127,28 @@ class ComandoRollUp implements ComandoCubo{
     private static Map<List<String>, List<List<String>>> groupBy(Tabla tablaOperacion, List<String> columnasAgrupadoras, List<String> columnasAgrupadas) {
 
         // Guardo los indices de las columnas que agrupan
-        List<Integer> indicesAgrupacion = new ArrayList<>();
-        for (String columna : columnasAgrupadoras) {
-            indicesAgrupacion.add(tablaOperacion.getHeaders().indexOf(columna));
-        }
-
+        List<Integer> indicesAgrupacion = obtenerIndicesColumnas(tablaOperacion, columnasAgrupadoras);
         // Guardo los indices de las columnas a agrupar
-        List<Integer> indicesAgrupados = new ArrayList<>();
-        for (String columna : columnasAgrupadas) {
-            indicesAgrupados.add(tablaOperacion.getHeaders().indexOf(columna));
-        }
+        List<Integer> indicesAgrupados = obtenerIndicesColumnas(tablaOperacion, columnasAgrupadas);
 
         // Armo un mapa vacío que guardará los resultados y recorro las filas de la tabla
         Map<List<String>, List<List<String>>> mapaAgrupacion = new LinkedHashMap<>();
         for (List<String> fila : tablaOperacion.getDatosTabla()) {
-            // Creo la clave del grupo
-            List<String> clave = new ArrayList<>();
-            for (int indiceColumna : indicesAgrupacion) {
-                clave.add(fila.get(indiceColumna));
-            }
+                // Creo la clave del grupo
+                List<String> clave = obtenerClaveGrupo(fila, indicesAgrupacion);
 
-            // Verifico si la clave no está en 'mapaAgrupacion'
-            if (!mapaAgrupacion.containsKey(clave)) {
-                // Armo la lista para las columnas a agrupar
-                List<List<String>> listaColsAgrupar = new ArrayList<>();
-                mapaAgrupacion.put(clave, listaColsAgrupar);
+                // Verifico si la clave no está en 'mapaAgrupacion'
+                if (!mapaAgrupacion.containsKey(clave)) {
+                    // Armo la lista para las columnas a agrupar
+                    List<List<String>> listaColsAgrupar = new ArrayList<>();
+                    mapaAgrupacion.put(clave, listaColsAgrupar);
 
-                // Y dentro de 'listaColsAgrupar' añado una lista por cada columna en la lista de las que voy a agrupar
-                for (int i = 0; i < indicesAgrupados.size(); i++){
-                    listaColsAgrupar.add(new ArrayList<>());
+                    // Y dentro de 'listaColsAgrupar' añado una lista por cada columna en la lista de las que voy a agrupar
+                    inicializarListasAgrupadas(listaColsAgrupar, indicesAgrupados.size());
                 }
-            }
 
-            // Ahora recorro las columnas a agrupar y las agrego a su lista correspondiente
-            for (int i = 0; i < indicesAgrupados.size(); i++) {
-
-                // Obtengo el índice de la columna a agrupar
-                int indiceAgrupado = indicesAgrupados.get(i);
-
-                // Lo añado a la lista que corresponde
-                mapaAgrupacion.get(clave).get(i).add(fila.get(indiceAgrupado));
-            }
+                // Ahora recorro las columnas a agrupar y las agrego a su lista correspondiente
+                agregarColumnasAgrupadas(mapaAgrupacion, clave, fila, indicesAgrupados);
 
         }
 
@@ -177,9 +158,70 @@ class ComandoRollUp implements ComandoCubo{
     }
 
     /**
+     * Se encarga de obtener los índices de las columnas en la tabla.
+     *
+     * @param tablaOperacion La tabla sobre la que se realiza la operación.
+     * @param columnas Una lista que contiene las columnas para las cuales se 
+     *                 quiere obtener su índice.
+     * 
+     * @return Una lista que contiene los índices de las columnas solicitadas.
+     */
+    private static List<Integer> obtenerIndicesColumnas(Tabla tablaOperacion, List<String> columnas) {
+        List<Integer> indices = new ArrayList<>();
+        for (String columna : columnas) {
+                indices.add(tablaOperacion.getHeaders().indexOf(columna));
+        }
+        return indices;
+    }
+
+    /**
+     * Se encarga de obtener la clave del mapa de agrupación, la cual representa las columnas que agrupan.
+     *
+     * @param fila Una lista que representa la fila de datos sobre la cual se obtienen las claves de agrupación.
+     * @param indicesAgrupacion Una lista que contiene de las columnas de agrupación.
+     * 
+     * @return Una lista que contiene la clave de agrupación para las filas que coinciden.
+     */
+    private static List<String> obtenerClaveGrupo(List<String> fila, List<Integer> indicesAgrupacion) {
+        List<String> clave = new ArrayList<>();
+        for (int indiceColumna : indicesAgrupacion) {
+                clave.add(fila.get(indiceColumna));
+        }
+        return clave;
+    }
+
+    /**
+     * Se encarga de inicializar las listas donde se guardan las columnas agrupadas.
+     *
+     * @param listaColsAgrupar Una lista que contiene todas las listas de columnas agrupadas.
+     * @param size La cantidad de listas a inicializar.
+     */
+    private static void inicializarListasAgrupadas(List<List<String>> listaColsAgrupar, int size) {
+        for (int i = 0; i < size; i++) {
+                listaColsAgrupar.add(new ArrayList<>());
+        }
+    }
+
+    /**
+     * Se encarga de agregar las columnas agrupadas a su lista de agrupación correspondiente.
+     *
+     * @param mapaAgrupacion El mapa de agrupación.
+     * @param clave Una lista que representa la clave del mapa de agrupación.
+     * @param fila Una lista que representa la fila de datos sobre la cual se obtienen las columnas agrupadas.
+     * @param indicesAgrupados Una lista que contiene los índices de las columnas agrupadas.
+     */
+    private static void agregarColumnasAgrupadas(Map<List<String>, List<List<String>>> mapaAgrupacion, List<String> clave, List<String> fila, List<Integer> indicesAgrupados) {
+        for (int i = 0; i < indicesAgrupados.size(); i++) {
+                int indiceAgrupado = indicesAgrupados.get(i);
+                mapaAgrupacion.get(clave).get(i).add(fila.get(indiceAgrupado));
+        }
+    }
+
+    /**
      * Se encarga de convertir las listas contenidas en el mapa de la agrupación a tipo Double.
      *
      * @param mapaAgrupacion El mapa que contiene la información agrupada.
+     * 
      * @return Un nuevo mapa con las mismas claves pero que en sus valores tiene listas de tipo Double.
      */
     private Map<List<String>, List<List<Double>>> convertirAListasDouble(Map<List<String>, List<List<String>>> mapaAgrupacion) {
@@ -228,6 +270,7 @@ class ComandoRollUp implements ComandoCubo{
      *
      * @param mapaOperable El mapa que contiene la información agrupada y los valores del mismo convertidos a listas 
      *                     de tipo Double.
+     * 
      * @return El mapa con la operación de agregación aplicada.
      */
     private Map<List<String>, List<Double>> aplicarAgregacion(Map<List<String>, List<List<Double>>> mapaOperable) {
@@ -264,6 +307,7 @@ class ComandoRollUp implements ComandoCubo{
      * de vuelta a listas de tipo String.
      *
      * @param mapaAgregado El mapa que contiene la información agrupada y agregada.
+     * 
      * @return La lista de listas de String que contiene la información agregada.
      */
     private List<List<String>> convertirAListaString(Map<List<String>, List<Double>> mapaAgregado) {
@@ -339,6 +383,14 @@ class ComandoRollUp implements ComandoCubo{
      */
     public List<String> getNivelesOperacion(){
         return new ArrayList<>(this.nivelesOperacion);
+    }
+
+    /**
+     * @return Una lista que contiene los hechos seleccionados que se 
+     *        vieron implicados en la ejecución de este método.
+     */
+    public List<String> getHechosSeleccionados(){
+        return new ArrayList<>(this.hechosSeleccionados);
     }
 
 }

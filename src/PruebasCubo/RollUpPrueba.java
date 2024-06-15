@@ -31,7 +31,7 @@ public class RollUpPrueba {
 
         // Armo el mapa que le voy a pasar al método como argumento
         Map<Dimension, String> criteriosAgregacion = new LinkedHashMap<>();
-        criteriosAgregacion.put(dimFechas, "mes");
+        criteriosAgregacion.put(dimFechas, "anio");
         criteriosAgregacion.put(dimPuntoVenta, "region");
         criteriosAgregacion.put(dimProducto, "categoria");
 
@@ -40,8 +40,12 @@ public class RollUpPrueba {
         cuboPrueba.rollUp(
             criteriosAgregacion,
             Arrays.asList("valor_total", "costo", "valor_unitario", "cantidad"),
-            "count"
+            "sum"
         );
+
+        // Visualizo por consola
+        List<String> columnasAVer = Arrays.asList("anio", "region", "categoria", "valor_total", "costo", "valor_unitario", "cantidad");
+        cuboPrueba.proyectar(10, columnasAVer);
 
         // Pruebo la exportacion del cubo
         ExportadorCSV exportadorCSV = new ExportadorCSV(';');

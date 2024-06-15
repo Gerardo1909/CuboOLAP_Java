@@ -39,7 +39,7 @@ public class Hecho extends Tabla {
      * @param nombre El nombre de la tabla de hechos.
      * @param hechos Una lista que representa los hechos presentes en la tabla.
      * @param clavesForaneasDims Un mapa que representa las claves foráneas de las dimensiones presentes en la tabla.
-     * @param estrategiaLectura La estrategia de lectura de archivos a utilizar
+     * @param estrategiaLectura La estrategia de lectura de archivos a utilizar.
      * @param rutaArchivo La ruta donde se ubica el archivo a leer.
      * 
      * @throws IOException Si ocurre un error de entrada/salida al leer los datos de la tabla.
@@ -56,14 +56,14 @@ public class Hecho extends Tabla {
         List<String> headers_hecho = archivo_hecho.get(0);
         archivo_hecho.remove(0);
 
-        // Verifico que los hechos estén presentes en la tabla 
+        // Verifico que los hechos indicados estén presentes en la tabla 
         for (String hecho : hechos) {
             if (!headers_hecho.contains(hecho)) {
                 throw new HechoNoPresenteException("El hecho '" + hecho + "' no esta presente en la tabla de hechos.");
             }
         }
 
-        // Verifico que las claves foraneas estén presentes en la tabla
+        // Verifico que las claves foraneas indicadas estén presentes en la tabla
         for (Map.Entry<Dimension, String> entry : clavesForaneasDims.entrySet()) {
             Dimension dim = entry.getKey();
             String claveForanea = entry.getValue();
@@ -106,7 +106,7 @@ public class Hecho extends Tabla {
     // Métodos de la clase Hecho
 
     /**
-     * @return Una copia de la lista de hechos presentes en esta tabla.
+     * @return Una copia de la lista de hechos presentes en esta tabla de hechos.
      */
     public List<String> getHechos(){
         return new ArrayList<>(this.hechos);
@@ -114,7 +114,7 @@ public class Hecho extends Tabla {
 
     /**
      * @return Una copia del mapa que contiene a las claves foráneas de dimensiones presentes
-     * en esta tabla.
+     * en esta tabla de hechos.
      */
     public Map<Dimension, String> getClavesForaneasDims(){
         return new HashMap<>(this.clavesForaneasDims);
@@ -122,7 +122,7 @@ public class Hecho extends Tabla {
     
     /**
      * <p>
-     * Devuelve una representación en forma de cadena de esta tabla.
+     * Devuelve una representación en forma de cadena de esta tabla de hechos.
      * </p>
      * 
      * <p>

@@ -1,7 +1,6 @@
 package Cubo.ImplementacionCubo;
 
 /**
- * 
  * <p>
  * Esta interfaz define la ejecución de los métodos en la clase {@link Cubo}.
  * </p>

@@ -84,7 +84,7 @@ class ComandoDrillDown implements ComandoCubo {
     
         // Finalmente ejecuto el RollUp pero con los niveles de menor jerarquía
         // logrando el efecto de desagregación
-        ComandoRollUp comando = new ComandoRollUp(this.tablaBase, this.tablaBase.getHechosCubo(), OperacionAgregacion.SUM, nivelesActualesAgregacion, this.historialRollUp);
+        ComandoRollUp comando = new ComandoRollUp(this.tablaBase, ultimoRollUp.getHechosSeleccionados(), OperacionAgregacion.SUM, nivelesActualesAgregacion, this.historialRollUp);
         comando.ejecutar();
 
         // Actualizo el estado interno del cubo

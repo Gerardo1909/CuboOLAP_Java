@@ -4,16 +4,23 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Este interfaz define una estrategia para exportar archivos.
- * Proporciona la firma de un método para exportar datos en formato de lista de listas de cadena a una ubicación determinada.
+ * <p>
+ * Esta interfaz define un método para la exportación de archivos en diferentes formatos.
+ * </p>
+ * 
+ * <p>
+ * Está inspirada en el patrón de diseño "Strategy", en donde cada forma de exportar archivos
+ * tiene una clase que se encarga de su implementación.
+ * </p>
  */
 public interface EstrategiaExportarArchivo {
     /**
-     * Exporta los datos proporcionados a un archivo en la ruta especificada.
+     * Exporta la matriz de datos proporcionada a la ruta especificada.
      * 
-     * @param rutaArchivo la ruta completa del archivo donde se exportarán los datos. No debe ser nula o vacía.
-     * @param data Una lista de listas de cadenas que representa el contenido del archivo.
-     * @throws IOException Si se produce un error de E/S al leer el archivo.
+     * @param rutaArchivo La ruta de destino donde se guardará el archivo.
+     * @param data Una matriz de datos de tipo cadena que representa la información interna del archivo.
+     * 
+     * @throws IOException Si ocurre un error de entrada/salida al exportar la información de la matriz.
      */
     public void exportarArchivo(String rutaArchivo, List<List<String>> data) throws IOException;
 }
