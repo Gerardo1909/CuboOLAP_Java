@@ -9,7 +9,7 @@ public class Inicializador {
         // NO MODIFICAR
         CreacionPrueba.main(args);
         
-        // Ejecuto los archivos que quiero probar
+        // Ejecuto el archivo que quiero probar
         RollUpPrueba.main(args);
     }
 }
