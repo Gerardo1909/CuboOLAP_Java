@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import Cubo.ImplementacionCubo.Cubo;
+import Cubo.implementacionCubo.Cubo;
 import Cubo.lecturaArchivos.LectorCSV;
 import Cubo.tablasCubo.Dimension;
 import Cubo.tablasCubo.Hecho;

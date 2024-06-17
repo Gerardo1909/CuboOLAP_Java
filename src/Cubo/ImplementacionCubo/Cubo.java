@@ -1,4 +1,4 @@
-package Cubo.ImplementacionCubo;
+package Cubo.implementacionCubo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,20 +61,20 @@ public class Cubo{
      * @param nombreCubo El nombre del cubo.
      * @param tablaHechos La tabla de hechos asociada a las dimensiones del cubo.
      * @param tablasDimensiones Una lista que contiene todas las dimensiones asociadas al cubo.
-     *
-     * @throws ClaveNoPresenteException Si alguna clave primaria de las dimensiones no está presente en la tabla de hechos.
+     * 
+     * @throws DimensionNoAsociadaException Si alguna dimensión especificada no está asociada a la tabla de hechos.
      * 
      * @return Una nueva instancia de la clase Cubo, la cual representa un cubo OLAP.
      */
     public static Cubo crearCuboOLAP(String nombreCubo, Hecho tablaHechos, List<Dimension> tablasDimensiones){
         
-        // Verifico que en la tabla de hechos estén todas las claves primarias de las dimensiones
+        // Verifico que las dimensiones pasadas en la lista estén asociadas a la tabla de hechos
         for (Dimension dimension : tablasDimensiones){
-            if (!tablaHechos.getHeaders().contains(dimension.getPrimaryKey())){
-                throw new ClaveNoPresenteException("La clave primaria '" + dimension.getPrimaryKey() + "' no está en la tabla de hechos " + tablaHechos.getNombre());
+            if (!tablaHechos.getClavesForaneasDims().containsKey(dimension)){
+                throw new DimensionNoAsociadaException("La dimension '" + dimension.getNombre() + "' no esta asociada a la tabla de hechos '" + tablaHechos.getNombre() + "'.");
             }
         }
-        
+
         // Retorno un nuevo Cubo OLAP 
         return new Cubo(nombreCubo, tablaHechos, tablasDimensiones);
 

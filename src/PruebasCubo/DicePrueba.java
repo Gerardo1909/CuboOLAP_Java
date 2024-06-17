@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import Cubo.ImplementacionCubo.Cubo;
+import Cubo.implementacionCubo.Cubo;
 import Cubo.exportacionArchivos.ExportadorCSV;
 import Cubo.tablasCubo.Dimension;
 

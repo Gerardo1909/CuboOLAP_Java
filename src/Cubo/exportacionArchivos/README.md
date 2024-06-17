@@ -1,8 +1,8 @@
-# Documentación del módulo `exportacion_archivos`
+# Documentación del módulo `exportacionArchivos`
 
 ## Descripción
 
-Este módulo, al igual que el módulo de [`lectura_archivos`](../lectura_archivos/README.md), implementa **el patrón de diseño Strategy** para definir una familia de algoritmos que representan métodos de exportación de archivos.
+Este módulo, al igual que el módulo de [`lecturaArchivos`](../lecturaArchivos/README.md), implementa **el patrón de diseño Strategy** para definir una familia de algoritmos que representan métodos de exportación de archivos.
 
 ## Componentes
 
@@ -23,7 +23,7 @@ Define el método `exportarArchivo(String rutaArchivo, List<List<String>> data)`
 #### Excepciones Lanzadas
 
 1. **IOException**
-   - **Descripción**: Se lanza si se produce un error de E/S al escribir el archivo.
+   - **Descripción**: Se lanza si se produce un error de entrada/salida al escribir el archivo.
    - **Cómo Evitarla**: Asegúrate de que la ruta especificada sea accesible y que tengas permisos suficientes para escribir en ella.
 
 ### **Clase `ExportadorCSV`**
@@ -46,7 +46,7 @@ El constructor de esta clase permite crear una instancia de tipo `ExportadorCSV`
 // Creamos una instancia de ExportadorCSV con un separador de coma
 ExportadorCSV exportador = new ExportadorCSV(',');
 
-// Creamos una instancia de ExportadorCSV  con un separador de punto y coma
+// O podemos crear una instancia de ExportadorCSV  con un separador de punto y coma
 ExportadorCSV exportador = new LectorCSV(';');
 ```
 
@@ -75,7 +75,7 @@ exportador.exportarArchivo("ruta/al/archivo.csv", datos);
 
 ## Beneficios
 
-El patrón de diseño Strategy aplicado en este módulo provee beneficios que ya fueron expuestos en la [documentación del módulo `lectura_archivos`](../lectura_archivos/README.md).
+El patrón de diseño Strategy aplicado en este módulo provee beneficios que ya fueron expuestos en la [documentación del módulo `lecturaArchivos`](../lecturaArchivos/README.md).
 
 ## Referencias 
 

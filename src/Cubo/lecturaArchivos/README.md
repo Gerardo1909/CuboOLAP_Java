@@ -1,4 +1,4 @@
-# Documentación del módulo `lectura_archivos`
+# Documentación del módulo `lecturaArchivos`
 
 ## Descripción
 
@@ -19,12 +19,12 @@ Define el método `leerArchivo(String rutaArchivo)` que todas las clases que rep
 #### Excepciones Lanzadas
 
 1. **IOException**
-    - **Descripción**: Se lanza si se produce un error de E/S al leer el archivo.
+    - **Descripción**: Se lanza si se produce un error de entrada/salida al leer el archivo.
     - **Cómo Evitarla**: Asegúrate de que el archivo en la ruta especificada esté accesible y sea legible.
 
-#### Estructura del Resultado
+#### Retorno del Método
 
-- **Tipo**: `List<List<String>>`
+- **Matriz de datos**: `List<List<String>>`
   - **Descripción**: Una lista de listas de cadenas que representa el contenido del archivo.
   - **Estructura**: Cada lista interna representa una línea en el archivo, y cada cadena en la lista interna representa un campo.
 
@@ -48,7 +48,7 @@ El constructor de esta clase te permite crear una instancia de tipo `LectorCSV`,
 // Creamos una instancia de LectorCSV con un separador de coma
 LectorCSV lector = new LectorCSV(',');
 
-// Creamos una instancia de LectorCSV con un separador de punto y coma
+// O podemos crear una instancia de LectorCSV con un separador de punto y coma
 LectorCSV lector = new LectorCSV(';');
 ```
 

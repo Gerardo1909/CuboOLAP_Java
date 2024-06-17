@@ -1,4 +1,4 @@
-package Cubo.ImplementacionCubo;
+package Cubo.implementacionCubo;
 
 import java.util.List;
 import java.util.Map;

@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import Cubo.excepciones.excepcionesDimension.ClaveNoPresenteException;
 import Cubo.excepciones.excepcionesDimension.NivelNoPresenteException;
 import Cubo.excepciones.excepcionesTabla.ColumnaNoPresenteException;
 import Cubo.lecturaArchivos.EstrategiaLecturaArchivo;
@@ -49,7 +51,7 @@ public class Dimension extends Tabla {
      * @param rutaArchivo La ruta donde se ubica el archivo a leer.
      * 
      * @throws IOException Si ocurre un error de entrada/salida al leer los datos de la tabla.
-     * @throws ColumnaNoPresenteException Si la clave primaria indicada no está presente en la tabla de dimensión.
+     * @throws ClaveNoPresenteException Si la clave primaria indicada no está presente en la tabla de dimensión.
      * @throws NivelNoPresenteException Si alguno de los niveles especificados no está presente en la tabla de dimensión.
      * 
      * @return Una nueva instancia de la clase Dimension, la cual representa una tabla de dimensión.
@@ -64,7 +66,7 @@ public class Dimension extends Tabla {
 
         // Verifico que la clave primaria exista en la dimensión
         if (!headers_dim.contains(primaryKey)) {
-            throw new ColumnaNoPresenteException("La clave primaria '" + primaryKey + "' no esta presente en la dimension.");
+            throw new ClaveNoPresenteException("La clave primaria '" + primaryKey + "' no esta presente en la dimension.");
         }
 
         // Verifico que los niveles estén presentes en la dimensión

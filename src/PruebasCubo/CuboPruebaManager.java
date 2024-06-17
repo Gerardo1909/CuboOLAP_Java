@@ -2,7 +2,7 @@ package PruebasCubo;
 
 import java.util.ArrayList;
 import java.util.List;
-import Cubo.ImplementacionCubo.Cubo;
+import Cubo.implementacionCubo.Cubo;
 import Cubo.tablasCubo.Dimension;
 
 // Esta clase sirve para poder probar un cubo de prueba en diferentes clases

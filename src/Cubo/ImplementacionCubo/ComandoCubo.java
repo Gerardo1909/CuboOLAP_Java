@@ -1,4 +1,4 @@
-package Cubo.ImplementacionCubo;
+package Cubo.implementacionCubo;
 
 /**
  * <p>
