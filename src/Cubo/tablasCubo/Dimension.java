@@ -8,10 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import Cubo.excepciones.excepcionesDimension.ClaveNoPresenteException;
 import Cubo.excepciones.excepcionesDimension.NivelNoPresenteException;
-import Cubo.excepciones.excepcionesTabla.ColumnaNoPresenteException;
 import Cubo.lecturaArchivos.EstrategiaLecturaArchivo;
 
 /**
